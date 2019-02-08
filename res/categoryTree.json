@@ -1,0 +1,130 @@
+{
+    "Arts": {
+        "categoryName": "Arts",
+        "subCategories": [
+            "Design",
+            "Fashion & Beauty",
+            "Fashion & Beauty",
+            "Food",
+            "Literature",
+            "Performing Arts",
+            "Visual Arts"
+        ]
+    },
+    "Business": {
+        "categoryName": "Business",
+        "subCategories": [
+            "Business News",
+            "Careers",
+            "Investing",
+            "Management & Marketing",
+            "Shopping"
+        ]
+    },
+    "Comedy": {
+       "categoryName": "Comedy",
+       "subCategories": null
+    },
+    "Education": {
+        "categoryName": "Education",
+        "subCategories": [
+            "Education",
+            "Education Technology",
+            "Higher Education",
+            "K-12",
+            "Language Courses",
+            "Training"
+        ]
+    },
+    "Games & Hobbies": {
+        "categoryName": "Games & Hobbies",
+        "subCategories": [
+            "Automotive",
+            "Aviation",
+            "Hobbies",
+            "Other Games",
+            "Video Games"
+        ]
+    },
+    "Government & Organizations": {
+        "categoryName": "Government & Organizations",
+        "subCategories": [
+            "Local",
+            "National",
+            "Non-Profit",
+            "Regional"
+        ]
+    },
+    "Health": {
+        "categoryName": "Health",
+        "subCategories": [
+            "Alternative Health",
+            "Fitness &amp; Nutrition",
+            "Self-Help",
+            "Sexuality"
+        ]
+    },
+    "Kids & Family": {
+        "categoryName": "Kids & Family",
+        "subCategories": null
+    },
+    "Music":{
+        "categoryName": "Music",
+        "subCategories": null
+    },
+    "News & Politics": {
+        "categoryName": "News & Politics",
+        "subCategories": null
+    },
+    "Religion & Spirituality": {
+        "categoryName": "Religion & Spirituality",
+        "subCategories": [
+            "Buddhism",
+            "Christianity",
+            "Hinduism",
+            "Islam",
+            "Judaism",
+            "Other",
+            "Spirituality"
+        ]
+    },
+    "Science & Medicine": {
+        "categoryName": "Science & Medicine",
+        "subCategories": [
+            "Medicine",
+            "Natural Sciences",
+            "Social Sciences"
+        ]
+    },
+    "Society & Culture": {
+        "categoryName": "Society & Culture",
+        "subCategories": [
+            "History",
+            "Personal Journals",
+            "Philosophy",
+            "Places &amp; Travel"
+        ]
+    },
+    "Sports & Recreation": {
+        "categoryName": "Sports & Recreation",
+        "subCategories": [
+            "Amateur",
+            "College &amp; High School",
+            "Outdoor",
+            "Professional"
+        ]
+    },
+    "Technology": {
+        "categoryName": "Technology",
+        "subCategories": [
+            "Gadgets",
+            "Tech News",
+            "Podcasting",
+            "Software How-To"
+        ]
+    },
+    "TV & Film": {
+        "categoryName": "TV & Film",
+        "subCategories": null
+    }
+}
