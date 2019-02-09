@@ -1,7 +1,7 @@
 # Kirby Podcaster
-Kirby 3 Podcast Plugin
 
-Use your favorite CMS for podcasting.
+Kirby 3 Podcast Plugin
+For first screens of the panel have a look here: https://maurice-renck.de/de/projects/kirby-podcaster
 
 First beta comming soon with the following features (**bold ones** are new)
 
