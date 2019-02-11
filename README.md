@@ -21,7 +21,7 @@ Curent Status
 * ✅ Snippet for a simple HTML5-Player
 * ✅ Snippet for the advanced Podlove Player
 * ✅ Configure and style your website player within the panel
-* Routing for downloads/tracking
+* ✅ Routing for downloads/tracking
 * Snippet for Podlove Subscribe box
 * Tracking of downloads using Matomo
 * Tracking of downloads using Kirby and the episoden markdown
