@@ -18,9 +18,10 @@ Curent Status
 * ✅ Upload as many mp3s as you want, select the one for your episode
 * ✅ Source selection, your feed can now be on another location than your episodes
 * ✅ Optimized iTunes Category Handling. Just select the categories from a dropdown. Categorylist updated via GitHub
+* ✅ Snippet for a simple HTML5-Player
+* ✅ Snippet for the advanced Podlove Player
+* ✅ Configure and style your website player within the panel
+* Snippet for Podlove Subscribe box
 * Tracking of downloads using Matomo
 * Tracking of downloads using Kirby and the episoden markdown
 * Tracking of downloads using Kirby and MySQL
-* Snippet for a simple HTML5-Player
-* Snippet for the advanced Podlove Player
-* Better composer support
