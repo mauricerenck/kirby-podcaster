@@ -24,6 +24,11 @@ Kirby::plugin('mauricerenck/podcaster', [
         'pages/podcasterfeed' => __DIR__ . '/blueprints/pages/podcasterfeed.yml',
         'tabs/podcasterepisode' => __DIR__ . '/blueprints/tabs/episode.yml'
     ],
+    'snippets' => [
+        'podcaster-player' => __DIR__ . '/snippets/podcaster-player.php',
+        'podcaster-podlove-player' => __DIR__ . '/snippets/podlove-player.php',
+        'podcaster-html5-player' => __DIR__ . '/snippets/html5-player.php'
+    ],
     'hooks' => [
         'file.create:after' => function ($file) {
             if($file->isAudio()) {

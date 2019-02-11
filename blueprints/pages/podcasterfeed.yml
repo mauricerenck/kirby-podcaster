@@ -170,3 +170,45 @@ tabs:
           type: url
           help: Leave empty if you do not want to change your feed url
           width: 1/4
+  player:
+    label: Website Player
+    columns:
+      - width: 1/4
+        sections:
+          player:
+            type: fields
+            fields:
+              headlinePlayer:
+                type: headline
+                label: Website Player
+              playerType:
+                label: Player Type
+                type: select
+                default: podlove
+                options:
+                  html5: Standard HTML5 Player
+                  podlove: Advanced Podlove Player
+              infoPlayer:
+                type: info
+                theme: info
+                text: You need to put the player snippet in your template file. Just add <?php snippet('podcaster-player'); ?> where you want the player to appear.
+      - width: 2/4
+        sections:
+          podloveConfig:
+            type: fields
+            fields:
+              headlinePodlove:
+                type: headline
+                label: Podlove Player Configuration
+              infoPodlove:
+                type: info
+                theme: info
+                text: This settings will only work, if you chose the Podlove player.
+              podcasterPodloveMainColor: 
+                label: Main color (hex)
+                type: text
+                width: 1/2
+              podcasterPodloveHighlighColor: 
+                label: Highlight color (hex)
+                type: text
+                width: 1/2
