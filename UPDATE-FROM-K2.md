@@ -12,3 +12,12 @@ Itunesauthor -> podcasterAuthor
 Itunesowner, Itunesemail -> podcasterOwner
 iTunesType -> podcasterType
 iTunesCategories -> podcasterCategories
+
+
+```
+<?php snippet('podcaster-player'); ?>
+foreach($children as $episode) {
+    snippet('podcaster-player', ['page' => $episode]);
+}
+
+```
