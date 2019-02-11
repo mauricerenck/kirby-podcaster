@@ -10,7 +10,7 @@ class ComposerStaticInit37fef86f7fef9a1dd593d1116ed92cd1
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'ed5eafd960033377637fa9e405d3c2a7' => __DIR__ . '/../..' . '/config.php',
-        'c3bac8ee1169e568a00f00c7358d57b4' => __DIR__ . '/../..' . '/utils/PodcasterRssUtils.php',
+        '8df3dfd1f38b5f54e639d8aee9e2bd5b' => __DIR__ . '/../..' . '/utils/PodcasterUtils.php',
         'aa1a9ddc5c71d010b159c1768f7031e2' => __DIR__ . '/../..' . '/utils/PodcasterAudioUtils.php',
     );
 

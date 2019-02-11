@@ -1,7 +1,7 @@
 <?php
 namespace Plugin\Podcast;
 
-class PodcasterRssUtils {
+class PodcasterUtils {
 
     private $rssFeed;
     private $episode;

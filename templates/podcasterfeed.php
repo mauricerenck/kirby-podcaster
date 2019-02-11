@@ -6,7 +6,7 @@ use c;
 // All field-outputs with xml-coding
 // Tracking
 
-$rssUtils = new PodcasterRssUtils($page);
+$rssUtils = new PodcasterUtils($page);
 
 ?>
 <?php echo '<?xml version="1.0" encoding="utf-8"?>' . PHP_EOL; ?>
