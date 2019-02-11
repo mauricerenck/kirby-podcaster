@@ -1,0 +1,9 @@
+title: Podcaster Audiofile
+type: fields
+fields:
+  episodeTitle: 
+    label: Episode Title
+    type: test
+  duration:
+    label: Duration
+    type: text

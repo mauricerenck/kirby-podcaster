@@ -1,0 +1,96 @@
+label: Episode
+columns:
+  - width: 1/3
+    sections:
+      podcasterCover:
+        type: fields
+        fields:
+          headlineFiles:
+            label: Files
+            type: headline
+          podcasterMp3:
+            type: select
+            label: Episode mp3
+            options: audio
+            required: true
+          podcasterCover:
+            type: files
+            label: Cover Image
+            layout: cards
+            multiple: false
+            max: 1
+            cover: true
+            help: You can set a cover for this single episode here, but Apple recommends to do this in your mp3-metadata (Id3).
+  - width: 2/3
+    sections:
+      podcasterInfo:
+        type: fields
+        fields:
+          headlineSettings:
+            label: Settings
+            type: headline
+          podcasterSeason:
+            label: Season
+            type:  number
+            width: 1/4
+          podcasterEpisode:
+            label: Episode
+            type:  number
+            width: 1/4
+          podcasterEpisodeType:
+            label: Episode type
+            type: select
+            default: full
+            required: true
+            options:
+              full: Regular Episode
+              trailer: Trailer
+              bonus: Bonus Material
+            width: 1/4
+          podcasterExplizit:
+            label: Explicit
+            type:  toggle
+            width: 1/4
+            default: no
+            text: 
+              - Disabled
+              - Explicit
+          podcasterTitle:
+            label: iTunes Title
+            type: text
+            width: 1/2
+            help: "Hint: do not use episode numbers in here, use this in combination with the episode/season info."
+          podcasterSubtitle:
+            label: Subtitle
+            type:  text
+            width: 1/2
+          podcasterDescription:
+            label: Podcast summary
+            type: textarea
+            size: medium
+          podcasterChapters:
+            label: Chapters
+            type: structure
+            fields: 
+              podcasterChapterTimestamp:
+                label: Timestamp
+                type: text
+                help: hh:mm:ss
+                required: true
+              podcasterChapterTitle: 
+                label: Title
+                type: text
+                required: true
+              podcasterChapterUrl:
+                label: URL
+                type: url
+              podcasterChapterImage:
+                label: Image
+                type: files
+                multiple: false
+                max: 1
+          podcasterAuthor:
+            label: Author
+            type: users
+            max: 1
+            help: Leave empty, if the author is the same as defined in the rss settings.

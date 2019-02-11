@@ -1,0 +1,172 @@
+name: podcasterfeed
+title: Podcast Feed
+tabs:
+  content:
+    label: Content
+    icon: text
+    columns:
+      - width: 1/1
+        sections:
+          heading:
+            type: fields
+            fields:
+              headlineInfo:
+                type: headline
+                label: RSS Information
+      - width: 1/4
+        sections:
+          graphics:
+            type: fields
+            fields:
+              podcasterCover:
+                type: files
+                label: Cover Image
+                max: 1
+                width: 1/3
+                layout: cards
+                multiple: false
+                max: 1
+                cover: true
+          files:
+            type: files
+      - width: 2/4
+        sections:
+          infos:
+            type: fields
+            fields:
+              podcasterTitle:
+                label: Podcast Title
+                type: text
+                required: true
+              podcasterSubtitle:
+                label: Podcast Subtitle
+                type: text
+              podcasterDescription:
+                label: Description
+                type: textarea
+                size: medium
+              podcasterKeywords:
+                label: iTunes Keywords
+                type: tags
+              podcasterLink:
+                label: Link
+                required: true
+                type: url
+                help: Can be a link to your podcasts landing page
+              podcasterCopyright:
+                label: Copyright
+                type: text
+  settings:
+    label: RSS Settings
+    icon: text
+    columns:
+      - width: 1/1
+        sections:
+          heading2:
+            type: fields
+            fields:
+              headlineSettings:
+                type: headline
+                label: RSS Settings
+      - width: 1/4
+        sections:
+          settings:
+            type: fields
+            fields:
+              podcasterSource:
+                label: Source Page
+                type: pages
+                required: true
+                multiple: false
+                help: Select the page which will act as a parent of your episodes. Normally this is the page which is the parent of this feed, too.
+              podcasterLanguage:
+                label: Language
+                type: text
+                required: true
+              podcasterType:
+                label: Podcast type
+                type: select
+                default: episodic
+                options:
+                  episodic: Episodic
+                  serial: Serial
+              podcasterAtomLink:
+                label: Atom Link
+                type: url
+                help: If your want the target of your rss atom:link tag to point elsewhere, set the url here. This can be handy, if you want to use something like feedburner
+      - width: 2/4
+        sections:
+          categorySettings:
+            type: fields
+            fields:
+              podcasterCategories:
+                label: iTunes Categories
+                type: structure
+                required: true
+                fields:
+                  podcasterMainCategory:
+                    label: Main
+                    type: select
+                    options: api
+                    api: https://raw.githubusercontent.com/mauricerenck/kirby-podcaster/master/res/categories.json
+      - width: 1/4
+        sections:
+          authors:
+            type: fields
+            fields:
+              podcasterAuthor:
+                label: Author
+                type: users
+                max: 1
+              podcasterOwner:
+                label: Owner
+                type: users
+                max: 1
+  dangerzone:
+    label: Dangerzone
+    icon: text
+    sections:
+     dangerzone:
+      type: fields
+      fields:
+        headlineDanger:
+          type: headline
+          label: Dangerzone
+        infoDanger:
+          label: Be aware!️️
+          type: info
+          theme: negative
+          text: The following settings will influence how and if your podcast appears on directories like iTunes. Please be aware that setting the wrong option can harm your podcasts appearance.
+          width: 1/4
+        podcasterBlock:
+          label: Block
+          type: toggle
+          default: no
+          text: 
+            - Podcast is visible
+            - Podcast is BLOCKED
+          help: Enabling this will prevent your Podcast from appearing on the iTunes Store and other podcast directories.
+          width: 1/4
+        podcasterExplicit:
+          label: Explicit
+          type: toggle
+          default: no
+          text: 
+            - Suitable for all ages
+            - Podcast marked as explicit
+          help: Enabling this will mark your podcast as explicit and may cause that it's not available for certain age groups.
+          width: 1/4
+        podcasterComplete:
+          label: Complete
+          type: toggle
+          default: no
+          text: 
+            - New episodes will come
+            - No new episodes planned
+          help: Enabling this will tell podcast directories that there won't be any new episodes.
+          width: 1/4
+        podcasterNewFeedUrl:
+          label: New Feed URL
+          type: url
+          help: Leave empty if you do not want to change your feed url
+          width: 1/4
