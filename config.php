@@ -29,6 +29,7 @@ Kirby::plugin('mauricerenck/podcaster', [
         'podcaster-podlove-player' => __DIR__ . '/snippets/podlove-player.php',
         'podcaster-html5-player' => __DIR__ . '/snippets/html5-player.php'
     ],
+    'routes' => require_once __DIR__ . '/routes.php',
     'hooks' => [
         'file.create:after' => function ($file) {
             if($file->isAudio()) {
