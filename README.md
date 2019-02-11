@@ -3,7 +3,7 @@
 Kirby 3 Podcast Plugin
 For first screens of the panel have a look here: https://maurice-renck.de/de/projects/kirby-podcaster
 
-Curent Status
+Current Status
 
 * ✅ new, slimmer ID3-Lib
 * ✅ ID3 parsing after upload (not as in Version 2 during first pageview of the episode/feed)
@@ -13,8 +13,8 @@ Curent Status
 * ✅ Most settings now available per feed and in the panel not globally in your config.php
 * ✅ Run multiple podcasts with just one Kirby installation
 * ✅ Updated chapter syntax, now including image
-* ✅ Cover image per feed and episode
-* ✅ Author- and owner Settings per feed and episode
+* ✅ Cover image per feed **and** episode
+* ✅ Author- and owner Settings per feed **and** episode
 * ✅ Upload as many mp3s as you want, select the one for your episode
 * ✅ Source selection, your feed can now be on another location than your episodes
 * ✅ Optimized iTunes Category Handling. Just select the categories from a dropdown. Categorylist updated via GitHub
