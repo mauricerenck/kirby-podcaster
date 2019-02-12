@@ -105,7 +105,7 @@ class PodcasterStatsMySql {
         $downloadDate = $this->formatTrackingDate($trackingDate);
         $episodeStats = $this->getEpisodeStats($episode->uid(), $downloadDate);
 
-        $podcast = str::slug($episode->siblings()->find(feed)->title());
+        $podcast = str::slug($episode->siblings()->find(feed)->podcasterTitle());
         if(!$episodeStats) {
             $this->setDownloads($podcast, $episode->uid(), $downloadDate);
             return true;
@@ -130,12 +130,12 @@ class PodcasterStatsMySql {
     }
 
     public function increaseFeedVisits($page, string $trackingDate) {
-        $slug = str::slug($page->title());
+        $slug = str::slug($page->podcasterTitle());
         $downloadDate = $this->formatTrackingDate($trackingDate);
         $feedStats = $this->getFeedStats($slug, $downloadDate);
 
         if (!$feedStats) {
-            $this->setFeedVisits($slug, $page->title(), $downloadDate);
+            $this->setFeedVisits($slug, $page->podcasterTitle(), $downloadDate);
             return true;
         }
 
