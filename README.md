@@ -52,9 +52,9 @@ If you're using the panel you may want to edit the episode specific information 
 
 ```
 tabs:
-  content:
-    label: Your sections and columns
-    icon: text
+    content:
+        label: Your sections and columns
+        icon: text
     podcast:
         extends: tabs/podcasterepisode
 ```
