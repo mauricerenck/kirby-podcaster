@@ -22,10 +22,10 @@ For first screens of the panel have a look here: https://maurice-renck.de/de/pro
 * ✅ Snippet for the advanced Podlove Player
 * ✅ Configure and style your website player within the panel
 * ✅ Routing for downloads/tracking
+* ✅ Tracking of downloads using Kirby and the episoden markdown
+* ✅ Tracking of downloads using Kirby and MySQL
 * Snippet for Podlove Subscribe box
 * Tracking of downloads using Matomo
-* Tracking of downloads using Kirby and the episoden markdown
-* Tracking of downloads using Kirby and MySQL
 
 
 ## Installation
