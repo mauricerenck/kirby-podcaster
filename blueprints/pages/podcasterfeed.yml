@@ -212,3 +212,43 @@ tabs:
                 label: Highlight color (hex)
                 type: text
                 width: 1/2
+              podcasterPodloveTabsInfo:
+                label: Info Tab
+                type: toggle
+                default: yes
+                text: 
+                  - Invisible
+                  - Visible
+                width: 1/4
+              podcasterPodloveTabsShare:
+                label: Share Tab
+                type: toggle
+                default: yes
+                text: 
+                  - Invisible
+                  - Visible
+                width: 1/4
+              podcasterPodloveTabsChapters:
+                label: Chapters Tab
+                type: toggle
+                default: yes
+                text: 
+                  - Invisible
+                  - Visible
+                width: 1/4
+              podcasterPodloveTabsAudio:
+                label: Audio Tab
+                type: toggle
+                default: yes
+                text: 
+                  - Invisible
+                  - Visible
+                width: 1/4
+              podcasterPodloveTabsDownload:
+                label: Audio Tab
+                type: toggle
+                default: yes
+                text: 
+                  - Invisible
+                  - Visible
+                width: 1/4

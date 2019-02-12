@@ -17,6 +17,7 @@
 ?>
 <div id="podlovePlayer"></div>
 <script src="//cdn.podlove.org/web-player/embed.js"></script>
+
 <script>
     podlovePlayer('#podlovePlayer', {
         <?php if($podcast->podcasterPodloveMainColor()->isNotEmpty() && $podcast->podcasterPodloveHighlighColor()->isNotEmpty()) : ?>
@@ -25,6 +26,13 @@
             highlight: '<?php echo str_replace('#', '', $podcast->podcasterPodloveHighlighColor()); ?>'
         },
         <?php endif; ?>
+        tabs: {
+            info: <?php echo ($podcast->podcasterPodloveTabsInfo()->isTrue()) ? 'true' : 'false'; ?>,
+            share: <?php echo ($podcast->podcasterPodloveTabsShare()->isTrue()) ? 'true' : 'false'; ?>,
+            chapters: <?php echo ($podcast->podcasterPodloveTabsChapters()->isTrue()) ? 'true' : 'false'; ?>,
+            audio: <?php echo ($podcast->podcasterPodloveTabsAudio()->isTrue()) ? 'true' : 'false'; ?>,
+            download: <?php echo ($podcast->podcasterPodloveTabsDownload()->isTrue()) ? 'true' : 'false'; ?>
+        },
         title: '<?php echo $page->podcasterTitle()->or($page->title()); ?>',
         subtitle: '<?php echo $page->podcasterSubtitle(); ?>',
         summary: '<?php echo $page->podcasterDescription(); ?>',
@@ -32,6 +40,7 @@
         <?php if($cover !== false) : ?>
             poster: '<?php echo $page->podcasterCover()->toFile()->resize(200)->url(); ?>',
         <?php endif; ?>
+        link: '<?php echo $page->url(); ?>',
         show: {
             title: '<?php echo $podcast->podcasterTitle(); ?>',
             subtitle: '<?php echo $podcast->podcasterSubtitle(); ?>',
@@ -39,7 +48,7 @@
             <?php if($cover !== false) : ?>
             poster: '<?php echo $podcast->podcasterCover()->toFile()->url(); ?>',
             <?php endif; ?>
-            url: '<?php $podcast->podcasterLink(); ?>'
+            link: '<?php echo $podcast->podcasterLink(); ?>'
         },
         duration: '<?php echo $podcasterUtils->getAudioDuration(); ?>',
 		<?php if ($page->podcasterChapters()->isNotEmpty()) : ?>
@@ -53,7 +62,19 @@
                     },
 				<?php endforeach; ?>
 			],
-		<?php endif; ?>
+        <?php endif; ?>
+        <?php if ($page->podcasterContributors()->isNotEmpty()) : ?>
+        <?php $contributors = $page->podcasterContributors()->toUsers(); ?>
+        contributors: [
+            <?php foreach ($contributors as $contributor) : ?>
+            {
+                id: '<?php echo $contributor->id(); ?>',
+                <?php echo ($contributor->avatar() !== null) ? "avatar: '" . $contributor->avatar()->url() . "'," : ''; ?>
+                name: '<?php echo $contributor->name(); ?>'
+            },
+            <?php endforeach; ?>
+        ],
+        <?php endif; ?>
         audio: [
             {
                 url: '<?php echo $page->url() . '/download/' . str_replace('.mp3', '', $audioFile->filename()); ?>',
