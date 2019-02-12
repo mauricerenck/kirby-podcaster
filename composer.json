@@ -14,7 +14,10 @@
         "files": [
             "config.php",
             "utils/PodcasterUtils.php",
-            "utils/PodcasterAudioUtils.php"
+            "utils/PodcasterAudioUtils.php",
+            "utils/PodcasterStats.php",
+            "utils/PodcasterStatsFile.php",
+            "utils/PodcasterStatsMysql.php"
         ]
     },
     "require": {

@@ -38,6 +38,25 @@ For first screens of the panel have a look here: https://maurice-renck.de/de/pro
 
 If you want to use the PodLove-Player and style it, you can try around here: https://docs.podlove.org/podlove-web-player/theme.html
 
+## Configuration
+
+You can use the built in tracking by setting the following in your `config.php`
+`'mauricerenck.podcaster.statsInternal' => true`
+
+You can either use the file method, then your downloads will be directly stored in your episode markdown file. Note that this *can* lead to problems if there are a lot of simulatiously downoads. You may run better by using the mysql method. 
+
+Or you can use MySQL:
+```
+    'mauricerenck.podcaster.statsType' => 'mysql',
+    'mauricerenck.podcaster.statsHost' => 'HOSTNAME',
+    'mauricerenck.podcaster.statsDatabase' => 'DATABASE',
+    'mauricerenck.podcaster.statsUser' => 'USER',
+    'mauricerenck.podcaster.statsPassword' => 'PASSWORD'
+```
+Before using the MySQL statistics please make sure to create the tables within your database. You can find the SQL import in the `res` directory of this repository called `podcasterStats.sql`
+
+** NOTE ** Downloads can currenly be tracked, but there are no visual stats in the panel, yet.
+
 ## Add Player to template
 
 If you want an audio player appear on your episode page, just add the follow snippet to your template: `<?php snippet('podcaster-player'); ?>`

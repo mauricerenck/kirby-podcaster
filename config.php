@@ -1,11 +1,18 @@
 <?php
-namespace Plugin\Podcast;
+namespace Plugin\Podcaster;
 use Kirby;
 use Kirby\Exception\Exception;
 
 Kirby::plugin('mauricerenck/podcaster', [
     'options' => [
-        'downloadTriggerPath' => 'download'
+        'downloadTriggerPath' => 'download',
+        'statsInternal' => false,
+        'statsType' => 'mysql',
+        'statsHost' => null,
+        'statsDatabase' => null,
+        'statsUser' => null,
+        'statsPassword' => null
+
     //     'widgetEntries' => 10,
     //     'piwikBase' => null,
     //     'piwikId' => null,
@@ -29,7 +36,24 @@ Kirby::plugin('mauricerenck/podcaster', [
         'podcaster-podlove-player' => __DIR__ . '/snippets/podlove-player.php',
         'podcaster-html5-player' => __DIR__ . '/snippets/html5-player.php'
     ],
-    'routes' => require_once __DIR__ . '/routes.php',
+    'routes' => [
+        [
+            'pattern' => '(:all)/download/(:any)',
+            'action' => function ($slug, $filename) {
+                $episode = page($slug);
+
+                if(option('mauricerenck.podcaster.statsInternal') === true) {
+                    $stats = new PodcasterStats();
+                    $trackingDate = time();
+                    $stats->increaseDownloads($episode, $trackingDate);
+                }
+
+                $filename = str_replace('.mp3', '', $filename);
+                return $episode->audio($episode->podcasterMp3())->first();
+                return $file;
+            }
+        ]
+    ],
     'hooks' => [
         'file.create:after' => function ($file) {
             if($file->isAudio()) {

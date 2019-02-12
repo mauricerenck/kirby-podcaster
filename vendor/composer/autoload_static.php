@@ -12,6 +12,9 @@ class ComposerStaticInit37fef86f7fef9a1dd593d1116ed92cd1
         'ed5eafd960033377637fa9e405d3c2a7' => __DIR__ . '/../..' . '/config.php',
         '8df3dfd1f38b5f54e639d8aee9e2bd5b' => __DIR__ . '/../..' . '/utils/PodcasterUtils.php',
         'aa1a9ddc5c71d010b159c1768f7031e2' => __DIR__ . '/../..' . '/utils/PodcasterAudioUtils.php',
+        '1a1828adf062a2860974d695d05734cf' => __DIR__ . '/../..' . '/utils/PodcasterStats.php',
+        'd6802096f93b9e496e07bfb10dc2a836' => __DIR__ . '/../..' . '/utils/PodcasterStatsFile.php',
+        '7327ddc355eb971a6be2a8e77299663d' => __DIR__ . '/../..' . '/utils/PodcasterStatsMysql.php',
     );
 
     public static $prefixLengthsPsr4 = array (
