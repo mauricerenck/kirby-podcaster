@@ -1,0 +1,27 @@
+{
+    "name": "mauricerenck/podcaster",
+    "description": "A podacst plugin for Kirby3",
+    "type": "kirby-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maurice Renck",
+            "email": "hello@maurice-renck.de"
+        }
+    ],
+    "version": "0.1.0",
+    "autoload": {
+        "files": [
+            "config.php",
+            "utils/PodcasterUtils.php",
+            "utils/PodcasterAudioUtils.php"
+        ]
+    },
+    "require": {
+        "phansys/getid3": " ^2.1@dev"
+    },
+    "require-dev": {
+        "wapmorgan/mp3info": "^0.0.3",
+        "phpunit/phpunit": "^7.2"
+    }
+}
