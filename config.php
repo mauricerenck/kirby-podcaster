@@ -6,7 +6,6 @@ use \PiwikTracker;
 
 Kirby::plugin('mauricerenck/podcaster', [
     'options' => [
-        'downloadTriggerPath' => 'download',
         'statsInternal' => false,
         'statsType' => 'mysql',
         'statsHost' => null,
@@ -30,9 +29,9 @@ Kirby::plugin('mauricerenck/podcaster', [
     ],
     'routes' => [
         [
-            'pattern' => '(:all)/podtrack',
+            'pattern' => '(:all)/' . option('mauricerenck.podcaster.defaultFeed', 'feed'),
             'action' => function ($slug) {
-                $page = page($slug);
+                $page = page($slug . '/' . option('mauricerenck.podcaster.defaultFeed', 'feed'));
 
                 if(option('mauricerenck.podcaster.statsInternal') === true) {
                     $stats = new PodcasterStats();
@@ -66,7 +65,7 @@ Kirby::plugin('mauricerenck/podcaster', [
             }
         ],
         [
-            'pattern' => '(:all)/download/(:any)',
+            'pattern' => '(:all)/' . option('mauricerenck.podcaster.downloadTriggerPath', 'download') . '/(:any)',
             'action' => function ($slug, $filename) {
                 $episode = page($slug);
                 $podcast = $episode->siblings()->find('feed');

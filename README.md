@@ -44,6 +44,23 @@ If you want to use the PodLove-Player and style it, you can try around here: htt
 You can use the built in tracking by setting the following in your `config.php`
 `'mauricerenck.podcaster.statsInternal' => true`
 
+#### Episode
+To track your episodes a special route has to be triggered. Kirby Podcaster does this by default. If you want, you can change this route by setting: 
+
+`mauricerenck.podcaster.downloadTriggerPath`
+
+Default is `download` 
+
+#### Feed
+If you want to track your rss-feed, you have to set the slug of your feed in the config.php. If your feed url is `https://podcast.tld/myfeed/` set:
+
+```
+'mauricerenck.podcaster.defaultFeed' => 'myfeed',
+```
+
+Default value is `feed`, so if you name your rss-feed-page `feed` everything is find and you don't have to do anything.
+
+#### Tracking Mode
 You can either use the file method, then your downloads will be directly stored in your episode markdown file. Note that this *can* lead to problems if there are a lot of simulatiously downoads. You may run better by using the mysql method. 
 
 Or you can use MySQL:
@@ -56,9 +73,8 @@ Or you can use MySQL:
 ```
 Before using the MySQL statistics please make sure to create the tables within your database. You can find the SQL import in the `res` directory of this repository called `podcasterStats.sql`
 
-**ATTENTION!**
+**NOTE**
 Downloads can currenly be tracked, but there are no visual stats in the panel, yet.
-If you want to enable Tracking of your RSS-Feed you have to add `podtrack` to the feed url. For example `https://podcast.tld/feed/podtrack` instead of `https://podcast.tld/feed`. I cannot put the tracking directly into the template, because of possible caching. Because of that I've to use a route. I am working on a better solution for that.
 
 ### Matomo
 You can enalbe download tracking via Matomo per feed. Go to your feed settings and click on the Tracking tab. Fill in all needed values.
