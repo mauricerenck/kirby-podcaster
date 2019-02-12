@@ -22,9 +22,9 @@ class PodcasterStats {
 
 	public function increaseFeedVisits($page, string $trackingDate) {
 		if ($this->statisticMode == 'file') {
-			$stats = new PodcastStatsFile();
+			$stats = new PodcasterStatsFile();
 		} else if ($this->statisticMode == 'mysql') {
-			$stats = new PodcastStatsMySql();
+			$stats = new PodcasterStatsMySql();
 		}
 
 		$stats->increaseFeedVisits($page, $trackingDate);

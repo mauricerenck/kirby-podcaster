@@ -1,5 +1,5 @@
 <?php
-namespace Plugin\Podcast;
+namespace Plugin\Podcaster;
 
 class PodcasterUtils {
 
