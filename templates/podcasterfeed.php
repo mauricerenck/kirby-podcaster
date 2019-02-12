@@ -2,15 +2,6 @@
 namespace Plugin\Podcaster;
 use c;
 
-if(option('mauricerenck.podcaster.statsInternal') === true) {
-	$stats = new PodcasterStats();
-	$trackingDate = time();
-	$stats->increaseFeedVisits($page, $trackingDate);
-}
-
-// TODO:
-// Tracking via Matomo
-
 $rssUtils = new PodcasterUtils($page);
 ?>
 <?php echo '<?xml version="1.0" encoding="utf-8"?>' . PHP_EOL; ?>

@@ -252,3 +252,101 @@ tabs:
                   - Invisible
                   - Visible
                 width: 1/4
+  tracking:
+    label: Tracking
+    columns:
+      - width: 1/3
+        sections:
+          matomo:
+            type: fields
+            fields:
+              headlineMatomo:
+                type: headline
+                label: Matomo settings
+              infoMatomo:
+                type: info
+                theme: info
+                label: Attention
+                text: Make sure to set the token and base-url in your config.php
+      - width: 1/3
+        sections:
+          matomoEpisode:
+            type: fields
+            fields:
+              headlineMatomoEpisode:
+                type: headline
+                label: Matomo Episode Settings
+              podcasterMatomoEnabled:
+                label: Enable Matomo episode tracking
+                help: Tracking will only be enabled for this podcast if you run another one, enable it there, too
+                type: toggle
+                default: no
+                text: 
+                  - disabled
+                  - enabled
+                width: 1/4
+              podcasterMatomoSiteId: 
+                label: Site Id
+                help: Your Matomo Site Id.
+                type: text
+                width: 1/4
+              podcasterMatomoGoalId: 
+                label: Goal Id
+                help: If you want to track a certain goal, fill in its Id. Leave empty to disable.
+                type: text
+                width: 1/4
+              podcasterMatomoEventName: 
+                label: Event name
+                help: If you want to track a certain event, fill in its name here. Leave empty to disable.
+                type: text
+                width: 1/4
+              podcasterMatomoAction: 
+                label: Action
+                help: If you want to track the download action, enable this.
+                type: toggle
+                default: no
+                text: 
+                  - disabled
+                  - enabled
+                width: 1/4
+      - width: 1/3
+        sections:
+          matomoFeed:
+            type: fields
+            fields:
+              headlineMatomoFeed:
+                type: headline
+                label: Matomo Feed Settings
+              podcasterMatomoFeedEnabled:
+                label: Enable Matomo rss-feed tracking
+                help: Tracking will only be enabled for this podcast if you run another one, enable it there, too
+                type: toggle
+                default: no
+                text: 
+                  - disabled
+                  - enabled
+                width: 1/4
+              podcasterMatomoFeedSiteId: 
+                label: Site Id
+                help: Your Matomo Site Id.
+                type: text
+                width: 1/4
+              podcasterMatomoFeedGoalId: 
+                label: Goal Id
+                help: If you want to track a certain goal, fill in its Id. Leave empty to disable.
+                type: text
+                width: 1/4
+              podcasterMatomoFeedEventName: 
+                label: Event name
+                help: If you want to track a certain event, fill in its name here. Leave empty to disable.
+                type: text
+                width: 1/4
+              podcasterMatomoFeedAction: 
+                label: Action
+                help: If you want to track the download action, enable this.
+                type: toggle
+                default: no
+                text: 
+                  - disabled
+                  - enabled
+                width: 1/4

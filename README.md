@@ -40,6 +40,7 @@ If you want to use the PodLove-Player and style it, you can try around here: htt
 
 ## Configuration
 
+### Internal Tracking
 You can use the built in tracking by setting the following in your `config.php`
 `'mauricerenck.podcaster.statsInternal' => true`
 
@@ -55,7 +56,19 @@ Or you can use MySQL:
 ```
 Before using the MySQL statistics please make sure to create the tables within your database. You can find the SQL import in the `res` directory of this repository called `podcasterStats.sql`
 
-** NOTE ** Downloads can currenly be tracked, but there are no visual stats in the panel, yet.
+**ATTENTION!**
+Downloads can currenly be tracked, but there are no visual stats in the panel, yet.
+If you want to enable Tracking of your RSS-Feed you have to add `podtrack` to the feed url. For example `https://podcast.tld/feed/podtrack` instead of `https://podcast.tld/feed`. I cannot put the tracking directly into the template, because of possible caching. Because of that I've to use a route. I am working on a better solution for that.
+
+### Matomo
+You can enalbe download tracking via Matomo per feed. Go to your feed settings and click on the Tracking tab. Fill in all needed values.
+
+To make sure Kirby Podcaster can access your Matomo API, you must set these to values in your config.php
+
+```
+'mauricerenck.podcaster.matomoToken' => 'my-secret-token',
+'mauricerenck.podcaster.matomoBaseUrl' => 'https://my-matomo-url.tld/'
+```
 
 ## Add Player to template
 
