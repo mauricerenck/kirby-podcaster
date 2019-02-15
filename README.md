@@ -22,10 +22,10 @@ For first screens of the panel have a look here: https://maurice-renck.de/de/pro
 * ✅ Snippet for the advanced Podlove Player
 * ✅ Configure and style your website player within the panel
 * ✅ Routing for downloads/tracking
+* ✅ Tracking of downloads using Kirby and the episoden markdown
+* ✅ Tracking of downloads using Kirby and MySQL
+* ✅ Tracking of episodes/feeds using Matomo
 * Snippet for Podlove Subscribe box
-* Tracking of downloads using Matomo
-* Tracking of downloads using Kirby and the episoden markdown
-* Tracking of downloads using Kirby and MySQL
 
 
 ## Installation
@@ -37,6 +37,54 @@ For first screens of the panel have a look here: https://maurice-renck.de/de/pro
 * in the panel go to the rss-feed-page and edit all needed information
 
 If you want to use the PodLove-Player and style it, you can try around here: https://docs.podlove.org/podlove-web-player/theme.html
+
+## Configuration
+
+### Internal Tracking
+You can use the built in tracking by setting the following in your `config.php`
+`'mauricerenck.podcaster.statsInternal' => true`
+
+#### Episode
+To track your episodes a special route has to be triggered. Kirby Podcaster does this by default. If you want, you can change this route by setting: 
+
+`mauricerenck.podcaster.downloadTriggerPath`
+
+Default is `download` 
+
+#### Feed
+If you want to track your rss-feed, you have to set the slug of your feed in the config.php. If your feed url is `https://podcast.tld/myfeed/` set:
+
+```
+'mauricerenck.podcaster.defaultFeed' => 'myfeed',
+```
+
+Default value is `feed`, so if you name your rss-feed-page `feed` everything is find and you don't have to do anything.
+
+#### Tracking Mode
+You can either use the file method, then your downloads will be directly stored in your episode markdown file. Note that this *can* lead to problems if there are a lot of simulatiously downoads. You may run better by using the mysql method. 
+
+Or you can use MySQL:
+```
+    'mauricerenck.podcaster.statsType' => 'mysql',
+    'mauricerenck.podcaster.statsHost' => 'HOSTNAME',
+    'mauricerenck.podcaster.statsDatabase' => 'DATABASE',
+    'mauricerenck.podcaster.statsUser' => 'USER',
+    'mauricerenck.podcaster.statsPassword' => 'PASSWORD'
+```
+Before using the MySQL statistics please make sure to create the tables within your database. You can find the SQL import in the `res` directory of this repository called `podcasterStats.sql`
+
+**NOTE**
+Downloads can currenly be tracked, but there are no visual stats in the panel, yet.
+
+### Matomo
+You can enalbe download tracking via Matomo per feed. Go to your feed settings and click on the Tracking tab. Fill in all needed values.
+
+To make sure Kirby Podcaster can access your Matomo API, you must set these to values in your config.php
+
+```
+'mauricerenck.podcaster.matomoToken' => 'my-secret-token',
+'mauricerenck.podcaster.matomoBaseUrl' => 'https://my-matomo-url.tld/'
+```
 
 ## Add Player to template
 

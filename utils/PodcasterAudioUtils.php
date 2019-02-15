@@ -1,5 +1,5 @@
 <?php
-namespace Plugin\Podcast;
+namespace Plugin\Podcaster;
 use \GetId3\GetId3Core as GetId3;
 // @see https://github.com/wapmorgan/Mp3Info
 
