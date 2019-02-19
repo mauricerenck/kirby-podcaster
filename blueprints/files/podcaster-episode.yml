@@ -3,7 +3,9 @@ type: fields
 fields:
   episodeTitle: 
     label: Episode Title
-    type: test
+    type: text
+    width: 1/2
   duration:
     label: Duration
     type: text
+    width: 1/2

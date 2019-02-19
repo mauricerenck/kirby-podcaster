@@ -3,7 +3,8 @@
 
     require_once __DIR__ . '/../utils/PodcasterUtils.php';
 
-    $podcasterUtils = new PodcasterUtils($podcast);
+    $podcasterUtils = new PodcasterUtils();
+    $podcasterUtils->setFeed($podcast);
     $podcasterUtils->setCurrentEpisode($page);
 
     $cover = false;

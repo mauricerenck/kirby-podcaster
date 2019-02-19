@@ -25,6 +25,7 @@ For first screens of the panel have a look here: https://maurice-renck.de/de/pro
 * ✅ Tracking of downloads using Kirby and the episoden markdown
 * ✅ Tracking of downloads using Kirby and MySQL
 * ✅ Tracking of episodes/feeds using Matomo
+* Statistics view in Panel
 * Snippet for Podlove Subscribe box
 
 

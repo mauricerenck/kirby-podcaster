@@ -20,7 +20,8 @@ Kirby::plugin('mauricerenck/podcaster', [
     ],
     'blueprints' => [
         'pages/podcasterfeed' => __DIR__ . '/blueprints/pages/podcasterfeed.yml',
-        'tabs/podcasterepisode' => __DIR__ . '/blueprints/tabs/episode.yml'
+        'tabs/podcasterepisode' => __DIR__ . '/blueprints/tabs/episode.yml',
+        'files/podcaster-episode' => __DIR__ . '/blueprints/files/podcaster-episode.yml'
     ],
     'snippets' => [
         'podcaster-player' => __DIR__ . '/snippets/podcaster-player.php',
@@ -31,7 +32,8 @@ Kirby::plugin('mauricerenck/podcaster', [
         [
             'pattern' => '(:all)/' . option('mauricerenck.podcaster.defaultFeed', 'feed'),
             'action' => function ($slug) {
-                $page = page($slug . '/' . option('mauricerenck.podcaster.defaultFeed', 'feed'));
+                $podcasterUtils = new PodcasterUtils();
+                $page = $podcasterUtils->getPageFromSlug($slug. '/' . option('mauricerenck.podcaster.defaultFeed', 'feed'));
 
                 if(option('mauricerenck.podcaster.statsInternal') === true) {
                     $stats = new PodcasterStats();
@@ -67,7 +69,10 @@ Kirby::plugin('mauricerenck/podcaster', [
         [
             'pattern' => '(:all)/' . option('mauricerenck.podcaster.downloadTriggerPath', 'download') . '/(:any)',
             'action' => function ($slug, $filename) {
-                $episode = page($slug);
+
+                $podcasterUtils = new PodcasterUtils();
+                $episode = $podcasterUtils->getPageFromSlug($slug);
+
                 $podcast = $episode->siblings()->find('feed');
 
                 if(option('mauricerenck.podcaster.statsInternal') === true) {
@@ -107,7 +112,7 @@ Kirby::plugin('mauricerenck/podcaster', [
     ],
     'hooks' => [
         'file.create:after' => function ($file) {
-            if($file->isAudio()) {
+            if($file->extension() == 'mp3') {
                 try {
                     $audioUtils = new PodcasterAudioUtils();
                     $audioUtils->setAudioFileMeta($file);
@@ -117,7 +122,7 @@ Kirby::plugin('mauricerenck/podcaster', [
             }
         },
         'file.replace:after' => function ($file) {
-            if ($file->isAudio()) {
+            if($file->extension() == 'mp3') {
                 try {
                     $audioUtils = new PodcasterAudioUtils();
                     $audioUtils->setAudioFileMeta($file);

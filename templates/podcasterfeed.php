@@ -2,7 +2,8 @@
 namespace Plugin\Podcaster;
 use c;
 
-$rssUtils = new PodcasterUtils($page);
+$rssUtils = new PodcasterUtils();
+$rssUtils->setFeed($page);
 ?>
 <?php echo '<?xml version="1.0" encoding="utf-8"?>' . PHP_EOL; ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:cc="http://web.resource.org/cc/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:psc="http://podlove.org/simple-chapters">
