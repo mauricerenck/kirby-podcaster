@@ -4,7 +4,6 @@
     require_once __DIR__ . '/../utils/PodcasterUtils.php';
 
     $podcasterUtils = new PodcasterUtils();
-    $podcasterUtils->setFeed($podcast);
     $podcasterUtils->setCurrentEpisode($page);
     $audioFile = $podcasterUtils->getPodcastFile();
 ?>
