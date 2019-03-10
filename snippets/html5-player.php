@@ -3,7 +3,7 @@
 
     require_once __DIR__ . '/../utils/PodcasterUtils.php';
 
-    $podcasterUtils = new PodcasterUtils($podcast);
+    $podcasterUtils = new PodcasterUtils();
     $podcasterUtils->setCurrentEpisode($page);
     $audioFile = $podcasterUtils->getPodcastFile();
 ?>

@@ -6,15 +6,23 @@ class PodcasterUtils {
     private $rssFeed;
     private $episode;
 
-    public function __construct($page) {
+    public function setFeed($page) {
         $this->rssFeed = $page;
         return true;
     }
 
     public function getEpisodes() {
-        return $this->rssFeed->podcasterSource()->toPage()->children()->listed()->filterBy('date', '<=', time())->filter(function($child) {
-            return $child->hasAudio();
-        });
+        return $this->rssFeed->podcasterSource()
+            ->toPage()
+            ->children()
+            ->listed()
+            ->filter(function ($child) {
+                return $child->date()->toDate() <= time();
+            })
+            ->filter(function($child) {
+                return $child->hasAudio();
+            })
+            ->sortBy('date', 'desc');
     }
 
     public function setCurrentEpisode($episode) {
@@ -31,7 +39,7 @@ class PodcasterUtils {
         $xmlOutput = [];
         $audio = $this->getPodcastFile();
 
-        $audioUrl = $episode->url() . '/' . option('mauricerenck.podcaster.downloadTriggerPath') . '/' . $audio->filename();
+        $audioUrl = $episode->url() . '/' . option('mauricerenck.podcaster.downloadTriggerPath', 'download') . '/' . $audio->filename();
         $xmlOutput[] = '<enclosure url="' . $audioUrl .'" length="' . $audio->size() . '" type="audio/mpeg"/>';
 
         return implode("\n", $xmlOutput);
@@ -120,7 +128,7 @@ class PodcasterUtils {
     }
 
     public function getPodcastFile() {
-        return $this->episode->audio($this->episode->podcasterMp3())->first();
+        return $this->episode->audio($this->episode->podcasterMp3()->first())->first();
     }
 
     private function parseItunesCategories(): array {
@@ -139,4 +147,10 @@ class PodcasterUtils {
         return $categories;
     }
 
+    public function getPageFromSlug($slug) {
+        $currentLanguage = kirby()->language();
+        $cleanedSlug = str_replace($currentLanguage . '/', '', $slug);
+
+        return page($cleanedSlug);
+    }
 }

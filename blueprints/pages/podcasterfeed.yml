@@ -189,6 +189,7 @@ tabs:
                   html5: Standard HTML5 Player
                   podlove: Advanced Podlove Player
               infoPlayer:
+                label: Add to Template
                 type: info
                 theme: info
                 text: You need to put the player snippet in your template file. Just add <?php snippet('podcaster-player'); ?> where you want the player to appear.
@@ -245,7 +246,7 @@ tabs:
                   - Visible
                 width: 1/4
               podcasterPodloveTabsDownload:
-                label: Audio Tab
+                label: Download Tab
                 type: toggle
                 default: yes
                 text: 
