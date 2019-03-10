@@ -11,9 +11,6 @@ columns:
       podcasterCover:
         type: fields
         fields:
-          headlineFiles:
-            label: Files
-            type: headline
           podcasterCover:
             type: files
             label: Cover Image
