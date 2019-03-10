@@ -56,7 +56,7 @@ $rssUtils->setFeed($page);
 			<?php endif; ?>
 
 			<guid isPermaLink="false"><?php echo $rssUtils->getGuid(); ?></guid>
-			<pubDate><?php echo date('r', $episode->date()); ?></pubDate>
+			<pubDate><?php echo date('r', $episode->date()->toDate()); ?></pubDate>
 			<?php $rssUtils->printFieldValue('episode', 'description', 'podcasterDescription', true); ?>
 
 			<?php $rssUtils->printFieldValue('episode', 'itunes:title', 'podcasterTitle'); ?>

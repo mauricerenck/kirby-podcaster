@@ -37,9 +37,9 @@
         title: '<?php echo $page->podcasterTitle()->or($page->title()); ?>',
         subtitle: '<?php echo $page->podcasterSubtitle(); ?>',
         summary: '<?php echo $page->podcasterDescription(); ?>',
-        publicationDate: '<?php echo date('r', $page->date()); ?>',
+        publicationDate: '<?php echo date('r', $page->date()->toDate()); ?>',
         <?php if($cover !== false) : ?>
-            poster: '<?php echo $page->podcasterCover()->toFile()->resize(200)->url(); ?>',
+            poster: '<?php echo $cover; ?>',
         <?php endif; ?>
         link: '<?php echo $page->url(); ?>',
         show: {
@@ -47,7 +47,7 @@
             subtitle: '<?php echo $podcast->podcasterSubtitle(); ?>',
             summary: '<?php echo $podcast->podcasterDescription(); ?>',
             <?php if($cover !== false) : ?>
-            poster: '<?php echo $podcast->podcasterCover()->toFile()->url(); ?>',
+            poster: '<?php echo $cover; ?>',
             <?php endif; ?>
             link: '<?php echo $podcast->podcasterLink(); ?>'
         },
