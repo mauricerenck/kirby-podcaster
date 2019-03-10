@@ -216,7 +216,7 @@ tabs:
               podcasterPodloveTabsInfo:
                 label: Info Tab
                 type: toggle
-                default: yes
+                default: no
                 text: 
                   - Invisible
                   - Visible
@@ -224,7 +224,7 @@ tabs:
               podcasterPodloveTabsShare:
                 label: Share Tab
                 type: toggle
-                default: yes
+                default: no
                 text: 
                   - Invisible
                   - Visible
@@ -232,7 +232,7 @@ tabs:
               podcasterPodloveTabsChapters:
                 label: Chapters Tab
                 type: toggle
-                default: yes
+                default: no
                 text: 
                   - Invisible
                   - Visible
@@ -240,7 +240,7 @@ tabs:
               podcasterPodloveTabsAudio:
                 label: Audio Tab
                 type: toggle
-                default: yes
+                default: no
                 text: 
                   - Invisible
                   - Visible
@@ -248,7 +248,7 @@ tabs:
               podcasterPodloveTabsDownload:
                 label: Download Tab
                 type: toggle
-                default: yes
+                default: no
                 text: 
                   - Invisible
                   - Visible
