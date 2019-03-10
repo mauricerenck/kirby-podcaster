@@ -26,7 +26,8 @@ Kirby::plugin('mauricerenck/podcaster', [
     'snippets' => [
         'podcaster-player' => __DIR__ . '/snippets/podcaster-player.php',
         'podcaster-podlove-player' => __DIR__ . '/snippets/podlove-player.php',
-        'podcaster-html5-player' => __DIR__ . '/snippets/html5-player.php'
+        'podcaster-html5-player' => __DIR__ . '/snippets/html5-player.php',
+        'podcaster-ogaudio' => __DIR__ . '/snippets/og-audio.php'
     ],
     'routes' => [
         [
