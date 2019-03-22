@@ -1,6 +1,6 @@
 {
     "name": "mauricerenck/podcaster",
-    "description": "A podacst plugin for Kirby3",
+    "description": "A podcast plugin for Kirby 3",
     "type": "kirby-plugin",
     "license": "MIT",
     "authors": [
@@ -23,6 +23,7 @@
         ]
     },
     "require": {
+        "getkirby/composer-installer": "^1.1",
         "phansys/getid3": " ^2.1@dev"
     },
     "require-dev": {
