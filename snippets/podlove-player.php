@@ -23,8 +23,8 @@
     podlovePlayer('#podlovePlayer', {
         <?php if($podcast->podcasterPodloveMainColor()->isNotEmpty() && $podcast->podcasterPodloveHighlighColor()->isNotEmpty()) : ?>
         theme: {
-            main: '<?php echo str_replace('#', '', $podcast->podcasterPodloveMainColor()); ?>',
-            highlight: '<?php echo str_replace('#', '', $podcast->podcasterPodloveHighlighColor()); ?>'
+            main: '#<?php echo str_replace('#', '', $podcast->podcasterPodloveMainColor()); ?>',
+            highlight: '#<?php echo str_replace('#', '', $podcast->podcasterPodloveHighlighColor()); ?>'
         },
         <?php endif; ?>
         tabs: {
