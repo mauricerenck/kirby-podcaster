@@ -73,6 +73,7 @@ Kirby::plugin('mauricerenck/podcaster', [
 
                 $podcasterUtils = new PodcasterUtils();
                 $episode = $podcasterUtils->getPageFromSlug($slug);
+                $podcasterUtils->setCurrentEpisode($episode);
 
                 $podcast = $episode->siblings()->find('feed');
 
@@ -106,8 +107,7 @@ Kirby::plugin('mauricerenck/podcaster', [
                 }
 
                 $filename = str_replace('.mp3', '', $filename);
-                return $episode->audio($episode->podcasterMp3())->first();
-                return $file;
+                return $podcasterUtils->getPodcastFile();
             }
         ]
     ],

@@ -9,7 +9,7 @@ class PodcasterStats {
 		$this->statisticMode = option('mauricerenck.podcaster.statsType');
 	}
 
-	public function increaseDownloads($page, string $trackingDate): void {
+	public function increaseDownloads($page, int $trackingDate): void {
 
 		if($this->statisticMode == 'file') {
 			$stats = new PodcasterStatsFile();
@@ -17,10 +17,13 @@ class PodcasterStats {
 			$stats = new PodcasterStatsMySql();
 		}
 
+		$podTrack = new PodcasterStatsPodTrac();
+		$podTrack->increaseDownloads($page);
+
 		$stats->increaseDownloads($page, $trackingDate);
 	}
 
-	public function increaseFeedVisits($page, string $trackingDate) {
+	public function increaseFeedVisits($page, int $trackingDate) {
 		if ($this->statisticMode == 'file') {
 			$stats = new PodcasterStatsFile();
 		} else if ($this->statisticMode == 'mysql') {

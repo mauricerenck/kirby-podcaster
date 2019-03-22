@@ -338,13 +338,6 @@ class TestRunner extends BaseTestRunner
 
             $this->writeMessage('Runtime', $runtime);
 
-            if ($arguments['executionOrder'] === TestSuiteSorter::ORDER_RANDOMIZED) {
-                $this->writeMessage(
-                    'Random seed',
-                    $arguments['randomOrderSeed']
-                );
-            }
-
             if (isset($arguments['configuration'])) {
                 $this->writeMessage(
                     'Configuration',
@@ -365,6 +358,13 @@ class TestRunner extends BaseTestRunner
                     $extension
                 );
             }
+        }
+
+        if ($arguments['executionOrder'] === TestSuiteSorter::ORDER_RANDOMIZED) {
+            $this->writeMessage(
+                'Random seed',
+                $arguments['randomOrderSeed']
+            );
         }
 
         if (isset($tooFewColumnsRequested)) {
@@ -774,7 +774,7 @@ class TestRunner extends BaseTestRunner
         }
 
         if ($exit) {
-            if ($result->wasSuccessful()) {
+            if ($result->wasSuccessfulIgnoringWarnings()) {
                 if ($arguments['failOnRisky'] && !$result->allHarmless()) {
                     exit(self::FAILURE_EXIT);
                 }
