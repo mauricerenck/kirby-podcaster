@@ -58,7 +58,6 @@ tabs:
                 type: text
   settings:
     label: RSS Settings
-    icon: text
     columns:
       - width: 1/1
         sections:
@@ -122,9 +121,282 @@ tabs:
                 label: Owner
                 type: users
                 max: 1
+  player:
+    label: Website Player
+    columns:
+      - width: 1/4
+        sections:
+          player:
+            type: fields
+            fields:
+              headlinePlayer:
+                type: headline
+                label: Website Player
+              playerType:
+                label: Player Type
+                type: select
+                default: podlove
+                options:
+                  html5: Standard HTML5 Player
+                  podlove: Advanced Podlove Player
+              infoPlayer:
+                label: Add to Template
+                type: info
+                theme: info
+                text: You need to put the player snippet in your template file. Just add <?php snippet('podcaster-player'); ?> where you want the player to appear.
+      - width: 2/4
+        sections:
+          podloveConfig:
+            type: fields
+            fields:
+              headlinePodlove:
+                type: headline
+                label: Podlove Player Configuration
+                when:
+                  playerType: podlove
+              podcasterPodloveMainColor: 
+                label: Main color (hex)
+                type: text
+                width: 1/2
+                when:
+                  playerType: podlove
+              podcasterPodloveHighlighColor: 
+                label: Highlight color (hex)
+                type: text
+                width: 1/2
+                when:
+                  playerType: podlove
+              podcasterPodloveTabsInfo:
+                label: Info Tab
+                type: toggle
+                default: no
+                text: 
+                  - Invisible
+                  - Visible
+                width: 1/4
+                when:
+                  playerType: podlove
+              podcasterPodloveTabsShare:
+                label: Share Tab
+                type: toggle
+                default: no
+                text: 
+                  - Invisible
+                  - Visible
+                width: 1/4
+                when:
+                  playerType: podlove
+              podcasterPodloveTabsChapters:
+                label: Chapters Tab
+                type: toggle
+                default: no
+                text: 
+                  - Invisible
+                  - Visible
+                width: 1/4
+                when:
+                  playerType: podlove
+              podcasterPodloveTabsAudio:
+                label: Audio Tab
+                type: toggle
+                default: no
+                text: 
+                  - Invisible
+                  - Visible
+                width: 1/4
+                when:
+                  playerType: podlove
+              podcasterPodloveTabsDownload:
+                label: Download Tab
+                type: toggle
+                default: no
+                text: 
+                  - Invisible
+                  - Visible
+                width: 1/4
+                when:
+                  playerType: podlove
+  tracking:
+    label: Tracking
+    columns:
+      - width: 1/1
+        sections:
+          matomoHeadline:
+            type: fields
+            fields:
+              headlineMatomo:
+                type: headline
+                label: Matomo settings
+      - width: 1/3
+        sections:
+          matomo:
+            type: fields
+            fields:
+              infoMatomo:
+                type: info
+                theme: info
+                label: Attention
+                text: Make sure to set the token and base-url in your config.php
+      - width: 1/3
+        sections:
+          matomoEpisode:
+            type: fields
+            fields:
+              podcasterMatomoEnabled:
+                label: Enable Matomo episode tracking
+                help: Tracking will only be enabled for this podcast if you run another one, enable it there, too
+                type: toggle
+                default: no
+                text: 
+                  - disabled
+                  - enabled
+                width: 1/4
+              podcasterMatomoSiteId: 
+                label: Site Id
+                help: Your Matomo Site Id.
+                type: text
+                width: 1/4
+                when:
+                  podcasterMatomoEnabled: yes
+              podcasterMatomoTrackGoal: 
+                label: Track goal
+                help: Enable if you want to track a certain goal for each download. Please be aware that you have to create this goal in Matomo
+                type: toggle
+                default: no
+                text: 
+                  - disabled
+                  - enabled
+                width: 1/4
+                when:
+                  podcasterMatomoEnabled: yes
+              podcasterMatomoGoalId: 
+                label: Goal Id
+                type: text
+                width: 1/4
+                when:
+                  podcasterMatomoTrackGoal: yes
+              podcasterMatomoTrackEvent: 
+                label: Track event
+                help: Enable if you want to track a certain event for each download.
+                type: toggle
+                default: no
+                text: 
+                  - disabled
+                  - enabled
+                width: 1/4
+                when:
+                  podcasterMatomoEnabled: yes
+              podcasterMatomoEventName: 
+                label: Event name
+                type: text
+                width: 1/4
+                when:
+                  podcasterMatomoTrackEvent: yes
+              podcasterMatomoAction: 
+                label: Action
+                help: If you want to track the download action, enable this.
+                type: toggle
+                default: no
+                text: 
+                  - disabled
+                  - enabled
+                width: 1/4
+                when:
+                  podcasterMatomoEnabled: yes
+      - width: 1/3
+        sections:
+          matomoFeed:
+            type: fields
+            fields:
+              podcasterMatomoFeedEnabled:
+                label: Enable Matomo rss-feed tracking
+                help: Tracking will only be enabled for this podcast if you run another one, enable it there, too
+                type: toggle
+                default: no
+                text: 
+                  - disabled
+                  - enabled
+                width: 1/4
+              podcasterMatomoFeedSiteId: 
+                label: Site Id
+                help: Your Matomo Site Id.
+                type: text
+                width: 1/4
+                when:
+                  podcasterMatomoFeedEnabled: yes
+              podcasterMatomoFeedTrackGoal: 
+                label: Track goal
+                help: Enable if you want to track a certain goal for each download. Please be aware that you have to create this goal in Matomo
+                type: toggle
+                default: no
+                text: 
+                  - disabled
+                  - enabled
+                width: 1/4
+                when:
+                  podcasterMatomoFeedEnabled: yes
+              podcasterMatomoFeedGoalId: 
+                label: Goal Id
+                type: text
+                width: 1/4
+                when:
+                  podcasterMatomoFeedTrackGoal: yes
+              podcasterMatomoFeedTrackEvent: 
+                label: Track event
+                help: Enable if you want to track a certain event for each download.
+                type: toggle
+                default: no
+                text: 
+                  - disabled
+                  - enabled
+                width: 1/4
+                when:
+                  podcasterMatomoFeedEnabled: yes
+              podcasterMatomoFeedEventName: 
+                label: Event name
+                type: text
+                width: 1/4
+                when:
+                  podcasterMatomoFeedTrackEvent: yes
+              podcasterMatomoFeedAction: 
+                label: Action
+                help: If you want to track the download action, enable this.
+                type: toggle
+                default: no
+                text: 
+                  - disabled
+                  - enabled
+                width: 1/4
+                when:
+                  podcasterMatomoFeedEnabled: yes
+      - width: 1/1
+        sections:
+          podTracHeadline:
+            type: fields
+            fields:
+              headlinePodTrac:
+                type: headline
+                label: PodTrac
+                width: 1/1
+              podTracEnabled: 
+                label: Enable PodTrac tracking
+                type: toggle
+                default: no
+                text: 
+                  - disabled
+                  - enabled
+                width: 1/4
+              podTracUrl:
+                type: url
+                label: PodTrac Base Url
+                default: https://dts.podtrac.com/redirect.mp3/
+                placeholder: https://dts.podtrac.com/redirect.mp3/
+                width: 2/4
+                when:
+                  podTracEnabled: yes
   dangerzone:
     label: Dangerzone
-    icon: text
+    icon: alert
     sections:
      dangerzone:
       type: fields
@@ -170,184 +442,3 @@ tabs:
           type: url
           help: Leave empty if you do not want to change your feed url
           width: 1/4
-  player:
-    label: Website Player
-    columns:
-      - width: 1/4
-        sections:
-          player:
-            type: fields
-            fields:
-              headlinePlayer:
-                type: headline
-                label: Website Player
-              playerType:
-                label: Player Type
-                type: select
-                default: podlove
-                options:
-                  html5: Standard HTML5 Player
-                  podlove: Advanced Podlove Player
-              infoPlayer:
-                label: Add to Template
-                type: info
-                theme: info
-                text: You need to put the player snippet in your template file. Just add <?php snippet('podcaster-player'); ?> where you want the player to appear.
-      - width: 2/4
-        sections:
-          podloveConfig:
-            type: fields
-            fields:
-              headlinePodlove:
-                type: headline
-                label: Podlove Player Configuration
-              infoPodlove:
-                type: info
-                theme: info
-                text: This settings will only work, if you chose the Podlove player.
-              podcasterPodloveMainColor: 
-                label: Main color (hex)
-                type: text
-                width: 1/2
-              podcasterPodloveHighlighColor: 
-                label: Highlight color (hex)
-                type: text
-                width: 1/2
-              podcasterPodloveTabsInfo:
-                label: Info Tab
-                type: toggle
-                default: yes
-                text: 
-                  - Invisible
-                  - Visible
-                width: 1/4
-              podcasterPodloveTabsShare:
-                label: Share Tab
-                type: toggle
-                default: yes
-                text: 
-                  - Invisible
-                  - Visible
-                width: 1/4
-              podcasterPodloveTabsChapters:
-                label: Chapters Tab
-                type: toggle
-                default: yes
-                text: 
-                  - Invisible
-                  - Visible
-                width: 1/4
-              podcasterPodloveTabsAudio:
-                label: Audio Tab
-                type: toggle
-                default: yes
-                text: 
-                  - Invisible
-                  - Visible
-                width: 1/4
-              podcasterPodloveTabsDownload:
-                label: Download Tab
-                type: toggle
-                default: yes
-                text: 
-                  - Invisible
-                  - Visible
-                width: 1/4
-  tracking:
-    label: Tracking
-    columns:
-      - width: 1/3
-        sections:
-          matomo:
-            type: fields
-            fields:
-              headlineMatomo:
-                type: headline
-                label: Matomo settings
-              infoMatomo:
-                type: info
-                theme: info
-                label: Attention
-                text: Make sure to set the token and base-url in your config.php
-      - width: 1/3
-        sections:
-          matomoEpisode:
-            type: fields
-            fields:
-              headlineMatomoEpisode:
-                type: headline
-                label: Matomo Episode Settings
-              podcasterMatomoEnabled:
-                label: Enable Matomo episode tracking
-                help: Tracking will only be enabled for this podcast if you run another one, enable it there, too
-                type: toggle
-                default: no
-                text: 
-                  - disabled
-                  - enabled
-                width: 1/4
-              podcasterMatomoSiteId: 
-                label: Site Id
-                help: Your Matomo Site Id.
-                type: text
-                width: 1/4
-              podcasterMatomoGoalId: 
-                label: Goal Id
-                help: If you want to track a certain goal, fill in its Id. Leave empty to disable.
-                type: text
-                width: 1/4
-              podcasterMatomoEventName: 
-                label: Event name
-                help: If you want to track a certain event, fill in its name here. Leave empty to disable.
-                type: text
-                width: 1/4
-              podcasterMatomoAction: 
-                label: Action
-                help: If you want to track the download action, enable this.
-                type: toggle
-                default: no
-                text: 
-                  - disabled
-                  - enabled
-                width: 1/4
-      - width: 1/3
-        sections:
-          matomoFeed:
-            type: fields
-            fields:
-              headlineMatomoFeed:
-                type: headline
-                label: Matomo Feed Settings
-              podcasterMatomoFeedEnabled:
-                label: Enable Matomo rss-feed tracking
-                help: Tracking will only be enabled for this podcast if you run another one, enable it there, too
-                type: toggle
-                default: no
-                text: 
-                  - disabled
-                  - enabled
-                width: 1/4
-              podcasterMatomoFeedSiteId: 
-                label: Site Id
-                help: Your Matomo Site Id.
-                type: text
-                width: 1/4
-              podcasterMatomoFeedGoalId: 
-                label: Goal Id
-                help: If you want to track a certain goal, fill in its Id. Leave empty to disable.
-                type: text
-                width: 1/4
-              podcasterMatomoFeedEventName: 
-                label: Event name
-                help: If you want to track a certain event, fill in its name here. Leave empty to disable.
-                type: text
-                width: 1/4
-              podcasterMatomoFeedAction: 
-                label: Action
-                help: If you want to track the download action, enable this.
-                type: toggle
-                default: no
-                text: 
-                  - disabled
-                  - enabled
-                width: 1/4

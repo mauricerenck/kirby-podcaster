@@ -15,6 +15,7 @@ class ComposerStaticInit37fef86f7fef9a1dd593d1116ed92cd1
         '1a1828adf062a2860974d695d05734cf' => __DIR__ . '/../..' . '/utils/PodcasterStats.php',
         'd6802096f93b9e496e07bfb10dc2a836' => __DIR__ . '/../..' . '/utils/PodcasterStatsFile.php',
         '7327ddc355eb971a6be2a8e77299663d' => __DIR__ . '/../..' . '/utils/PodcasterStatsMysql.php',
+        'cd2cab7c530e4a5617b1e4b4473bacd3' => __DIR__ . '/../..' . '/utils/PodcasterStatsPodTrac.php',
         'afc6d2f72e0b3c2400404a46eb6dd23d' => __DIR__ . '/../..' . '/lib/PiwikTracker.php',
     );
 

@@ -2,6 +2,30 @@
 
 All notable changes of the PHPUnit 7.5 release series are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
+## [7.5.7] - 2019-03-16
+
+### Fixed
+
+* Fixed [#3480](https://github.com/sebastianbergmann/phpunit/issues/3480): Wrong return type declaration for `TestCase::getExpectedExceptionMessage()` and `TestCase::getExpectedExceptionMessageRegExp()`
+* Fixed [#3550](https://github.com/sebastianbergmann/phpunit/issues/3550): Check for valid attribute names in `assertObjectHasAttribute()` is too strict
+
+## [7.5.6] - 2019-02-18
+
+### Fixed
+
+* Fixed [#3530](https://github.com/sebastianbergmann/phpunit/issues/3530): `generateClassFromWsdl()` does not handle methods with multiple output values
+* Fixed [#3531](https://github.com/sebastianbergmann/phpunit/issues/3531): Test suite fails on warning
+* Fixed [#3534](https://github.com/sebastianbergmann/phpunit/pull/3534): Wrong message in `ConstraintTestCase`
+
+## [7.5.5] - 2019-02-15
+
+### Fixed
+
+* Fixed [#3011](https://github.com/sebastianbergmann/phpunit/issues/3011): Unsupported PHPT `--SECTION--` throws unhandled exception
+* Fixed [#3461](https://github.com/sebastianbergmann/phpunit/issues/3461): `StringEndsWith` matches too loosely
+* Fixed [#3515](https://github.com/sebastianbergmann/phpunit/issues/3515): Random order seed is only printed in verbose mode
+* Fixed [#3517](https://github.com/sebastianbergmann/phpunit/issues/3517): Useless error message when depending on test that does not exist
+
 ## [7.5.4] - 2019-02-07
 
 ### Fixed
@@ -57,6 +81,9 @@ All notable changes of the PHPUnit 7.5 release series are documented in this fil
 * Fixed [#3429](https://github.com/sebastianbergmann/phpunit/pull/3429): Inefficient loop in `getHookMethods()`
 * Fixed [#3437](https://github.com/sebastianbergmann/phpunit/pull/3437): JUnit logger skips PHPT tests
 
+[7.5.7]: https://github.com/sebastianbergmann/phpunit/compare/7.5.6...7.5.7
+[7.5.6]: https://github.com/sebastianbergmann/phpunit/compare/7.5.5...7.5.6
+[7.5.5]: https://github.com/sebastianbergmann/phpunit/compare/7.5.4...7.5.5
 [7.5.4]: https://github.com/sebastianbergmann/phpunit/compare/7.5.3...7.5.4
 [7.5.3]: https://github.com/sebastianbergmann/phpunit/compare/7.5.2...7.5.3
 [7.5.2]: https://github.com/sebastianbergmann/phpunit/compare/7.5.1...7.5.2
