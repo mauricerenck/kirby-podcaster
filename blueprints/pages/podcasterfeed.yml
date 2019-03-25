@@ -1,5 +1,4 @@
-name: podcasterfeed
-title: Podcast Feed
+title: Podcaster Feed
 tabs:
   content:
     label: Content
@@ -58,6 +57,7 @@ tabs:
                 type: text
   settings:
     label: RSS Settings
+    icon: settings
     columns:
       - width: 1/1
         sections:
@@ -123,6 +123,7 @@ tabs:
                 max: 1
   player:
     label: Website Player
+    icon: file-audio
     columns:
       - width: 1/4
         sections:
@@ -218,6 +219,7 @@ tabs:
                   playerType: podlove
   tracking:
     label: Tracking
+    icon: file-spreadsheet
     columns:
       - width: 1/1
         sections:

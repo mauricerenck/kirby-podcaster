@@ -1,4 +1,5 @@
 label: Episode
+icon: file-audio
 columns:
   - width: 1/3
     sections:
