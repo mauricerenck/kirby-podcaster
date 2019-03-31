@@ -5,14 +5,6 @@ use Kirby\Exception\Exception;
 use \PiwikTracker;
 use Kirby\Http\Response;
 
-// load([
-//     'distantnative\\Retour\\Log'       => 'models/Log.php',
-//     'distantnative\\Retour\\Logs'      => 'models/Logs.php',
-//     'distantnative\\Retour\\Redirects' => 'models/Redirects.php',
-//     'distantnative\\Retour\\Stats'     => 'models/Stats.php',
-//     'distantnative\\Retour\\System'    => 'models/System.php'
-// ], __DIR__);
-
 Kirby::plugin('mauricerenck/podcaster', [
     'options' => [
         'statsInternal' => false,
