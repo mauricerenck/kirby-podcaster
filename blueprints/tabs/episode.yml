@@ -46,6 +46,8 @@ columns:
               trailer: Trailer
               bonus: Bonus Material
             width: 1/4
+          line:
+            type: line
           podcasterExplizit:
             label: Explicit
             type:  toggle
@@ -54,6 +56,17 @@ columns:
             text: 
               - Disabled
               - Explicit
+          podcasterBlock:
+            label: Block
+            type: toggle
+            default: no
+            text: 
+              - Podcast is visible
+              - Podcast is BLOCKED
+            help: Enabling this will prevent your Podcast from appearing on the iTunes Store and other podcast directories.
+            width: 2/4
+          line2:
+            type: line
           podcasterTitle:
             label: iTunes Title
             type: text
