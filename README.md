@@ -125,6 +125,8 @@ There are two players available.
 1. The standard html5 player
 2. The advanced podlove player (https://podlove.org/podlove-web-player/)
 
+You can chose which player to use in the player-settings of your feed.
+
 If you want an audio player appear on your episode page, just add the follow snippet to your template: `<?php snippet('podcaster-player'); ?>`
 
 If your feed isn't a sibling of your episodes and you selected another source in your rss-settings, you can hand in the episode page and the feed page like so: `<?php snippet('podcaster-player', ['page' => $episodePageObject, 'podcast' => $rssFeedPageObject]); ?>`
