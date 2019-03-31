@@ -113,6 +113,11 @@ To make sure Kirby Podcaster can access your Matomo API, you must set these to v
 
 You can enable download tracking via Matomo for each feed. Go to your feed settings and click on the Tracking tab. Fill in all needed values.
 
+
+## External tracking with podtrac
+Just log into the panel, go to your feed and enable podtrac in the tracking-tab.
+
+
 ## Add Player to template
 
 There are two players available.
