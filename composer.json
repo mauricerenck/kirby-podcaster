@@ -9,7 +9,7 @@
             "email": "hello@maurice-renck.de"
         }
     ],
-    "version": "0.5.0",
+    "version": "1.0.0",
     "autoload": {
         "files": [
             "config.php",

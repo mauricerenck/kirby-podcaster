@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "39407029b70f6374ad919601ceb53aa6",
+    "content-hash": "3f2a5848de350bd9bd998b8dea73cd95",
     "packages": [
         {
             "name": "getkirby/composer-installer",
