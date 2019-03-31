@@ -14,7 +14,7 @@ A Kirby 3 Podcast Plugin
 * ✅ Snippet for a simple HTML5-Player
 * ✅ Snippet for the advanced Podlove Player
 * ✅ Configure and style your website player within the panel
-* ✅ Tracking of downloads using Kirby and the episoden markdown
+* ✅ Tracking of downloads using Kirby and the episode markdown
 * ✅ Tracking of downloads using Kirby and MySQL
 * ✅ Tracking of episodes/feeds using Matomo
 
@@ -113,12 +113,19 @@ To make sure Kirby Podcaster can access your Matomo API, you must set these to v
 
 You can enable download tracking via Matomo for each feed. Go to your feed settings and click on the Tracking tab. Fill in all needed values.
 
+
+## External tracking with podtrac
+Just log into the panel, go to your feed and enable podtrac in the tracking-tab.
+
+
 ## Add Player to template
 
 There are two players available.
 
 1. The standard html5 player
 2. The advanced podlove player (https://podlove.org/podlove-web-player/)
+
+You can chose which player to use in the player-settings of your feed.
 
 If you want an audio player appear on your episode page, just add the follow snippet to your template: `<?php snippet('podcaster-player'); ?>`
 
