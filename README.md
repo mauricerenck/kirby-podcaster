@@ -98,6 +98,9 @@ You can either use the file method, then your downloads will be directly stored 
 'mauricerenck.podcaster.statsPassword' => 'PASSWORD'
 ```
 
+If you want to use the file method, set 
+```'mauricerenck.podcaster.statsType' => 'file'```
+
 **ATTENTION!**
 
 Before using the MySQL statistics please make sure to create the tables within your database. You can find the SQL import in the `res` directory of this repository called `podcasterStats.sql`
