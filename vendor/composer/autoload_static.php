@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit37fef86f7fef9a1dd593d1116ed92cd1
+class ComposerStaticInit76355d446b3e48302377619c15c8dc3d
 {
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
@@ -36,9 +36,9 @@ class ComposerStaticInit37fef86f7fef9a1dd593d1116ed92cd1
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
         ),
-        'G' => 
+        'K' => 
         array (
-            'GetId3\\' => 7,
+            'Kirby\\' => 6,
         ),
         'D' => 
         array (
@@ -55,8 +55,8 @@ class ComposerStaticInit37fef86f7fef9a1dd593d1116ed92cd1
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -66,9 +66,9 @@ class ComposerStaticInit37fef86f7fef9a1dd593d1116ed92cd1
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
-        'GetId3\\' => 
+        'Kirby\\' => 
         array (
-            0 => __DIR__ . '/..' . '/phansys/getid3',
+            0 => __DIR__ . '/..' . '/getkirby/composer-installer/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -639,10 +639,10 @@ class ComposerStaticInit37fef86f7fef9a1dd593d1116ed92cd1
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit37fef86f7fef9a1dd593d1116ed92cd1::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit37fef86f7fef9a1dd593d1116ed92cd1::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit37fef86f7fef9a1dd593d1116ed92cd1::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit37fef86f7fef9a1dd593d1116ed92cd1::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit76355d446b3e48302377619c15c8dc3d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit76355d446b3e48302377619c15c8dc3d::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit76355d446b3e48302377619c15c8dc3d::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit76355d446b3e48302377619c15c8dc3d::$classMap;
 
         }, null, ClassLoader::class);
     }
