@@ -5,6 +5,16 @@ use Kirby\Exception\Exception;
 use \PiwikTracker;
 use Kirby\Http\Response;
 
+load([
+    'Plugin\Podcaster\PodcasterUtils' => 'utils/PodcasterUtils.php',
+    'Plugin\Podcaster\PodcasterAudioUtils' => 'utils/PodcasterAudioUtils.php',
+    'Plugin\Podcaster\PodcasterStats' => 'utils/PodcasterStats.php',
+    'Plugin\Podcaster\PodcasterStatsMySql' => 'utils/PodcasterStatsMysql.php',
+    'Plugin\Podcaster\PodcasterStatsFile' => 'utils/PodcasterStatsFile.php',
+    'Plugin\Podcaster\PodcasterStatsPodTrac' => 'utils/PodcasterStatsPodTrac.php',
+    'Plugin\Podcaster\PiwikTracker' => 'lib/PiwikTracker.php'
+], __DIR__);
+
 Kirby::plugin('mauricerenck/podcaster', [
     'options' => [
         'statsInternal' => false,
