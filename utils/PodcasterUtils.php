@@ -1,6 +1,8 @@
 <?php
 namespace Plugin\Podcaster;
 
+use \Kirby\Toolkit\Xml;
+
 class PodcasterUtils {
 
     private $rssFeed;
@@ -55,9 +57,9 @@ class PodcasterUtils {
         $output = [];
         foreach ($this->parseItunesCategories() as $mainCategory => $subCategories) {
 
-            $output[] = '<itunes:category text="' . htmlentities($mainCategory) . '">';
+            $output[] = '<itunes:category text="' . Xml::encode($mainCategory) . '">';
             foreach($subCategories as $subCategory) {
-                $output[] = '<itunes:category text="' . htmlentities($subCategory) . '"/>';
+                $output[] = '<itunes:category text="' . Xml::encode($subCategory) . '"/>';
             }
             $output[] = '</itunes:category>';
         }
@@ -68,11 +70,13 @@ class PodcasterUtils {
     public function getCoverImage() {
         if($this->rssFeed->podcasterCover()->isNotEmpty()) {
             $output = '<image>';
-            $output .= '<url>' . $this->rssFeed->podcasterCover()->toFile()->url() . '</url>';
-            $output .= '<title>' . $this->rssFeed->podcasterTitle() . '</title>';
-            $output .= '<link><![CDATA[' . $this->rssFeed->podcasterLink() . ']]></link>';
+            $output .= '<url>' . Xml::encode($this->rssFeed->podcasterCover()->toFile()->url()) . '</url>';
+            $output .= '<title>' . Xml::encode($this->rssFeed->podcasterTitle()) . '</title>';
+            $output .= '<link><![CDATA[' . Xml::encode($this->rssFeed->podcasterLink()) . ']]></link>';
             $output .= '</image>';
-            $output .= '<itunes:image href="' . $this->rssFeed->podcasterCover()->toFile()->url() .'"/>';
+            
+            $output .= '<itunes:image href="' . Xml::encode($this->rssFeed->podcasterCover()->toFile()->url()) .'" />';
+            $output .= '<googleplay:image href="' . Xml::encode($this->rssFeed->podcasterCover()->toFile()->url()) .'" />';
 
             echo $output;
         }
@@ -81,9 +85,9 @@ class PodcasterUtils {
     public function printFieldValue(string $source, string $xmlTag, string $blueprintField, bool $useCData = false) {
         if ($this->$source->$blueprintField()->isNotEmpty()) {
             if($useCData) {
-                $value = '<![CDATA[' . $this->$source->$blueprintField()->kirbytext() . ']]>';
+                $value = '<![CDATA[' . $this->$source->$blueprintField()->kirbyTextInline() . ']]>';
             } else {
-                $value = $this->$source->$blueprintField();
+                $value = Xml::encode($this->$source->$blueprintField());
             }
 
             echo '<' . $xmlTag . '>' . $value . '</' . $xmlTag . '>' . "\n";
@@ -108,14 +112,14 @@ class PodcasterUtils {
 
             $newChapter = ['<psc:chapter'];
             $newChapter[] = 'start="' . $chapter->podcasterChapterTimestamp() . '"';
-            $newChapter[] = 'title="' . $chapter->podcasterChapterTitle() . '"';
+            $newChapter[] = 'title="' . Xml::encode($chapter->podcasterChapterTitle()) . '"';
 
             if($chapter->podcasterChapterUrl()->isNotEmpty()) {
-                $newChapter[] = 'href="' . $chapter->podcasterChapterUrl() . '"';
+                $newChapter[] = 'href="' . Xml::encode($chapter->podcasterChapterUrl()) . '"';
             }
 
             if($chapter->podcasterChapterImage()->isNotEmpty()) {
-                $newChapter[] = 'image="' . $chapter->podcasterChapterImage()->toFile()->url() . '"';
+                $newChapter[] = 'image="' . Xml::encode($chapter->podcasterChapterImage()->toFile()->url()) . '"';
             }
 
             $newChapter[] = '/>';
