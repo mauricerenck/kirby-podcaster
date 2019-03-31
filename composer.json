@@ -9,7 +9,7 @@
             "email": "hello@maurice-renck.de"
         }
     ],
-    "version": "1.0.1",
+    "version": "1.0.2",
     "autoload": {
         "files": [
             "utils/PodcasterUtils.php",
