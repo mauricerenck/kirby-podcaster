@@ -14,7 +14,7 @@ A Kirby 3 Podcast Plugin
 * ✅ Snippet for a simple HTML5-Player
 * ✅ Snippet for the advanced Podlove Player
 * ✅ Configure and style your website player within the panel
-* ✅ Tracking of downloads using Kirby and the episoden markdown
+* ✅ Tracking of downloads using Kirby and the episode markdown
 * ✅ Tracking of downloads using Kirby and MySQL
 * ✅ Tracking of episodes/feeds using Matomo
 
