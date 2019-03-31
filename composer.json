@@ -9,7 +9,7 @@
             "email": "hello@maurice-renck.de"
         }
     ],
-    "version": "0.4.1",
+    "version": "1.0.0",
     "autoload": {
         "files": [
             "config.php",
@@ -24,10 +24,9 @@
     },
     "require": {
         "getkirby/composer-installer": "^1.1",
-        "phansys/getid3": " ^2.1@dev"
+        "wapmorgan/mp3info": "^0.0.3"
     },
     "require-dev": {
-        "wapmorgan/mp3info": "^0.0.3",
         "phpunit/phpunit": "^7.2"
     }
 }

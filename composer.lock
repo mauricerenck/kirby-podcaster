@@ -4,69 +4,83 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b1902e621b483029e7779808325afe5",
+    "content-hash": "3f2a5848de350bd9bd998b8dea73cd95",
     "packages": [
         {
-            "name": "phansys/getid3",
-            "version": "2.1.x-dev",
+            "name": "getkirby/composer-installer",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/phansys/GetId3.git",
-                "reference": "25fb540dd9bf5cc3d1501f4bc3d4c759e13ead89"
+                "url": "https://github.com/getkirby/composer-installer.git",
+                "reference": "2d6b8f5601a31caeeea45623e1643fbb437eb94e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phansys/GetId3/zipball/25fb540dd9bf5cc3d1501f4bc3d4c759e13ead89",
-                "reference": "25fb540dd9bf5cc3d1501f4bc3d4c759e13ead89",
+                "url": "https://api.github.com/repos/getkirby/composer-installer/zipball/2d6b8f5601a31caeeea45623e1643fbb437eb94e",
+                "reference": "2d6b8f5601a31caeeea45623e1643fbb437eb94e",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
-            },
-            "conflict": {
-                "james-heinrich/getid3": "*"
+                "composer-plugin-api": "^1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": ">=4.8,<5.4.3"
+                "composer/composer": "^1.8",
+                "phpunit/phpunit": "^7.0"
             },
-            "suggest": {
-                "ext-dba": "DBA extension is required in order to use DBA database as cache storage.",
-                "ext-exif": "EXIF extension is required for graphic modules.",
-                "ext-mysqli": "MySQLi extension is required in order to use MySQL database as cache storage.",
-                "ext-rar": "RAR extension is required for RAR archive module.",
-                "ext-sqlite": "SQLite extension is required in order to use SQLite database as cache storage."
-            },
-            "type": "library",
+            "type": "composer-plugin",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1-dev"
-                }
+                "class": "Kirby\\ComposerInstaller\\Plugin"
             },
             "autoload": {
                 "psr-4": {
-                    "GetId3\\": ""
+                    "Kirby\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL"
+                "MIT"
             ],
-            "authors": [
-                {
-                    "name": "James Heinrich",
-                    "email": "info@getid3.org",
-                    "homepage": "http://www.getid3.org"
+            "description": "Kirby's custom Composer installer for the Kirby CMS and for Kirby plugins",
+            "homepage": "https://getkirby.com",
+            "time": "2019-02-11T20:27:36+00:00"
+        },
+        {
+            "name": "wapmorgan/mp3info",
+            "version": "0.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wapmorgan/Mp3Info.git",
+                "reference": "1f98fd2316c81e1b67627fd3acf27c12791071ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wapmorgan/Mp3Info/zipball/1f98fd2316c81e1b67627fd3acf27c12791071ac",
+                "reference": "1f98fd2316c81e1b67627fd3acf27c12791071ac",
+                "shasum": ""
+            },
+            "bin": [
+                "bin/mp3scan"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "wapmorgan\\Mp3Info\\": "src/"
                 }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
             ],
-            "description": "This fork of GetId3 library updates to PSR-2 / PSR-4 CS, adds namespaces and makes it installable by composer.",
-            "homepage": "http://www.getid3.org",
+            "description": "The fastest php library to extract mp3 tags & meta information.",
             "keywords": [
-                "getid3",
-                "metadata",
-                "tags"
+                "audio",
+                "id3",
+                "id3v1",
+                "id3v2",
+                "mp3",
+                "mpeg"
             ],
-            "abandoned": "james-heinrich/getid3",
-            "time": "2017-05-26T00:05:10+00:00"
+            "time": "2018-03-19T20:01:04+00:00"
         }
     ],
     "packages-dev": [
@@ -745,16 +759,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.7",
+            "version": "7.5.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "eb343b86753d26de07ecba7868fa983104361948"
+                "reference": "c29c0525cf4572c11efe1db49a8b8aee9dfac58a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/eb343b86753d26de07ecba7868fa983104361948",
-                "reference": "eb343b86753d26de07ecba7868fa983104361948",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c29c0525cf4572c11efe1db49a8b8aee9dfac58a",
+                "reference": "c29c0525cf4572c11efe1db49a8b8aee9dfac58a",
                 "shasum": ""
             },
             "require": {
@@ -825,7 +839,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-03-16T07:31:17+00:00"
+            "time": "2019-03-26T13:23:54+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -1438,7 +1452,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -1490,44 +1504,6 @@
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
             "time": "2017-04-07T12:08:54+00:00"
-        },
-        {
-            "name": "wapmorgan/mp3info",
-            "version": "0.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wapmorgan/Mp3Info.git",
-                "reference": "1f98fd2316c81e1b67627fd3acf27c12791071ac"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wapmorgan/Mp3Info/zipball/1f98fd2316c81e1b67627fd3acf27c12791071ac",
-                "reference": "1f98fd2316c81e1b67627fd3acf27c12791071ac",
-                "shasum": ""
-            },
-            "bin": [
-                "bin/mp3scan"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "wapmorgan\\Mp3Info\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0"
-            ],
-            "description": "The fastest php library to extract mp3 tags & meta information.",
-            "keywords": [
-                "audio",
-                "id3",
-                "id3v1",
-                "id3v2",
-                "mp3",
-                "mpeg"
-            ],
-            "time": "2018-03-19T20:01:04+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -1583,9 +1559,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "phansys/getid3": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

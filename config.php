@@ -3,6 +3,7 @@ namespace Plugin\Podcaster;
 use Kirby;
 use Kirby\Exception\Exception;
 use \PiwikTracker;
+use Kirby\Http\Response;
 
 Kirby::plugin('mauricerenck/podcaster', [
     'options' => [
@@ -23,6 +24,15 @@ Kirby::plugin('mauricerenck/podcaster', [
         'tabs/podcasterepisode' => __DIR__ . '/blueprints/tabs/episode.yml',
         'files/podcaster-episode' => __DIR__ . '/blueprints/files/podcaster-episode.yml'
     ],
+    'sections' => [
+        'podcaster-stats' => [
+            'props' => [
+                'headline' => function ($headline = 'Last modified') {
+                    return $headline;
+                }
+            ]
+        ]
+    ],
     'snippets' => [
         'podcaster-player' => __DIR__ . '/snippets/podcaster-player.php',
         'podcaster-podlove-player' => __DIR__ . '/snippets/podlove-player.php',
@@ -30,6 +40,13 @@ Kirby::plugin('mauricerenck/podcaster', [
         'podcaster-ogaudio' => __DIR__ . '/snippets/og-audio.php'
     ],
     'routes' => [
+        [
+            'pattern' => '(:all)/podcaster-feed-style',
+            'action' => function () {
+                $string = file_get_contents(__DIR__ . '/res/feed-style.xsl');
+                return new Response($string, 'text/xml');
+            }
+        ],
         [
             'pattern' => '(:all)/' . option('mauricerenck.podcaster.defaultFeed', 'feed'),
             'action' => function ($slug) {
@@ -64,7 +81,7 @@ Kirby::plugin('mauricerenck/podcaster', [
                     }
                 }
 
-                return($page);
+                return new Response($page->render(), 'text/xml');
             }
         ],
         [
