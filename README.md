@@ -2,7 +2,8 @@
 
 ![GitHub release](https://img.shields.io/github/release/mauricerenck/kirby-podcaster.svg?maxAge=1800) ![License](https://img.shields.io/github/license/mashape/apistatus.svg) ![Kirby Version](https://img.shields.io/badge/Kirby-3%2B-black.svg)
 
-A Kirby 3 Podcast Plugin
+**A Kirby 3 Podcast Plugin**
+
 This plugin helps you running your own podcast with Kirby 3. It uses all the new panel-features to make your life easier. You can run multiple podcasts and configure them in the panel. All new iTunes specifications are included and chapters are supported. It creates iTunes/Google/Name-Your-Favorite-Podcatcher Feeds and allows you to track downloads of your episodes and hits on your feeds. It comes with two Audioplayers, a simple html5-audio-player and the advanced Podlove-Player supporting things like chapters, cover and much more. Or you can use your own player, if you wish.
 
 ## Features
