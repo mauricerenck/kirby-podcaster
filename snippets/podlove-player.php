@@ -16,11 +16,11 @@
 
     $audioFile = $podcasterUtils->getPodcastFile();
 ?>
-<div id="podlovePlayer"></div>
+<div id="podlovePlayerContainer"></div>
 <script src="//cdn.podlove.org/web-player/embed.js"></script>
 
 <script>
-    podlovePlayer('#podlovePlayer', {
+    podlovePlayer('#podlovePlayerContainer', {
         <?php if($podcast->podcasterPodloveMainColor()->isNotEmpty() && $podcast->podcasterPodloveHighlighColor()->isNotEmpty()) : ?>
         theme: {
             main: '#<?php echo str_replace('#', '', $podcast->podcasterPodloveMainColor()); ?>',

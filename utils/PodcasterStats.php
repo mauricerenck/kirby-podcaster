@@ -17,10 +17,11 @@ class PodcasterStats {
 			$stats = new PodcasterStatsMySql();
 		}
 
+		$stats->increaseDownloads($page, $trackingDate);
+
 		$podTrack = new PodcasterStatsPodTrac();
 		$podTrack->increaseDownloads($page);
 
-		$stats->increaseDownloads($page, $trackingDate);
 	}
 
 	public function increaseFeedVisits($page, int $trackingDate) {
