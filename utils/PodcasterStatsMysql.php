@@ -105,8 +105,8 @@ class PodcasterStatsMySql {
         $downloadDate = $this->formatTrackingDate($trackingDate);
         $episodeStats = $this->getEpisodeStats($episode->uid(), $downloadDate);
 
-        // !!! FIXME
-        $podcast = str::slug($episode->siblings()->find('feed')->podcasterTitle());
+        $podcast = str::slug($episode->siblings()->find(option('mauricerenck.podcaster.defaultFeed', 'feed'))->podcasterTitle());
+
         if(!$episodeStats) {
             $this->setDownloads($podcast, $episode->uid(), $downloadDate);
             return true;

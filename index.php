@@ -61,7 +61,7 @@ Kirby::plugin('mauricerenck/podcaster', [
             'pattern' => '(:all)/' . option('mauricerenck.podcaster.defaultFeed', 'feed'),
             'action' => function ($slug) {
                 $podcasterUtils = new PodcasterUtils();
-                // !!! Von hier holen
+
                 $page = $podcasterUtils->getPageFromSlug($slug. '/' . option('mauricerenck.podcaster.defaultFeed', 'feed'));
 
                 if(option('mauricerenck.podcaster.statsInternal') === true) {
@@ -103,8 +103,7 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $episode = $podcasterUtils->getPageFromSlug($slug);
                 $podcasterUtils->setCurrentEpisode($episode);
 
-                // !!! FIXME
-                $podcast = $episode->siblings()->find('feed');
+                $podcast = $episode->siblings()->find(option('mauricerenck.podcaster.defaultFeed', 'feed'));
 
                 if(option('mauricerenck.podcaster.statsInternal') === true) {
                     $stats = new PodcasterStats();
