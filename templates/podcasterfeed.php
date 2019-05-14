@@ -59,8 +59,8 @@ $rssUtils->setFeed($page);
 
 		<?php if ($user = $page->podcasterAuthor()->toUser()) : ?>
 			<googleplay:author><?php echo Xml::encode($user->name()); ?></googleplay:author>
+			<googleplay:email><?php echo Xml::encode($user->email()); ?></googleplay:email>
 		<?php endif ?>
-		<googleplay:email><?php echo Xml::encode($user->email()); ?></googleplay:email>
 		<?php $rssUtils->printFieldValue('rssFeed', 'googleplay:description', 'podcasterDescription'); ?>
 		<?php $rssUtils->printBoolValue('rssFeed', 'googleplay:explicit', 'podcasterExplicit'); ?>
 		<?php $rssUtils->printBoolValue('rssFeed', 'googleplay:block', 'podcasterBlock'); ?>
