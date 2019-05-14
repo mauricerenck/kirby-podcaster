@@ -68,7 +68,8 @@ class PodcasterUtils {
     }
 
     public function getCoverImage() {
-        if($this->rssFeed->podcasterCover()->isNotEmpty()) {
+
+        if($this->rssFeed->podcasterCover()->isNotEmpty() && !is_null($this->rssFeed->podcasterCover()->toFile())) {
             $output = '<image>';
             $output .= '<url>' . Xml::encode($this->rssFeed->podcasterCover()->toFile()->url()) . '</url>';
             $output .= '<title>' . Xml::encode($this->rssFeed->podcasterTitle()) . '</title>';
@@ -153,7 +154,7 @@ class PodcasterUtils {
 
     public function getPageFromSlug($slug) {
         $currentLanguage = kirby()->language();
-        $cleanedSlug = str_replace($currentLanguage . '/', '', $slug);
+        $cleanedSlug = (is_null($currentLanguage)) ? $slug : str_replace($currentLanguage . '/', '', $slug);
 
         return page($cleanedSlug);
     }
