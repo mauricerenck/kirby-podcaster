@@ -20,6 +20,8 @@ columns:
             max: 1
             cover: true
             help: You can set a cover for this single episode here, but Apple recommends to do this in your mp3-metadata (Id3).
+      files:
+        type: files
   - width: 2/3
     sections:
       podcasterInfo:
