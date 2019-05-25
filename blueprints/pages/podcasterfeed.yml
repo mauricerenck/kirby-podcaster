@@ -80,7 +80,9 @@ tabs:
                 help: Select the page which will act as a parent of your episodes. Normally this is the page which is the parent of this feed, too.
               podcasterLanguage:
                 label: Language
-                type: text
+                type: select
+                options: api
+                api: https://raw.githubusercontent.com/mauricerenck/kirby-podcaster/master/res/language-codes.json
                 required: true
               podcasterType:
                 label: Podcast type
