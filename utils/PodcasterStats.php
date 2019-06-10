@@ -41,6 +41,19 @@ class PodcasterStats {
 		return $stats->getEpisodesStatsByMonth($podcast, $timestamp);
 	}
 
+	public function getDownloadsOfYear(string $podcast, string $years) {
+		$stats = $this->getStatsClass();
+		$statList = [];
+
+		$yearList = explode('+', $years);
+		foreach($yearList as $year) {
+			$timestamp = mktime(0, 0, 0, 1, 1, $year);
+			$statList = array_merge($statList, $stats->getDownloadsOfYear($podcast, $timestamp));
+		}
+		
+		return $statList;
+	}
+
 
 	private function getStatsClass() {
 		if ($this->statisticMode == 'file') {

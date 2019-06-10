@@ -1,5 +1,6 @@
 {
     "name": "mauricerenck/podcaster",
+    "version": "1.1.0",
     "description": "A podcast plugin for Kirby 3",
     "type": "kirby-plugin",
     "license": "MIT",
@@ -9,7 +10,6 @@
             "email": "hello@maurice-renck.de"
         }
     ],
-    "version": "1.0.6",
     "autoload": {
         "files": [
             "utils/PodcasterUtils.php",
