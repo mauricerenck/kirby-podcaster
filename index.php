@@ -139,6 +139,20 @@ Kirby::plugin('mauricerenck/podcaster', [
             }
         ]
     ],
+    'api' => [
+        'routes' => [
+          [
+            'pattern' => 'podcaster/(:any)/stats/month/(:num)/(:num)',
+            'action'  => function ($podcast, $year, $month) {
+                $podcasterStats = new PodcasterStats();
+                $stats = $podcasterStats->getEpisodeStatsOfMonth($podcast, $year, $month);
+              return [
+                'stats' => $stats
+              ];
+            }
+          ]
+        ]
+    ],
     'hooks' => [
         'file.create:after' => function ($file) {
             if($file->extension() == 'mp3') {

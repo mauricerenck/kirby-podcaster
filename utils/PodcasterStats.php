@@ -34,4 +34,21 @@ class PodcasterStats {
 		$stats->increaseFeedVisits($page, $trackingDate);
 	}
 
+	public function getEpisodeStatsOfMonth(string $podcast, int $year, int $month) {
+		$stats = $this->getStatsClass();
+		$timestamp = mktime(0,0,0,$month,1,$year);
+
+		return $stats->getEpisodesStatsByMonth($podcast, $timestamp);
+	}
+
+
+	private function getStatsClass() {
+		if ($this->statisticMode == 'file') {
+			return new PodcasterStatsFile();
+		} else if ($this->statisticMode == 'mysql') {
+			return new PodcasterStatsMySql();
+		}
+
+		return false;
+	}
 }
