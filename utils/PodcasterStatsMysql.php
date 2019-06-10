@@ -72,17 +72,40 @@ class PodcasterStatsMySql {
         return $results;
     }
 
-    public function getEpisodesStatsByMonth(string $podcast, string $timestamp) {
+    public function getEpisodesStatsByMonth(string $podcast, int $timestamp) {
 
-        $date = new DateTime($timestamp);
+        $date = new DateTime();
+        $date->setTimestamp($timestamp);
+
         $date->modify('first day of this month');
         $from = $date->format('Y-m-d');
+
         $date->modify('last day of this month');
         $to = $date->format('Y-m-d');
 
-        $results = $this->db->query('SELECT *, SUM(downloads) AS downloaded FROM podcaster_episodes WHERE podcast = "' . $podcast . '" AND day BETWEEN "' . $from . '" and " ' . $to . ' " GROUP BY episode ORDER BY downloaded DESC');
-        return $results;
+        $results = $this->db->query('SELECT episode, SUM(downloads) AS downloaded FROM podcaster_episodes WHERE podcast = "' . $podcast . '" AND day BETWEEN "' . $from . '" and "' . $to . '" GROUP BY episode ORDER BY downloaded DESC');
+
+        $stats = new \stdClass();
+        $stats->episodes = json_decode($results->toJson());
+
+
+        return $stats;
     }
+
+    public function getDownloadsOfYear(string $podcast, int $timestamp) {
+
+        $date = new DateTime();
+        $date->setTimestamp($timestamp);
+
+        $year = $date->format('Y');
+        $from = $year . '-01-01';
+        $to = $year . '-12-31';
+
+        $results = $this->db->query('SELECT YEAR(day) as year, MONTH(day) AS month , SUM(downloads) AS downloaded FROM podcaster_episodes WHERE podcast = "' . $podcast . '" AND day BETWEEN "' . $from . '" and "' . $to . '"  GROUP BY MONTH(day) ORDER BY year, month ASC');
+
+        return json_decode($results->toJson());
+    }
+    
 
     public function getSingleEpisodesStatsByMonth(string $podcast, string $uid, string $timestamp) {
 

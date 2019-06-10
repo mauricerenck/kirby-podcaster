@@ -1,5 +1,16 @@
 title: Podcaster Feed
 tabs:
+  statistics:
+    label: Statistics
+    columns:
+      - width: 2/3
+        sections:
+          podstatsy:
+            type: podcasterYearlyGraph
+      - width: 1/3
+        sections:
+          podstatsEpisodic:
+            type: podcasterEpisodeStats
   content:
     label: Content
     icon: text
@@ -55,6 +66,7 @@ tabs:
               podcasterCopyright:
                 label: Copyright
                 type: text
+
   settings:
     label: RSS Settings
     icon: settings

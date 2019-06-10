@@ -35,7 +35,14 @@ Kirby::plugin('mauricerenck/podcaster', [
         'files/podcaster-episode' => __DIR__ . '/blueprints/files/podcaster-episode.yml'
     ],
     'sections' => [
-        'podcaster-stats' => [
+        'podcasterEpisodeStats' => [
+            'props' => [
+                'headline' => function ($headline = 'Last modified') {
+                    return $headline;
+                }
+            ]
+            ],
+        'podcasterYearlyGraph' => [
             'props' => [
                 'headline' => function ($headline = 'Last modified') {
                     return $headline;
@@ -137,6 +144,42 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $filename = str_replace('.mp3', '', $filename);
                 return $podcasterUtils->getPodcastFile();
             }
+        ]
+    ],
+    'api' => [
+        'routes' => [
+          [
+            'pattern' => 'podcaster/stats/(:any)/year/(:num)/month/(:num)',
+            'action'  => function ($podcast, $year, $month) {
+
+                if(option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
+                    $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
+                    echo new Response(json_encode($errorMessage), 'application/json', 501);
+                }
+
+                $podcasterStats = new PodcasterStats();
+                $stats = $podcasterStats->getEpisodeStatsOfMonth($podcast, $year, $month);
+                return [
+                    'stats' => $stats
+                ];
+            }
+        ],
+        [
+            'pattern' => 'podcaster/stats/(:any)/yearly-downloads/(:any)',
+            'action'  => function ($podcast, $year) {
+
+                if(option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
+                    $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
+                    echo new Response(json_encode($errorMessage), 'application/json', 501);
+                }
+
+                $podcasterStats = new PodcasterStats();
+                $stats = $podcasterStats->getDownloadsOfYear($podcast, $year);
+              return [
+                'stats' => $stats
+              ];
+            }
+          ]
         ]
     ],
     'hooks' => [
