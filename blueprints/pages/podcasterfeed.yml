@@ -5,8 +5,12 @@ tabs:
     columns:
       - width: 2/3
         sections:
-          podstatsy:
+          podstatsyearly:
             type: podcasterYearlyGraph
+          podstatsTop:
+            type: podcasterTopTen
+          podstatsFeed:
+            type: podcasterFeedStats
       - width: 1/3
         sections:
           podstatsEpisodic:
