@@ -34,6 +34,11 @@ class PodcasterStats {
 		$stats->increaseFeedVisits($page, $trackingDate);
 	}
 
+	public function getTopDownloads(string $podcast, int $limit) {
+		$stats = $this->getStatsClass();
+		return $stats->getTopDownloads($podcast, $limit);
+	}
+
 	public function getEpisodeStatsOfMonth(string $podcast, int $year, int $month) {
 		$stats = $this->getStatsClass();
 		$timestamp = mktime(0,0,0,$month,1,$year);
@@ -41,14 +46,19 @@ class PodcasterStats {
 		return $stats->getEpisodesStatsByMonth($podcast, $timestamp);
 	}
 
-	public function getDownloadsOfYear(string $podcast, string $years) {
+	public function getDownloadsOfYear(string $podcast, string $years, string $type) {
 		$stats = $this->getStatsClass();
 		$statList = [];
 
 		$yearList = explode('+', $years);
 		foreach($yearList as $year) {
 			$timestamp = mktime(0, 0, 0, 1, 1, $year);
-			$statList = array_merge($statList, $stats->getDownloadsOfYear($podcast, $timestamp));
+
+			if($type === 'feed') {
+				$statList = array_merge($statList, $stats->getDownloadsOfYear($podcast, $timestamp, $type));
+			} else {
+				$statList = array_merge($statList, $stats->getDownloadsOfYear($podcast, $timestamp, $type));
+			}
 		}
 		
 		return $statList;
