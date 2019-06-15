@@ -29,6 +29,7 @@ You can now see your download stats in the panel. This currently works only, if 
 
 ### Planned 
 
+* Import your old podcast to Kirby Podcaster
 * Snippet for Podlove Subscribe box
 
 ## Installation
