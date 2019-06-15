@@ -1,13 +1,14 @@
 <template>
   <div>
       {{error}}
-    <div id="chart"></div>
+    <div id="feedChart"></div>
   </div>
 </template>
 <script>
 import getYear from 'date-fns/getYear'
 import { Chart } from 'frappe-charts/dist/frappe-charts.esm.js'
 import 'frappe-charts/dist/frappe-charts.min.css'
+import sanitizeTitle from '../utils'
 
 export default {
     components: { Chart },
@@ -33,12 +34,12 @@ export default {
     },
     mounted() {
         const year = getYear(this.currentDate)
-        this.podcasterSlug = this.sanitizeTitle(this.pageValues.podcastertitle)
+        this.podcasterSlug = sanitizeTitle(this.pageValues.podcastertitle)
         this.getStats(year)
     },
     methods: {
         getStats(year) {
-            fetch('/api/podcaster/stats/' + this.podcasterSlug + '/episodes/yearly-downloads/' + year + '+' + (year - 1), {
+            fetch('/api/podcaster/stats/' + this.podcasterSlug + '/feed/yearly-downloads/' + year + '+' + (year - 1), {
                 method: 'GET',
                 headers: {
                     'X-CSRF': panel.csrf,
@@ -84,12 +85,12 @@ export default {
             this.drawChart()
         },
         drawChart() {
-            const chart = new Chart('#chart', {
-                title: 'Monthly Episode Downloads',
+            const chart = new Chart('#feedChart', {
+                title: 'Monthly Feed Downloads',
                 data: this.data,
                 type: 'line', // or 'bar', 'line', 'scatter', 'pie', 'percentage'
                 height: 350,
-                colors: ['green', 'dark-grey'],
+                colors: ['blue', 'dark-grey'],
                 lineOptions: {
                     hideLine: 0,
                     regionFill: 1,
@@ -99,27 +100,6 @@ export default {
                     spaceRatio: 0.25,
                 },
             })
-        },
-        sanitizeTitle: function(title) {
-            var slug = ''
-            // Change to lower case
-            var titleLower = title.toLowerCase()
-            // Letter "e"
-            slug = titleLower.replace(/e|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ễ|ể|ệ/gi, 'e')
-            // Letter "a"
-            slug = slug.replace(/a|á|à|ã|ả|ạ|ă|ắ|ằ|ẵ|ẳ|ặ|â|ấ|ầ|ẫ|ẩ|ậ/gi, 'a')
-            // Letter "o"
-            slug = slug.replace(/o|ó|ò|õ|ỏ|ọ|ô|ố|ồ|ỗ|ổ|ộ|ơ|ớ|ờ|ỡ|ở|ợ/gi, 'o')
-            // Letter "u"
-            slug = slug.replace(/u|ú|ù|ũ|ủ|ụ|ư|ứ|ừ|ữ|ử|ự/gi, 'u')
-            // Letter "d"
-            slug = slug.replace(/đ/gi, 'd')
-            // Trim the last whitespace
-            slug = slug.replace(/\s*$/g, '')
-            // Change whitespace to "-"
-            slug = slug.replace(/\s+/g, '-')
-
-            return slug
         },
     },
 }
