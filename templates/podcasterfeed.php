@@ -1,5 +1,7 @@
 <?php
+
 namespace Plugin\Podcaster;
+
 use \Kirby\Toolkit\Xml;
 
 $rssUtils = new PodcasterUtils();
@@ -65,14 +67,14 @@ $rssUtils->setFeed($page);
 		<?php $rssUtils->printBoolValue('rssFeed', 'googleplay:explicit', 'podcasterExplicit'); ?>
 		<?php $rssUtils->printBoolValue('rssFeed', 'googleplay:block', 'podcasterBlock'); ?>
 
-	<?php foreach($rssUtils->getEpisodes() as $episode) : ?>
+	<?php foreach ($rssUtils->getEpisodes() as $episode) : ?>
 		<?php $rssUtils->setCurrentEpisode($episode); ?>
 		<item>
 			<title><?php echo Xml::encode($episode->podcasterTitle()->or($episode->title())); ?></title>
 			<link><?php echo $episode->url(); ?></link>
 			<atom:link href="<?php echo $episode->url(); ?>"/>
 
-			<?php if($episode->podcasterCover()->isNotEmpty()) : ?>
+			<?php if ($episode->podcasterCover()->isNotEmpty()) : ?>
 			<image href="<?php echo $episode->podcasterCover()->toFile()->url(); ?>" />
 			<itunes:image href="<?php echo $episode->podcasterCover()->toFile()->url(); ?>" />
 			<googleplay:image href="<?php echo $episode->podcasterCover()->toFile()->url(); ?>" />
