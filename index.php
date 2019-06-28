@@ -203,26 +203,5 @@ Kirby::plugin('mauricerenck/podcaster', [
             ]
         ]
     ],
-    'hooks' => [
-        'file.create:after' => function ($file) {
-            if ($file->extension() == 'mp3') {
-                try {
-                    $audioUtils = new PodcasterAudioUtils();
-                    $audioUtils->setAudioFileMeta($file);
-                } catch (Exception $e) {
-                    throw new Exception(['details' => 'the audio id3 data could not be read']);
-                }
-            }
-        },
-        'file.replace:after' => function ($file) {
-            if ($file->extension() == 'mp3') {
-                try {
-                    $audioUtils = new PodcasterAudioUtils();
-                    $audioUtils->setAudioFileMeta($file);
-                } catch (Exception $e) {
-                    throw new Exception(['details' => 'the audio id3 data could not be read']);
-                }
-            }
-        }
-    ]
+    'hooks' => require_once(__DIR__ . '/config/hooks.php')
 ]);

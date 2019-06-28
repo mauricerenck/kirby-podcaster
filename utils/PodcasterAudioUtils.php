@@ -1,47 +1,90 @@
 <?php
+
 namespace Plugin\Podcaster;
-use \GetId3\GetId3Core as GetId3;
-// @see https://github.com/wapmorgan/Mp3Info
 
-class PodcasterAudioUtils {
-
-    public function __construct() {
+class PodcasterAudioUtils
+{
+    public function __construct()
+    {
         return true;
     }
 
-    public function setAudioFileMeta($file) {
-        $id3 = $this->getAudioMeta($file);
-        $duration = $this->parseAudioDuration($id3);
-        $title = $this->parseTitle($id3);
+    public function setAudioFileMeta($id3, $file)
+    {
+        $time = round($id3['playtime_seconds']);
 
+        $duration = $this->parseAudioDuration($time);
+        $title = $this->parseTitle($id3);
+        $this->getChapters($id3);
         $this->writeAudioFileMeta($file, $title, $duration);
     }
 
-    public function getAudioMeta($file) {
-        $path = $file->root();
-        $getId3 = new GetId3();
+    public function setAudioMetaToPage($id3, $file)
+    {
+        $newPageData = [];
+        $page = $file->page();
 
-        $id3 = $getId3->setOptionMD5Data(true)
-            ->setOptionMD5DataSource(true)
-            ->setEncoding('UTF-8')->analyze($path);
+        $newPageData['podcasterTitle'] = ($this->getId3Tag('title', $id3)) ? $this->getId3Tag('title', $id3) : null;
+        $newPageData['podcasterEpisode'] = ($this->getId3Tag('track_number', $id3)) ? $this->getId3Tag('track_number', $id3) : null;
+        $newPageData['podcasterDescription'] = ($this->getId3Tag('comment', $id3)) ? $this->getId3Tag('comment', $id3) : null;
+        $newPageData['podcasterSubtitle'] = ($this->getId3Tag('subtitle', $id3)) ? $this->getId3Tag('subtitle', $id3) : null;
+
+        $fielData = [];
+        $chapters = $this->getChapters($id3);
+
+        if ($chapters !== null) {
+            foreach ($chapters as $chapter) {
+                $timestamp = $this->parseAudioDuration($chapter['time_begin'] / 1000);
+                $fieldData[] = [
+                    'podcasterchaptertimestamp' => $timestamp,
+                    'podcasterchaptertitle' => ($chapter['chapter_name']) ? $chapter['chapter_name'] : null,
+                    'podcasterchapterurl' => (isset($chapter['chapter_url']['chapter url'])) ? $chapter['chapter_url']['chapter url'] : null,
+                    'podcasterchapterimage' => []
+                ];
+            }
+
+            $fieldData = \yaml::encode($fieldData);
+            $newPageData['podcasterchapters'] = $fieldData;
+        }
+
+        $page->update($newPageData);
+    }
+
+    public function getAudioMeta($file)
+    {
+        $path = $file->root();
+
+        $id3Parser = new \getID3();
+        $id3 = $id3Parser->analyze($path);
         return $id3;
     }
 
-    protected function parseAudioDuration($id3) {
-        $time = round($id3['playtime_seconds']);
-        return sprintf('%02d:%02d:%02d', ($time / 3600), ($time / 60 % 60), $time % 60);
+    protected function parseAudioDuration($seconds)
+    {
+        return sprintf('%02d:%02d:%02d', ($seconds / 3600), ($seconds / 60 % 60), $seconds % 60);
     }
 
-    protected function parseTitle($id3) {
+    protected function parseTitle($id3)
+    {
         return $id3['tags_html']['id3v2']['title'][0];
     }
 
-    protected function writeAudioFileMeta($file, $title, $duration) {
-        // Update file info, so we don't have to determine the duration again
-        $file->update(array(
+    protected function getId3Tag($tag, $id3)
+    {
+        return (isset($id3['tags']['id3v2'][$tag][0])) ? $id3['tags']['id3v2'][$tag][0] : null;
+    }
+
+    protected function getChapters($id3)
+    {
+        return (isset($id3['id3v2']['chapters'])) ? $id3['id3v2']['chapters'] : null;
+    }
+
+    protected function writeAudioFileMeta($file, $title, $duration)
+    {
+        $file->update([
             'episodeTitle' => $title,
             'duration' => $duration,
             'guid' => md5(time())
-        ));
+        ]);
     }
 }

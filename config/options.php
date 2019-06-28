@@ -9,5 +9,6 @@ return [
     'statsPassword' => null,
     'matomoToken' => null,
     'matomoBaseUrl' => null,
-    'defaultFeed' => 'feed'
+    'defaultFeed' => 'feed',
+    'setId3Data' => true
 ];
