@@ -1,9 +1,13 @@
 <?php
+
 namespace Plugin\Podcaster;
+
 use Kirby;
 use Kirby\Exception\Exception;
 use \PiwikTracker;
 use Kirby\Http\Response;
+
+@include_once __DIR__ . '/vendor/autoload.php';
 
 load([
     'Plugin\Podcaster\PodcasterUtils' => 'utils/PodcasterUtils.php',
@@ -16,16 +20,7 @@ load([
 ], __DIR__);
 
 Kirby::plugin('mauricerenck/podcaster', [
-    'options' => [
-        'statsInternal' => false,
-        'statsType' => 'mysql',
-        'statsHost' => null,
-        'statsDatabase' => null,
-        'statsUser' => null,
-        'statsPassword' => null,
-        'matomoToken' => null,
-        'matomoBaseUrl' => null
-    ],
+    'options' => require_once(__DIR__ . '/config/options.php'),
     'templates' => [
         'podcasterfeed' => __DIR__ . '/templates/podcasterfeed.php'
     ],
@@ -41,7 +36,7 @@ Kirby::plugin('mauricerenck/podcaster', [
                     return $headline;
                 }
             ]
-            ],
+        ],
         'podcasterYearlyGraph' => [
             'props' => [
                 'headline' => function ($headline = 'Last modified') {
@@ -83,56 +78,57 @@ Kirby::plugin('mauricerenck/podcaster', [
             'action' => function ($slug) {
                 $podcasterUtils = new PodcasterUtils();
 
-                $page = $podcasterUtils->getPageFromSlug($slug . '/' . option('mauricerenck.podcaster.defaultFeed', 'feed'));
+                $feed = $podcasterUtils->getPageFromSlug($slug . '/' . option('mauricerenck.podcaster.defaultFeed', 'feed'));
 
-                if(option('mauricerenck.podcaster.statsInternal') === true) {
+                var_dump($feed);
+                die();
+                if (option('mauricerenck.podcaster.statsInternal') === true) {
                     $stats = new PodcasterStats();
                     $trackingDate = time();
-                    $stats->increaseFeedVisits($page, $trackingDate);
+                    $stats->increaseFeedVisits($feed, $trackingDate);
                 }
 
-                if($page->podcasterMatomoFeedEnabled()->isTrue()) {
-                    $matomo = new PiwikTracker($page->podcasterMatomoFeedSiteId(), option('mauricerenck.podcaster.matomoBaseUrl'));
+                if ($feed->podcasterMatomoFeedEnabled()->isTrue()) {
+                    $matomo = new PiwikTracker($feed->podcasterMatomoFeedSiteId(), option('mauricerenck.podcaster.matomoBaseUrl'));
 
                     $matomo->setTokenAuth(option('mauricerenck.podcaster.matomoToken'));
                     $matomo->disableSendImageResponse();
                     $matomo->disableCookieSupport();
-                    $matomo->setUrl($page->url());
+                    $matomo->setUrl($feed->url());
                     $matomo->setIp($_SERVER['REMOTE_ADDR']);
 
-                    if($page->podcasterMatomoFeedGoalId()->isNotEmpty()) {
-                        $matomo->doTrackGoal($page->podcasterMatomoFeedGoalId(), 1);
+                    if ($feed->podcasterMatomoFeedGoalId()->isNotEmpty()) {
+                        $matomo->doTrackGoal($feed->podcasterMatomoFeedGoalId(), 1);
                     }
 
-                    if($page->podcasterMatomoFeedEventName()->isNotEmpty()) {
-                        $matomo->doTrackEvent($page->podcasterTitle(), $page->podcasterMatomoFeedEventName(), 1);
+                    if ($feed->podcasterMatomoFeedEventName()->isNotEmpty()) {
+                        $matomo->doTrackEvent($feed->podcasterTitle(), $feed->podcasterMatomoFeedEventName(), 1);
                     }
 
-                    if($page->podcasterMatomoFeedAction()->isTrue()) {
-                        $matomo->doTrackAction($page->url(), 'download');
+                    if ($feed->podcasterMatomoFeedAction()->isTrue()) {
+                        $matomo->doTrackAction($feed->url(), 'download');
                     }
                 }
 
-                return new Response($page->render(), 'text/xml');
+                return new Response($feed->render(), 'text/xml');
             }
         ],
         [
             'pattern' => '(:all)/' . option('mauricerenck.podcaster.downloadTriggerPath', 'download') . '/(:any)',
             'action' => function ($slug, $filename) {
-
                 $podcasterUtils = new PodcasterUtils();
                 $episode = $podcasterUtils->getPageFromSlug($slug);
                 $podcasterUtils->setCurrentEpisode($episode);
 
                 $podcast = $episode->siblings()->find(option('mauricerenck.podcaster.defaultFeed', 'feed'));
 
-                if(option('mauricerenck.podcaster.statsInternal') === true) {
+                if (option('mauricerenck.podcaster.statsInternal') === true) {
                     $stats = new PodcasterStats();
                     $trackingDate = time();
                     $stats->increaseDownloads($episode, $trackingDate);
                 }
 
-                if($podcast->podcasterMatomoEnabled()->isTrue()) {
+                if ($podcast->podcasterMatomoEnabled()->isTrue()) {
                     $matomo = new PiwikTracker($podcast->podcasterMatomoSiteId(), option('mauricerenck.podcaster.matomoBaseUrl'));
 
                     // setup
@@ -141,16 +137,16 @@ Kirby::plugin('mauricerenck/podcaster', [
                     $matomo->disableCookieSupport();
                     $matomo->setUrl($episode->url());
                     $matomo->setIp($_SERVER['REMOTE_ADDR']);
-        
-                    if($podcast->podcasterMatomoGoalId()->isNotEmpty()) {
+
+                    if ($podcast->podcasterMatomoGoalId()->isNotEmpty()) {
                         $matomo->doTrackGoal($podcast->podcasterMatomoGoalId(), 1);
                     }
-        
-                    if($podcast->podcasterMatomoEventName()->isNotEmpty()) {
+
+                    if ($podcast->podcasterMatomoEventName()->isNotEmpty()) {
                         $matomo->doTrackEvent($podcast->podcasterTitle(), $episode->title(), $podcast->podcasterMatomoEventName());
                     }
-        
-                    if($podcast->podcasterMatomoAction()->isTrue()) {
+
+                    if ($podcast->podcasterMatomoAction()->isTrue()) {
                         $matomo->doTrackAction($episode->url(), 'download');
                     }
                 }
@@ -162,74 +158,71 @@ Kirby::plugin('mauricerenck/podcaster', [
     ],
     'api' => [
         'routes' => [
-          [
-            'pattern' => 'podcaster/stats/(:any)/year/(:num)/month/(:num)',
-            'action'  => function ($podcast, $year, $month) {
+            [
+                'pattern' => 'podcaster/stats/(:any)/year/(:num)/month/(:num)',
+                'action' => function ($podcast, $year, $month) {
+                    if (option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
+                        $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
+                        echo new Response(json_encode($errorMessage), 'application/json', 501);
+                    }
 
-                if(option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
-                    $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
-                    echo new Response(json_encode($errorMessage), 'application/json', 501);
+                    $podcasterStats = new PodcasterStats();
+                    $stats = $podcasterStats->getEpisodeStatsOfMonth($podcast, $year, $month);
+                    return [
+                        'stats' => $stats
+                    ];
                 }
+            ],
+            [
+                'pattern' => 'podcaster/stats/(:any)/(:any)/yearly-downloads/(:any)',
+                'action' => function ($podcast, $type, $year) {
+                    if (option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
+                        $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
+                        echo new Response(json_encode($errorMessage), 'application/json', 501);
+                    }
 
-                $podcasterStats = new PodcasterStats();
-                $stats = $podcasterStats->getEpisodeStatsOfMonth($podcast, $year, $month);
-                return [
-                    'stats' => $stats
-                ];
-            }
-        ],
-        [
-            'pattern' => 'podcaster/stats/(:any)/(:any)/yearly-downloads/(:any)',
-            'action'  => function ($podcast, $type, $year) {
-
-                if(option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
-                    $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
-                    echo new Response(json_encode($errorMessage), 'application/json', 501);
+                    $podcasterStats = new PodcasterStats();
+                    $stats = $podcasterStats->getDownloadsOfYear($podcast, $year, $type);
+                    return [
+                        'stats' => $stats
+                    ];
                 }
+            ],
+            [
+                'pattern' => 'podcaster/stats/(:any)/top/(:num)',
+                'action' => function ($podcast, $limit) {
+                    if (option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
+                        $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
+                        echo new Response(json_encode($errorMessage), 'application/json', 501);
+                    }
 
-                $podcasterStats = new PodcasterStats();
-                $stats = $podcasterStats->getDownloadsOfYear($podcast, $year, $type);
-              return [
-                'stats' => $stats
-              ];
-            }
-        ],
-        [
-            'pattern' => 'podcaster/stats/(:any)/top/(:num)',
-            'action'  => function ($podcast, $limit) {
-
-                if(option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
-                    $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
-                    echo new Response(json_encode($errorMessage), 'application/json', 501);
+                    $podcasterStats = new PodcasterStats();
+                    $stats = $podcasterStats->getTopDownloads($podcast, $limit);
+                    return [
+                        'stats' => $stats
+                    ];
                 }
-
-                $podcasterStats = new PodcasterStats();
-                $stats = $podcasterStats->getTopDownloads($podcast, $limit);
-              return [
-                'stats' => $stats
-              ];
-            }
-          ]
+            ]
         ]
     ],
     'hooks' => [
         'file.create:after' => function ($file) {
-            if($file->extension() == 'mp3') {
-                try {
-                    $audioUtils = new PodcasterAudioUtils();
-                    $audioUtils->setAudioFileMeta($file);
-                } catch(Exception $e) {
-                    throw new Exception(array('details' => 'the audio id3 data could not be read'));
-                }
-            }
-        },
-        'file.replace:after' => function ($file) {
-            if($file->extension() == 'mp3') {
+            if ($file->extension() == 'mp3') {
                 try {
                     $audioUtils = new PodcasterAudioUtils();
                     $audioUtils->setAudioFileMeta($file);
                 } catch (Exception $e) {
-                    throw new Exception(array('details' => 'the audio id3 data could not be read'));
+                    throw new Exception(['details' => 'the audio id3 data could not be read']);
+                }
+            }
+        },
+        'file.replace:after' => function ($file) {
+            if ($file->extension() == 'mp3') {
+                try {
+                    $audioUtils = new PodcasterAudioUtils();
+                    $audioUtils->setAudioFileMeta($file);
+                } catch (Exception $e) {
+                    throw new Exception(['details' => 'the audio id3 data could not be read']);
                 }
             }
         }
