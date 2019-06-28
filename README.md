@@ -11,6 +11,7 @@ You can now see your download stats in the panel. This currently works only, if 
 
 ![stats sample](doc-assets/stats-sample.png)
 
+
 ## Features
 
 * ✅ Panel blueprint section for episodes
@@ -26,6 +27,7 @@ You can now see your download stats in the panel. This currently works only, if 
 * ✅ Tracking of episodes/feeds using Matomo
 * ✅ Tracking of episodes using PodTrac
 * ✅ Statistics view in Panel
+* ✅ Prefill fields from your ID3 data
 
 ### Planned 
 
@@ -38,16 +40,14 @@ You can now see your download stats in the panel. This currently works only, if 
 - unzip [master.zip](https://github.com/mauricerenck/kirby-podcaster/releases/latest) as folder `site/plugins/podcaster`
 - `git submodule add https://github.com/mauricerenck/kirby-podcaster.git site/plugins/podcaster`
 
-## Configuration
-
-## Create RSS-Feed
+### Create RSS-Feed
 Log into the panel and go to the folder containing your podcast episodes. Add a new unlisted page and name it `feed` using the template `podcasterfeed`. Please note that there is a problem, the template currently doesn't appear in the template list, so you have to add or change it by hand, naming the markdown-file `podcasterfeed`. The feed can then be edited in the panel.
 
 Fill in all needed information.
 
 If you want you can give your feed another name, you then need to change the download-trigger, see below in the tracking-settings.
 
-## Add episode tab to your blueprint
+### Add episode tab to your blueprint
 
 If you're using the panel you may want to edit the episode specific information in your article blueprint. You can do so, by adding a new tab using the blueprint `tabs/podcasterepisode` this could look like this:
 
@@ -64,6 +64,13 @@ If you never used tabs before, have a look here: https://getkirby.com/docs/guide
 
 You can now edit your episode as needed by iTunes and other directories.
 
+### Create an episode
+1. Create a new page for your episode.
+2. Open the podcast tab.
+3. Start with setting the episode type.
+4. Upload your mp3 file
+
+Podcaster will try to parse the ID3 data of your mp3 (if there is any) and fill out fields like the title, subtitle, description and chapters. This is a bit buggy in the panel. **To let the panel know that there is new data, please reload the page after uploading your file, then revert any changes.** The imported data will then be visible and you can edit the rest of the fields.
 
 ### Tracking
 

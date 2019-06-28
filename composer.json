@@ -23,7 +23,8 @@
     },
     "require": {
         "getkirby/composer-installer": "^1.1",
-        "wapmorgan/mp3info": "^0.0.3"
+        "wapmorgan/mp3info": "^0.0.3",
+        "james-heinrich/getid3": "^1.9"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.2"
