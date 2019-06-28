@@ -80,8 +80,6 @@ Kirby::plugin('mauricerenck/podcaster', [
 
                 $feed = $podcasterUtils->getPageFromSlug($slug . '/' . option('mauricerenck.podcaster.defaultFeed', 'feed'));
 
-                var_dump($feed);
-                die();
                 if (option('mauricerenck.podcaster.statsInternal') === true) {
                     $stats = new PodcasterStats();
                     $trackingDate = time();

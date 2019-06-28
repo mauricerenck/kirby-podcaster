@@ -1,19 +1,22 @@
 <?php
+
 namespace Plugin\Podcaster;
 
 use \Kirby\Toolkit\Xml;
 
-class PodcasterUtils {
-
+class PodcasterUtils
+{
     private $rssFeed;
     private $episode;
 
-    public function setFeed($page) {
+    public function setFeed($page)
+    {
         $this->rssFeed = $page;
         return true;
     }
 
-    public function getEpisodes() {
+    public function getEpisodes()
+    {
         return $this->rssFeed->podcasterSource()
             ->toPage()
             ->children()
@@ -21,71 +24,74 @@ class PodcasterUtils {
             ->filter(function ($child) {
                 return $child->date()->toDate() <= time();
             })
-            ->filter(function($child) {
+            ->filter(function ($child) {
                 return $child->hasAudio();
             })
             ->sortBy('date', 'desc');
     }
 
-    public function setCurrentEpisode($episode) {
+    public function setCurrentEpisode($episode)
+    {
         $this->episode = $episode;
     }
 
-    public function getGuid() {
+    public function getGuid()
+    {
         $audio = $this->getPodcastFile();
         return $audio->guid();
     }
 
-    public function getAudioEnclosures($episode): string {
-
+    public function getAudioEnclosures($episode): string
+    {
         $xmlOutput = [];
         $audio = $this->getPodcastFile();
 
         $audioUrl = $episode->url() . '/' . option('mauricerenck.podcaster.downloadTriggerPath', 'download') . '/' . $audio->filename();
-        $xmlOutput[] = '<enclosure url="' . $audioUrl .'" length="' . $audio->size() . '" type="audio/mpeg"/>';
+        $xmlOutput[] = '<enclosure url="' . $audioUrl . '" length="' . $audio->size() . '" type="audio/mpeg"/>';
 
         return implode("\n", $xmlOutput);
     }
 
-    public function getAudioDuration() {
+    public function getAudioDuration()
+    {
         $audio = $this->getPodcastFile();
         return $audio->duration();
     }
 
-
-    public function printItunesCategories() {
+    public function printItunesCategories()
+    {
         $output = [];
         foreach ($this->parseItunesCategories() as $mainCategory => $subCategories) {
-
             $output[] = '<itunes:category text="' . Xml::encode($mainCategory) . '">';
-            foreach($subCategories as $subCategory) {
+            foreach ($subCategories as $subCategory) {
                 $output[] = '<itunes:category text="' . Xml::encode($subCategory) . '"/>';
             }
             $output[] = '</itunes:category>';
         }
 
-        echo implode("", $output);
+        echo implode('', $output);
     }
 
-    public function getCoverImage() {
-
-        if($this->rssFeed->podcasterCover()->isNotEmpty() && !is_null($this->rssFeed->podcasterCover()->toFile())) {
+    public function getCoverImage()
+    {
+        if ($this->rssFeed->podcasterCover()->isNotEmpty() && !is_null($this->rssFeed->podcasterCover()->toFile())) {
             $output = '<image>';
             $output .= '<url>' . Xml::encode($this->rssFeed->podcasterCover()->toFile()->url()) . '</url>';
             $output .= '<title>' . Xml::encode($this->rssFeed->podcasterTitle()) . '</title>';
             $output .= '<link><![CDATA[' . Xml::encode($this->rssFeed->podcasterLink()) . ']]></link>';
             $output .= '</image>';
-            
-            $output .= '<itunes:image href="' . Xml::encode($this->rssFeed->podcasterCover()->toFile()->url()) .'" />';
-            $output .= '<googleplay:image href="' . Xml::encode($this->rssFeed->podcasterCover()->toFile()->url()) .'" />';
+
+            $output .= '<itunes:image href="' . Xml::encode($this->rssFeed->podcasterCover()->toFile()->url()) . '" />';
+            $output .= '<googleplay:image href="' . Xml::encode($this->rssFeed->podcasterCover()->toFile()->url()) . '" />';
 
             echo $output;
         }
     }
 
-    public function printFieldValue(string $source, string $xmlTag, string $blueprintField, bool $useCData = false) {
+    public function printFieldValue(string $source, string $xmlTag, string $blueprintField, bool $useCData = false)
+    {
         if ($this->$source->$blueprintField()->isNotEmpty()) {
-            if($useCData) {
+            if ($useCData) {
                 $value = '<![CDATA[' . $this->$source->$blueprintField()->kirbyTextInline() . ']]>';
             } else {
                 $value = Xml::encode($this->$source->$blueprintField());
@@ -95,31 +101,31 @@ class PodcasterUtils {
         }
     }
 
-    public function printBoolValue(string $source, string $xmlTag, string $blueprintField) {
+    public function printBoolValue(string $source, string $xmlTag, string $blueprintField)
+    {
         if ($this->$source->$blueprintField()->isNotEmpty()) {
             echo '<' . $xmlTag . '>' . (($this->$source->$blueprintField()->isTrue()) ? 'yes' : 'no') . '</' . $xmlTag . '>' . "\n";
         }
     }
 
-
-    public function getChapters() {
+    public function getChapters()
+    {
         if ($this->episode->podcasterChapters()->isEmpty()) {
             return false;
         }
 
         $chapterList = [];
 
-        foreach($this->episode->podcasterChapters()->toStructure() as $chapter) {
-
+        foreach ($this->episode->podcasterChapters()->toStructure() as $chapter) {
             $newChapter = ['<psc:chapter'];
             $newChapter[] = 'start="' . $chapter->podcasterChapterTimestamp() . '"';
             $newChapter[] = 'title="' . Xml::encode($chapter->podcasterChapterTitle()) . '"';
 
-            if($chapter->podcasterChapterUrl()->isNotEmpty()) {
+            if ($chapter->podcasterChapterUrl()->isNotEmpty()) {
                 $newChapter[] = 'href="' . Xml::encode($chapter->podcasterChapterUrl()) . '"';
             }
 
-            if($chapter->podcasterChapterImage()->isNotEmpty()) {
+            if ($chapter->podcasterChapterImage()->isNotEmpty()) {
                 $newChapter[] = 'image="' . Xml::encode($chapter->podcasterChapterImage()->toFile()->url()) . '"';
             }
 
@@ -127,16 +133,18 @@ class PodcasterUtils {
             $chapterList[] = implode(' ', $newChapter);
         }
 
-        if(count($chapterList) > 0) {
+        if (count($chapterList) > 0) {
             return '<psc:chapters version="1.2" xmlns:psc="http://podlove.org/simple-chapters">' . implode("\n", $chapterList) . '</psc:chapters>';
         }
     }
 
-    public function getPodcastFile() {
+    public function getPodcastFile()
+    {
         return $this->episode->audio($this->episode->podcasterMp3()->first())->first();
     }
 
-    private function parseItunesCategories(): array {
+    private function parseItunesCategories(): array
+    {
         $categories = [];
         foreach ($this->rssFeed->podcasterCategories()->toStructure() as $category) {
             $currentCategories = explode('/', $category->podcasterMainCategory());
@@ -152,10 +160,11 @@ class PodcasterUtils {
         return $categories;
     }
 
-    public function getPageFromSlug($slug) {
+    public function getPageFromSlug($slug)
+    {
         $currentLanguage = kirby()->language();
         $cleanedSlug = (is_null($currentLanguage)) ? $slug : str_replace($currentLanguage . '/', '', $slug);
 
-        return page($cleanedSlug);
+        return kirby()->page($cleanedSlug);
     }
 }
