@@ -19,10 +19,6 @@ class ComposerStaticInitf9e064d36fc9d27537c831b3675101ca
     );
 
     public static $prefixLengthsPsr4 = array (
-        'w' => 
-        array (
-            'wapmorgan\\Mp3Info\\' => 18,
-        ),
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
@@ -34,6 +30,10 @@ class ComposerStaticInitf9e064d36fc9d27537c831b3675101ca
         'S' => 
         array (
             'Symfony\\Polyfill\\Ctype\\' => 23,
+        ),
+        'P' => 
+        array (
+            'Prophecy\\' => 9,
         ),
         'K' => 
         array (
@@ -47,10 +47,6 @@ class ComposerStaticInitf9e064d36fc9d27537c831b3675101ca
     );
 
     public static $prefixDirsPsr4 = array (
-        'wapmorgan\\Mp3Info\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/wapmorgan/mp3info/src',
-        ),
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
@@ -65,6 +61,10 @@ class ComposerStaticInitf9e064d36fc9d27537c831b3675101ca
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
+        'Prophecy\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
+        ),
         'Kirby\\' => 
         array (
             0 => __DIR__ . '/..' . '/getkirby/composer-installer/src',
@@ -76,16 +76,6 @@ class ComposerStaticInitf9e064d36fc9d27537c831b3675101ca
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
-        ),
-    );
-
-    public static $prefixesPsr0 = array (
-        'P' => 
-        array (
-            'Prophecy\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
-            ),
         ),
     );
 
@@ -721,7 +711,6 @@ class ComposerStaticInitf9e064d36fc9d27537c831b3675101ca
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitf9e064d36fc9d27537c831b3675101ca::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitf9e064d36fc9d27537c831b3675101ca::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitf9e064d36fc9d27537c831b3675101ca::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitf9e064d36fc9d27537c831b3675101ca::$classMap;
 
         }, null, ClassLoader::class);
