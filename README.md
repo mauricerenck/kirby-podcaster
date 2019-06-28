@@ -72,6 +72,8 @@ You can now edit your episode as needed by iTunes and other directories.
 
 Podcaster will try to parse the ID3 data of your mp3 (if there is any) and fill out fields like the title, subtitle, description and chapters. This is a bit buggy in the panel. **To let the panel know that there is new data, please reload the page after uploading your file, then revert any changes.** The imported data will then be visible and you can edit the rest of the fields.
 
+To disable this feature set `mauricerenck.podcaster.setId3Data = false` in your config.php
+
 ### Tracking
 
 Kirby Podcaster allows you to track the downloads of your episode and your rss-feed. There are three main tracking options available:
