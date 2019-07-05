@@ -1,32 +1,93 @@
 title: Podcaster Feed
 tabs:
-  statistics:
-    label: Statistics
-    columns:
-      - width: 2/3
-        sections:
-          podstatsyearly:
-            type: podcasterYearlyGraph
-          podstatsTop:
-            type: podcasterTopTen
-          podstatsFeed:
-            type: podcasterFeedStats
-      - width: 1/3
-        sections:
-          podstatsEpisodic:
-            type: podcasterEpisodeStats
   content:
-    label: Content
+    label: RSS Feed
     icon: text
     columns:
       - width: 1/1
         sections:
-          heading:
+          basichead:
             type: fields
             fields:
               headlineInfo:
                 type: headline
-                label: RSS Information
+                label: Basic setup
+      - width: 1/3
+        sections:
+          basic:
+            type: fields
+            fields:
+              podcasterTitle:
+                label: Podcast Title
+                type: text
+                required: true
+              podcasterLink:
+                label: Link
+                required: true
+                type: url
+                help: Can be a link to your podcasts landing page
+                width: 1/2
+              podcasterAtomLink:
+                label: Atom Link
+                type: url
+                help: If your want the target of your rss atom:link tag to point elsewhere, set the url here. This can be handy, if you want to use something like feedburner
+      - width: 1/3
+        sections:
+          basic2:
+            type: fields
+            fields:
+              podcasterLanguage:
+                label: Language
+                type: select
+                options: api
+                api: https://raw.githubusercontent.com/mauricerenck/kirby-podcaster/master/res/language-codes.json
+                required: true
+              podcasterCategories:
+                label: iTunes Categories
+                type: structure
+                required: true
+                fields:
+                  podcasterMainCategory:
+                    label: Main
+                    type: select
+                    options: api
+                    api: https://raw.githubusercontent.com/mauricerenck/kirby-podcaster/master/res/categories.json
+              podcasterAuthor:
+                label: Author
+                type: users
+                max: 1
+              podcasterOwner:
+                label: Owner
+                type: users
+                max: 1
+      - width: 1/3
+        sections:
+          advanced:
+            type: fields
+            fields:
+              podcasterSource:
+                label: Source Page
+                type: pages
+                required: true
+                multiple: false
+                help: Select the page which will act as a parent of your episodes. Normally this is the page which is the parent of this feed, too.
+              podcasterType:
+                label: Podcast type
+                type: select
+                default: episodic
+                options:
+                  episodic: Episodic
+                  serial: Serial
+      - width: 1/1
+        sections:
+          spacer:
+            type: fields
+            fields:
+              line:
+                type: line
+              headlineInfos:
+                type: headline
+                label: Detailed information
       - width: 1/4
         sections:
           graphics:
@@ -48,10 +109,6 @@ tabs:
           infos:
             type: fields
             fields:
-              podcasterTitle:
-                label: Podcast Title
-                type: text
-                required: true
               podcasterSubtitle:
                 label: Podcast Subtitle
                 type: text
@@ -62,83 +119,10 @@ tabs:
               podcasterKeywords:
                 label: iTunes Keywords
                 type: tags
-              podcasterLink:
-                label: Link
-                required: true
-                type: url
-                help: Can be a link to your podcasts landing page
               podcasterCopyright:
                 label: Copyright
                 type: text
 
-  settings:
-    label: RSS Settings
-    icon: settings
-    columns:
-      - width: 1/1
-        sections:
-          heading2:
-            type: fields
-            fields:
-              headlineSettings:
-                type: headline
-                label: RSS Settings
-      - width: 1/4
-        sections:
-          settings:
-            type: fields
-            fields:
-              podcasterSource:
-                label: Source Page
-                type: pages
-                required: true
-                multiple: false
-                help: Select the page which will act as a parent of your episodes. Normally this is the page which is the parent of this feed, too.
-              podcasterLanguage:
-                label: Language
-                type: select
-                options: api
-                api: https://raw.githubusercontent.com/mauricerenck/kirby-podcaster/master/res/language-codes.json
-                required: true
-              podcasterType:
-                label: Podcast type
-                type: select
-                default: episodic
-                options:
-                  episodic: Episodic
-                  serial: Serial
-              podcasterAtomLink:
-                label: Atom Link
-                type: url
-                help: If your want the target of your rss atom:link tag to point elsewhere, set the url here. This can be handy, if you want to use something like feedburner
-      - width: 2/4
-        sections:
-          categorySettings:
-            type: fields
-            fields:
-              podcasterCategories:
-                label: iTunes Categories
-                type: structure
-                required: true
-                fields:
-                  podcasterMainCategory:
-                    label: Main
-                    type: select
-                    options: api
-                    api: https://raw.githubusercontent.com/mauricerenck/kirby-podcaster/master/res/categories.json
-      - width: 1/4
-        sections:
-          authors:
-            type: fields
-            fields:
-              podcasterAuthor:
-                label: Author
-                type: users
-                max: 1
-              podcasterOwner:
-                label: Owner
-                type: users
-                max: 1
   player:
     label: Website Player
     icon: file-audio
@@ -414,6 +398,21 @@ tabs:
                 width: 2/4
                 when:
                   podTracEnabled: yes
+  statistics:
+    label: Statistics
+    columns:
+      - width: 2/3
+        sections:
+          podstatsyearly:
+            type: podcasterYearlyGraph
+          podstatsTop:
+            type: podcasterTopTen
+          podstatsFeed:
+            type: podcasterFeedStats
+      - width: 1/3
+        sections:
+          podstatsEpisodic:
+            type: podcasterEpisodeStats
   dangerzone:
     label: Dangerzone
     icon: alert
