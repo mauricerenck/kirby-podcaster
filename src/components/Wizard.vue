@@ -87,6 +87,7 @@ export default {
                         itunesduration: items[i].itunesduration,
                         itunesseason: items[i].itunesseason,
                         itunesexplicit: items[i].itunesexplicit,
+                        itunesblock:  items[i].itunesblock,
                         file: items[i].enclosure["@attributes"].url
                     }
                     console.log(episode)
