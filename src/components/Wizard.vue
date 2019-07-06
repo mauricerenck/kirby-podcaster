@@ -63,8 +63,11 @@ export default {
                 if(response.status === 'error') {
                     this.logs.push({id: 3, msg: 'Could not read feed'})
                 }
+
+                const numEpisodes = (typeof response.channel.item.length !== 'undefined') ? response.channel.item.lengt : 1;
+
                 this.logs.push({id: 3, msg: 'Found feed for: ' + response.channel.title})
-                this.logs.push({id: 4, msg: 'Found ' + response.channel.item.length + ' episodes'})
+                this.logs.push({id: 4, msg: 'Found ' + numEpisodes + ' episodes'})
                 this.importEpisodes(response.channel.item)
             })
             .catch(error => {
@@ -73,39 +76,59 @@ export default {
             })
         },
         importEpisodes(items) {
-                this.logs.push({id: 5, msg: ' '})
+            this.logs.push({id: 5, msg: ' '})
 
-                for (let i = items.length-1; i >= 0; i--) { 
-
-                    const episode = {
-                        title: items[i].title,
-                        link: items[i].link,
-                        pubDate: items[i].pubDate,
-                        description: items[i].description,
-                        itunessubtitle: items[i].itunessubtitle,
-                        itunessummary: items[i].itunessummary,
-                        itunesduration: items[i].itunesduration,
-                        itunesseason: items[i].itunesseason,
-                        itunesexplicit: items[i].itunesexplicit,
-                        itunesblock:  items[i].itunesblock,
-                        file: items[i].enclosure["@attributes"].url
-                    }
-                    console.log(episode)
-
-                    fetch('/api/podcaster/wizard/createEpisode', {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF': panel.csrf,
-                            'X-TARGET-PAGE': this.pageValues.podcasterwizarddestination,
-                            'X-PAGE-TEMPLATE': 'default',
-                        },
-                        body: JSON.stringify(episode)
-                    })
-                    .then(response => response.json())
-                    .then(response => {
-                        this.logs.push({id: (i+5), msg: 'created ' + response.title})
-                    })
+            if(typeof items.length === 'undefined') {
+                const episode = {
+                    title: items.title,
+                    link: items.link,
+                    pubDate: items.pubDate,
+                    description: items.description,
+                    itunessubtitle: items.itunessubtitle,
+                    itunessummary: items.itunessummary,
+                    itunesduration: items.itunesduration,
+                    itunesseason: items.itunesseason,
+                    itunesexplicit: items.itunesexplicit,
+                    itunesblock:  items.itunesblock,
+                    file: items.enclosure["@attributes"].url
                 }
+
+                this.createEpisode(items)
+            } else {
+                for (let i = items.length-1; i >= 0; i--) { 
+                    this.createEpisode(items[i])
+                }
+            }
+        },
+        createEpisode(episode) {
+            const episodeData = {
+                title: episode.title,
+                link: episode.link,
+                pubDate: episode.pubDate,
+                description: episode.description,
+                itunessubtitle: episode.itunessubtitle,
+                itunessummary: episode.itunessummary,
+                itunesduration: episode.itunesduration,
+                itunesseason: episode.itunesseason,
+                itunesexplicit: episode.itunesexplicit,
+                itunesblock:  episode.itunesblock,
+                file: episode.enclosure["@attributes"].url
+            }
+            console.log('HHH', episodeData)
+
+            fetch('/api/podcaster/wizard/createEpisode', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF': panel.csrf,
+                    'X-TARGET-PAGE': this.pageValues.podcasterwizarddestination[0].id,
+                    'X-PAGE-TEMPLATE': 'default',
+                },
+                body: JSON.stringify(episodeData)
+            })
+            .then(response => response.json())
+            .then(response => {
+                this.logs.push({id: (5), msg: 'created ' + response.title})
+            })
         }
     },
 }

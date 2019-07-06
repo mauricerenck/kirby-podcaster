@@ -13642,6 +13642,8 @@ var _default = {
           });
         }
 
+        var numEpisodes = typeof response.channel.item.length !== 'undefined' ? response.channel.item.lengt : 1;
+
         _this.logs.push({
           id: 3,
           msg: 'Found feed for: ' + response.channel.title
@@ -13649,7 +13651,7 @@ var _default = {
 
         _this.logs.push({
           id: 4,
-          msg: 'Found ' + response.channel.item.length + ' episodes'
+          msg: 'Found ' + numEpisodes + ' episodes'
         });
 
         _this.importEpisodes(response.channel.item);
@@ -13659,49 +13661,65 @@ var _default = {
       });
     },
     importEpisodes: function importEpisodes(items) {
-      var _this2 = this;
-
       this.logs.push({
         id: 5,
         msg: ' '
       });
 
-      var _loop = function _loop(i) {
+      if (typeof items.length === 'undefined') {
         var episode = {
-          title: items[i].title,
-          link: items[i].link,
-          pubDate: items[i].pubDate,
-          description: items[i].description,
-          itunessubtitle: items[i].itunessubtitle,
-          itunessummary: items[i].itunessummary,
-          itunesduration: items[i].itunesduration,
-          itunesseason: items[i].itunesseason,
-          itunesexplicit: items[i].itunesexplicit,
-          itunesblock: items[i].itunesblock,
-          file: items[i].enclosure["@attributes"].url
+          title: items.title,
+          link: items.link,
+          pubDate: items.pubDate,
+          description: items.description,
+          itunessubtitle: items.itunessubtitle,
+          itunessummary: items.itunessummary,
+          itunesduration: items.itunesduration,
+          itunesseason: items.itunesseason,
+          itunesexplicit: items.itunesexplicit,
+          itunesblock: items.itunesblock,
+          file: items.enclosure["@attributes"].url
         };
-        console.log(episode);
-        fetch('/api/podcaster/wizard/createEpisode', {
-          method: 'POST',
-          headers: {
-            'X-CSRF': panel.csrf,
-            'X-TARGET-PAGE': _this2.pageValues.podcasterwizarddestination,
-            'X-PAGE-TEMPLATE': 'default'
-          },
-          body: JSON.stringify(episode)
-        }).then(function (response) {
-          return response.json();
-        }).then(function (response) {
-          _this2.logs.push({
-            id: i + 5,
-            msg: 'created ' + response.title
-          });
-        });
-      };
-
-      for (var i = items.length - 1; i >= 0; i--) {
-        _loop(i);
+        this.createEpisode(items);
+      } else {
+        for (var i = items.length - 1; i >= 0; i--) {
+          this.createEpisode(items[i]);
+        }
       }
+    },
+    createEpisode: function createEpisode(episode) {
+      var _this2 = this;
+
+      var episodeData = {
+        title: episode.title,
+        link: episode.link,
+        pubDate: episode.pubDate,
+        description: episode.description,
+        itunessubtitle: episode.itunessubtitle,
+        itunessummary: episode.itunessummary,
+        itunesduration: episode.itunesduration,
+        itunesseason: episode.itunesseason,
+        itunesexplicit: episode.itunesexplicit,
+        itunesblock: episode.itunesblock,
+        file: episode.enclosure["@attributes"].url
+      };
+      console.log('HHH', episodeData);
+      fetch('/api/podcaster/wizard/createEpisode', {
+        method: 'POST',
+        headers: {
+          'X-CSRF': panel.csrf,
+          'X-TARGET-PAGE': this.pageValues.podcasterwizarddestination[0].id,
+          'X-PAGE-TEMPLATE': 'default'
+        },
+        body: JSON.stringify(episodeData)
+      }).then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        _this2.logs.push({
+          id: 5,
+          msg: 'created ' + response.title
+        });
+      });
     }
   }
 };

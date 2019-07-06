@@ -3,6 +3,7 @@
 namespace Plugin\Podcaster;
 
 use Xml;
+use File;
 
 return [
     'routes' => [
@@ -73,26 +74,43 @@ return [
                 $targetPage = kirby()->page($headerTarget);
                 $pageData = json_decode(file_get_contents('php://input'));
 
-                $slug = $end = array_slice(explode('/', rtrim($pageData->link, '/')), -1)[0];
+                $wizardHelper = new PodcasterWizard();
+                $slug = $wizardHelper->getPageSlug($wizardHelper->getField($pageData, 'link'), $wizardHelper->getField($pageData, 'title'));
 
                 $newPageData = [
                     'slug' => $slug,
                     'template' => $headerTemplate,
                     'content' => [
-                        'title' => $pageData->title,
-                        'date' => $pageData->pubDate,
-                        'podcasterSeason' => $pageData->itunesseason,
-                        'podcasterEpisode' => $pageData->title, // TODO
-                        'podcasterEpisodeType' => $pageData->title, // TODO
-                        'podcasterExplizit' => $pageData->itunesexplicit,
-                        'podcasterBlock' => $pageData->itunesblock,
-                        'podcasterTitle' => $pageData->title, // TODO
-                        'podcasterSubtitle' => $pageData->itunessubtitle,
-                        'podcasterDescription' => $pageData->description,
+                        'title' => $wizardHelper->getField($pageData, 'title'),
+                        'date' => $wizardHelper->getField($pageData, 'pubDate'),
+                        'podcasterSeason' => $wizardHelper->getField($pageData, 'itunesseason'),
+                        'podcasterEpisode' => $wizardHelper->getField($pageData, 'title'), // TODO
+                        'podcasterEpisodeType' => $wizardHelper->getField($pageData, 'title'), // TODO
+                        'podcasterExplizit' => $wizardHelper->getField($pageData, 'itunesexplicit'),
+                        'podcasterBlock' => $wizardHelper->getField($pageData, 'itunesblock'),
+                        'podcasterTitle' => $wizardHelper->getField($pageData, 'title'), // TODO
+                        'podcasterSubtitle' => $wizardHelper->getField($pageData, 'itunessubtitle'),
+                        'podcasterDescription' => $wizardHelper->getField($pageData, 'description'),
                     ]
                 ];
 
-                $targetPage->createChild($newPageData);
+                $episode = $targetPage->createChild($newPageData);
+                $mp3FileName = $wizardHelper->getPageSlug($wizardHelper->getField($pageData, 'file'), $slug . '.mp3');
+                $mp3 = $wizardHelper->downloadMp3($wizardHelper->getField($pageData, 'file'), $mp3FileName);
+
+                $file = File::create([
+                    'source' => kirby()->root('plugins') . '/kirby-podcaster/tmp/' . $mp3FileName,
+                    'parent' => $episode,
+                    'filename' => $mp3FileName,
+                    'template' => 'podcaster-episode',
+                    'content' => [
+                        'duration' => $wizardHelper->getField($pageData, 'itunesduration'),
+                        'episodeTitle' => $wizardHelper->getField($pageData, 'itunestitle')
+                    ]
+                ]);
+
+                unlink(kirby()->root('plugins') . '/kirby-podcaster/tmp/' . $mp3FileName);
+
                 return $pageData->title;
             },
             'method' => 'POST'

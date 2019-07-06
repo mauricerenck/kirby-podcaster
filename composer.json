@@ -18,6 +18,7 @@
             "utils/PodcasterStatsFile.php",
             "utils/PodcasterStatsMysql.php",
             "utils/PodcasterStatsPodTrac.php",
+            "utils/PodcasterWizard.php",
             "lib/PiwikTracker.php"
         ]
     },

@@ -14,5 +14,6 @@ return array(
     'd6802096f93b9e496e07bfb10dc2a836' => $baseDir . '/utils/PodcasterStatsFile.php',
     '7327ddc355eb971a6be2a8e77299663d' => $baseDir . '/utils/PodcasterStatsMysql.php',
     'cd2cab7c530e4a5617b1e4b4473bacd3' => $baseDir . '/utils/PodcasterStatsPodTrac.php',
+    '4ab2f40a111a21ba0af2a845a2d6ca6a' => $baseDir . '/utils/PodcasterWizard.php',
     'afc6d2f72e0b3c2400404a46eb6dd23d' => $baseDir . '/lib/PiwikTracker.php',
 );

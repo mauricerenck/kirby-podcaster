@@ -16,6 +16,7 @@ load([
     'Plugin\Podcaster\PodcasterStatsMySql' => 'utils/PodcasterStatsMysql.php',
     'Plugin\Podcaster\PodcasterStatsFile' => 'utils/PodcasterStatsFile.php',
     'Plugin\Podcaster\PodcasterStatsPodTrac' => 'utils/PodcasterStatsPodTrac.php',
+    'Plugin\Podcaster\PodcasterWizard' => 'utils/PodcasterWizard.php',
     'Plugin\Podcaster\PiwikTracker' => 'lib/PiwikTracker.php'
 ], __DIR__);
 
