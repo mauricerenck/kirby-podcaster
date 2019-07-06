@@ -73,3 +73,7 @@
   background: #333;
   color: #fff;
 }
+.podcaster-import-wizard .log .important {
+  background: #eec6c6;
+  border-left: 2px solid #d16464;
+}

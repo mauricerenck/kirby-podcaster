@@ -66,10 +66,47 @@ return [
             }
         ],
         [
+            'pattern' => 'podcaster/wizard/createFeed',
+            'action' => function () {
+                $headerTarget = $_SERVER['HTTP_X_TARGET_PAGE'];
+
+                $targetPage = kirby()->page($headerTarget);
+                $pageData = json_decode(file_get_contents('php://input'));
+
+                $wizardHelper = new PodcasterWizard();
+
+                $newPageData = [
+                    'slug' => 'feed',
+                    'template' => 'podcasterfeed',
+                    'draft' => false,
+                    'content' => [
+                        'podcasterSource' => $targetPage->slug(),
+                        'title' => $wizardHelper->getField($pageData, 'title'),
+                        'podcasterTitle' => $wizardHelper->getField($pageData, 'title'),
+                        'podcasterDescription' => $wizardHelper->getField($pageData, 'description'),
+                        'podcasterSubtitle' => $wizardHelper->getField($pageData, 'itunessubtitle'),
+                        'podcasterKeywords' => $wizardHelper->getField($pageData, 'ituneskeywords'),
+                        'podcasterCopyright' => $wizardHelper->getField($pageData, 'copyright'),
+                        'podcasterLink' => $wizardHelper->getField($pageData, 'link'),
+                        'podcasterLanguage' => $wizardHelper->getField($pageData, 'language'),
+                        'podcasterType' => $wizardHelper->getField($pageData, 'itunestype'),
+                        'podcasterExplicit' => $wizardHelper->getField($pageData, 'itunesexplicit'),
+                        'podcasterBlock' => $wizardHelper->getField($pageData, 'itunesblock')
+                    ]
+                ];
+
+                $feed = $targetPage->createChild($newPageData);
+
+                return json_encode(['title' => $pageData->title, 'slug' => $feed->id()]);
+            },
+            'method' => 'POST'
+        ],
+        [
             'pattern' => 'podcaster/wizard/createEpisode',
             'action' => function () {
                 $headerTarget = $_SERVER['HTTP_X_TARGET_PAGE'];
                 $headerTemplate = $_SERVER['HTTP_X_PAGE_TEMPLATE'];
+                $pageStatus = ($_SERVER['HTTP_X_PAGE_STATUS'] === 'false');
 
                 $targetPage = kirby()->page($headerTarget);
                 $pageData = json_decode(file_get_contents('php://input'));
@@ -80,15 +117,16 @@ return [
                 $newPageData = [
                     'slug' => $slug,
                     'template' => $headerTemplate,
+                    'draft' => $pageStatus,
                     'content' => [
                         'title' => $wizardHelper->getField($pageData, 'title'),
                         'date' => $wizardHelper->getField($pageData, 'pubDate'),
                         'podcasterSeason' => $wizardHelper->getField($pageData, 'itunesseason'),
-                        'podcasterEpisode' => $wizardHelper->getField($pageData, 'title'), // TODO
-                        'podcasterEpisodeType' => $wizardHelper->getField($pageData, 'title'), // TODO
+                        'podcasterEpisode' => $wizardHelper->getField($pageData, 'itunesepisode'),
+                        'podcasterEpisodeType' => $wizardHelper->getField($pageData, 'itunesepisodetype'),
                         'podcasterExplizit' => $wizardHelper->getField($pageData, 'itunesexplicit'),
                         'podcasterBlock' => $wizardHelper->getField($pageData, 'itunesblock'),
-                        'podcasterTitle' => $wizardHelper->getField($pageData, 'title'), // TODO
+                        'podcasterTitle' => $wizardHelper->getField($pageData, 'title'),
                         'podcasterSubtitle' => $wizardHelper->getField($pageData, 'itunessubtitle'),
                         'podcasterDescription' => $wizardHelper->getField($pageData, 'description'),
                     ]

@@ -13583,6 +13583,7 @@ exports.default = void 0;
 //
 //
 //
+//
 var _default = {
   data: function data() {
     return {
@@ -13649,10 +13650,37 @@ var _default = {
         _this.numRemain = numEpisodes;
         _this.numDownload = numEpisodes;
 
+        _this.createFeed(response.channel);
+
         _this.importEpisodes(response.channel.item);
       }).catch(function (error) {
         _this.error = error;
         _this.failed++;
+      });
+    },
+    createFeed: function createFeed(channel) {
+      var episodeData = {
+        title: channel.title,
+        link: channel.link,
+        description: channel.description,
+        itunessubtitle: channel.itunessubtitle,
+        ituneskeywords: channel.ituneskeywords,
+        itunesseason: channel.itunesseason,
+        itunesexplicit: channel.itunesexplicit,
+        itunesblock: channel.itunesblock,
+        itunestype: channel.itunestype,
+        language: channel.language,
+        copyright: channel.copyright
+      };
+      fetch('/api/podcaster/wizard/createFeed', {
+        method: 'POST',
+        headers: {
+          'X-CSRF': panel.csrf,
+          'X-TARGET-PAGE': this.pageValues.podcasterwizarddestination[0].id
+        },
+        body: JSON.stringify(episodeData)
+      }).catch(function (error) {
+        console.log(error);
       });
     },
     importEpisodes: function importEpisodes(items) {
@@ -13680,7 +13708,6 @@ var _default = {
     createEpisode: function createEpisode(episode) {
       var _this2 = this;
 
-      this.currentEpisode = episode.title;
       var episodeData = {
         title: episode.title,
         link: episode.link,
@@ -13699,25 +13726,18 @@ var _default = {
         headers: {
           'X-CSRF': panel.csrf,
           'X-TARGET-PAGE': this.pageValues.podcasterwizarddestination[0].id,
-          'X-PAGE-TEMPLATE': this.pageValues.podcasterwizardtemplate
+          'X-PAGE-TEMPLATE': this.pageValues.podcasterwizardtemplate,
+          'X-PAGE-STATUS': this.pageValues.podcasterwizardpagestatus
         },
         body: JSON.stringify(episodeData)
       }).then(function (response) {
         return response.json();
       }).then(function (response) {
+        _this2.currentEpisode = episode.title;
+
         if (typeof response.status !== 'undefined') {
           _this2.numFailed++;
         } else {
-          _this2.logs.push({
-            id: 5,
-            msg: 'created "' + response.title + '"'
-          });
-
-          _this2.logs.push({
-            id: 6,
-            msg: 'Downloading audio'
-          });
-
           _this2.feedItems.push({
             title: response.title,
             slug: response.slug,
@@ -13787,6 +13807,10 @@ exports.default = _default;
       _c("k-headline", [_vm._v(_vm._s(_vm.headline))]),
       _vm._v(" "),
       _c("div", { staticClass: "log" }, [
+        _c("div", { staticClass: "important" }, [
+          _vm._v("Do not close this page until the import is finished!")
+        ]),
+        _vm._v(" "),
         _c("div", { staticClass: "currentState" }, [
           _vm._v("Processing »" + _vm._s(_vm.currentEpisode) + "«")
         ]),
@@ -13804,7 +13828,8 @@ exports.default = _default;
         ]),
         _vm._v(" "),
         _c("div", [
-          _vm._v(_vm._s(_vm.numDownload) + " audio downloads remaining")
+          _c("strong", [_vm._v(_vm._s(_vm.numDownload))]),
+          _vm._v(" audio downloads remaining")
         ]),
         _vm._v(" "),
         _c("div", [_vm._v(_vm._s(_vm.failed) + " failed attempts")])
@@ -13816,7 +13841,7 @@ exports.default = _default;
           staticClass: "k-button start-import",
           on: { click: _vm.startImport }
         },
-        [_vm._v("1. Start import")]
+        [_vm._v("Start import")]
       )
     ],
     1

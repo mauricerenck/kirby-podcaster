@@ -27,6 +27,7 @@ Kirby::plugin('mauricerenck/podcaster', [
     ],
     'blueprints' => [
         'pages/podcasterfeed' => __DIR__ . '/blueprints/pages/podcasterfeed.yml',
+        'pages/podcasterwizard' => __DIR__ . '/blueprints/pages/podcasterwizard.yml',
         'tabs/podcasterepisode' => __DIR__ . '/blueprints/tabs/episode.yml',
         'files/podcaster-episode' => __DIR__ . '/blueprints/files/podcaster-episode.yml'
     ],

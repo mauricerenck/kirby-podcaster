@@ -2,14 +2,15 @@
   <section class="k-modified-section podcaster-import-wizard">
     <k-headline>{{ headline }}</k-headline>
     <div class="log">
+        <div class="important">Do not close this page until the import is finished!</div>
         <div class="currentState">Processing &raquo;{{currentEpisode}}&laquo;</div>
         <div>Trying to parse &raquo;{{feedName}}&laquo;</div>
         <div>Found {{numItems}} episodes in feed</div>
         <div>creating pages, <strong>{{numRemain}}</strong> remaining</div>
-        <div>{{numDownload}} audio downloads remaining</div>
+        <div><strong>{{numDownload}}</strong> audio downloads remaining</div>
         <div>{{failed}} failed attempts</div>
     </div>
-    <button class="k-button start-import" v-on:click="startImport">1. Start import</button>
+    <button class="k-button start-import" v-on:click="startImport">Start import</button>
   </section>
 </template>
 
@@ -80,12 +81,41 @@ export default {
                 this.numRemain = numEpisodes
                 this.numDownload = numEpisodes
 
+                this.createFeed(response.channel)
                 this.importEpisodes(response.channel.item)
             })
             .catch(error => {
                 this.error = error
                 this.failed++
             })
+        },
+        createFeed(channel) {
+            const episodeData = {
+                title: channel.title,
+                link: channel.link,
+                description: channel.description,
+                itunessubtitle: channel.itunessubtitle,
+                ituneskeywords: channel.ituneskeywords,
+                itunesseason: channel.itunesseason,
+                itunesexplicit: channel.itunesexplicit,
+                itunesblock: channel.itunesblock,
+                itunestype: channel.itunestype,
+                language: channel.language,
+                copyright: channel.copyright,
+            }
+
+            fetch('/api/podcaster/wizard/createFeed', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF': panel.csrf,
+                    'X-TARGET-PAGE': this.pageValues.podcasterwizarddestination[0].id,
+                },
+                body: JSON.stringify(episodeData)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
         },
         importEpisodes(items) {
              if(typeof items.length === 'undefined') {
@@ -111,8 +141,6 @@ export default {
             }
         },
         createEpisode(episode) {
-            this.currentEpisode = episode.title
-
             const episodeData = {
                 title: episode.title,
                 link: episode.link,
@@ -133,16 +161,16 @@ export default {
                     'X-CSRF': panel.csrf,
                     'X-TARGET-PAGE': this.pageValues.podcasterwizarddestination[0].id,
                     'X-PAGE-TEMPLATE': this.pageValues.podcasterwizardtemplate,
+                    'X-PAGE-STATUS': this.pageValues.podcasterwizardpagestatus
                 },
                 body: JSON.stringify(episodeData)
             })
             .then(response => response.json())
             .then(response => {
+                this.currentEpisode = episode.title
                 if(typeof response.status !== 'undefined') {
                     this.numFailed++
                 } else {
-                    this.logs.push({id: (5), msg: 'created "' + response.title + '"'})
-                    this.logs.push({id: (6), msg: 'Downloading audio'})
                     this.feedItems.push({title: response.title, slug: response.slug, file: response.file})
 
                     this.numRemain--
@@ -217,6 +245,11 @@ export default {
             font-weight: bold;
             background: #333;
             color: #fff;
+        }
+
+        .important {
+            background: #eec6c6;
+            border-left: 2px solid #d16464
         }
     }
 }
