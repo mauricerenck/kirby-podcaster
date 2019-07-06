@@ -13580,12 +13580,21 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
 var _default = {
   data: function data() {
     return {
       headline: null,
       logs: [],
-      info: null
+      feedItems: [],
+      numItems: 0,
+      numRemain: 0,
+      numDownload: 0,
+      failed: 0,
+      feedName: '',
+      currentEpisode: ''
     };
   },
   created: function created() {},
@@ -13600,28 +13609,23 @@ var _default = {
       return this.$store.getters['form/values'](this.id);
     }
   },
-  watch: {
-    currentDate: {
-      immediate: false,
-      handler: function handler(newVal, oldVal) {
-        this.getStats();
-      }
-    }
-  },
   methods: {
     startImport: function startImport(event) {
-      var feedUrl = this.pageValues.podcasterwizardsrcfeed; // event.target.style = 'display: none'
-
-      this.log = [];
-      this.logs.push({
-        id: 1,
-        msg: 'Starting import…'
-      });
-      this.logs.push({
-        id: 2,
-        msg: 'Looking up: ' + feedUrl
-      });
+      var feedUrl = this.pageValues.podcasterwizardsrcfeed;
+      this.feedName = feedUrl;
+      event.target.style = 'display: none';
+      document.querySelector('.log').style = 'display: block';
       this.getFeed(feedUrl);
+    },
+    startAudioDownload: function startAudioDownload() {
+      if (this.feedItems.length > 0) {
+        this.downloadAudio();
+      } else {
+        this.logs.push({
+          id: 3,
+          msg: 'done'
+        });
+      }
     },
     getFeed: function getFeed(feedUrl) {
       var _this = this;
@@ -13636,36 +13640,22 @@ var _default = {
         return response.json();
       }).then(function (response) {
         if (response.status === 'error') {
-          _this.logs.push({
-            id: 3,
-            msg: 'Could not read feed'
-          });
+          _this.failed++;
         }
 
-        var numEpisodes = typeof response.channel.item.length !== 'undefined' ? response.channel.item.lengt : 1;
-
-        _this.logs.push({
-          id: 3,
-          msg: 'Found feed for: ' + response.channel.title
-        });
-
-        _this.logs.push({
-          id: 4,
-          msg: 'Found ' + numEpisodes + ' episodes'
-        });
+        var numEpisodes = typeof response.channel.item.length !== 'undefined' ? response.channel.item.length : 1;
+        _this.feedName = response.channel.title;
+        _this.numItems = numEpisodes;
+        _this.numRemain = numEpisodes;
+        _this.numDownload = numEpisodes;
 
         _this.importEpisodes(response.channel.item);
       }).catch(function (error) {
         _this.error = error;
-        console.log(_this.error);
+        _this.failed++;
       });
     },
     importEpisodes: function importEpisodes(items) {
-      this.logs.push({
-        id: 5,
-        msg: ' '
-      });
-
       if (typeof items.length === 'undefined') {
         var episode = {
           title: items.title,
@@ -13690,6 +13680,7 @@ var _default = {
     createEpisode: function createEpisode(episode) {
       var _this2 = this;
 
+      this.currentEpisode = episode.title;
       var episodeData = {
         title: episode.title,
         link: episode.link,
@@ -13703,22 +13694,75 @@ var _default = {
         itunesblock: episode.itunesblock,
         file: episode.enclosure["@attributes"].url
       };
-      console.log('HHH', episodeData);
       fetch('/api/podcaster/wizard/createEpisode', {
         method: 'POST',
         headers: {
           'X-CSRF': panel.csrf,
           'X-TARGET-PAGE': this.pageValues.podcasterwizarddestination[0].id,
-          'X-PAGE-TEMPLATE': 'default'
+          'X-PAGE-TEMPLATE': this.pageValues.podcasterwizardtemplate
         },
         body: JSON.stringify(episodeData)
       }).then(function (response) {
         return response.json();
       }).then(function (response) {
-        _this2.logs.push({
-          id: 5,
-          msg: 'created ' + response.title
-        });
+        if (typeof response.status !== 'undefined') {
+          _this2.numFailed++;
+        } else {
+          _this2.logs.push({
+            id: 5,
+            msg: 'created "' + response.title + '"'
+          });
+
+          _this2.logs.push({
+            id: 6,
+            msg: 'Downloading audio'
+          });
+
+          _this2.feedItems.push({
+            title: response.title,
+            slug: response.slug,
+            file: response.file
+          });
+
+          _this2.numRemain--;
+
+          if (_this2.numRemain === 0) {
+            _this2.startAudioDownload();
+          }
+        }
+      }).catch(function (error) {
+        console.log(error);
+        _this2.numFailed++;
+      });
+    },
+    downloadAudio: function downloadAudio() {
+      var _this3 = this;
+
+      var slug = this.feedItems[0].slug;
+      var file = this.feedItems[0].file;
+      this.feedItems.shift();
+      fetch('/api/podcaster/wizard/createFile', {
+        method: 'POST',
+        headers: {
+          'X-CSRF': panel.csrf,
+          'X-TARGET-PAGE': slug
+        },
+        body: JSON.stringify({
+          'file': file
+        })
+      }).then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        if (typeof response.status !== 'undefined') {
+          _this3.failed++;
+        } else {
+          _this3.numDownload = _this3.feedItems.length;
+        }
+
+        _this3.startAudioDownload();
+      }).catch(function (error) {
+        console.log(error);
+        _this3.failed++;
       });
     }
   }
@@ -13743,15 +13787,27 @@ exports.default = _default;
       _c("k-headline", [_vm._v(_vm._s(_vm.headline))]),
       _vm._v(" "),
       _c("div", { staticClass: "log" }, [
-        _c(
-          "ul",
-          _vm._l(_vm.logs, function(log) {
-            return _c("li", { key: log.id, attrs: { log: log } }, [
-              _vm._v(_vm._s(log.msg))
-            ])
-          }),
-          0
-        )
+        _c("div", { staticClass: "currentState" }, [
+          _vm._v("Processing »" + _vm._s(_vm.currentEpisode) + "«")
+        ]),
+        _vm._v(" "),
+        _c("div", [_vm._v("Trying to parse »" + _vm._s(_vm.feedName) + "«")]),
+        _vm._v(" "),
+        _c("div", [
+          _vm._v("Found " + _vm._s(_vm.numItems) + " episodes in feed")
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _vm._v("creating pages, "),
+          _c("strong", [_vm._v(_vm._s(_vm.numRemain))]),
+          _vm._v(" remaining")
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _vm._v(_vm._s(_vm.numDownload) + " audio downloads remaining")
+        ]),
+        _vm._v(" "),
+        _c("div", [_vm._v(_vm._s(_vm.failed) + " failed attempts")])
       ]),
       _vm._v(" "),
       _c(
@@ -13760,7 +13816,7 @@ exports.default = _default;
           staticClass: "k-button start-import",
           on: { click: _vm.startImport }
         },
-        [_vm._v("Start import")]
+        [_vm._v("1. Start import")]
       )
     ],
     1

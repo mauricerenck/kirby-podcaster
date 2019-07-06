@@ -37,9 +37,19 @@ tabs:
               podcasterWizardSrcFeed:
                 type: url
                 label: Your current RSS-Feed
+                required: true
               podcasterWizardDestination:
                 type: pages
                 label: Parent Page
+                width: 1/2
+                required: true
+              podcasterWizardTemplate:
+                type: text
+                label: Template Name
+                info: Without file extension, if your content files look like 'article.txt' then your template name is 'article'
+                width: 1/2
+                required: true
+
           podstatsFeed:
             type: podcasterWizard
   content:

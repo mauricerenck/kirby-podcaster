@@ -52,13 +52,24 @@
   stroke-width: 2px !important;
 }.podcaster-import-wizard button {
   border: 1px solid green;
+  padding: 5px 10px;
+  background: white;
+  margin: 5px;
+}
+.podcaster-import-wizard .start-file-transfer {
+  display: none;
 }
 .podcaster-import-wizard .log {
-  background: #333;
-  color: white;
+  display: none;
+  background: #fff;
   font-family: courier;
-  font-size: 12px;
+  font-size: 14px;
 }
-.podcaster-import-wizard .log ul {
-  padding: 20px;
+.podcaster-import-wizard .log div {
+  padding: 10px 20px;
+}
+.podcaster-import-wizard .log .currentState {
+  font-weight: bold;
+  background: #333;
+  color: #fff;
 }

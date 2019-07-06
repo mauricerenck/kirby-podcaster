@@ -95,7 +95,24 @@ return [
                 ];
 
                 $episode = $targetPage->createChild($newPageData);
-                $mp3FileName = $wizardHelper->getPageSlug($wizardHelper->getField($pageData, 'file'), $slug . '.mp3');
+                $mp3FileName = $slug . '.mp3';
+
+                return json_encode(['title' => $pageData->title, 'slug' => $episode->id(), 'file' => $wizardHelper->getField($pageData, 'file')]);
+            },
+            'method' => 'POST'
+        ],
+        [
+            'pattern' => 'podcaster/wizard/createFile',
+            'action' => function () {
+                $headerTarget = $_SERVER['HTTP_X_TARGET_PAGE'];
+
+                $episode = kirby()->page($headerTarget);
+                $pageData = json_decode(file_get_contents('php://input'));
+
+                $wizardHelper = new PodcasterWizard();
+                $slug = $episode->slug();
+
+                $mp3FileName = $slug . '.mp3';
                 $mp3 = $wizardHelper->downloadMp3($wizardHelper->getField($pageData, 'file'), $mp3FileName);
 
                 $file = File::create([
@@ -111,7 +128,7 @@ return [
 
                 unlink(kirby()->root('plugins') . '/kirby-podcaster/tmp/' . $mp3FileName);
 
-                return $pageData->title;
+                return json_encode(['created' => $mp3FileName]);
             },
             'method' => 'POST'
         ]
