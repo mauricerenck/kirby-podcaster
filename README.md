@@ -14,6 +14,7 @@ You can now see your download stats in the panel. This currently works only, if 
 
 ## Features
 
+* ✅ Import wizard, move your existing podcast to kirby
 * ✅ Panel blueprint section for episodes
 * ✅ Panel blueprint for extended RSS feed (including all new iTunes specifications)
 * ✅ Run multiple podcasts with just one Kirby installation
@@ -29,16 +30,33 @@ You can now see your download stats in the panel. This currently works only, if 
 * ✅ Statistics view in Panel
 * ✅ Prefill fields from your ID3 data
 
-### Planned 
 
-* Import your old podcast to Kirby Podcaster
-* Snippet for Podlove Subscribe box
+### Changelog
+
+* 2019-07-25 - Podcaster Wizard, import your existing podcast into kirby
+* 2019-07-24 - New Apple Podcast Categories
 
 ## Installation
 
 - `composer require mauricerenck/podcaster`
 - unzip [master.zip](https://github.com/mauricerenck/kirby-podcaster/releases/latest) as folder `site/plugins/kirby-podcaster`
 - `git submodule add https://github.com/mauricerenck/kirby-podcaster.git site/plugins/kirby-podcaster`
+
+### Move your existing Podcast to Kirby
+
+![stats sample](doc-assets/create-wizard.png)
+
+1. In the panel create a new page. Name it however you want, select the template `Podcaster Wizard`. After the page is created, open it in the panel.
+2. Enter your current feed url, select the target page. Below this page all episodes and the feed will be created. Make sure there are no other pages within your target page, otherwise the import may fail.
+3. Enter the template that should be used for your episodes. If your content files look like `article.txt` your template name i `article`.
+4. You can now decide if the episodes should be created as draft (default and recommended) or unlisted. 
+5. Hit the `Start import` button and lean back.
+
+![stats sample](doc-assets/wizard-panel.png)
+
+**Please do not close the wizard page, or the import will be interrupted and fail**
+
+After the import is finished, you should delete the import wizard page, you don't need it anymore.
 
 ### Create RSS-Feed
 Log into the panel and go to the folder containing your podcast episodes. Add a new unlisted page and name it `feed` using the template `podcasterfeed`. Please note that there is a problem, the template currently doesn't appear in the template list, so you have to add or change it by hand, naming the markdown-file `podcasterfeed`. The feed can then be edited in the panel.

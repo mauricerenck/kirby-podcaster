@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit660325cad110ed14730f0fd0071c5b55
+class ComposerStaticInit671e7f7f4385391330dc48edb88c0873
 {
     public static $files = array (
         '8df3dfd1f38b5f54e639d8aee9e2bd5b' => __DIR__ . '/../..' . '/utils/PodcasterUtils.php',
@@ -13,6 +13,7 @@ class ComposerStaticInit660325cad110ed14730f0fd0071c5b55
         'd6802096f93b9e496e07bfb10dc2a836' => __DIR__ . '/../..' . '/utils/PodcasterStatsFile.php',
         '7327ddc355eb971a6be2a8e77299663d' => __DIR__ . '/../..' . '/utils/PodcasterStatsMysql.php',
         'cd2cab7c530e4a5617b1e4b4473bacd3' => __DIR__ . '/../..' . '/utils/PodcasterStatsPodTrac.php',
+        '4ab2f40a111a21ba0af2a845a2d6ca6a' => __DIR__ . '/../..' . '/utils/PodcasterWizard.php',
         'afc6d2f72e0b3c2400404a46eb6dd23d' => __DIR__ . '/../..' . '/lib/PiwikTracker.php',
     );
 
@@ -121,9 +122,9 @@ class ComposerStaticInit660325cad110ed14730f0fd0071c5b55
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit660325cad110ed14730f0fd0071c5b55::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit660325cad110ed14730f0fd0071c5b55::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit660325cad110ed14730f0fd0071c5b55::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit671e7f7f4385391330dc48edb88c0873::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit671e7f7f4385391330dc48edb88c0873::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit671e7f7f4385391330dc48edb88c0873::$classMap;
 
         }, null, ClassLoader::class);
     }
