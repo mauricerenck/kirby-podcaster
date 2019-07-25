@@ -13776,6 +13776,7 @@ var _default = {
         if (typeof response.status !== 'undefined') {
           _this3.failed++;
         } else {
+          _this3.currentEpisode = _this3.feedItems[0].title;
           _this3.numDownload = _this3.feedItems.length;
         }
 
@@ -13932,7 +13933,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58449" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52560" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

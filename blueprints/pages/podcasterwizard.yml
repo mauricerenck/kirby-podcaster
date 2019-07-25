@@ -20,12 +20,12 @@ tabs:
               wizardStep1:
                 type: info
                 label: Needed information
-                text: Please enter the URL of your current podcast feed. Then select the page which will function as your target. This will propably the parent of this page. Hit save, then start the import.
+                text: Please enter the URL of your current podcast feed. Then select the page which will function as your target. All episodes and the feed will be created as children of this page. Hit save, then start the import.
               wizardStep2:
                 type: info
                 label: Be aware
                 theme: negative
-                text: This feature is experimental. It'll create new pages and add information. Please backup your data before you do this. Also make sure the target page has no other pages than this feed in it. Otherwise data may be lost or the impmort may fail!
+                text: This feature is experimental. It'll create new pages and add information. Please backup your data before you do this. Also make sure the target page has no other pages in it. Otherwise the import may fail!
       - width: 2/3
        sections:
           wizardSteps:
@@ -36,7 +36,7 @@ tabs:
                 label: Start your import
               podcasterWizardSrcFeed:
                 type: url
-                label: Your current RSS-Feed
+                label: Your source RSS-Feed
                 required: true
               podcasterWizardDestination:
                 type: pages
