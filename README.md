@@ -39,7 +39,7 @@ View this [step by step guide](/docs/kirby-podcaster-starterkit.md) on how to se
 - unzip [master.zip](https://github.com/mauricerenck/kirby-podcaster/releases/latest) as folder `site/plugins/kirby-podcaster`
 - `git submodule add https://github.com/mauricerenck/kirby-podcaster.git site/plugins/kirby-podcaster`
 
-### Move your existing Podcast to Kirby
+## Move your existing Podcast to Kirby
 
 ![stats sample](doc-assets/create-wizard.png)
 
@@ -54,6 +54,8 @@ View this [step by step guide](/docs/kirby-podcaster-starterkit.md) on how to se
 **Please do not close the wizard page, or the import will be interrupted and fail**
 
 After the import is finished, you should delete the import wizard page, you don't need it anymore.
+
+## Start from scratch
 
 ### Create RSS-Feed
 Log into the panel and go to the folder containing your podcast episodes. Add a new unlisted page and name it `feed` using the template `podcasterfeed`. Please note that there is a problem, the template currently doesn't appear in the template list, so you have to add or change it by hand, naming the markdown-file `podcasterfeed`. The feed can then be edited in the panel.
