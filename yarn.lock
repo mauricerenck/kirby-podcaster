@@ -506,7 +506,7 @@ csso@^3.5.1:
   dependencies:
     css-tree "1.0.0-alpha.29"
 
-date-fns@^2.0.0-alpha.31:
+date-fns@2.0.0-alpha.31:
   version "2.0.0-alpha.31"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.31.tgz#51bcfdca25dfc9bea334a556ab33dfc0bb00421c"
   integrity sha512-S19PwMqnbYsqcbCg02Yj9gv4veVNZ0OX7v2+zcd+Mq0RI7LoDKJipJjnMrTZ3Cc6blDuTce5G/pHXcVIGRwJWQ==
