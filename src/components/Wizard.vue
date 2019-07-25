@@ -205,7 +205,6 @@ export default {
                 if(typeof response.status !== 'undefined') {
                     this.failed++;
                 } else {
-                    this.currentEpisode = this.feedItems[0].title
                     this.numDownload = this.feedItems.length
                 }
 

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit9102282ebd48377fe238a9adf6554f1d
+class ComposerStaticInit671e7f7f4385391330dc48edb88c0873
 {
     public static $files = array (
         '8df3dfd1f38b5f54e639d8aee9e2bd5b' => __DIR__ . '/../..' . '/utils/PodcasterUtils.php',
@@ -122,9 +122,9 @@ class ComposerStaticInit9102282ebd48377fe238a9adf6554f1d
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit9102282ebd48377fe238a9adf6554f1d::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit9102282ebd48377fe238a9adf6554f1d::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit9102282ebd48377fe238a9adf6554f1d::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit671e7f7f4385391330dc48edb88c0873::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit671e7f7f4385391330dc48edb88c0873::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit671e7f7f4385391330dc48edb88c0873::$classMap;
 
         }, null, ClassLoader::class);
     }
