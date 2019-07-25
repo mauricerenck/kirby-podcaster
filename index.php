@@ -16,6 +16,7 @@ load([
     'Plugin\Podcaster\PodcasterStatsMySql' => 'utils/PodcasterStatsMysql.php',
     'Plugin\Podcaster\PodcasterStatsFile' => 'utils/PodcasterStatsFile.php',
     'Plugin\Podcaster\PodcasterStatsPodTrac' => 'utils/PodcasterStatsPodTrac.php',
+    'Plugin\Podcaster\PodcasterWizard' => 'utils/PodcasterWizard.php',
     'Plugin\Podcaster\PiwikTracker' => 'lib/PiwikTracker.php'
 ], __DIR__);
 
@@ -26,6 +27,7 @@ Kirby::plugin('mauricerenck/podcaster', [
     ],
     'blueprints' => [
         'pages/podcasterfeed' => __DIR__ . '/blueprints/pages/podcasterfeed.yml',
+        'pages/podcasterwizard' => __DIR__ . '/blueprints/pages/podcasterwizard.yml',
         'tabs/podcasterepisode' => __DIR__ . '/blueprints/tabs/episode.yml',
         'files/podcaster-episode' => __DIR__ . '/blueprints/files/podcaster-episode.yml'
     ],
@@ -52,6 +54,13 @@ Kirby::plugin('mauricerenck/podcaster', [
             ]
         ],
         'podcasterFeedStats' => [
+            'props' => [
+                'headline' => function ($headline = 'Feed Downloads') {
+                    return $headline;
+                }
+            ]
+        ],
+        'podcasterWizard' => [
             'props' => [
                 'headline' => function ($headline = 'Feed Downloads') {
                     return $headline;
@@ -154,54 +163,6 @@ Kirby::plugin('mauricerenck/podcaster', [
             }
         ]
     ],
-    'api' => [
-        'routes' => [
-            [
-                'pattern' => 'podcaster/stats/(:any)/year/(:num)/month/(:num)',
-                'action' => function ($podcast, $year, $month) {
-                    if (option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
-                        $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
-                        echo new Response(json_encode($errorMessage), 'application/json', 501);
-                    }
-
-                    $podcasterStats = new PodcasterStats();
-                    $stats = $podcasterStats->getEpisodeStatsOfMonth($podcast, $year, $month);
-                    return [
-                        'stats' => $stats
-                    ];
-                }
-            ],
-            [
-                'pattern' => 'podcaster/stats/(:any)/(:any)/yearly-downloads/(:any)',
-                'action' => function ($podcast, $type, $year) {
-                    if (option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
-                        $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
-                        echo new Response(json_encode($errorMessage), 'application/json', 501);
-                    }
-
-                    $podcasterStats = new PodcasterStats();
-                    $stats = $podcasterStats->getDownloadsOfYear($podcast, $year, $type);
-                    return [
-                        'stats' => $stats
-                    ];
-                }
-            ],
-            [
-                'pattern' => 'podcaster/stats/(:any)/top/(:num)',
-                'action' => function ($podcast, $limit) {
-                    if (option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
-                        $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
-                        echo new Response(json_encode($errorMessage), 'application/json', 501);
-                    }
-
-                    $podcasterStats = new PodcasterStats();
-                    $stats = $podcasterStats->getTopDownloads($podcast, $limit);
-                    return [
-                        'stats' => $stats
-                    ];
-                }
-            ]
-        ]
-    ],
+    'api' => require_once(__DIR__ . '/config/api.php'),
     'hooks' => require_once(__DIR__ . '/config/hooks.php')
 ]);

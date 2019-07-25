@@ -1,0 +1,62 @@
+title: Podcaster Wizard
+tabs:
+  wizard:
+    label: Wizard
+    icon: wand
+    columns:
+      - width: 1/3
+        sections:
+          wizardInfo:
+            type: fields
+            fields:
+              wizardHead:
+                type: headline
+                label: Import Wizard
+              wizardInfo:
+                type: info
+                label: Hello there!️️
+                theme: positive
+                text: This wizard helps you transfering your existing podcast to Kirby. It uses your RSS-Feed for that. All information will be imported from this feed.
+              wizardStep1:
+                type: info
+                label: Needed information
+                text: Please enter the URL of your current podcast feed. Then select the page which will function as your target. All episodes and the feed will be created as children of this page. Hit save, then start the import.
+              wizardStep2:
+                type: info
+                label: Be aware
+                theme: negative
+                text: This feature is experimental. It'll create new pages and add information. Please backup your data before you do this. Also make sure the target page has no other pages in it. Otherwise the import may fail!
+      - width: 2/3
+       sections:
+          wizardSteps:
+            type: fields
+            fields:
+              wizardInfos:
+                type: headline
+                label: Start your import
+              podcasterWizardSrcFeed:
+                type: url
+                label: Your source RSS-Feed
+                required: true
+              podcasterWizardDestination:
+                type: pages
+                label: Parent Page
+                width: 1/3
+                required: true
+              podcasterWizardTemplate:
+                type: text
+                label: Template Name
+                help: Without file extension, if your content files look like 'article.txt' then your template name is 'article'
+                width: 1/3
+                required: true
+              podcasterWizardPageStatus:
+                  type: toggle
+                  label: Page Status
+                  default: no
+                  text:
+                    Draft
+                    Unlisted
+                  help: Pages created by this wizard will be drafts. If you want, they can also be unlisted.
+                  width: 1/3
+          podstatsFeed:
+            type: podcasterWizard

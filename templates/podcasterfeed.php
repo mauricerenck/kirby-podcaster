@@ -89,6 +89,7 @@ $rssUtils->setFeed($page);
 			<?php $rssUtils->printFieldValue('episode', 'itunes:summary', 'podcasterDescription'); ?>
 			<itunes:duration><?php echo $rssUtils->getAudioDuration($episode); ?></itunes:duration>
 			<?php $rssUtils->printFieldValue('episode', 'itunes:season', 'podcasterSeason'); ?>
+			<?php $rssUtils->printFieldValue('episode', 'itunes:episode', 'podcasterEpisode'); ?>
 			<?php $rssUtils->printBoolValue('episode', 'itunes:explicit', 'podcasterExplizit'); ?>
 			<?php $rssUtils->printBoolValue('episode', 'itunes:block', 'podcasterBlock'); ?>
 
