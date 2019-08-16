@@ -339,6 +339,17 @@ tabs:
                 width: 1/4
                 when:
                   podcasterMatomoFeedEnabled: yes
+              podcasterMatomoFeedPage: 
+                label: Track Page
+                help: Will create a page view when feed is viewed
+                type: toggle
+                default: no
+                text: 
+                  - disabled
+                  - enabled
+                width: 1/4
+                when:
+                  podcasterMatomoFeedEnabled: yes
               podcasterMatomoFeedGoalId: 
                 label: Goal Id
                 type: text

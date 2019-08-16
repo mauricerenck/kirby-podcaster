@@ -20,7 +20,7 @@ class PodcasterWizard
         if (is_null($link)) {
             return Str::slug($title);
         }
-
+        // TODO use Url::path($target);  ?
         return array_slice(explode('/', rtrim($link, '/')), -1)[0];
     }
 
