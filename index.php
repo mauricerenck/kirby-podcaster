@@ -104,6 +104,10 @@ Kirby::plugin('mauricerenck/podcaster', [
                     $matomo->setUrl($feed->url());
                     $matomo->setIp($_SERVER['REMOTE_ADDR']);
 
+                    if ($feed->podcasterMatomoFeedPage()->isNotEmpty() && $feed->podcasterMatomoFeedPage()->isTrue()) {
+                        $matomo->doTrackPageView($feed->podcasterTitle());
+                    }
+
                     if ($feed->podcasterMatomoFeedGoalId()->isNotEmpty()) {
                         $matomo->doTrackGoal($feed->podcasterMatomoFeedGoalId(), 1);
                     }
