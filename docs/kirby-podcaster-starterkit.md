@@ -134,7 +134,7 @@ We just created the blueprints for the panel and are now able to submit our feed
 
 This template will show the list of all episodes which are published. We'll steal from the notes template here and modify it a bit, so it fits our needs.
 
-Create a new file in `site/templates` and name it `podcast.php` have a [look at my sample here](assets/template/podcast.php).
+Create a new file in `site/templates` and name it `podcast.php` have a [look at my sample here](assets/templates/podcast.php).
 
 It's nearly the same template which comes for the notes but you will note one big change:
 
