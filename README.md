@@ -38,6 +38,8 @@ You can now see your download stats in the panel. This currently works only, if 
 
 ## Installation
 
+View this [step by step guide](/docs/kirby-podcaster-starterkit.md) on how to setup the plugin with the Kirby Starterkit.
+
 - `composer require mauricerenck/podcaster`
 - unzip [master.zip](https://github.com/mauricerenck/kirby-podcaster/releases/latest) as folder `site/plugins/kirby-podcaster`
 - `git submodule add https://github.com/mauricerenck/kirby-podcaster.git site/plugins/kirby-podcaster`
