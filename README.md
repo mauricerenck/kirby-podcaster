@@ -6,12 +6,6 @@
 
 This plugin helps you running your own podcast with Kirby 3. It uses all the new panel-features to make your life easier. You can run multiple podcasts and configure them in the panel. All new iTunes specifications are included and chapters are supported. It creates iTunes/Google/Name-Your-Favorite-Podcatcher Feeds and allows you to track downloads of your episodes and hits on your feeds. It comes with two Audioplayers, a simple html5-audio-player and the advanced Podlove-Player supporting things like chapters, cover and much more. Or you can use your own player, if you wish.
 
-## New: Statistics
-You can now see your download stats in the panel. This currently works only, if you're using the mysql option:
-
-![stats sample](doc-assets/stats-sample.png)
-
-
 ## Features
 
 * ✅ Import wizard, move your existing podcast to kirby
@@ -33,6 +27,7 @@ You can now see your download stats in the panel. This currently works only, if 
 
 ### Changelog
 
+* 2019-11-23 - Bugfixes for new Kirby versions
 * 2019-07-25 - Podcaster Wizard, import your existing podcast into kirby
 * 2019-07-24 - New Apple Podcast Categories
 
