@@ -66,6 +66,10 @@ class PodcasterAudioUtils
 
     protected function parseTitle($id3)
     {
+        if (!isset($id3['tags_html'])) {
+            return null;
+        }
+
         return $id3['tags_html']['id3v2']['title'][0];
     }
 
