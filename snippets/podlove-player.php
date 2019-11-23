@@ -1,16 +1,20 @@
 <?php
-    namespace Plugin\Podcaster;
 
-    require_once __DIR__ . '/../utils/PodcasterUtils.php';
+namespace Plugin\Podcaster;
+
+use str;
+use addslashes;
+
+require_once __DIR__ . '/../utils/PodcasterUtils.php';
 
     $podcasterUtils = new PodcasterUtils();
     $podcasterUtils->setFeed($podcast);
     $podcasterUtils->setCurrentEpisode($page);
 
     $cover = false;
-    if($page->podcasterCover()->isNotEmpty()) {
+    if ($page->podcasterCover()->isNotEmpty()) {
         $cover = $page->podcasterCover()->toFile()->resize(200)->url();
-    } else if($podcast->podcasterCover()->isNotEmpty()) {
+    } elseif ($podcast->podcasterCover()->isNotEmpty()) {
         $cover = $podcast->podcasterCover()->toFile()->resize(200)->url();
     }
 
@@ -21,7 +25,7 @@
 
 <script>
     podlovePlayer('#podlovePlayerContainer', {
-        <?php if($podcast->podcasterPodloveMainColor()->isNotEmpty() && $podcast->podcasterPodloveHighlighColor()->isNotEmpty()) : ?>
+        <?php if ($podcast->podcasterPodloveMainColor()->isNotEmpty() && $podcast->podcasterPodloveHighlighColor()->isNotEmpty()) : ?>
         theme: {
             main: '#<?php echo str_replace('#', '', $podcast->podcasterPodloveMainColor()); ?>',
             highlight: '#<?php echo str_replace('#', '', $podcast->podcasterPodloveHighlighColor()); ?>'
@@ -34,19 +38,19 @@
             audio: <?php echo ($podcast->podcasterPodloveTabsAudio()->isTrue()) ? 'true' : 'false'; ?>,
             download: <?php echo ($podcast->podcasterPodloveTabsDownload()->isTrue()) ? 'true' : 'false'; ?>
         },
-        title: '<?php echo $page->podcasterTitle()->or($page->title()); ?>',
-        subtitle: '<?php echo $page->podcasterSubtitle(); ?>',
-        summary: '<?php echo $page->podcasterDescription(); ?>',
+        title: '<?php echo addslashes(Str::replace(Str::unhtml($page->podcasterTitle()->or($page->title())), "\n", ' ')); ?>',
+        subtitle: '<?php echo addslashes(Str::replace(Str::unhtml($page->podcasterSubtitle()), "\n", ' ')); ?>',
+        summary: '<?php echo addslashes(Str::replace(Str::unhtml($page->podcasterDescription()), "\n", ' ')); ?>',
         publicationDate: '<?php echo date('r', $page->date()->toDate()); ?>',
-        <?php if($cover !== false) : ?>
+        <?php if ($cover !== false) : ?>
             poster: '<?php echo $cover; ?>',
         <?php endif; ?>
         link: '<?php echo $page->url(); ?>',
         show: {
-            title: '<?php echo $podcast->podcasterTitle(); ?>',
-            subtitle: '<?php echo $podcast->podcasterSubtitle(); ?>',
-            summary: '<?php echo $podcast->podcasterDescription(); ?>',
-            <?php if($cover !== false) : ?>
+            title: '<?php echo addslashes(Str::replace(Str::unhtml(($podcast->podcasterTitle())), "\n", ' ')); ?>',
+            subtitle: '<?php echo addslashes(Str::replace(Str::unhtml($podcast->podcasterSubtitle()), "\n", ' ')); ?>',
+            summary: '<?php echo addslashes(Str::replace(Str::unhtml($podcast->podcasterDescription()), "\n", ' ')); ?>',
+            <?php if ($cover !== false) : ?>
             poster: '<?php echo $cover; ?>',
             <?php endif; ?>
             link: '<?php echo $podcast->podcasterLink(); ?>'
