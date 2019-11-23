@@ -36,11 +36,8 @@ export default {
         this.headline = this.pageValues.podcasterWizardSrcFeed
     },
     computed: {
-        id() {
-            return this.$store.state.form.current
-        },
         pageValues() {
-            return this.$store.getters['form/values'](this.id)
+            return this.$store.getters['content/values'](this.id)
         },
     },
     methods: {
