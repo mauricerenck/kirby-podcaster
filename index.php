@@ -31,6 +31,9 @@ Kirby::plugin('mauricerenck/podcaster', [
         'tabs/podcasterepisode' => __DIR__ . '/blueprints/tabs/episode.yml',
         'files/podcaster-episode' => __DIR__ . '/blueprints/files/podcaster-episode.yml'
     ],
+    'tags' => [
+        'podcastbutton' => require_once __DIR__ . '/tags/podcastbutton.php',
+    ],
     'sections' => [
         'podcasterEpisodeStats' => [
             'props' => [

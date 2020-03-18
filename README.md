@@ -27,6 +27,7 @@ This plugin helps you running your own podcast with Kirby 3. It uses all the new
 
 ### Changelog
 
+* 2020-03-18 - Added Podlove Subscribe Button
 * 2019-11-23 - Bugfixes for new Kirby versions
 * 2019-07-25 - Podcaster Wizard, import your existing podcast into kirby
 * 2019-07-24 - New Apple Podcast Categories
@@ -174,6 +175,11 @@ This could be also handy, if you want to show the player in your podcast listing
 
 If you want to use the PodLove-Player and style it, you can try around here: https://docs.podlove.org/podlove-web-player/theme.html
 
+## Subscribe Button
+
+To place the podlove subscribe button, use the following Kirbytag
+
+```(podcastbutton: LABEL rss: my/feed itunes: itunes.link classes: my-css-button-class)```
 
 ## OpenGraph
 You can add an opengraph entry for your episodes in your page header. This will automatically embed an audioplayer when for example linking in medium.com or facebook. You can just add the og-snippet anywhere between `<head></head>`
