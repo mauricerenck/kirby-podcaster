@@ -14,7 +14,7 @@ return [
         $classes = $tag->attr('classes', 'button button-primary button-tiny');
 
         $output = [];
-        $output[] = '<button class="podlove-subscribe-button-podcast ">' . $label . '</button>';
+        $output[] = '<button class="podlove-subscribe-button-podcast ' . $classes . '">' . $label . '</button>';
         $output[] = '<script>';
 
         $output[] = 'window.podcastData = {';
