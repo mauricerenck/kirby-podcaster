@@ -6,12 +6,7 @@
     </div>
     <k-text>{{ error }}</k-text>
     <k-headline>{{ headline }}</k-headline>
-    <table id="episodeStats">
-      <tr v-for="episode in episodes">
-        <td>{{ episode.downloads }}</td>
-        <td>{{ episode.title }}</td>
-      </tr>
-    </table>
+    <k-list :items="episodes" />
 
   </section>
 </template>
@@ -81,7 +76,7 @@ export default {
         },
         computeStats(stats) {
             const episodeStats = stats.episodes.map(function(episode) {
-                return { title: episode.episode.replace(/-/g, ' '), downloads: episode.downloaded }
+                return { text: episode.episode.replace(/-/g, ' '), info: episode.downloaded }
             })
 
             return episodeStats

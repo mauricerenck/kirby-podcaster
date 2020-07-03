@@ -13,6 +13,7 @@ load([
     'Plugin\Podcaster\PodcasterUtils' => 'utils/PodcasterUtils.php',
     'Plugin\Podcaster\PodcasterAudioUtils' => 'utils/PodcasterAudioUtils.php',
     'Plugin\Podcaster\PodcasterStats' => 'utils/PodcasterStats.php',
+    'Plugin\Podcaster\PodcasterStatsMySql' => 'utils/PodcasterStatsMatomo.php',
     'Plugin\Podcaster\PodcasterStatsMySql' => 'utils/PodcasterStatsMysql.php',
     'Plugin\Podcaster\PodcasterStatsFile' => 'utils/PodcasterStatsFile.php',
     'Plugin\Podcaster\PodcasterStatsPodTrac' => 'utils/PodcasterStatsPodTrac.php',
@@ -89,48 +90,27 @@ Kirby::plugin('mauricerenck/podcaster', [
             'pattern' => '(:all)/' . option('mauricerenck.podcaster.defaultFeed', 'feed'),
             'action' => function ($slug) {
                 $podcasterUtils = new PodcasterUtils();
-
-                $feed = $podcasterUtils->getPageFromSlug($slug . '/' . option('mauricerenck.podcaster.defaultFeed', 'feed'));
+                $podcast = $podcasterUtils->getPageFromSlug($slug . '/' . option('mauricerenck.podcaster.defaultFeed', 'feed'));
 
                 if (option('mauricerenck.podcaster.statsInternal') === true) {
                     $stats = new PodcasterStats();
                     $trackingDate = time();
-                    $stats->increaseFeedVisits($feed, $trackingDate);
+                    $stats->increaseFeedVisits($podcast, $trackingDate);
                 }
 
                 if ($feed->podcasterMatomoFeedEnabled()->isTrue()) {
-                    $matomo = new PiwikTracker($feed->podcasterMatomoFeedSiteId(), option('mauricerenck.podcaster.matomoBaseUrl'));
-
-                    $matomo->setTokenAuth(option('mauricerenck.podcaster.matomoToken'));
-                    $matomo->disableSendImageResponse();
-                    $matomo->disableCookieSupport();
-                    $matomo->setUrl($feed->url());
-                    $matomo->setIp($_SERVER['REMOTE_ADDR']);
-
-                    if ($feed->podcasterMatomoFeedPage()->isNotEmpty() && $feed->podcasterMatomoFeedPage()->isTrue()) {
-                        $matomo->doTrackPageView($feed->podcasterTitle());
-                    }
-
-                    if ($feed->podcasterMatomoFeedGoalId()->isNotEmpty()) {
-                        $matomo->doTrackGoal($feed->podcasterMatomoFeedGoalId(), 1);
-                    }
-
-                    if ($feed->podcasterMatomoFeedEventName()->isNotEmpty()) {
-                        $matomo->doTrackEvent($feed->podcasterTitle(), $feed->podcasterMatomoFeedEventName(), 1);
-                    }
-
-                    if ($feed->podcasterMatomoFeedAction()->isTrue()) {
-                        $matomo->doTrackAction($feed->url(), 'download');
-                    }
+                    $matomoUtils = new PodcasterStatsMatomo($podcast->podcasterMatomoSiteId(), $episode);
+                    $matomoUtils->trackEpisodeDownload($podcast);
                 }
 
-                return new Response($feed->render(), 'text/xml');
+                return new Response($podcast->render(), 'text/xml');
             }
         ],
         [
             'pattern' => '(:all)/' . option('mauricerenck.podcaster.downloadTriggerPath', 'download') . '/(:any)',
             'action' => function ($slug, $filename) {
                 $podcasterUtils = new PodcasterUtils();
+
                 $episode = $podcasterUtils->getPageFromSlug($slug);
                 $podcasterUtils->setCurrentEpisode($episode);
 
@@ -143,26 +123,8 @@ Kirby::plugin('mauricerenck/podcaster', [
                 }
 
                 if ($podcast->podcasterMatomoEnabled()->isTrue()) {
-                    $matomo = new PiwikTracker($podcast->podcasterMatomoSiteId(), option('mauricerenck.podcaster.matomoBaseUrl'));
-
-                    // setup
-                    $matomo->setTokenAuth(option('mauricerenck.podcaster.matomoToken'));
-                    $matomo->disableSendImageResponse();
-                    $matomo->disableCookieSupport();
-                    $matomo->setUrl($episode->url());
-                    $matomo->setIp($_SERVER['REMOTE_ADDR']);
-
-                    if ($podcast->podcasterMatomoGoalId()->isNotEmpty()) {
-                        $matomo->doTrackGoal($podcast->podcasterMatomoGoalId(), 1);
-                    }
-
-                    if ($podcast->podcasterMatomoEventName()->isNotEmpty()) {
-                        $matomo->doTrackEvent($podcast->podcasterTitle(), $episode->title(), $podcast->podcasterMatomoEventName());
-                    }
-
-                    if ($podcast->podcasterMatomoAction()->isTrue()) {
-                        $matomo->doTrackAction($episode->url(), 'download');
-                    }
+                    $matomoUtils = new PodcasterStatsMatomo($podcast->podcasterMatomoSiteId(), $episode);
+                    $matomoUtils->trackEpisodeDownload($podcast);
                 }
 
                 $filename = str_replace('.mp3', '', $filename);
