@@ -1,6 +1,6 @@
 {
   "name": "mauricerenck/podcaster",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "A Kirby Podcast Plugin",
   "type": "kirby-plugin",
   "license": "MIT",
@@ -15,6 +15,7 @@
       "utils/PodcasterUtils.php",
       "utils/PodcasterAudioUtils.php",
       "utils/PodcasterStats.php",
+      "utils/PodcasterStatsMatomo.php",
       "utils/PodcasterStatsFile.php",
       "utils/PodcasterStatsMysql.php",
       "utils/PodcasterStatsPodTrac.php",
