@@ -17,7 +17,7 @@ load([
     'Plugin\Podcaster\PodcasterStatsFile' => 'utils/PodcasterStatsFile.php',
     'Plugin\Podcaster\PodcasterStatsPodTrac' => 'utils/PodcasterStatsPodTrac.php',
     'Plugin\Podcaster\PodcasterWizard' => 'utils/PodcasterWizard.php',
-    'Plugin\Podcaster\PiwikTracker' => 'lib/PiwikTracker.php'
+    // 'Plugin\Podcaster\PiwikTracker' => 'lib/PiwikTracker.php'
 ], __DIR__);
 
 Kirby::plugin('mauricerenck/podcaster', [
