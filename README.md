@@ -8,29 +8,33 @@ This plugin helps you running your own podcast with Kirby 3. It uses all the new
 
 ## Features
 
-* ✅ Import wizard, move your existing podcast to kirby
-* ✅ Panel blueprint section for episodes
-* ✅ Panel blueprint for extended RSS feed (including all new iTunes specifications)
-* ✅ Run multiple podcasts with just one Kirby installation
-* ✅ Podcast Chapters
-* ✅ Cover image per feed **and** episode
-* ✅ Snippet for a simple HTML5-Player
-* ✅ Snippet for the advanced Podlove Player
-* ✅ Configure and style your website player within the panel
-* ✅ Tracking of episodes/feeds using Kirby and the episode markdown
-* ✅ Tracking of episodes/feeds using Kirby and MySQL
-* ✅ Tracking of episodes/feeds using Matomo
-* ✅ Tracking of episodes using PodTrac
-* ✅ Statistics view in Panel
-* ✅ Prefill fields from your ID3 data
-
+- ✅ Import wizard, move your existing podcast to kirby
+- ✅ Panel blueprint section for episodes
+- ✅ Panel blueprint for extended RSS feed (including all new iTunes specifications)
+- ✅ Run multiple podcasts with just one Kirby installation
+- ✅ Podcast Chapters
+- ✅ Cover image per feed **and** episode
+- ✅ Snippet for a simple HTML5-Player
+- ✅ Snippet for the advanced Podlove Player
+- ✅ Configure and style your website player within the panel
+- ✅ Tracking of episodes/feeds using Kirby and the episode markdown
+- ✅ Tracking of episodes/feeds using Kirby and MySQL
+- ✅ Tracking of episodes/feeds using Matomo
+- ✅ Tracking of episodes using PodTrac
+- ✅ Statistics view in Panel
+- ✅ Prefill fields from your ID3 data
 
 ### Changelog
 
-* 2020-03-18 - Added Podlove Subscribe Button
-* 2019-11-23 - Bugfixes for new Kirby versions
-* 2019-07-25 - Podcaster Wizard, import your existing podcast into kirby
-* 2019-07-24 - New Apple Podcast Categories
+- 2020-07-03 - Maintenance and minor stats view update
+- 2020-03-18 - Added Podlove Subscribe Button
+- 2019-11-23 - Bugfixes for new Kirby versions
+- 2019-07-25 - Podcaster Wizard, import your existing podcast into kirby
+- 2019-07-24 - New Apple Podcast Categories
+
+### Comming up
+
+I am currently working on a better statistic implementation without the need of MySQL. This will also include tracking of clients/plattforms. This will probably replace the mysql tracking method as well as the file based tracking method.
 
 ## Installation
 
@@ -47,7 +51,7 @@ View this [step by step guide](/docs/kirby-podcaster-starterkit.md) on how to se
 1. In the panel create a new page. Name it however you want, select the template `Podcaster Wizard`. After the page is created, open it in the panel.
 2. Enter your current feed url, select the target page. Below this page all episodes and the feed will be created. Make sure there are no other pages within your target page, otherwise the import may fail.
 3. Enter the template that should be used for your episodes. If your content files look like `article.txt` your template name i `article`.
-4. You can now decide if the episodes should be created as draft (default and recommended) or unlisted. 
+4. You can now decide if the episodes should be created as draft (default and recommended) or unlisted.
 5. Hit the `Start import` button and lean back.
 
 ![stats sample](doc-assets/wizard-panel.png)
@@ -59,6 +63,7 @@ After the import is finished, you should delete the import wizard page, you don'
 ## Start from scratch
 
 ### Create RSS-Feed
+
 Log into the panel and go to the folder containing your podcast episodes. Add a new unlisted page and name it `feed` using the template `podcasterfeed`. Please note that there is a problem, the template currently doesn't appear in the template list, so you have to add or change it by hand, naming the markdown-file `podcasterfeed`. The feed can then be edited in the panel.
 
 Fill in all needed information.
@@ -83,6 +88,7 @@ If you never used tabs before, have a look here: https://getkirby.com/docs/guide
 You can now edit your episode as needed by iTunes and other directories.
 
 ### Create an episode
+
 1. Create a new page for your episode.
 2. Open the podcast tab.
 3. Start with setting the episode type.
@@ -108,14 +114,16 @@ Downloads can currenly be tracked, but there are no visual stats in the panel, y
 ### Enable internal tracking
 
 To use the internal tracking, activate it in your `config.php` file by setting:
-```'mauricerenck.podcaster.statsInternal' => true```
+`'mauricerenck.podcaster.statsInternal' => true`
 
 ### Tracking of episodes
+
 Tracking the downloads of your episodes requires a route with a certain keyword which functions as a trigger. The default keyword is `download`. Within your feed the URLs will be automatically set to match this keyword. If you want to use another keyword, you can set it in your `config.php`
 
-```'mauricerenck.podcaster.downloadTriggerPath' => 'trackdownload'```
+`'mauricerenck.podcaster.downloadTriggerPath' => 'trackdownload'`
 
 ### Tracking of feed downloads
+
 If you want to track your rss-feed, you have to set the slug of your feed in the `config.php`. If your feed url is `https://podcast.tld/myfeed/` set:
 
 ```
@@ -125,7 +133,8 @@ If you want to track your rss-feed, you have to set the slug of your feed in the
 Default value is `feed`, so if you name your rss-feed-page `feed` everything is find and you don't have to do anything.
 
 ### Tracking Mode
-You can either use the file method, then your downloads will be directly stored in your episode markdown file. Note that this *can* lead to problems if there are a lot of simulatiously downloads. You may run better by using the mysql method:
+
+You can either use the file method, then your downloads will be directly stored in your episode markdown file. Note that this _can_ lead to problems if there are a lot of simulatiously downloads. You may run better by using the mysql method:
 
 ```
 'mauricerenck.podcaster.statsType' => 'mysql',
@@ -135,15 +144,15 @@ You can either use the file method, then your downloads will be directly stored 
 'mauricerenck.podcaster.statsPassword' => 'PASSWORD'
 ```
 
-If you want to use the file method, set 
-```'mauricerenck.podcaster.statsType' => 'file'```
+If you want to use the file method, set
+`'mauricerenck.podcaster.statsType' => 'file'`
 
 **ATTENTION!**
 
 Before using the MySQL statistics please make sure to create the tables within your database. You can find the SQL import in the `res` directory of this repository called `podcasterStats.sql`
 
-
 ## External tracking with matomo
+
 To make sure Kirby Podcaster can access your Matomo API, you must set these to values in your config.php
 
 ```
@@ -153,10 +162,9 @@ To make sure Kirby Podcaster can access your Matomo API, you must set these to v
 
 You can enable download tracking via Matomo for each feed. Go to your feed settings and click on the Tracking tab. Fill in all needed values.
 
-
 ## External tracking with podtrac
-Just log into the panel, go to your feed and enable podtrac in the tracking-tab.
 
+Just log into the panel, go to your feed and enable podtrac in the tracking-tab.
 
 ## Add Player to template
 
@@ -179,9 +187,10 @@ If you want to use the PodLove-Player and style it, you can try around here: htt
 
 To place the podlove subscribe button, use the following Kirbytag
 
-```(podcastbutton: LABEL rss: my/feed itunes: itunes.link classes: my-css-button-class)```
+`(podcastbutton: LABEL rss: my/feed itunes: itunes.link classes: my-css-button-class)`
 
 ## OpenGraph
+
 You can add an opengraph entry for your episodes in your page header. This will automatically embed an audioplayer when for example linking in medium.com or facebook. You can just add the og-snippet anywhere between `<head></head>`
 
-```<?php snippet('podcaster-ogaudio'); ?>```
+`<?php snippet('podcaster-ogaudio'); ?>`
