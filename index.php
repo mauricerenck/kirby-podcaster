@@ -18,7 +18,6 @@ load([
     'Plugin\Podcaster\PodcasterStatsFile' => 'utils/PodcasterStatsFile.php',
     'Plugin\Podcaster\PodcasterStatsPodTrac' => 'utils/PodcasterStatsPodTrac.php',
     'Plugin\Podcaster\PodcasterWizard' => 'utils/PodcasterWizard.php',
-    // 'Plugin\Podcaster\PiwikTracker' => 'lib/PiwikTracker.php'
 ], __DIR__);
 
 Kirby::plugin('mauricerenck/podcaster', [
@@ -98,9 +97,9 @@ Kirby::plugin('mauricerenck/podcaster', [
                     $stats->increaseFeedVisits($podcast, $trackingDate);
                 }
 
-                if ($feed->podcasterMatomoFeedEnabled()->isTrue()) {
-                    $matomoUtils = new PodcasterStatsMatomo($podcast->podcasterMatomoSiteId(), $episode);
-                    $matomoUtils->trackEpisodeDownload($podcast);
+                if ($podcast->podcasterMatomoFeedEnabled()->isTrue()) {
+                    $matomoUtils = new PodcasterStatsMatomo($podcast->podcasterMatomoSiteId());
+                    $matomoUtils->trackFeedDownload($podcast);
                 }
 
                 return new Response($podcast->render(), 'text/xml');
@@ -123,8 +122,8 @@ Kirby::plugin('mauricerenck/podcaster', [
                 }
 
                 if ($podcast->podcasterMatomoEnabled()->isTrue()) {
-                    $matomoUtils = new PodcasterStatsMatomo($podcast->podcasterMatomoSiteId(), $episode);
-                    $matomoUtils->trackEpisodeDownload($podcast);
+                    $matomoUtils = new PodcasterStatsMatomo($podcast->podcasterMatomoSiteId());
+                    $matomoUtils->trackEpisodeDownload($podcast, $episode);
                 }
 
                 $filename = str_replace('.mp3', '', $filename);
