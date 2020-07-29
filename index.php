@@ -98,7 +98,7 @@ Kirby::plugin('mauricerenck/podcaster', [
                 }
 
                 if ($podcast->podcasterMatomoFeedEnabled()->isTrue()) {
-                    $matomoUtils = new PodcasterStatsMatomo($podcast->podcasterMatomoSiteId());
+                    $matomoUtils = new PodcasterStatsMatomo($podcast->podcasterMatomoFeedSiteId());
                     $matomoUtils->trackFeedDownload($podcast);
                 }
 
