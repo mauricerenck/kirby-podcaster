@@ -191,17 +191,17 @@ You can add an opengraph entry for your episodes in your page header. This will 
 
 You can fine tune the komments to behave as you whish, use this options in `config.php` file.
 
-| Option              | Default    | Description                                                                                                  |
-| ------------------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
-| statsInternal       | `false`    | Enable internal download statistics                                                                          |
-| downloadTriggerPath | 'download' | Used to build the virtual url path for download tracking                                                     |
-| defaultFeed         | 'feed'     | Used to find your podcasts rss feed (set this, if you changed the rss feed slug to soemthing else than feed) |
-| statsType           | 'mysql'    | Sets the method to save download numbers using `statsInternal`                                               |
-| statsHost           | -          | Set your mysql hostname                                                                                      |
-| statsDatabase       | -          | Set your mysql database name                                                                                 |
-| statsUser           | -          | Set your mysql database username                                                                             |
-| statsPassword       | -          | Set your mysql database password                                                                             |
-| matomoToken         | -          | Set your matomo token for download tracking using matomo                                                     |
-| matomoBaseUrl       | -          | Set your matomo base url for download tracking using matomo                                                  |
-| matomoBaseUrl       | -          | Set your matomo base url for download tracking using matomo                                                  |
-| enableFeedStyling   | `true`     | Set to false to disable XSL Styling of your podcast rss feed                                                 |
+| Option                | Default    | Description                                                                                                  |
+| --------------------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
+| `statsInternal`       | `false`    | Enable internal download statistics                                                                          |
+| `downloadTriggerPath` | 'download' | Used to build the virtual url path for download tracking                                                     |
+| `defaultFeed`         | 'feed'     | Used to find your podcasts rss feed (set this, if you changed the rss feed slug to soemthing else than feed) |
+| `statsType`           | 'mysql'    | Sets the method to save download numbers using `statsInternal`                                               |
+| `statsHost`           | -          | Set your mysql hostname                                                                                      |
+| `statsDatabase`       | -          | Set your mysql database name                                                                                 |
+| `statsUser`           | -          | Set your mysql database username                                                                             |
+| `statsPassword`       | -          | Set your mysql database password                                                                             |
+| `matomoToken`         | -          | Set your matomo token for download tracking using matomo                                                     |
+| `matomoBaseUrl`       | -          | Set your matomo base url for download tracking using matomo                                                  |
+| `matomoBaseUrl`       | -          | Set your matomo base url for download tracking using matomo                                                  |
+| `enableFeedStyling`   | `true`     | Set to false to disable XSL Styling of your podcast rss feed                                                 |
