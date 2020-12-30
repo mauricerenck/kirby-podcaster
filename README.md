@@ -24,14 +24,6 @@ This plugin helps you running your own podcast with Kirby 3. It uses all the new
 - ✅ Statistics view in Panel
 - ✅ Prefill fields from your ID3 data
 
-### Changelog
-
-- 2020-07-03 - Maintenance and minor stats view update
-- 2020-03-18 - Added Podlove Subscribe Button
-- 2019-11-23 - Bugfixes for new Kirby versions
-- 2019-07-25 - Podcaster Wizard, import your existing podcast into kirby
-- 2019-07-24 - New Apple Podcast Categories
-
 ### Comming up
 
 I am currently working on a better statistic implementation without the need of MySQL. This will also include tracking of clients/plattforms. This will probably replace the mysql tracking method as well as the file based tracking method.
@@ -194,3 +186,22 @@ To place the podlove subscribe button, use the following Kirbytag
 You can add an opengraph entry for your episodes in your page header. This will automatically embed an audioplayer when for example linking in medium.com or facebook. You can just add the og-snippet anywhere between `<head></head>`
 
 `<?php snippet('podcaster-ogaudio'); ?>`
+
+## Options
+
+You can fine tune the komments to behave as you whish, use this options in `config.php` file.
+
+| Option              | Default    | Description                                                                                                  |
+| ------------------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
+| statsInternal       | `false`    | Enable internal download statistics                                                                          |
+| downloadTriggerPath | 'download' | Used to build the virtual url path for download tracking                                                     |
+| defaultFeed         | 'feed'     | Used to find your podcasts rss feed (set this, if you changed the rss feed slug to soemthing else than feed) |
+| statsType           | 'mysql'    | Sets the method to save download numbers using `statsInternal`                                               |
+| statsHost           | -          | Set your mysql hostname                                                                                      |
+| statsDatabase       | -          | Set your mysql database name                                                                                 |
+| statsUser           | -          | Set your mysql database username                                                                             |
+| statsPassword       | -          | Set your mysql database password                                                                             |
+| matomoToken         | -          | Set your matomo token for download tracking using matomo                                                     |
+| matomoBaseUrl       | -          | Set your matomo base url for download tracking using matomo                                                  |
+| matomoBaseUrl       | -          | Set your matomo base url for download tracking using matomo                                                  |
+| enableFeedStyling   | `true`     | Set to false to disable XSL Styling of your podcast rss feed                                                 |
