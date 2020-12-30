@@ -91,6 +91,12 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $podcasterUtils = new PodcasterUtils();
                 $podcast = $podcasterUtils->getPageFromSlug($slug . '/' . option('mauricerenck.podcaster.defaultFeed', 'feed'));
 
+                // detect if this is a podcaster feed
+                // if not, ignore this route and move on
+                if (is_null($podcast) || $podcast->podcasterTitle()->isEmpty()) {
+                    $this->next();
+                }
+
                 if (option('mauricerenck.podcaster.statsInternal') === true) {
                     $stats = new PodcasterStats();
                     $trackingDate = time();
