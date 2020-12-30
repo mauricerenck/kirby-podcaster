@@ -8,7 +8,11 @@ $rssUtils = new PodcasterUtils();
 $rssUtils->setFeed($page);
 ?>
 <?php echo '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL; ?>
-<?php echo '<?xml-stylesheet type="text/xsl" href="' . $page->url() . '/podcaster-feed-style' . '"?>' . PHP_EOL; ?>
+<?php
+    if (option('mauricerenck.podcaster.enableFeedStyling', true)) {
+        echo  '<?xml-stylesheet type="text/xsl" href="' . $page->url() . '/podcaster-feed-style' . '"?>' . PHP_EOL;
+    }
+?>
 <rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
@@ -90,6 +94,7 @@ $rssUtils->setFeed($page);
 			<itunes:duration><?php echo $rssUtils->getAudioDuration($episode); ?></itunes:duration>
 			<?php $rssUtils->printFieldValue('episode', 'itunes:season', 'podcasterSeason'); ?>
 			<?php $rssUtils->printFieldValue('episode', 'itunes:episode', 'podcasterEpisode'); ?>
+			<?php $rssUtils->printFieldValue('episode', 'itunes:episodeType', 'podcasterEpisodeType'); ?>
 			<?php $rssUtils->printBoolValue('episode', 'itunes:explicit', 'podcasterExplizit'); ?>
 			<?php $rssUtils->printBoolValue('episode', 'itunes:block', 'podcasterBlock'); ?>
 
