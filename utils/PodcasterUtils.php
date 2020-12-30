@@ -3,6 +3,7 @@
 namespace Plugin\Podcaster;
 
 use \Kirby\Toolkit\Xml;
+use \Kirby\Toolkit\Collection;
 
 class PodcasterUtils
 {
@@ -18,16 +19,14 @@ class PodcasterUtils
     public function getEpisodes()
     {
         return $this->rssFeed->podcasterSource()
-            ->toPage()
-            ->children()
-            ->listed()
-            ->filter(function ($child) {
-                return $child->date()->toDate() <= time();
-            })
-            ->filter(function ($child) {
-                return $child->hasAudio();
-            })
-            ->sortBy('date', 'desc');
+            ->toPages()->children()
+                    ->listed()
+                    ->filter(function ($child) {
+                        return $child->date()->toDate() <= time();
+                    })
+                    ->filter(function ($child) {
+                        return $child->hasAudio();
+                    })->sortBy('date', 'desc');
     }
 
     public function setCurrentEpisode($episode)

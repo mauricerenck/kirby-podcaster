@@ -69,7 +69,7 @@ tabs:
                 label: Source Page
                 type: pages
                 required: true
-                multiple: false
+                multiple: true
                 help: Select the page which will act as a parent of your episodes. Normally this is the page which is the parent of this feed, too.
               podcasterType:
                 label: Podcast type
