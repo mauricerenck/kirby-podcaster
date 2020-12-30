@@ -1,7 +1,11 @@
 <?php
     $podcast = (isset($podcast)) ? $podcast : $page->siblings()->find('feed');
 
-    switch($podcast->playerType()) {
+    if (!$podcast) {
+        return;
+    }
+
+    switch ($podcast->playerType()) {
         case 'podlove':
             snippet('podcaster-podlove-player', ['page' => $page, 'podcast' => $podcast]);
             break;
@@ -9,4 +13,3 @@
             snippet('podcaster-html5-player', ['page' => $page, 'podcast' => $podcast]);
             break;
     }
-?>
