@@ -1,0 +1,17 @@
+title: Episode
+num: '{{ page.date.toDate("YmdHi") }}'
+tabs:
+  podcast:
+    extends: tabs/podcasterepisode
+  content:
+    columns:
+      - width: 1/3
+        sections:
+          page_settings_col4:
+            type: fields
+            fields:
+              date:
+                label: Veröffentlichen am/um
+                type: date
+                time: true
+                default: now

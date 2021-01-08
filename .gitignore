@@ -22,3 +22,5 @@
 /vendor/**/php4/*
 /vendor/getkirby/composer-installer
 /.cache
+/media
+/podcaster.sqlite
