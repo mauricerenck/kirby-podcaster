@@ -9,14 +9,14 @@ return [
     'routes' => [
         [
             'pattern' => 'podcaster/stats/(:any)/year/(:num)/month/(:num)',
-            'action' => function ($podcast, $year, $month) {
+            'action' => function ($podcastId, $year, $month) {
                 if (option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
                     $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
                     echo new Response(json_encode($errorMessage), 'application/json', 501);
                 }
 
                 $podcasterStats = new PodcasterStats();
-                $stats = $podcasterStats->getEpisodeStatsOfMonth($podcast, $year, $month);
+                $stats = $podcasterStats->getEpisodeStatsByMonth($podcastId, $year, $month);
                 return [
                     'stats' => $stats
                 ];
@@ -24,14 +24,14 @@ return [
         ],
         [
             'pattern' => 'podcaster/stats/(:any)/(:any)/yearly-downloads/(:any)',
-            'action' => function ($podcast, $type, $year) {
+            'action' => function ($podcastId, $type, $year) {
                 if (option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
                     $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
                     echo new Response(json_encode($errorMessage), 'application/json', 501);
                 }
 
                 $podcasterStats = new PodcasterStats();
-                $stats = $podcasterStats->getDownloadsOfYear($podcast, $year, $type);
+                $stats = $podcasterStats->getDownloadsOfYear($podcastId, $year, $type);
                 return [
                     'stats' => $stats
                 ];
@@ -39,14 +39,15 @@ return [
         ],
         [
             'pattern' => 'podcaster/stats/(:any)/top/(:num)',
-            'action' => function ($podcast, $limit) {
+            'action' => function ($podcastId, $limit) {
                 if (option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
                     $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
                     echo new Response(json_encode($errorMessage), 'application/json', 501);
                 }
 
                 $podcasterStats = new PodcasterStats();
-                $stats = $podcasterStats->getTopDownloads($podcast, $limit);
+                $stats = $podcasterStats->getTopDownloads($podcastId, $limit);
+
                 return [
                     'stats' => $stats
                 ];

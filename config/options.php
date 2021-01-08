@@ -2,7 +2,7 @@
 
 return [
     'statsInternal' => false,
-    'statsType' => 'mysql',
+    'statsType' => 'sqlite',
     'statsHost' => null,
     'statsDatabase' => null,
     'statsUser' => null,
@@ -10,5 +10,6 @@ return [
     'matomoToken' => null,
     'matomoBaseUrl' => null,
     'defaultFeed' => 'feed',
-    'setId3Data' => true
+    'setId3Data' => true,
+    'sqlitePath' => null,
 ];

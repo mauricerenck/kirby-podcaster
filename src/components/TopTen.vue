@@ -1,9 +1,10 @@
 <template>
   <section class="k-modified-section">
     <k-text>{{ error }}</k-text>
-    <k-headline>{{ headline }}</k-headline>
+    <k-headline size="large">{{headline}}</k-headline>
 
     <k-list :items="topEpisodes" />
+
   </section>
 </template>
 
@@ -21,7 +22,7 @@ export default {
     };
   },
   mounted() {
-    this.podcasterSlug = sanitizeTitle(this.pageValues.podcastertitle);
+    this.podcasterSlug = this.pageValues.podcastid;
     this.getStats();
   },
   created: function() {
@@ -63,7 +64,7 @@ export default {
     computeStats(stats) {
       const episodeStats = stats.map(function(episode) {
         return {
-          text: episode.episode.replace(/-/g, " "),
+          text: episode.episode_name,
           info: episode.downloaded,
           icon: {
             type: "file",

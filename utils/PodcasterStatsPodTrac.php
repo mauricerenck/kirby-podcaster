@@ -8,20 +8,20 @@
 
 namespace Plugin\Podcaster;
 
-class PodcasterStatsPodTrac {
+class PodcasterStatsPodTrac
+{
+    public function increaseDownloads($podcast, $episode)
+    {
+        $podcasterUtils = new PodcasterUtils();
 
-    public function increaseDownloads($page) {
-
-        $rssFeed = $page->parent()->find(option('mauricerenck.podcaster.defaultFeed', 'feed'));
-
-        if($rssFeed->podTracEnabled()->isTrue() && $rssFeed->podTracUrl()->isNotEmpty()) {
+        if ($podcast->podTracUrl()->isNotEmpty()) {
             $podcasterUtils = new PodcasterUtils();
-            $podcasterUtils->setCurrentEpisode($page);
+            $podcasterUtils->setCurrentEpisode($episode);
             $audioFile = $podcasterUtils->getPodcastFile();
 
-            $episodeBaseUrl = str_replace(['https://', 'http://'], ['', ''], $page->url());
-            $podTracBaseUrl = rtrim($rssFeed->podTracUrl(), '/');
-            $podTracUrl =  $podTracBaseUrl . '/' . $episodeBaseUrl . '/' . option('mauricerenck.podcaster.downloadTriggerPath', 'download') . '/' . $audioFile->filename();
+            $episodeBaseUrl = str_replace(['https://', 'http://'], ['', ''], $episode->url());
+            $podTracBaseUrl = rtrim($podcast->podTracUrl(), '/');
+            $podTracUrl = $podTracBaseUrl . '/' . $episodeBaseUrl . '/' . option('mauricerenck.podcaster.downloadTriggerPath', 'download') . '/' . $audioFile->filename();
 
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $podTracUrl);

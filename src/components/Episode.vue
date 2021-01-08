@@ -1,11 +1,8 @@
 <template>
   <section class="k-modified-section">
-    <div class="podcaster-prev-next">
-        <button class="k-link k-button" v-on:click="prevMonth"><k-icon type="angle-left"></button>
-        <button class="k-link k-button" v-on:click="nextMonth"><k-icon type="angle-right"></button>
-    </div>
+
     <k-text>{{ error }}</k-text>
-    <k-headline>{{ headline }}</k-headline>
+    <k-headline size="large">{{ headline }}</k-headline>
     <k-list :items="episodes" />
 
   </section>
@@ -34,7 +31,7 @@ export default {
         this.setNewDateVars()
     },
     mounted() {
-        this.podcasterSlug = this.sanitizeTitle(this.pageValues.podcastertitle)
+        this.podcasterSlug = this.pageValues.podcastid
         this.getStats()
     },
     computed: {
@@ -76,7 +73,7 @@ export default {
         },
         computeStats(stats) {
             const episodeStats = stats.episodes.map(function(episode) {
-                return { text: episode.episode.replace(/-/g, ' '), info: episode.downloaded }
+                return { text: episode.episode_name, info: episode.downloaded }
             })
 
             return episodeStats
@@ -96,27 +93,6 @@ export default {
             this.currentYear=  getYear(this.currentDate)
             this.currentMonthName = this.currentDate.toLocaleString('en', { month: 'long' })
             this.headline = 'Stats for ' + this.currentMonthName + ' ' + this.currentYear
-        },
-                sanitizeTitle: function(title) {
-            var slug = ''
-            // Change to lower case
-            var titleLower = title.toLowerCase()
-            // Letter "e"
-            slug = titleLower.replace(/e|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ễ|ể|ệ/gi, 'e')
-            // Letter "a"
-            slug = slug.replace(/a|á|à|ã|ả|ạ|ă|ắ|ằ|ẵ|ẳ|ặ|â|ấ|ầ|ẫ|ẩ|ậ/gi, 'a')
-            // Letter "o"
-            slug = slug.replace(/o|ó|ò|õ|ỏ|ọ|ô|ố|ồ|ỗ|ổ|ộ|ơ|ớ|ờ|ỡ|ở|ợ/gi, 'o')
-            // Letter "u"
-            slug = slug.replace(/u|ú|ù|ũ|ủ|ụ|ư|ứ|ừ|ữ|ử|ự/gi, 'u')
-            // Letter "d"
-            slug = slug.replace(/đ/gi, 'd')
-            // Trim the last whitespace
-            slug = slug.replace(/\s*$/g, '')
-            // Change whitespace to "-"
-            slug = slug.replace(/\s+/g, '-')
-
-            return slug
         },
     },
 }
