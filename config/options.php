@@ -12,4 +12,5 @@ return [
     'defaultFeed' => 'feed',
     'setId3Data' => true,
     'sqlitePath' => null,
+    'enableFeedStyling' => true
 ];

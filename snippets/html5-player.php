@@ -1,5 +1,6 @@
 <?php
-    namespace Plugin\Podcaster;
+
+   namespace mauricerenck\Podcaster;
 
     require_once __DIR__ . '/../utils/PodcasterUtils.php';
 

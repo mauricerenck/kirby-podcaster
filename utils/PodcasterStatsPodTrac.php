@@ -6,7 +6,7 @@
  * @version 2.0.0
  */
 
-namespace Plugin\Podcaster;
+namespace mauricerenck\Podcaster;
 
 class PodcasterStatsPodTrac
 {

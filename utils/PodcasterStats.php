@@ -1,6 +1,6 @@
 <?php
 
-namespace Plugin\Podcaster;
+namespace mauricerenck\Podcaster;
 
 use c;
 
@@ -11,7 +11,7 @@ class PodcasterStats
 
     public function __construct()
     {
-        $this->statisticMode = option('mauricerenck.podcaster.statsType');
+        $this->statisticMode = option('mauricerenck.podcaster.statsType', 'sqlite');
 
         if ($this->statisticMode == 'mysql') {
             $this->stats = new PodcasterStatsMySql();

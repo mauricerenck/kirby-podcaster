@@ -1,25 +1,21 @@
 <?php
 
-namespace Plugin\Podcaster;
+namespace mauricerenck\Podcaster;
 
+use mauricerenck\Podcaster\PodcasterUtils;
+use mauricerenck\Podcaster\PodcasterAudioUtils;
+use mauricerenck\Podcaster\PodcasterStats;
+use mauricerenck\Podcaster\PodcasterStatsMatomo;
+use mauricerenck\Podcaster\PodcasterStatsMySql;
+use mauricerenck\Podcaster\PodcasterStatsSqlite;
+use mauricerenck\Podcaster\PodcasterStatsPodTrac;
+use mauricerenck\Podcaster\PodcasterWizard;
 use Kirby;
 use Kirby\Exception\Exception;
-use \PiwikTracker;
 use Kirby\Http\Response;
+use \PiwikTracker;
 
 @include_once __DIR__ . '/vendor/autoload.php';
-
-load([
-    'Plugin\Podcaster\PodcasterUtils' => 'utils/PodcasterUtils.php',
-    'Plugin\Podcaster\PodcasterAudioUtils' => 'utils/PodcasterAudioUtils.php',
-    'Plugin\Podcaster\PodcasterStats' => 'utils/PodcasterStats.php',
-    'Plugin\Podcaster\PodcasterStatsMySql' => 'utils/PodcasterStatsMatomo.php',
-    'Plugin\Podcaster\PodcasterStatsMySql' => 'utils/PodcasterStatsMysql.php',
-    'Plugin\Podcaster\PodcasterStatsSqlite' => 'utils/PodcasterStatsSqlite.php',
-    'Plugin\Podcaster\PodcasterStatsFile' => 'utils/PodcasterStatsFile.php',
-    'Plugin\Podcaster\PodcasterStatsPodTrac' => 'utils/PodcasterStatsPodTrac.php',
-    'Plugin\Podcaster\PodcasterWizard' => 'utils/PodcasterWizard.php',
-], __DIR__);
 
 Kirby::plugin('mauricerenck/podcaster', [
     'options' => require_once(__DIR__ . '/config/options.php'),

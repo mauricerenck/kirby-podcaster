@@ -1,6 +1,6 @@
 <?php
 
-namespace Plugin\Podcaster;
+namespace mauricerenck\Podcaster;
 
 use \Kirby\Toolkit\Xml;
 use \Kirby\Toolkit\Collection;
