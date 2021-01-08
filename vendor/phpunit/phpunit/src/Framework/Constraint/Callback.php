@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * This file is part of PHPUnit.
  *
@@ -9,10 +9,12 @@
  */
 namespace PHPUnit\Framework\Constraint;
 
+use function call_user_func;
+
 /**
- * Constraint that evaluates against a specified closure.
+ * @no-named-arguments Parameter names are not covered by the backward compatibility promise for PHPUnit
  */
-class Callback extends Constraint
+final class Callback extends Constraint
 {
     /**
      * @var callable
@@ -21,8 +23,6 @@ class Callback extends Constraint
 
     public function __construct(callable $callback)
     {
-        parent::__construct();
-
         $this->callback = $callback;
     }
 
@@ -42,6 +42,6 @@ class Callback extends Constraint
      */
     protected function matches($other): bool
     {
-        return \call_user_func($this->callback, $other);
+        return call_user_func($this->callback, $other);
     }
 }
