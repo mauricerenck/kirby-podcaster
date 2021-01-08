@@ -1,23 +1,24 @@
 {
-    "name": "podcaster",
-    "version": "1.2.8",
-    "description": "A Kirby Podcast Plugin",
-    "main": "index.js",
-    "author": "Maurice Renck",
-    "scripts": {
-        "dev": "parcel watch src/index.js --no-source-maps -d ./",
-        "build": "parcel build src/index.js --no-source-maps -d ./"
-    },
-    "devDependencies": {
-        "@vue/component-compiler-utils": "^3.0.0",
-        "cssnano": "^4.1.10",
-        "sass": "^1.20.3",
-        "vue-template-compiler": "^2.6.10"
-    },
-    "dependencies": {
-        "date-fns": "2.11.0",
-        "frappe-charts": "^1.2.0",
-        "vue": "^2.2.4",
-        "vue-hot-reload-api": "^2.3.3"
-    }
+  "name": "podcaster",
+  "version": "2.0.0",
+  "description": "A Kirby Podcast Plugin",
+  "main": "index.js",
+  "author": "Maurice Renck",
+  "scripts": {
+    "dev": "parcel watch src/index.js --no-source-maps -d ./",
+    "build": "parcel build src/index.js --no-source-maps -d ./"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.0.0",
+    "cssnano": "^4.1.10",
+    "sass": "^1.20.3",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {
+    "chart.js": "^2.9.4",
+    "date-fns": "2.11.0",
+    "vue": "^2.2.4",
+    "vue-chartjs": "^3.5.1",
+    "vue-hot-reload-api": "^2.3.3"
+  }
 }
