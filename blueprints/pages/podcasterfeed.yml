@@ -50,7 +50,7 @@ tabs:
                 api: https://raw.githubusercontent.com/mauricerenck/kirby-podcaster/master/res/language-codes.json
                 required: true
               podcasterCategories:
-                label: iTunes Categories
+                label: Apple Categories
                 type: structure
                 required: true
                 fields:
@@ -124,7 +124,7 @@ tabs:
                 type: textarea
                 size: medium
               podcasterKeywords:
-                label: iTunes Keywords
+                label: Apple Keywords
                 type: tags
               podcasterCopyright:
                 label: Copyright
@@ -450,7 +450,7 @@ tabs:
           label: Be aware!️️
           type: info
           theme: negative
-          text: The following settings will influence how and if your podcast appears in directories like iTunes. Please be aware that setting the wrong option can harm your podcasts appearance.
+          text: The following settings will influence how and if your podcast appears in directories like Apple. Please be aware that setting the wrong option can harm your podcasts appearance.
           width: 1/4
         podcasterBlock:
           label: Block
@@ -459,7 +459,7 @@ tabs:
           text: 
             - Podcast is visible
             - Podcast is BLOCKED
-          help: Enabling this will prevent your Podcast from appearing on the iTunes Store and other podcast directories.
+          help: Enabling this will prevent your Podcast from appearing on the Apple and other podcast directories.
           width: 1/4
         podcasterExplicit:
           label: Explicit
