@@ -6,6 +6,8 @@
 
 This plugin helps you running your own podcast with Kirby 3. It uses all the new panel features to make your life easier. You can run multiple podcasts and configure them in the panel. It creates Apple/Google/Name-Your-Favorite-Podcatcher Feeds and allows you to track downloads of your episodes and hits on your feeds. It comes with two audioplayers for your website
 
+> **Attention!** As of version 2 of this plugin the file tracking method using markdown is **DEPRECATED**. See the update docs on how to update from v1 to v2
+
 ## Features
 
 - ✅ Import wizard, move your existing podcast to kirby
