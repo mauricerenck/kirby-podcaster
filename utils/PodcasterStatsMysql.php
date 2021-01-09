@@ -47,32 +47,34 @@ class PodcasterStatsMySql
         $package = json_decode($composer);
         $migrated = false;
 
-        $hasTables = $this->db->query('SELECT podcaster_id FROM podcaster_episodes LIMIT 1');
-        $isVersion2 = $this->db->query('SELECT podcaster_version FROM podcaster_settings LIMIT 1');
+        if (!option('mauricerenck.podcaster.statsSkipTableCreation', false)) {
+            $hasTables = $this->db->query('SELECT podcaster_id FROM podcaster_episodes LIMIT 1');
+            $isVersion2 = $this->db->query('SELECT podcaster_version FROM podcaster_settings LIMIT 1');
 
-        if (!$hasTables) {
-            $migrationStructures = explode(';', f::read($this->pluginPath . 'migrations/mysql_baseStructure.sql'));
+            if (!$hasTables) {
+                $migrationStructures = explode(';', f::read($this->pluginPath . 'migrations/mysql_baseStructure.sql'));
 
-            foreach ($migrationStructures as $query) {
-                $this->db->execute(trim($query));
+                foreach ($migrationStructures as $query) {
+                    $this->db->execute(trim($query));
+                }
+
+                $migrated = true;
+                $this->db->execute("INSERT INTO podcaster_settings (podcaster_version) VALUES ('" . $package->version . "')");
             }
 
-            $migrated = true;
-        }
+            // basic table exist from older version AND we are not on version 2
+            // we need to run the migrations to from v1 to v2
+            if ($hasTables !== false && !$isVersion2) {
+                $migrationStructures = explode(';', f::read($this->pluginPath . 'migrations/mysql_2-0-0.sql'));
 
-        // basic table exist from older version AND we are not on version 2
-        // we need to run the migrations to from v1 to v2
-        if ($hasTables !== false && !$isVersion2) {
-            $migrationStructures = explode(';', f::read($this->pluginPath . 'migrations/mysql_2-0-0.sql'));
+                foreach ($migrationStructures as $query) {
+                    $this->db->execute(trim($query));
+                }
 
-            foreach ($migrationStructures as $query) {
-                $this->db->execute(trim($query));
+                $migrated = true;
+                $this->db->execute("INSERT INTO podcaster_settings (podcaster_version) VALUES ('" . $package->version . "')");
             }
-
-            $migrated = true;
         }
-
-        $this->db->execute("INSERT INTO podcaster_settings (podcaster_version) VALUES ('" . $package->version . "')");
     }
 
     public function getEpisodesStatsByMonth(string $podcastId, int $timestamp)

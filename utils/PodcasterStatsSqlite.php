@@ -45,21 +45,23 @@ class PodcasterStatsSqlite
         $composer = f::read(__DIR__ . '/../composer.json');
         $package = json_decode($composer);
 
-        if (!$this->db->validateTable('settings')) {
-            $migrationStructures = explode(';', f::read($this->pluginPath . 'migrations/sqlite_baseStructure.sql'));
-            $migrationValues = explode(';', f::read($this->pluginPath . 'migrations/sqlite_baseValues.sql'));
+        if (!option('mauricerenck.podcaster.statsSkipTableCreation', false)) {
+            if (!$this->db->validateTable('settings')) {
+                $migrationStructures = explode(';', f::read($this->pluginPath . 'migrations/sqlite_baseStructure.sql'));
+                $migrationValues = explode(';', f::read($this->pluginPath . 'migrations/sqlite_baseValues.sql'));
 
-            foreach ($migrationStructures as $query) {
-                $this->db->execute(trim($query));
+                foreach ($migrationStructures as $query) {
+                    $this->db->execute(trim($query));
+                }
+
+                foreach ($migrationValues as $query) {
+                    $this->db->execute(trim($query));
+                }
+
+                $this->db->execute("INSERT INTO settings (podcaster_version) VALUES ('" . $package->version . "')");
+
+                return true;
             }
-
-            foreach ($migrationValues as $query) {
-                $this->db->execute(trim($query));
-            }
-
-            $this->db->execute("INSERT INTO settings (podcaster_version) VALUES ('" . $package->version . "')");
-
-            return true;
         }
         /*
                 $settings = $this->db->table('settings');
