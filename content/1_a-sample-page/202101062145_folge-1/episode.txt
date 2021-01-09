@@ -1,4 +1,4 @@
-Title: folge 1
+Title: first episode
 
 ----
 
@@ -42,15 +42,11 @@ Podcasterchapters:
 
 ----
 
-Podcasterauthor:
-
-- 9u0svKwr
+Podcasterauthor: - 9u0svKwr
 
 ----
 
-Podcastercontributors:
-
-- 9u0svKwr
+Podcastercontributors: - 9u0svKwr
 
 ----
 
