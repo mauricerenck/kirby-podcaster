@@ -16,6 +16,7 @@ export default {
     components: { Chart,LineChart },
     data() {
         return {
+            headline: null,
             podcasterSlug: null,
             currentDate: new Date(),
             chartdata: {},
