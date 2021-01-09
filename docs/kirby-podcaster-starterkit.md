@@ -215,3 +215,7 @@ After everything is done, you can go the podcast page. You should see all your p
 That's it! You're ready! Publish the page and change the feed url wherever you submitted it or redirect the old one to the new one.
 
 We can now just delete the wizard page, we don't need it anymore.
+
+## Statistics and more
+
+Have a look at the [basic setup readme](setup-clean.md) for more options and how to setup things like statistics.
