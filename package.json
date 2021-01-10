@@ -1,6 +1,6 @@
 {
   "name": "podcaster",
-  "version": "1.2.8",
+  "version": "2.0.0",
   "description": "A Kirby Podcast Plugin",
   "main": "index.js",
   "author": "Maurice Renck",
@@ -15,9 +15,10 @@
     "vue-template-compiler": "^2.6.10"
   },
   "dependencies": {
+    "chart.js": "^2.9.4",
     "date-fns": "2.11.0",
-    "frappe-charts": "^1.2.0",
     "vue": "^2.2.4",
+    "vue-chartjs": "^3.5.1",
     "vue-hot-reload-api": "^2.3.3"
   }
 }

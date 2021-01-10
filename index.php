@@ -1,24 +1,21 @@
 <?php
 
-namespace Plugin\Podcaster;
+namespace mauricerenck\Podcaster;
 
+use mauricerenck\Podcaster\PodcasterUtils;
+use mauricerenck\Podcaster\PodcasterAudioUtils;
+use mauricerenck\Podcaster\PodcasterStats;
+use mauricerenck\Podcaster\PodcasterStatsMatomo;
+use mauricerenck\Podcaster\PodcasterStatsMySql;
+use mauricerenck\Podcaster\PodcasterStatsSqlite;
+use mauricerenck\Podcaster\PodcasterStatsPodTrac;
+use mauricerenck\Podcaster\PodcasterWizard;
 use Kirby;
 use Kirby\Exception\Exception;
-use \PiwikTracker;
 use Kirby\Http\Response;
+use \PiwikTracker;
 
 @include_once __DIR__ . '/vendor/autoload.php';
-
-load([
-    'Plugin\Podcaster\PodcasterUtils' => 'utils/PodcasterUtils.php',
-    'Plugin\Podcaster\PodcasterAudioUtils' => 'utils/PodcasterAudioUtils.php',
-    'Plugin\Podcaster\PodcasterStats' => 'utils/PodcasterStats.php',
-    'Plugin\Podcaster\PodcasterStatsMySql' => 'utils/PodcasterStatsMatomo.php',
-    'Plugin\Podcaster\PodcasterStatsMySql' => 'utils/PodcasterStatsMysql.php',
-    'Plugin\Podcaster\PodcasterStatsFile' => 'utils/PodcasterStatsFile.php',
-    'Plugin\Podcaster\PodcasterStatsPodTrac' => 'utils/PodcasterStatsPodTrac.php',
-    'Plugin\Podcaster\PodcasterWizard' => 'utils/PodcasterWizard.php',
-], __DIR__);
 
 Kirby::plugin('mauricerenck/podcaster', [
     'options' => require_once(__DIR__ . '/config/options.php'),
@@ -44,7 +41,14 @@ Kirby::plugin('mauricerenck/podcaster', [
         ],
         'podcasterYearlyGraph' => [
             'props' => [
-                'headline' => function ($headline = 'Last modified') {
+                'headline' => function ($headline = 'Monthly Downloads') {
+                    return $headline;
+                }
+            ]
+        ],
+        'podcasterMonthlyGraph' => [
+            'props' => [
+                'headline' => function ($headline = 'Downloads this Month') {
                     return $headline;
                 }
             ]
@@ -65,7 +69,7 @@ Kirby::plugin('mauricerenck/podcaster', [
         ],
         'podcasterWizard' => [
             'props' => [
-                'headline' => function ($headline = 'Feed Downloads') {
+                'headline' => function ($headline = 'Wizard') {
                     return $headline;
                 }
             ]
@@ -91,22 +95,8 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $podcasterUtils = new PodcasterUtils();
                 $podcast = $podcasterUtils->getPageFromSlug($slug . '/' . option('mauricerenck.podcaster.defaultFeed', 'feed'));
 
-                // detect if this is a podcaster feed
-                // if not, ignore this route and move on
-                if (is_null($podcast) || $podcast->podcasterTitle()->isEmpty()) {
-                    $this->next();
-                }
-
-                if (option('mauricerenck.podcaster.statsInternal') === true) {
-                    $stats = new PodcasterStats();
-                    $trackingDate = time();
-                    $stats->increaseFeedVisits($podcast, $trackingDate);
-                }
-
-                if ($podcast->podcasterMatomoFeedEnabled()->isTrue()) {
-                    $matomoUtils = new PodcasterStatsMatomo($podcast->podcasterMatomoFeedSiteId());
-                    $matomoUtils->trackFeedDownload($podcast);
-                }
+                $stats = new PodcasterStats();
+                $stats->increaseFeedVisits($podcast);
 
                 return new Response($podcast->render(), 'text/xml');
             }
@@ -118,19 +108,13 @@ Kirby::plugin('mauricerenck/podcaster', [
 
                 $episode = $podcasterUtils->getPageFromSlug($slug);
                 $podcasterUtils->setCurrentEpisode($episode);
+                $podcast = $podcasterUtils->getPodcastFeed($episode);
 
-                $podcast = $episode->siblings()->find(option('mauricerenck.podcaster.defaultFeed', 'feed'));
+                $userAgent = $_SERVER['HTTP_USER_AGENT'];
+                $userAgentData = $podcasterUtils->getUserAgent($userAgent);
 
-                if (option('mauricerenck.podcaster.statsInternal') === true) {
-                    $stats = new PodcasterStats();
-                    $trackingDate = time();
-                    $stats->increaseDownloads($episode, $trackingDate);
-                }
-
-                if ($podcast->podcasterMatomoEnabled()->isTrue()) {
-                    $matomoUtils = new PodcasterStatsMatomo($podcast->podcasterMatomoSiteId());
-                    $matomoUtils->trackEpisodeDownload($podcast, $episode);
-                }
+                $stats = new PodcasterStats();
+                $stats->increaseDownloads($podcast, $episode, $userAgentData);
 
                 $filename = str_replace('.mp3', '', $filename);
                 return $podcasterUtils->getPodcastFile();

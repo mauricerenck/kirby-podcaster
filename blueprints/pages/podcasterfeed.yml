@@ -17,6 +17,13 @@ tabs:
           basic:
             type: fields
             fields:
+              podcastId:
+                label: Podcast Id
+                help: Use something like my-podcast-id (must be unique)
+                type: text
+                converter: slug
+                translate: false
+                required: true
               podcasterTitle:
                 label: Podcast Title
                 type: text
@@ -43,7 +50,7 @@ tabs:
                 api: https://raw.githubusercontent.com/mauricerenck/kirby-podcaster/master/res/language-codes.json
                 required: true
               podcasterCategories:
-                label: iTunes Categories
+                label: Apple Categories
                 type: structure
                 required: true
                 fields:
@@ -66,11 +73,11 @@ tabs:
             type: fields
             fields:
               podcasterSource:
-                label: Source Page
+                label: Source Pages
                 type: pages
                 required: true
                 multiple: true
-                help: Select the page which will act as a parent of your episodes. Normally this is the page which is the parent of this feed, too.
+                help: Select the pages which will act as a parent of your episodes. Normally this is the page which is the parent of this feed, too.
               podcasterType:
                 label: Podcast type
                 type: select
@@ -117,7 +124,7 @@ tabs:
                 type: textarea
                 size: medium
               podcasterKeywords:
-                label: iTunes Keywords
+                label: Apple Keywords
                 type: tags
               podcasterCopyright:
                 label: Copyright
@@ -412,18 +419,23 @@ tabs:
   statistics:
     label: Statistics
     columns:
+      - width: 1/1
+        sections:
+          podstatsmonthly:
+            type: podcasterMonthlyGraph
       - width: 2/3
         sections:
           podstatsyearly:
             type: podcasterYearlyGraph
-          podstatsTop:
-            type: podcasterTopTen
-          podstatsFeed:
-            type: podcasterFeedStats
       - width: 1/3
         sections:
-          podstatsEpisodic:
-            type: podcasterEpisodeStats
+          podstatsTop:
+            type: podcasterTopTen
+      - width: 2/3
+        sections:
+          podstatsFeed:
+            type: podcasterFeedStats
+
   dangerzone:
     label: Dangerzone
     icon: alert
@@ -438,7 +450,7 @@ tabs:
           label: Be aware!️️
           type: info
           theme: negative
-          text: The following settings will influence how and if your podcast appears on directories like iTunes. Please be aware that setting the wrong option can harm your podcasts appearance.
+          text: The following settings will influence how and if your podcast appears in directories like Apple. Please be aware that setting the wrong option can harm your podcasts appearance.
           width: 1/4
         podcasterBlock:
           label: Block
@@ -447,7 +459,7 @@ tabs:
           text: 
             - Podcast is visible
             - Podcast is BLOCKED
-          help: Enabling this will prevent your Podcast from appearing on the iTunes Store and other podcast directories.
+          help: Enabling this will prevent your Podcast from appearing on the Apple and other podcast directories.
           width: 1/4
         podcasterExplicit:
           label: Explicit

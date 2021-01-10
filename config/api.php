@@ -1,22 +1,23 @@
 <?php
 
-namespace Plugin\Podcaster;
+namespace mauricerenck\Podcaster;
 
 use Xml;
 use File;
+use Response;
 
 return [
     'routes' => [
         [
             'pattern' => 'podcaster/stats/(:any)/year/(:num)/month/(:num)',
-            'action' => function ($podcast, $year, $month) {
-                if (option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
-                    $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
-                    echo new Response(json_encode($errorMessage), 'application/json', 501);
+            'action' => function ($podcastId, $year, $month) {
+                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                    $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
+                    return new Response(json_encode($errorMessage), 'application/json', 412);
                 }
 
                 $podcasterStats = new PodcasterStats();
-                $stats = $podcasterStats->getEpisodeStatsOfMonth($podcast, $year, $month);
+                $stats = $podcasterStats->getEpisodeStatsByMonth($podcastId, $year, $month);
                 return [
                     'stats' => $stats
                 ];
@@ -24,14 +25,14 @@ return [
         ],
         [
             'pattern' => 'podcaster/stats/(:any)/(:any)/yearly-downloads/(:any)',
-            'action' => function ($podcast, $type, $year) {
-                if (option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
-                    $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
-                    echo new Response(json_encode($errorMessage), 'application/json', 501);
+            'action' => function ($podcastId, $type, $year) {
+                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                    $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
+                    return new Response(json_encode($errorMessage), 'application/json', 412);
                 }
 
                 $podcasterStats = new PodcasterStats();
-                $stats = $podcasterStats->getDownloadsOfYear($podcast, $year, $type);
+                $stats = $podcasterStats->getDownloadsOfYear($podcastId, $year, $type);
                 return [
                     'stats' => $stats
                 ];
@@ -39,14 +40,16 @@ return [
         ],
         [
             'pattern' => 'podcaster/stats/(:any)/top/(:num)',
-            'action' => function ($podcast, $limit) {
-                if (option('mauricerenck.podcaster.statsInternal') === false || option('mauricerenck.podcaster.statsType') === 'file') {
-                    $errorMessage = ['error' => 'cannot use stats on file method, use mysql version instead'];
-                    echo new Response(json_encode($errorMessage), 'application/json', 501);
+            'action' => function ($podcastId, $limit) {
+                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                    $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
+                    echo new Response(json_encode($errorMessage), 'application/json', 412);
+                    return false;
                 }
 
                 $podcasterStats = new PodcasterStats();
-                $stats = $podcasterStats->getTopDownloads($podcast, $limit);
+                $stats = $podcasterStats->getTopDownloads($podcastId, $limit);
+
                 return [
                     'stats' => $stats
                 ];

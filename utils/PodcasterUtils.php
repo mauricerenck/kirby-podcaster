@@ -1,9 +1,11 @@
 <?php
 
-namespace Plugin\Podcaster;
+namespace mauricerenck\Podcaster;
 
 use \Kirby\Toolkit\Xml;
 use \Kirby\Toolkit\Collection;
+use is_null;
+use str;
 
 class PodcasterUtils
 {
@@ -165,5 +167,47 @@ class PodcasterUtils
         $cleanedSlug = (is_null($currentLanguage)) ? $slug : str_replace($currentLanguage . '/', '', $slug);
 
         return kirby()->page($cleanedSlug);
+    }
+
+    public function getPodcastFeed($episode = null)
+    {
+        $podcastFeeds = site()->index()->filterBy('intendedTemplate', 'podcasterfeed');
+        $podcast = (!is_null($episode)) ? $episode->siblings()->find(option('mauricerenck.podcaster.defaultFeed', 'feed')) : false;
+
+        if (!$podcast) {
+            foreach ($podcastFeeds as $podcastFeed) {
+                if ($episode->isDescendantOf($podcastFeed->parent())) {
+                    $podcast = $podcastFeed;
+                }
+            }
+        }
+
+        return $podcast;
+    }
+
+    public function getUserAgent(string $userAgent)
+    {
+        $userApp = json_decode(file_get_contents(__DIR__ . '/../res/user-agents.json'), true);
+
+        foreach ($userApp as $client) {
+            foreach ($client['user_agents'] as $agent) {
+                if (!isset($agent['bot']) || $agent['bot'] !== true) {
+                    $app = (isset($client['app'])) ? $client['app'] : 'unkown';
+                    $device = (isset($client['device'])) ? $client['device'] : 'unkown';
+                    $os = (isset($client['os'])) ? $client['os'] : 'unkown';
+
+                    // info using # as delimiter, because patterns contain slashes
+                    if (preg_match('#' . $agent . '#', $userAgent, $tmp)) {
+                        return [
+                            'app' => $app,
+                            'os' => $os,
+                            'device' => $device,
+                        ];
+                    }
+                }
+            }
+        }
+
+        return [];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Plugin\Podcaster;
+namespace mauricerenck\Podcaster;
 
 return [
     'file.create:after' => function ($file) {
