@@ -37,7 +37,7 @@ Chose one of these options:
 
 ## Step by step guides
 
-- **Update from version 1**
+- **[Update from version 1](docs/update-v1-v2.md)**
 - [Step by step install](docs/setup-clean.md)
 - [Import existing Podcast](docs/setup-existing-podcast.md)
 - [Starterkit tutorial](docs/kirby-podcaster-starterkit.md)
