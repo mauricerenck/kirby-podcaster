@@ -10,13 +10,13 @@ UPDATE `podcaster_episodes` SET `episode_name` = `episode_slug` WHERE `id`=`id`;
 
 ALTER TABLE `podcaster_episodes` CHANGE `day` `log_date` DATE;
 ALTER TABLE `podcaster_episodes` ADD `podcaster_id` VARCHAR(255) NULL DEFAULT NULL;
-UPDATE `podcaster_episodes` SET `podcaster_id` = `podcast_slug` WHERE `id`=`id`;
+UPDATE `podcaster_episodes` SET `podcaster_id` = `id` WHERE `id`=`id`;
 
 ALTER TABLE `podcaster_feeds` CHANGE `podcast` `podcast_name` VARCHAR(255);
 ALTER TABLE `podcaster_feeds` CHANGE `feed` `podcast_slug` VARCHAR(255);
 ALTER TABLE `podcaster_feeds` CHANGE `day` `log_date` DATE;
 ALTER TABLE `podcaster_feeds` ADD `podcaster_id` VARCHAR(255) NULL DEFAULT NULL;
-UPDATE `podcaster_feeds` SET `podcaster_id` = `podcast_slug` WHERE `id`=`id`;
+UPDATE `podcaster_feeds` SET `podcaster_id` = `id` WHERE `id`=`id`;
 
 CREATE TABLE IF NOT EXISTS `podcaster_devices` (
   `podcaster_id` VARCHAR(255) NOT NULL DEFAULT '',
