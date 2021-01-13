@@ -44,7 +44,7 @@ Chose one of these options:
 
 ## Options
 
-You can fine tune the komments to behave as you whish, use this options in `config.php` file. Write them like so: `'mauricerenck.podcaster.OPTION' = value`
+Use this options in `config.php` file to finetune the plugin. Write them like so: `'mauricerenck.podcaster.OPTION' = value`
 
 | Option                   | Default    | Description                                                                                                  |
 | ------------------------ | ---------- | ------------------------------------------------------------------------------------------------------------ |
