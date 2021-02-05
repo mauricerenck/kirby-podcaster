@@ -1,6 +1,6 @@
 {
   "name": "mauricerenck/podcaster",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A Kirby Podcast Plugin",
   "type": "kirby-plugin",
   "license": "MIT",
@@ -21,13 +21,15 @@
   "require": {
     "getkirby/composer-installer": "^1.1",
     "james-heinrich/getid3": "^1.9",
-    "matomo/matomo-php-tracker": "^2.0",
-    "getkirby/cms": "^3.4"
+    "matomo/matomo-php-tracker": "^2.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^9.4"
   },
   "config": {
     "optimize-autoloader": true
+  },
+  "scripts": {
+    "build-test-package": "git archive HEAD -o podcaster.zip --worktree-attributes"
   }
 }

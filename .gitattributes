@@ -1,7 +1,8 @@
 /content/ export-ignore
 /site/ export-ignore
 /src/ export-ignore
-/kirby/ export-ignore
+/.cache/ export-ignore
+/media/ export-ignore
 
 /.editorconfig export-ignore
 /.gitattributes export-ignore

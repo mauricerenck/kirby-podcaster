@@ -1,6 +1,6 @@
 {
   "name": "podcaster",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A Kirby Podcast Plugin",
   "main": "index.js",
   "author": "Maurice Renck",
