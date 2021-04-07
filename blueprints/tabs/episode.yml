@@ -10,18 +10,14 @@ columns:
         template: podcaster-episode
         required: true
       podcasterCover:
-        type: fields
-        fields:
-          podcasterCover:
-            type: files
-            label: Cover Image
-            layout: cards
-            multiple: false
-            max: 1
-            cover: true
-            help: You can set a cover for this single episode here, but Apple recommends to do this in your mp3-metadata (Id3).
-      files:
         type: files
+        label: Cover Image
+        layout: cards
+        multiple: false
+        max: 1
+        template: podcaster-cover
+        cover: true
+        help: You can set a cover for this single episode here, but Apple recommends to do this in your mp3-metadata (Id3).
   - width: 2/3
     sections:
       podcasterInfo:

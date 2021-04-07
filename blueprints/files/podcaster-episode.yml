@@ -1,7 +1,10 @@
 title: Podcaster Audiofile
-type: fields
+
+accept:
+  extension: mp3
+
 fields:
-  episodeTitle: 
+  episodeTitle:
     label: Episode Title
     type: text
     width: 1/2
