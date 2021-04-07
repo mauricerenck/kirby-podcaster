@@ -40,7 +40,10 @@ Chose one of these options:
 - **[Update from version 1](docs/update-v1-v2.md)**
 - [Step by step install](docs/setup-clean.md)
 - [Import existing Podcast](docs/setup-existing-podcast.md)
-- [Starterkit tutorial](docs/kirby-podcaster-starterkit.md)
+
+## Good to know
+
+- [Adding a subscribe button ](docs/podlove-subscribe-button.md)
 
 ## Options
 

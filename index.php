@@ -26,10 +26,11 @@ Kirby::plugin('mauricerenck/podcaster', [
         'pages/podcasterfeed' => __DIR__ . '/blueprints/pages/podcasterfeed.yml',
         'pages/podcasterwizard' => __DIR__ . '/blueprints/pages/podcasterwizard.yml',
         'tabs/podcasterepisode' => __DIR__ . '/blueprints/tabs/episode.yml',
-        'files/podcaster-episode' => __DIR__ . '/blueprints/files/podcaster-episode.yml'
+        'files/podcaster-episode' => __DIR__ . '/blueprints/files/podcaster-episode.yml',
+        'files/podcaster-cover' => __DIR__ . '/blueprints/files/podcaster-cover.yml'
     ],
     'tags' => [
-        'podcastbutton' => require_once __DIR__ . '/tags/podcastbutton.php',
+        'podloveSubscribe' => require_once __DIR__ . '/tags/podloveSubscribe.php',
     ],
     'sections' => [
         'podcasterEpisodeStats' => [
