@@ -11,11 +11,11 @@ class PodcasterAudioUtils
 
     public function setAudioFileMeta($id3, $file)
     {
-        $time = round($id3['playtime_seconds']);
+        $playTime = round($id3['playtime_seconds']);
 
-        $duration = $this->parseAudioDuration($time);
-        $title = $this->parseTitle($id3);
-        $this->getChapters($id3);
+        $duration = $this->parseAudioDuration($playTime);
+        $title = $this->getId3Tag('title', $id3);
+
         $this->writeAudioFileMeta($file, $title, $duration);
     }
 
@@ -24,10 +24,10 @@ class PodcasterAudioUtils
         $newPageData = [];
         $page = $file->page();
 
-        $newPageData['podcasterTitle'] = ($this->getId3Tag('title', $id3)) ? $this->getId3Tag('title', $id3) : null;
-        $newPageData['podcasterEpisode'] = ($this->getId3Tag('track_number', $id3)) ? $this->getId3Tag('track_number', $id3) : null;
-        $newPageData['podcasterDescription'] = ($this->getId3Tag('comment', $id3)) ? $this->getId3Tag('comment', $id3) : null;
-        $newPageData['podcasterSubtitle'] = ($this->getId3Tag('subtitle', $id3)) ? $this->getId3Tag('subtitle', $id3) : null;
+        $newPageData['podcasterTitle'] = $this->getId3Tag('title', $id3);
+        $newPageData['podcasterEpisode'] = $this->getId3Tag('track_number', $id3);
+        $newPageData['podcasterDescription'] = $this->getId3Tag('comment', $id3);
+        $newPageData['podcasterSubtitle'] = $this->getId3Tag('subtitle', $id3);
 
         $fielData = [];
         $chapters = $this->getChapters($id3);
@@ -64,18 +64,9 @@ class PodcasterAudioUtils
         return sprintf('%02d:%02d:%02d', ($seconds / 3600), ($seconds / 60 % 60), $seconds % 60);
     }
 
-    protected function parseTitle($id3)
-    {
-        if (!isset($id3['tags_html'])) {
-            return null;
-        }
-
-        return $id3['tags_html']['id3v2']['title'][0];
-    }
-
     protected function getId3Tag($tag, $id3)
     {
-        return (isset($id3['tags']['id3v2'][$tag][0])) ? $id3['tags']['id3v2'][$tag][0] : null;
+        return (isset($id3['tags']['id3v2'][$tag]) && isset($id3['tags']['id3v2'][$tag][0])) ? $id3['tags']['id3v2'][$tag][0] : null;
     }
 
     protected function getChapters($id3)

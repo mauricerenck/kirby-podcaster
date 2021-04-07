@@ -5,7 +5,7 @@ accept:
 
 fields:
   episodeTitle:
-    label: Episode Title
+    label: Audio Id3 Title
     type: text
     width: 1/2
   duration:
