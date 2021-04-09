@@ -25,3 +25,5 @@
 /media
 /podcaster.sqlite
 /site/sessions/*
+/.user.ini
+/site/accounts/.logins

@@ -27,7 +27,7 @@ Kirby::plugin('mauricerenck/podcaster', [
         'pages/podcasterwizard' => __DIR__ . '/blueprints/pages/podcasterwizard.yml',
         'tabs/podcasterepisode' => __DIR__ . '/blueprints/tabs/episode.yml',
         'files/podcaster-episode' => __DIR__ . '/blueprints/files/podcaster-episode.yml',
-        'files/podcaster-cover' => __DIR__ . '/blueprints/files/podcaster-cover.yml'
+        'files/podcaster-cover' => __DIR__ . '/blueprints/files/podcaster-cover.yml',
     ],
     'tags' => [
         'podloveSubscribe' => require_once __DIR__ . '/tags/podloveSubscribe.php',
@@ -80,7 +80,7 @@ Kirby::plugin('mauricerenck/podcaster', [
         'podcaster-player' => __DIR__ . '/snippets/podcaster-player.php',
         'podcaster-podlove-player' => __DIR__ . '/snippets/podlove-player.php',
         'podcaster-html5-player' => __DIR__ . '/snippets/html5-player.php',
-        'podcaster-ogaudio' => __DIR__ . '/snippets/og-audio.php'
+        'podcaster-ogaudio' => __DIR__ . '/snippets/og-audio.php',
     ],
     'routes' => [
         [

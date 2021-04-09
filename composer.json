@@ -1,6 +1,6 @@
 {
   "name": "mauricerenck/podcaster",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "A Kirby Podcast Plugin",
   "type": "kirby-plugin",
   "license": "MIT",
@@ -12,7 +12,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "mauricerenck\\Komments\\": "utils"
+      "mauricerenck\\Podcaster\\": "utils"
     },
     "classmap": [
       "utils"
@@ -24,12 +24,14 @@
     "matomo/matomo-php-tracker": "^2.0"
   },
   "require-dev": {
+    "getkirby/cms": "^3.5",
     "phpunit/phpunit": "^9.4"
   },
   "config": {
     "optimize-autoloader": true
   },
   "scripts": {
-    "build-test-package": "git archive HEAD -o podcaster.zip --worktree-attributes"
+    "build-test-package": "git archive HEAD -o podcaster.zip --worktree-attributes",
+    "build-composer": "composer install --no-dev --optimize-autoloader"
   }
 }
