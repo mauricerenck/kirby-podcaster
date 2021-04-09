@@ -65,3 +65,4 @@ Use this options in `config.php` file to finetune the plugin. Write them like so
 | `matomoToken`            | -          | Set your matomo token for download tracking using matomo                                                     |
 | `matomoBaseUrl`          | -          | Set your matomo base url for download tracking using matomo                                                  |
 | `matomoBaseUrl`          | -          | Set your matomo base url for download tracking using matomo                                                  |
+| `doNotTrackBots`         | `false`    | Disable tracking downloads by user agents detected as bot                                                    |
