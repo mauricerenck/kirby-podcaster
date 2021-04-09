@@ -195,6 +195,7 @@ class PodcasterUtils
                     $app = (isset($client['app'])) ? $client['app'] : 'unkown';
                     $device = (isset($client['device'])) ? $client['device'] : 'unkown';
                     $os = (isset($client['os'])) ? $client['os'] : 'unkown';
+                    $bot = (isset($client['bot'])) ? $client['bot'] : false;
 
                     // info using # as delimiter, because patterns contain slashes
                     if (preg_match('#' . $agent . '#', $userAgent, $tmp)) {
@@ -202,6 +203,7 @@ class PodcasterUtils
                             'app' => $app,
                             'os' => $os,
                             'device' => $device,
+                            'bot' => $bot,
                         ];
                     }
                 }

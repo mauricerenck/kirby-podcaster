@@ -28,6 +28,10 @@ class PodcasterStats
 
         $trackingDate = time();
 
+        if (option('mauricerenck.podcaster.doNotTrackBots', false) === true && $userAgentData['bot'] === true) {
+            return;
+        }
+
         if (option('mauricerenck.podcaster.statsInternal') === true) {
             $this->stats->increaseDownloads($podcast, $episode, $trackingDate);
             $this->stats->upsertUserAgents($podcast, $userAgentData, $trackingDate);
