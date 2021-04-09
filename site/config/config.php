@@ -9,4 +9,6 @@ return [
     'mauricerenck.podcaster.statsDatabase' => 'podcaster_local',
     'mauricerenck.podcaster.statsUser' => 'root',
     'mauricerenck.podcaster.statsPassword' => 'root',
+
+    'mauricerenck.podcaster.setId3Data' => true,
 ];

@@ -5,7 +5,7 @@ tabs:
     extends: tabs/podcasterepisode
   content:
     columns:
-      - width: 1/3
+      - width: 2/3
         sections:
           page_settings_col4:
             type: fields
@@ -15,3 +15,10 @@ tabs:
                 type: date
                 time: true
                 default: now
+              text:
+                type: textarea
+              gutenberg:
+                type: blocks
+                fieldsets:
+                  - heading
+                  - text

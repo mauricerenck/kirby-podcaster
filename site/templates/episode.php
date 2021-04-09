@@ -14,6 +14,9 @@
         <div class="container">
             <div class="col"><?php snippet('podcaster-podlove-player', ['page' => $page, 'podcast' => $podcast]); ?></div>
             <div class="col"><?php snippet('podcaster-html5-player', ['page' => $page, 'podcast' => $podcast]) ?></div>
+            <div>
+                <?= $page->text()->kirbytext(); ?>
+            </div>
         </div>
     </body>
 </html>
