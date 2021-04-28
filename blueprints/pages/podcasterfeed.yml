@@ -129,6 +129,7 @@ tabs:
               podcasterCopyright:
                 label: Copyright
                 type: text
+                required: true
 
   player:
     label: Website Player
