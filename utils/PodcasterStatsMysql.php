@@ -189,7 +189,7 @@ class PodcasterStatsMySql
         $uid = $episode->uid();
 
         $uniqueHash = md5($episode->uid() . $podcastSlug . $downloadDate);
-        if (!$this->db->query('INSERT INTO podcaster_episodes(podcaster_id, podcast_slug, podcast_name, episode_slug, episode_name, log_date, downloads) VALUES("' . $uniqueHash . '", "' . $podcastSlug . '","' . $podcast->podcasterTitle() . '", "' . $uid . '","' . $episode->title() . '", "' . $downloadDate . '", 1)')) {
+        if (!$this->db->execute('INSERT INTO podcaster_episodes(podcaster_id, podcast_slug, podcast_name, episode_slug, episode_name, log_date, downloads) VALUES("' . $uniqueHash . '", "' . $podcastSlug . '","' . $podcast->podcasterTitle() . '", "' . $uid . '","' . $episode->title() . '", "' . $downloadDate . '", 1)')) {
             $this->db->execute('UPDATE podcaster_episodes SET downloads = downloads + 1 WHERE episode_slug = "' . $uid . '" AND podcast_slug = "' . $podcastSlug . '" AND log_date = "' . $downloadDate . '"');
         }
 
@@ -202,17 +202,17 @@ class PodcasterStatsMySql
         $yearMonth = date('Y-m', $downloadDate);
 
         $uniqueHash = md5($userAgentData['os'] . $podcastSlug . $yearMonth);
-        if (!$this->db->query('INSERT INTO podcaster_os(podcaster_id, os, podcast_slug, log_date, downloads) VALUES("' . $uniqueHash . '", "' . $userAgentData['os'] . '","' . $podcastSlug . '", "' . $yearMonth . '", 1)')) {
+        if (!$this->db->execute('INSERT INTO podcaster_os(podcaster_id, os, podcast_slug, log_date, downloads) VALUES("' . $uniqueHash . '", "' . $userAgentData['os'] . '","' . $podcastSlug . '", "' . $yearMonth . '", 1)')) {
             $this->db->execute('UPDATE podcaster_os SET downloads = downloads + 1 WHERE podcast_slug = "' . $podcastSlug . '" AND log_date = "' . $yearMonth . '" AND os ="' . $userAgentData['os'] . '"');
         }
 
         $uniqueHash = md5($userAgentData['app'] . $podcastSlug . $yearMonth);
-        if (!$this->db->query('INSERT INTO podcaster_useragents(podcaster_id, useragent,podcast_slug,log_date,downloads) VALUES("' . $uniqueHash . '", "' . $userAgentData['app'] . '","' . $podcastSlug . '", "' . $yearMonth . '", 1)')) {
+        if (!$this->db->execute('INSERT INTO podcaster_useragents(podcaster_id, useragent,podcast_slug,log_date,downloads) VALUES("' . $uniqueHash . '", "' . $userAgentData['app'] . '","' . $podcastSlug . '", "' . $yearMonth . '", 1)')) {
             $this->db->execute('UPDATE podcaster_useragents SET downloads = downloads + 1 WHERE podcast_slug = "' . $podcastSlug . '" AND log_date = "' . $yearMonth . '" AND useragent ="' . $userAgentData['app'] . '"');
         }
 
         $uniqueHash = md5($userAgentData['device'] . $podcastSlug . $yearMonth);
-        if (!$this->db->query('INSERT INTO podcaster_devices(podcaster_id, device,podcast_slug,log_date,downloads) VALUES("' . $uniqueHash . '", "' . $userAgentData['device'] . '","' . $podcastSlug . '", "' . $yearMonth . '", 1)')) {
+        if (!$this->db->execute('INSERT INTO podcaster_devices(podcaster_id, device,podcast_slug,log_date,downloads) VALUES("' . $uniqueHash . '", "' . $userAgentData['device'] . '","' . $podcastSlug . '", "' . $yearMonth . '", 1)')) {
             $this->db->execute('UPDATE podcaster_devices SET downloads = downloads + 1 WHERE podcast_slug = "' . $podcastSlug . '" AND log_date = "' . $yearMonth . '" AND device ="' . $userAgentData['device'] . '"');
         }
     }
@@ -224,7 +224,7 @@ class PodcasterStatsMySql
         $downloadDate = $this->formatTrackingDate($trackingDate);
         $uniqueHash = md5($feedSlug . $downloadDate);
 
-        if (!$this->db->query('INSERT INTO podcaster_feeds(podcaster_id, podcast_slug, podcast_name, log_date, downloads) VALUES("' . $uniqueHash . '", "' . $feedSlug . '","' . $feedTitle . '", "' . $downloadDate . '", 1)')) {
+        if (!$this->db->execute('INSERT INTO podcaster_feeds(podcaster_id, podcast_slug, podcast_name, log_date, downloads) VALUES ("' . $uniqueHash . '", "' . $feedSlug . '","' . $feedTitle . '", "' . $downloadDate . '", 1)')) {
             $this->db->execute('UPDATE podcaster_feeds SET downloads = downloads + 1 WHERE podcast_slug = "' . $feedSlug . '" AND log_date = "' . $downloadDate . '"');
         }
 
