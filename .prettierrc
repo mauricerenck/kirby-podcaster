@@ -1,0 +1,13 @@
+{
+    "endOfLine": "lf",
+    "semi": false,
+    "tabWidth": 4,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "eslintIntegration": false,
+    "tslintIntegration": true,
+    "printWidth": 120,
+    "tslint.packageManager": "yarn",
+    "npm.packageManager": "yarn",
+    "prettier.tslintIntegration": true
+}
