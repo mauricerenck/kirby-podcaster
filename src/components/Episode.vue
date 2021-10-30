@@ -1,11 +1,9 @@
 <template>
-  <section class="k-modified-section">
-
-    <k-text>{{ error }}</k-text>
-    <k-headline size="large">{{ headline }}</k-headline>
-    <k-list :items="episodes" />
-
-  </section>
+    <section class="k-modified-section">
+        <k-text>{{ error }}</k-text>
+        <k-headline size="large">{{ headline }}</k-headline>
+        <k-list :items="episodes" />
+    </section>
 </template>
 
 <script>
@@ -24,7 +22,7 @@ export default {
             headline: null,
             episodes: [],
             error: null,
-            podcasterSlug: null
+            podcasterSlug: null,
         }
     },
     created: function() {
@@ -45,26 +43,34 @@ export default {
             handler(newVal, oldVal) {
                 this.getStats()
             },
-        }
+        },
     },
     methods: {
         getStats() {
-            fetch('/api/podcaster/stats/'+ this.podcasterSlug + '/year/' + this.currentYear + '/month/' + (this.currentMonth+1), {
-                method: 'GET',
-                headers: {
-                    'X-CSRF': panel.csrf,
-                },
-            })
+            fetch(
+                '/api/podcaster/stats/' +
+                    this.podcasterSlug +
+                    '/year/' +
+                    this.currentYear +
+                    '/month/' +
+                    (this.currentMonth + 1),
+                {
+                    method: 'GET',
+                    headers: {
+                        'X-CSRF': !panel.csrf ? this.$system.csrf : panel.csrf,
+                    },
+                }
+            )
                 .then(response => {
-                     if(response.status !== 200) {
-                        throw 'You are tracking your downloads, using the file method. Stats are currently available only when using mysql'
+                    if (response.status !== 200) {
+                        throw 'OH NO You are tracking your downloads, using the file method. Stats are currently available only when using mysql'
                     }
 
                     return response
                 })
                 .then(response => response.json())
                 .then(response => {
-                      this.episodes = this.computeStats(response.stats)
+                    this.episodes = this.computeStats(response.stats)
                 })
                 .catch(error => {
                     this.error = error
@@ -90,7 +96,7 @@ export default {
         },
         setNewDateVars() {
             this.currentMonth = getMonth(this.currentDate)
-            this.currentYear=  getYear(this.currentDate)
+            this.currentYear = getYear(this.currentDate)
             this.currentMonthName = this.currentDate.toLocaleString('en', { month: 'long' })
             this.headline = 'Stats for ' + this.currentMonthName + ' ' + this.currentYear
         },

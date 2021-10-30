@@ -1,19 +1,22 @@
 <template>
-  <section class="k-modified-section podcaster-import-wizard">
-    <k-headline>{{ headline }}</k-headline>
-    <div class="log">
-        <div class="important">Do not close this page until the import is finished!</div>
-        <div class="currentState">Processing &raquo;{{currentEpisode}}&laquo;</div>
-        <div>Trying to parse &raquo;{{feedName}}&laquo;</div>
-        <div>Found {{numItems}} episodes in feed</div>
-        <div>creating pages, <strong>{{numRemain}}</strong> remaining</div>
-        <div><strong>{{numDownload}}</strong> audio downloads remaining</div>
-        <div>{{failed}} failed attempts</div>
-    </div>
-    <button class="k-button start-import" v-on:click="startImport">Start import</button>
-  </section>
+    <section class="k-modified-section podcaster-import-wizard">
+        <k-headline>{{ headline }}</k-headline>
+        <div class="log">
+            <div class="important">Do not close this page until the import is finished!</div>
+            <div class="currentState">Processing &raquo;{{ currentEpisode }}&laquo;</div>
+            <div>Trying to parse &raquo;{{ feedName }}&laquo;</div>
+            <div>Found {{ numItems }} episodes in feed</div>
+            <div>
+                creating pages, <strong>{{ numRemain }}</strong> remaining
+            </div>
+            <div>
+                <strong>{{ numDownload }}</strong> audio downloads remaining
+            </div>
+            <div>{{ failed }} failed attempts</div>
+        </div>
+        <button class="k-button start-import" v-on:click="startImport">Start import</button>
+    </section>
 </template>
-
 
 <script>
 export default {
@@ -27,11 +30,10 @@ export default {
             numDownload: 0,
             failed: 0,
             feedName: '',
-            currentEpisode: ''
+            currentEpisode: '',
         }
     },
-    created: function() {
-    },
+    created: function() {},
     mounted() {
         this.headline = this.pageValues.podcasterWizardSrcFeed
     },
@@ -42,7 +44,7 @@ export default {
     },
     methods: {
         startImport(event) {
-            let feedUrl = this.pageValues.podcasterwizardsrcfeed;
+            let feedUrl = this.pageValues.podcasterwizardsrcfeed
             this.feedName = feedUrl
             event.target.style = 'display: none'
             document.querySelector('.log').style = 'display: block'
@@ -50,10 +52,10 @@ export default {
         },
 
         startAudioDownload() {
-            if(this.feedItems.length > 0) {
+            if (this.feedItems.length > 0) {
                 this.downloadAudio()
             } else {
-                this.logs.push({id: 3, msg: 'done'})
+                this.logs.push({ id: 3, msg: 'done' })
             }
         },
 
@@ -62,29 +64,30 @@ export default {
                 method: 'GET',
                 headers: {
                     'X-CSRF': panel.csrf,
-                    'X-FEED-URI': feedUrl
+                    'X-FEED-URI': feedUrl,
                 },
             })
-            .then(response => response.json())
-            .then(response => {
-                if(response.status === 'error') {
+                .then(response => response.json())
+                .then(response => {
+                    if (response.status === 'error') {
+                        this.failed++
+                    }
+
+                    const numEpisodes =
+                        typeof response.channel.item.length !== 'undefined' ? response.channel.item.length : 1
+
+                    this.feedName = response.channel.title
+                    this.numItems = numEpisodes
+                    this.numRemain = numEpisodes
+                    this.numDownload = numEpisodes
+
+                    this.createFeed(response.channel)
+                    this.importEpisodes(response.channel.item)
+                })
+                .catch(error => {
+                    this.error = error
                     this.failed++
-                }
-
-                const numEpisodes = (typeof response.channel.item.length !== 'undefined') ? response.channel.item.length : 1;
-
-                this.feedName = response.channel.title
-                this.numItems = numEpisodes
-                this.numRemain = numEpisodes
-                this.numDownload = numEpisodes
-
-                this.createFeed(response.channel)
-                this.importEpisodes(response.channel.item)
-            })
-            .catch(error => {
-                this.error = error
-                this.failed++
-            })
+                })
         },
         createFeed(channel) {
             const episodeData = {
@@ -107,15 +110,13 @@ export default {
                     'X-CSRF': panel.csrf,
                     'X-TARGET-PAGE': this.pageValues.podcasterwizarddestination[0].id,
                 },
-                body: JSON.stringify(episodeData)
-            })
-            .catch(error => {
+                body: JSON.stringify(episodeData),
+            }).catch(error => {
                 console.log(error)
             })
-
         },
         importEpisodes(items) {
-             if(typeof items.length === 'undefined') {
+            if (typeof items.length === 'undefined') {
                 const episode = {
                     title: items.title,
                     link: items.link,
@@ -126,13 +127,13 @@ export default {
                     itunesduration: items.itunesduration,
                     itunesseason: items.itunesseason,
                     itunesexplicit: items.itunesexplicit,
-                    itunesblock:  items.itunesblock,
-                    file: items.enclosure["@attributes"].url
+                    itunesblock: items.itunesblock,
+                    file: items.enclosure['@attributes'].url,
                 }
 
                 this.createEpisode(items)
             } else {
-                for (let i = items.length-1; i >= 0; i--) { 
+                for (let i = items.length - 1; i >= 0; i--) {
                     this.createEpisode(items[i])
                 }
             }
@@ -148,70 +149,69 @@ export default {
                 itunesduration: episode.itunesduration,
                 itunesseason: episode.itunesseason,
                 itunesexplicit: episode.itunesexplicit,
-                itunesblock:  episode.itunesblock,
-                file: episode.enclosure["@attributes"].url
+                itunesblock: episode.itunesblock,
+                file: episode.enclosure['@attributes'].url,
             }
 
             fetch('/api/podcaster/wizard/createEpisode', {
                 method: 'POST',
                 headers: {
-                    'X-CSRF': panel.csrf,
+                    'X-CSRF': !panel.csrf ? this.$system.csrf : panel.csrf,
                     'X-TARGET-PAGE': this.pageValues.podcasterwizarddestination[0].id,
                     'X-PAGE-TEMPLATE': this.pageValues.podcasterwizardtemplate,
-                    'X-PAGE-STATUS': this.pageValues.podcasterwizardpagestatus
+                    'X-PAGE-STATUS': this.pageValues.podcasterwizardpagestatus,
                 },
-                body: JSON.stringify(episodeData)
+                body: JSON.stringify(episodeData),
             })
-            .then(response => response.json())
-            .then(response => {
-                this.currentEpisode = episode.title
-                if(typeof response.status !== 'undefined') {
-                    this.numFailed++
-                } else {
-                    this.feedItems.push({title: response.title, slug: response.slug, file: response.file})
+                .then(response => response.json())
+                .then(response => {
+                    this.currentEpisode = episode.title
+                    if (typeof response.status !== 'undefined') {
+                        this.numFailed++
+                    } else {
+                        this.feedItems.push({ title: response.title, slug: response.slug, file: response.file })
 
-                    this.numRemain--
+                        this.numRemain--
 
-                    if(this.numRemain === 0) {
-                        this.startAudioDownload();
+                        if (this.numRemain === 0) {
+                            this.startAudioDownload()
+                        }
                     }
-                }
-            })
-            .catch(error => {
-                console.log(error)
+                })
+                .catch(error => {
+                    console.log(error)
                     this.numFailed++
-            })
+                })
         },
         downloadAudio() {
-
             const slug = this.feedItems[0].slug
             const file = this.feedItems[0].file
 
-            this.feedItems.shift();
+            this.feedItems.shift()
 
             fetch('/api/podcaster/wizard/createFile', {
                 method: 'POST',
                 headers: {
-                    'X-CSRF': panel.csrf,
+                    'X-CSRF': !panel.csrf ? this.$system.csrf : panel.csrf,
                     'X-TARGET-PAGE': slug,
                 },
-                body: JSON.stringify({'file': file})
+                body: JSON.stringify({ file: file }),
             })
-            .then(response => response.json())
-            .then(response => {
-                if(typeof response.status !== 'undefined') {
-                    this.failed++;
-                } else {
-                    this.numDownload = this.feedItems.length
-                }
+                .then(response => response.json())
+                .then(response => {
+                    if (typeof response.status !== 'undefined') {
+                        this.failed++
+                    } else {
+                        this.numDownload = this.feedItems.length
+                    }
 
-                this.startAudioDownload()
-            })
-            .catch(error => {
-                console.log(error)
-                    this.failed++;
-            })
-        }
+                    this.startAudioDownload()
+                })
+                .catch(error => {
+                    console.log(error)
+                    this.failed++
+                })
+        },
     },
 }
 </script>
@@ -246,7 +246,7 @@ export default {
 
         .important {
             background: #eec6c6;
-            border-left: 2px solid #d16464
+            border-left: 2px solid #d16464;
         }
     }
 }

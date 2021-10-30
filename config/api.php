@@ -24,15 +24,15 @@ return [
             }
         ],
         [
-            'pattern' => 'podcaster/stats/(:any)/(:any)/yearly-downloads/(:any)',
-            'action' => function ($podcastId, $type, $year) {
+            'pattern' => 'podcaster/stats/(:any)/(:any)/yearly-downloads/(:any)/(:any)',
+            'action' => function ($podcastId, $type, $year, $prevYear) {
                 if (option('mauricerenck.podcaster.statsInternal') === false) {
                     $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
                     return new Response(json_encode($errorMessage), 'application/json', 412);
                 }
 
                 $podcasterStats = new PodcasterStats();
-                $stats = $podcasterStats->getDownloadsOfYear($podcastId, $year, $type);
+                $stats = $podcasterStats->getDownloadsOfYear($podcastId, $year . '+' . $prevYear, $type);
                 return [
                     'stats' => $stats
                 ];

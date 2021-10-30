@@ -1,11 +1,11 @@
 <template>
-    <div>
-        <k-headline size="large">{{headline}}</k-headline>
-        {{error}}
+    <section class="k-modified-section podcaster">
+        <k-headline size="large">{{ headline }}</k-headline>
+        {{ error }}
         <div class="chartWrapper">
-                <line-chart v-if="loaded" :chartdata="chartdata" :options="chartoptions" :styles="chartStyles"/>
-            </div>
+            <line-chart v-if="loaded" :chartdata="chartdata" :options="chartoptions" :styles="chartStyles" />
         </div>
+    </section>
 </template>
 <script>
 import getYear from 'date-fns/getYear'
@@ -13,7 +13,7 @@ import LineChart from './Chart.vue'
 
 export default {
     name: 'YearlyFeedCharts',
-    components: { Chart,LineChart },
+    components: { Chart, LineChart },
     data() {
         return {
             headline: null,
@@ -22,15 +22,15 @@ export default {
             chartdata: {},
             chartoptions: {
                 responsive: true,
-                maintainAspectRatio: false
+                maintainAspectRatio: false,
             },
             loaded: false,
         }
     },
     created: function() {
         this.load().then(response => {
-            this.headline = response.headline;
-        });
+            this.headline = response.headline
+        })
     },
     mounted() {
         const year = getYear(this.currentDate)
@@ -46,10 +46,10 @@ export default {
         getStats(year) {
             this.loaded = false
 
-            fetch('/api/podcaster/stats/' + this.podcasterSlug + '/feed/yearly-downloads/' + year + '+' + (year - 1), {
+            fetch('/api/podcaster/stats/' + this.podcasterSlug + '/feed/yearly-downloads/' + year + '/' + (year - 1), {
                 method: 'GET',
                 headers: {
-                    'X-CSRF': panel.csrf,
+                    'X-CSRF': !panel.csrf ? this.$system.csrf : panel.csrf,
                 },
             })
                 .then(response => {
@@ -74,13 +74,13 @@ export default {
             }
 
             stats.map(function(entry) {
-                if(!entry.log_date) {
+                if (!entry.log_date) {
                     return
                 }
 
-                const entryDate = entry.log_date.split('-');
-                const statsYear = parseInt(entryDate[0]);
-                const statsMonth = parseInt(entryDate[1]);
+                const entryDate = entry.log_date.split('-')
+                const statsYear = parseInt(entryDate[0])
+                const statsMonth = parseInt(entryDate[1])
 
                 if (statsYear === year) {
                     chartData.current[statsMonth - 1] = entry.downloaded
@@ -88,7 +88,6 @@ export default {
                     chartData.past[statsMonth - 1] = entry.downloaded
                 }
             })
-
 
             this.chartdata = {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -100,7 +99,7 @@ export default {
                         pointBackgroundColor: '#5d800d',
                         borderWidth: 1,
                         label: year,
-                        data: chartData.current
+                        data: chartData.current,
                     },
                     {
                         backgroundColor: '#ccc',
@@ -108,20 +107,21 @@ export default {
                         pointBorderColor: '#ffffff',
                         pointBackgroundColor: '#777',
                         borderWidth: 1,
-                        label: year-1,
-                        data: chartData.past
-                    }
-                ]
+                        label: year - 1,
+                        data: chartData.past,
+                    },
+                ],
             }
             this.loaded = true
-
-        }
+        },
     },
 }
 </script>
 
 <style lang="scss">
-.line-graph-path {
-    stroke-width: 2px !important;
+.podcaster {
+    .line-graph-path {
+        stroke-width: 2px !important;
+    }
 }
 </style>

@@ -1,12 +1,13 @@
 <template>
-    <div>
-        <k-headline size="large">{{headline}}</k-headline>
-        {{error}}
+    <section class="k-modified-section podcaster">
+        <k-headline size="large" class="spacing">{{ headline }}</k-headline>
+        {{ error }}
         <div class="chartWrapper">
-            <line-chart v-if="loaded" :chartdata="chartdata" :options="chartoptions" :styles="chartStyles"/>
+            <line-chart v-if="loaded" :chartdata="chartdata" :options="chartoptions" :styles="chartStyles" />
         </div>
-    </div>
+    </section>
 </template>
+
 <script>
 import getYear from 'date-fns/getYear'
 import LineChart from './Chart.vue'
@@ -22,15 +23,15 @@ export default {
             chartdata: {},
             chartoptions: {
                 responsive: true,
-                maintainAspectRatio: false
+                maintainAspectRatio: false,
             },
             loaded: false,
         }
     },
     created: function() {
         this.load().then(response => {
-            this.headline = response.headline;
-        });
+            this.headline = response.headline
+        })
     },
     computed: {
         pageValues() {
@@ -46,12 +47,15 @@ export default {
         getStats(year) {
             this.loaded = false
 
-            fetch('/api/podcaster/stats/' + this.podcasterSlug + '/episodes/yearly-downloads/' + year + '+' + (year - 1), {
-                method: 'GET',
-                headers: {
-                    'X-CSRF': panel.csrf,
-                },
-            })
+            fetch(
+                '/api/podcaster/stats/' + this.podcasterSlug + '/episodes/yearly-downloads/' + year + '/' + (year - 1),
+                {
+                    method: 'GET',
+                    headers: {
+                        'X-CSRF': !panel.csrf ? this.$system.csrf : panel.csrf,
+                    },
+                }
+            )
                 .then(response => {
                     if (response.status !== 200) {
                         throw 'You are tracking your downloads, using the file method. Stats are currently available only when using mysql'
@@ -69,18 +73,18 @@ export default {
         },
         addChartData(stats, year) {
             const chartData = {
-                current:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                past:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                current: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                past: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             }
 
             stats.map(function(entry) {
-                if(!entry.log_date) {
+                if (!entry.log_date) {
                     return
                 }
 
-                const entryDate = entry.log_date.split('-');
-                const statsYear = parseInt(entryDate[0]);
-                const statsMonth = parseInt(entryDate[1]);
+                const entryDate = entry.log_date.split('-')
+                const statsYear = parseInt(entryDate[0])
+                const statsMonth = parseInt(entryDate[1])
 
                 if (statsYear === year) {
                     chartData.current[statsMonth - 1] = entry.downloaded
@@ -99,7 +103,7 @@ export default {
                         pointBackgroundColor: '#5d800d',
                         borderWidth: 1,
                         label: year,
-                        data: chartData.current
+                        data: chartData.current,
                     },
                     {
                         backgroundColor: '#ccc',
@@ -107,19 +111,21 @@ export default {
                         pointBorderColor: '#ffffff',
                         pointBackgroundColor: '#777',
                         borderWidth: 1,
-                        label: year-1,
-                        data: chartData.past
-                    }
-                ]
+                        label: year - 1,
+                        data: chartData.past,
+                    },
+                ],
             }
             this.loaded = true
-        }
+        },
     },
 }
 </script>
 
 <style lang="scss">
-.chartWrapper {
-    height: 350px;
+.podcaster {
+    .chartWrapper {
+        height: 350px;
+    }
 }
 </style>
