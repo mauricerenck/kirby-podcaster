@@ -15,7 +15,7 @@ You can add subscribe button to your pages. Use the kirbytag `podloveSubscribe` 
 | `label`            | yes      | The label of the button                            |
 | `lang`             | no       | Language code ie 'de' or 'en'                      |
 | `itunesUrl`        | no       | The iTunes url of your podcast                     |
-| `buttonClass`      | no       | One or multiple css classes added to the button    |
+| `classname`        | no       | One or multiple css classes added to the button    |
 
 ## Using the tag in your templates
 

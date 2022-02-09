@@ -9,14 +9,15 @@ return [
         'label',
         'lang',
         'buttonClass',
+        'classname',
     ],
     'html' => function ($tag) {
-        $id = $tag->attr('podloveSubscribe');
-        $feed = $tag->attr('feed');
-        $label = $tag->attr('label');
-        $lang = $tag->attr('lang');
-        $itunesUrl = $tag->attr('itunesUrl');
-        $buttonClass = $tag->attr('buttonClass');
+        $id = $tag->podloveSubscribe;
+        $feed = $tag->feed;
+        $label = $tag->label;
+        $lang = $tag->lang;
+        $itunesUrl = $tag->itunesUrl;
+        $buttonClass = (is_null($tag->attr('buttonClass'))) ? $tag->classname : $tag->attr('buttonClass');
         $podcast = page($feed);
 
         $podcastId = $podcast->podcastId();

@@ -11,4 +11,12 @@ return [
     'mauricerenck.podcaster.statsPassword' => 'root',
 
     'mauricerenck.podcaster.setId3Data' => true,
+
+    'api' => [
+        'basicAuth' => true
+    ],
+
+    'remote' => [
+        'ca' => false
+    ],
 ];
