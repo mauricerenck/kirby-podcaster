@@ -1,0 +1,13 @@
+/content/ export-ignore
+/site/ export-ignore
+/src/ export-ignore
+/media/ export-ignore
+/tests/ export-ignore
+
+/.editorconfig export-ignore
+/.gitattributes export-ignore
+/.gitignore export-ignore
+/.htaccess export-ignore
+/index.site.php export-ignore
+/package.json export-ignore
+/package-lock.json export-ignore

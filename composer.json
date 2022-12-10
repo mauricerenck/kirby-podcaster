@@ -1,0 +1,49 @@
+{
+    "name": "mauricerenck/podcaster",
+    "version": "3.0.0",
+    "description": "A Kirby Podcast Plugin",
+    "homepage": "https://github.com/mauricerenck/kirby-podcaster",
+    "type": "kirby-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maurice Renck",
+            "email": "hello@maurice-renck.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "mauricerenck\\Podcaster\\": "app"
+        },
+        "classmap": [
+            "app"
+        ]
+    },
+    "require": {
+        "getkirby/composer-installer": "^1.2",
+        "james-heinrich/getid3": "^v1.9",
+        "matomo/matomo-php-tracker": "^3",
+        "php": ">=8.0.0"
+    },
+    "require-dev": {
+        "getkirby/cms": "^3.8",
+        "phpunit/phpunit": "^9.5"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "getkirby/composer-installer": true
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit --testdox tests",
+        "build-test-package": "git archive HEAD -o podcaster.zip --worktree-attributes",
+        "build-composer": "composer install --no-dev --optimize-autoloader",
+        "build-release": [
+            "composer test",
+            "composer install --no-dev --optimize-autoloader",
+            "npm run build"
+        ]
+    },
+    "minimum-stability": "stable"
+}

@@ -1,0 +1,77 @@
+Title: first episode
+
+----
+
+Podcasterseason: 1
+
+----
+
+Podcasterepisode: 1
+
+----
+
+Podcasterepisodetype: full
+
+----
+
+Podcasterexplizit: true
+
+----
+
+Podcasterblock: false
+
+----
+
+Podcastertitle: Episode Title
+
+----
+
+Podcastersubtitle: Episode subtitle
+
+----
+
+Podcasterdescription: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+----
+
+Podcasterchapters:
+
+- 
+  podcasterchaptertimestamp: 00:10:00
+  podcasterchaptertitle: Chapter Title
+  podcasterchapterurl: https://chapter.tld
+  podcasterchapterimage:
+    - erzaehlen.png
+- 
+  podcasterchaptertimestamp: 00:20:00
+  podcasterchaptertitle: Second Chapter
+  podcasterchapterurl: https://chapter.tld
+  podcasterchapterimage: [ ]
+
+----
+
+Podcasterauthor:
+
+- 9u0svKwr
+
+----
+
+Podcastercontributors:
+
+- 9u0svKwr
+
+----
+
+Date: 2021-01-06 21:45:00
+
+----
+
+Text: (podloveSubscribe: erzaehlen feed: a-sample-page/feed label: Podcast abonnieren)
+
+----
+
+Gutenberg: [{"content":{"poster":[],"source":[],"title":"","subtitle":"","description":null,"controls":"true","autoplay":"false"},"id":"2a670a7f-f20b-4750-8da0-cb614a0cf37f","isHidden":false,"type":"podlove-player"}]
+
+----
+
+Podcastercover: 

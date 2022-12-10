@@ -1,0 +1,186 @@
+Title: feed
+
+----
+
+Podcastid: hack-your-business
+
+----
+
+Podcastertitle: Test Podcast
+
+----
+
+Podcasterlink: http://test-podcast.de
+
+----
+
+Podcasteratomlink: 
+
+----
+
+Podcasterlanguage: de
+
+----
+
+Podcastercategories:
+
+- 
+  podcastermaincategory: Arts
+
+----
+
+Podcasterauthor:
+
+- 9u0svKwr
+
+----
+
+Podcasterowner:
+
+- 9u0svKwr
+
+----
+
+Podcastersource:
+
+- a-sample-page
+
+----
+
+Podcastertype: episodic
+
+----
+
+Podcastercover: 
+
+----
+
+Podcastersubtitle: 
+
+----
+
+Podcasterdescription: 
+
+----
+
+Podcasterkeywords: 
+
+----
+
+Podcastercopyright: 
+
+----
+
+Playertype: podlove
+
+----
+
+Podcasterpodlovemaincolor: 
+
+----
+
+Podcasterpodlovehighlighcolor: 
+
+----
+
+Podcasterpodlovetabsinfo: false
+
+----
+
+Podcasterpodlovetabsshare: false
+
+----
+
+Podcasterpodlovetabschapters: false
+
+----
+
+Podcasterpodlovetabsaudio: false
+
+----
+
+Podcasterpodlovetabsdownload: false
+
+----
+
+Podcastermatomoenabled: false
+
+----
+
+Podcastermatomositeid: 
+
+----
+
+Podcastermatomotrackgoal: false
+
+----
+
+Podcastermatomogoalid: 
+
+----
+
+Podcastermatomotrackevent: false
+
+----
+
+Podcastermatomoeventname: 
+
+----
+
+Podcastermatomoaction: false
+
+----
+
+Podcastermatomofeedenabled: false
+
+----
+
+Podcastermatomofeedsiteid: 
+
+----
+
+Podcastermatomofeedtrackgoal: false
+
+----
+
+Podcastermatomofeedpage: false
+
+----
+
+Podcastermatomofeedgoalid: 
+
+----
+
+Podcastermatomofeedtrackevent: false
+
+----
+
+Podcastermatomofeedeventname: 
+
+----
+
+Podcastermatomofeedaction: false
+
+----
+
+Podtracenabled: false
+
+----
+
+Podtracurl: https://dts.podtrac.com/redirect.mp3/
+
+----
+
+Podcasterblock: false
+
+----
+
+Podcasterexplicit: false
+
+----
+
+Podcastercomplete: false
+
+----
+
+Podcasternewfeedurl: 

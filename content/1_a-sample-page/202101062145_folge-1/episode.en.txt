@@ -1,0 +1,70 @@
+Title: first episode
+
+----
+
+Podcasterseason: 1
+
+----
+
+Podcasterepisode: 1
+
+----
+
+Podcasterepisodetype: full
+
+----
+
+Podcasterexplizit: false
+
+----
+
+Podcasterblock: false
+
+----
+
+Podcastertitle: Erzählen Trailer
+
+----
+
+Podcastersubtitle: 
+
+----
+
+Podcasterdescription:
+
+summary lkdjf sldkjf sldkfj sldkfjs ldfs
+df
+sdfs
+dfsdfsd flsdj flsdkjf **slfkjs** lfkjsd flskdjf *sldkjf* sdfsdf
+
+----
+
+Podcasterchapters: 
+
+----
+
+Podcasterauthor:
+
+- 9u0svKwr
+
+----
+
+Podcastercontributors:
+
+- 9u0svKwr
+
+----
+
+Date: 2021-01-06 21:45:00
+
+----
+
+Text: (podloveSubscribe: erzaehlen feed: a-sample-page/feed label: Podcast abonnieren)
+
+----
+
+Gutenberg: [{"content":{"poster":[],"source":[],"title":"","subtitle":"","description":null,"controls":"true","autoplay":"false"},"id":"2a670a7f-f20b-4750-8da0-cb614a0cf37f","isHidden":false,"type":"podlove-player"}]
+
+----
+
+Podcastercover: 
