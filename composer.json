@@ -22,7 +22,7 @@
         "getkirby/composer-installer": "^1.1",
         "james-heinrich/getid3": "^1.9",
         "matomo/matomo-php-tracker": "^2.0",
-        "php": ">=7.3.0 <8.1.0"
+        "php": ">=7.3.0 <8.2.0"
     },
     "require-dev": {
         "getkirby/cms": "^3.5",
