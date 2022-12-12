@@ -1,6 +1,6 @@
 {
     "name": "mauricerenck/podcaster",
-    "version": "2.1.0",
+    "version": "2.1.2",
     "description": "A Kirby Podcast Plugin",
     "type": "kirby-plugin",
     "license": "MIT",
