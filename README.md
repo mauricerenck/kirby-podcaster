@@ -2,6 +2,8 @@
 
 ![GitHub release](https://img.shields.io/github/release/mauricerenck/kirby-podcaster.svg?maxAge=1800) ![License](https://img.shields.io/github/license/mashape/apistatus.svg) ![Kirby Version](https://img.shields.io/badge/Kirby-3%2B-black.svg)
 
+A new big release for Kirby 3.8 is in the making. 
+
 **A Kirby 3 Podcast Plugin**
 
 This plugin helps you running your own podcast with Kirby 3. It uses all the new panel features to make your life easier. You can run multiple podcasts and configure them in the panel. It creates Apple/Google/Name-Your-Favorite-Podcatcher Feeds and allows you to track downloads of your episodes and hits on your feeds. It comes with two audioplayers for your website
