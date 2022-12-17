@@ -46,8 +46,10 @@ tabs:
               podcasterLanguage:
                 label: Language
                 type: select
-                options: api
-                api: https://raw.githubusercontent.com/mauricerenck/kirby-podcaster/master/res/language-codes.json
+                options:
+                  type: api
+                  url: https://raw.githubusercontent.com/mauricerenck/kirby-podcaster/master/res/language-codes.json
+                  query: ""
                 required: true
               podcasterCategories:
                 label: Apple Categories
@@ -57,8 +59,10 @@ tabs:
                   podcasterMainCategory:
                     label: Main
                     type: select
-                    options: api
-                    api: https://raw.githubusercontent.com/mauricerenck/kirby-podcaster/master/res/categories.json
+                    options:
+                      type: api
+                      url: https://raw.githubusercontent.com/mauricerenck/kirby-podcaster/master/res/categories.json
+                      query: ""
               podcasterAuthor:
                 label: Author
                 type: users
@@ -165,13 +169,13 @@ tabs:
                 label: Podlove Player Configuration
                 when:
                   playerType: podlove
-              podcasterPodloveMainColor: 
+              podcasterPodloveMainColor:
                 label: Main color (hex)
                 type: text
                 width: 1/2
                 when:
                   playerType: podlove
-              podcasterPodloveHighlighColor: 
+              podcasterPodloveHighlighColor:
                 label: Highlight color (hex)
                 type: text
                 width: 1/2
@@ -181,7 +185,7 @@ tabs:
                 label: Info Tab
                 type: toggle
                 default: no
-                text: 
+                text:
                   - Invisible
                   - Visible
                 width: 1/4
@@ -191,7 +195,7 @@ tabs:
                 label: Share Tab
                 type: toggle
                 default: no
-                text: 
+                text:
                   - Invisible
                   - Visible
                 width: 1/4
@@ -201,7 +205,7 @@ tabs:
                 label: Chapters Tab
                 type: toggle
                 default: no
-                text: 
+                text:
                   - Invisible
                   - Visible
                 width: 1/4
@@ -211,7 +215,7 @@ tabs:
                 label: Audio Tab
                 type: toggle
                 default: no
-                text: 
+                text:
                   - Invisible
                   - Visible
                 width: 1/4
@@ -221,7 +225,7 @@ tabs:
                 label: Download Tab
                 type: toggle
                 default: no
-                text: 
+                text:
                   - Invisible
                   - Visible
                 width: 1/4
@@ -259,57 +263,57 @@ tabs:
                 help: Tracking will only be enabled for this podcast if you run another one, enable it there, too
                 type: toggle
                 default: no
-                text: 
+                text:
                   - disabled
                   - enabled
                 width: 1/4
-              podcasterMatomoSiteId: 
+              podcasterMatomoSiteId:
                 label: Site Id
                 help: Your Matomo Site Id.
                 type: text
                 width: 1/4
                 when:
                   podcasterMatomoEnabled: yes
-              podcasterMatomoTrackGoal: 
+              podcasterMatomoTrackGoal:
                 label: Track goal
                 help: Enable if you want to track a certain goal for each download. Please be aware that you have to create this goal in Matomo
                 type: toggle
                 default: no
-                text: 
+                text:
                   - disabled
                   - enabled
                 width: 1/4
                 when:
                   podcasterMatomoEnabled: yes
-              podcasterMatomoGoalId: 
+              podcasterMatomoGoalId:
                 label: Goal Id
                 type: text
                 width: 1/4
                 when:
                   podcasterMatomoTrackGoal: yes
-              podcasterMatomoTrackEvent: 
+              podcasterMatomoTrackEvent:
                 label: Track event
                 help: Enable if you want to track a certain event for each download.
                 type: toggle
                 default: no
-                text: 
+                text:
                   - disabled
                   - enabled
                 width: 1/4
                 when:
                   podcasterMatomoEnabled: yes
-              podcasterMatomoEventName: 
+              podcasterMatomoEventName:
                 label: Event name
                 type: text
                 width: 1/4
                 when:
                   podcasterMatomoTrackEvent: yes
-              podcasterMatomoAction: 
+              podcasterMatomoAction:
                 label: Action
                 help: If you want to track the download action, enable this.
                 type: toggle
                 default: no
-                text: 
+                text:
                   - disabled
                   - enabled
                 width: 1/4
@@ -325,68 +329,68 @@ tabs:
                 help: Tracking will only be enabled for this podcast if you run another one, enable it there, too
                 type: toggle
                 default: no
-                text: 
+                text:
                   - disabled
                   - enabled
                 width: 1/4
-              podcasterMatomoFeedSiteId: 
+              podcasterMatomoFeedSiteId:
                 label: Site Id
                 help: Your Matomo Site Id.
                 type: text
                 width: 1/4
                 when:
                   podcasterMatomoFeedEnabled: yes
-              podcasterMatomoFeedTrackGoal: 
+              podcasterMatomoFeedTrackGoal:
                 label: Track goal
                 help: Enable if you want to track a certain goal for each download. Please be aware that you have to create this goal in Matomo
                 type: toggle
                 default: no
-                text: 
+                text:
                   - disabled
                   - enabled
                 width: 1/4
                 when:
                   podcasterMatomoFeedEnabled: yes
-              podcasterMatomoFeedPage: 
+              podcasterMatomoFeedPage:
                 label: Track Page
                 help: Will create a page view when feed is viewed
                 type: toggle
                 default: no
-                text: 
+                text:
                   - disabled
                   - enabled
                 width: 1/4
                 when:
                   podcasterMatomoFeedEnabled: yes
-              podcasterMatomoFeedGoalId: 
+              podcasterMatomoFeedGoalId:
                 label: Goal Id
                 type: text
                 width: 1/4
                 when:
                   podcasterMatomoFeedTrackGoal: yes
-              podcasterMatomoFeedTrackEvent: 
+              podcasterMatomoFeedTrackEvent:
                 label: Track event
                 help: Enable if you want to track a certain event for each download.
                 type: toggle
                 default: no
-                text: 
+                text:
                   - disabled
                   - enabled
                 width: 1/4
                 when:
                   podcasterMatomoFeedEnabled: yes
-              podcasterMatomoFeedEventName: 
+              podcasterMatomoFeedEventName:
                 label: Event name
                 type: text
                 width: 1/4
                 when:
                   podcasterMatomoFeedTrackEvent: yes
-              podcasterMatomoFeedAction: 
+              podcasterMatomoFeedAction:
                 label: Action
                 help: If you want to track the download action, enable this.
                 type: toggle
                 default: no
-                text: 
+                text:
                   - disabled
                   - enabled
                 width: 1/4
@@ -401,11 +405,11 @@ tabs:
                 type: headline
                 label: PodTrac
                 width: 1/1
-              podTracEnabled: 
+              podTracEnabled:
                 label: Enable PodTrac tracking
                 type: toggle
                 default: no
-                text: 
+                text:
                   - disabled
                   - enabled
                 width: 1/4
@@ -457,7 +461,7 @@ tabs:
           label: Block
           type: toggle
           default: no
-          text: 
+          text:
             - Podcast is visible
             - Podcast is BLOCKED
           help: Enabling this will prevent your Podcast from appearing on the Apple and other podcast directories.
@@ -466,7 +470,7 @@ tabs:
           label: Explicit
           type: toggle
           default: no
-          text: 
+          text:
             - Suitable for all ages
             - Podcast marked as explicit
           help: Enabling this will mark your podcast as explicit and may cause that it's not available for certain age groups.
@@ -475,7 +479,7 @@ tabs:
           label: Complete
           type: toggle
           default: no
-          text: 
+          text:
             - New episodes will come
             - No new episodes planned
           help: Enabling this will tell podcast directories that there won't be any new episodes.
