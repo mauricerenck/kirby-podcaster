@@ -2,9 +2,14 @@
 
 namespace mauricerenck\Podcaster;
 
+use Kirby\Toolkit\Xml;
+
 $feed = new Feed();
+// FIXME change response type to rss
+//kirby()->response()->type('application/rss+xml');
+kirby()->response()->type('text/xml');
 ?>
-<?php snippet('xml/xml-header'); ?>
+<?php snippet('podcaster-feed-header'); ?>
 <rss version="2.0"
      xmlns:content="http://purl.org/rss/1.0/modules/content/"
      xmlns:wfw="http://wellformedweb.org/CommentAPI/"
@@ -20,6 +25,46 @@ $feed = new Feed();
 >
     <channel>
         <atom:link href="<?=Xml::encode($page->atomLink());?>" rel="self" type="application/rss+xml"
-                   title="<?php echo Xml::encode($page->title()); ?>"/>
+                   title="<?php echo Xml::encode($page->podcasterTitle()); ?>"/>
 
-        <?php $feed->xmlTag('title', $page->podcasterTitle); ?>
+        <lastBuildDate><?=$page->modified(DATE_RSS);?></lastBuildDate>
+        <generator>Kirby Podcaster Plugin</generator>
+
+        <?=$feed->xmlTag('title', $page->podcasterTitle());?>
+        <?=$feed->xmlTag('subtitle', $page->podcasterSubtitle());?>
+
+        <?=$feed->xmlTag('link', $page->podcasterLink());?>
+
+        <?=$feed->xmlTag('language', $page->podcasterLanguage());?>
+        <?=$feed->xmlTag('docs', $page->podcasterLink());?>
+        <?=$feed->xmlTag('copyright', $page->podcasterCopyright(), true);?>
+
+        <?php snippet('podcaster-feed-description'); ?>
+
+        <?=$feed->xmlTag('itunes:keywords', $page->Podcasterkeywords());?>
+
+        <?php snippet('podcaster-feed-categories'); ?>
+        <?php snippet('podcaster-feed-author'); ?>
+        <?php snippet('podcaster-feed-owner'); ?>
+
+        <?=$feed->xmlTag('itunes:type', $page->PodcasterType());?>
+
+        <?php snippet(
+            'podcaster-feed-cover',
+            [
+                'imageUrl' => $page->cover(),
+                'title' => $page->podcasterTitle(),
+                'link' => $page->podcasterLink(),
+            ]
+        ); ?>
+
+        <?=$feed->xmlTag('itunes:explicit', $page->podcasterExplicit());?>
+        <?=$feed->xmlTag('googleplay:explicit', $page->podcasterExplicit());?>
+
+        <?=$feed->xmlTag('itunes:block', $page->podcasterBlock()->isTrue() ? 'Yes' : null);?>
+        <?=$feed->xmlTag('googleplay:block', $page->podcasterBlock()->isTrue() ? 'Yes' : null);?>
+
+        <?=$feed->xmlTag('itunes:complete', $page->podcasterComplete()->isTrue() ? 'Yes' : null);?>
+        <?=$feed->xmlTag('itunes:new-feed-url', $page->podcasterNewFeedUrl());?>
+    </channel>
+</rss>
