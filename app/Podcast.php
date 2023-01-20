@@ -2,6 +2,9 @@
 
 namespace mauricerenck\Podcaster;
 
+use Exception;
+use Kirby\Filesystem\F;
+
 class Podcast
 {
     public function getPageFromSlug(string $slug)
@@ -21,5 +24,16 @@ class Podcast
         }
 
         return $page;
+    }
+
+    public function getPluginVersion()
+    {
+        try {
+            $composerString = F::read(__DIR__ . '/../composer.json');
+            $composerJson = json_decode($composerString);
+            return $composerJson->version;
+        } catch (Exception $e) {
+            return 'Unknown';
+        }
     }
 }

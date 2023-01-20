@@ -4,6 +4,7 @@ namespace mauricerenck\Podcaster;
 
 use Kirby\Toolkit\Xml;
 
+$podcast = new Podcast();
 $feed = new Feed();
 // FIXME change response type to rss
 //kirby()->response()->type('application/rss+xml');
@@ -28,7 +29,7 @@ kirby()->response()->type('text/xml');
                    title="<?php echo Xml::encode($page->podcasterTitle()); ?>"/>
 
         <lastBuildDate><?=$page->modified(DATE_RSS);?></lastBuildDate>
-        <generator>Kirby Podcaster Plugin</generator>
+        <generator>Kirby Podcaster Plugin <?= $podcast->getPluginVersion(); ?></generator>
 
         <?=$feed->xmlTag('title', $page->podcasterTitle());?>
         <?=$feed->xmlTag('subtitle', $page->podcasterSubtitle());?>
