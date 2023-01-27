@@ -6,11 +6,12 @@ use Kirby\Toolkit\Xml;
 
 $podcast = new Podcast();
 $feed = new Feed();
-// FIXME change response type to rss
+// FIXME: change response type to rss
 //kirby()->response()->type('application/rss+xml');
 kirby()->response()->type('text/xml');
 ?>
 <?php snippet('podcaster-feed-header'); ?>
+
 <rss version="2.0"
      xmlns:content="http://purl.org/rss/1.0/modules/content/"
      xmlns:wfw="http://wellformedweb.org/CommentAPI/"
@@ -62,10 +63,14 @@ kirby()->response()->type('text/xml');
         <?=$feed->xmlTag('itunes:explicit', $page->podcasterExplicit());?>
         <?=$feed->xmlTag('googleplay:explicit', $page->podcasterExplicit());?>
 
-        <?=$feed->xmlTag('itunes:block', $page->podcasterBlock()->isTrue() ? 'Yes' : null);?>
-        <?=$feed->xmlTag('googleplay:block', $page->podcasterBlock()->isTrue() ? 'Yes' : null);?>
+        <?=$feed->xmlTag('itunes:block', $page->podcasterBlock()->isTrue() ? 'Yes' : false);?>
+        <?=$feed->xmlTag('googleplay:block', $page->podcasterBlock()->isTrue() ? 'Yes' : false);?>
 
-        <?=$feed->xmlTag('itunes:complete', $page->podcasterComplete()->isTrue() ? 'Yes' : null);?>
+        <?=$feed->xmlTag('itunes:complete', $page->podcasterComplete()->isTrue() ? 'Yes' : false);?>
         <?=$feed->xmlTag('itunes:new-feed-url', $page->podcasterNewFeedUrl());?>
+
+        <?php foreach ($podcast->getEpisodes($page) as $episode) : ?>
+            <?php snippet('podcaster-feed-item', ['episode' => $episode]); ?>
+        <?php endforeach; ?>
     </channel>
 </rss>
