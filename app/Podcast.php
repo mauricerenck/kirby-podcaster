@@ -26,11 +26,25 @@ class Podcast
         return $page;
     }
 
+    public function getEpisodes($rssFeed)
+    {
+        return $rssFeed->podcasterSource()
+            ->toPages()->children()
+            ->listed()
+            ->filter(function ($child) {
+                return $child->date()->toDate() <= time();
+            })
+            ->filter(function ($child) {
+                return $child->hasAudio();
+            })->sortBy('date', 'desc');
+    }
+
     public function getPluginVersion()
     {
         try {
             $composerString = F::read(__DIR__ . '/../composer.json');
             $composerJson = json_decode($composerString);
+
             return $composerJson->version;
         } catch (Exception $e) {
             return 'Unknown';
