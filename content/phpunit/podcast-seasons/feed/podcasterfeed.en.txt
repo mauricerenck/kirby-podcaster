@@ -6,10 +6,6 @@ Podcastid: phpunit
 
 ----
 
-Podcastertitle: Test Podcast
-
-----
-
 Podcasterlink: https://erzaehl.es
 
 ----
@@ -22,30 +18,15 @@ Podcasterlanguage: de
 
 ----
 
-Podcastercategories:
-
-- 
-  podcastermaincategory: Arts
-- 
-  podcastermaincategory: Education/Courses
+Podcasterauthor: - user://9u0svKwr
 
 ----
 
-Podcasterauthor:
-
-- 9u0svKwr
+Podcasterowner: - user://9u0svKwr
 
 ----
 
-Podcasterowner:
-
-- 9u0svKwr
-
-----
-
-Podcastersource:
-
-- phpunit/podcast-seasons/season01
+Podcastersource: - page://lZUGnLSojsId8GLj
 
 ----
 
@@ -53,9 +34,11 @@ Podcastertype: episodic
 
 ----
 
-Podcastercover:
+Podcastercover: - file://vRSfYjGx9PD0ZMqg
 
-- erzaehlen.png
+----
+
+Podcastertitle: Test Podcast
 
 ----
 
@@ -67,11 +50,20 @@ Podcasterdescription: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, s
 
 ----
 
+Podcastercopyright: Copyright xxxx
+
+----
+
 Podcasterkeywords: apple, keyword
 
 ----
 
-Podcastercopyright: Copyright xxxx
+Podcastercategories:
+
+- 
+  podcastermaincategory: Arts
+- 
+  podcastermaincategory: Education/Courses
 
 ----
 
@@ -188,3 +180,7 @@ Podcastercomplete: false
 ----
 
 Podcasternewfeedurl: 
+
+----
+
+Uuid: lC7DnfDBcUoauJO3

@@ -2,6 +2,14 @@ Title: first episode
 
 ----
 
+Podcasteraudio: - file://E0kamkOlNZehbYkm
+
+----
+
+Podcastercover: - file://NxwPC4OF9isofI1h
+
+----
+
 Podcasterseason: 1
 
 ----
@@ -14,7 +22,7 @@ Podcasterepisodetype: full
 
 ----
 
-Podcasterexplizit: true
+Podcasterexplicit: true
 
 ----
 
@@ -41,24 +49,25 @@ Podcasterchapters:
   podcasterchaptertitle: Chapter Title
   podcasterchapterurl: https://chapter.tld
   podcasterchapterimage:
-    - erzaehlen.png
+    - file://NxwPC4OF9isofI1h
 - 
   podcasterchaptertimestamp: 00:20:00
   podcasterchaptertitle: Second Chapter
   podcasterchapterurl: https://chapter.tld
   podcasterchapterimage: [ ]
+- 
+  podcasterchaptertimestamp: 00:00:30
+  podcasterchaptertitle: chapter3
+  podcasterchapterurl: ""
+  podcasterchapterimage: [ ]
 
 ----
 
-Podcasterauthor:
-
-- 9u0svKwr
+Podcasterauthor: - user://9u0svKwr
 
 ----
 
-Podcastercontributors:
-
-- 9u0svKwr
+Podcastercontributors: - user://9u0svKwr
 
 ----
 
@@ -74,4 +83,8 @@ Gutenberg: [{"content":{"poster":[],"source":[],"title":"","subtitle":"","descri
 
 ----
 
-Podcastercover: 
+Podcasterexplizit: true
+
+----
+
+Uuid: e4q0bSA0YNdECQ0X
