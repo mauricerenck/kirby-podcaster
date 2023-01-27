@@ -1,0 +1,7 @@
+title: Podcaster Feed
+tabs:
+  details: tabs/podcaster/feed-details
+  basic: tabs/podcaster/feed-base
+  stats: tabs/podcaster/feed-stats
+  player: tabs/podcaster/feed-player
+  tracking: tabs/podcaster/feed-tracking
