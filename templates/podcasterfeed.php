@@ -6,9 +6,8 @@ use Kirby\Toolkit\Xml;
 
 $podcast = new Podcast();
 $feed = new Feed();
-// FIXME: change response type to rss
-//kirby()->response()->type('application/rss+xml');
-kirby()->response()->type('text/xml');
+kirby()->response()->type('application/rss+xml');
+//kirby()->response()->type('text/xml'); // TODO for debugging
 ?>
 <?php snippet('podcaster-feed-header'); ?>
 
