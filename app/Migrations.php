@@ -17,7 +17,8 @@ class Migrations
             $pluginPath = str_replace('app', '', __DIR__);
             $migrationPath = $pluginPath . '/migrations/';
 
-            $db = $this->connect($dbType);
+            $podcasterDatabase = new PodcasterDatabase();
+            $db = $podcasterDatabase->connect($dbType);
             $versionResult = $db->query('SELECT version FROM migrations ORDER BY version DESC LIMIT 1');
 
             if (!Dir::exists($migrationPath)) {
@@ -49,33 +50,6 @@ class Migrations
 
                 $db->execute('INSERT INTO migrations (version) VALUES (' . $version . ')');
             }
-        }
-    }
-
-    private function connect($dbType)
-    {
-        try {
-            if ($dbType === 'mysql') {
-                $database = new Database([
-                                             'type' => 'mysql',
-                                             'host' => option('mauricerenck.podcaster.statsHost'),
-                                             'database' => option('mauricerenck.podcaster.statsDatabase'),
-                                             'user' => option('mauricerenck.podcaster.statsUser'),
-                                             'password' => option('mauricerenck.podcaster.statsPassword'),
-                                         ]);
-
-                $database->execute('SET sql_mode=(SELECT REPLACE(@@sql_mode, "ONLY_FULL_GROUP_BY", ""))');
-
-                return $database;
-            }
-
-            $sqlitePath = option('mauricerenck.podcaster.sqlitePath');
-
-            return new Database(['type' => 'sqlite', 'database' => $sqlitePath . 'podcaster.sqlite',]);
-        } catch (Exception $e) {
-            echo 'Could not connect to Database: ', $e->getMessage(), "\n";
-
-            return null;
         }
     }
 }
