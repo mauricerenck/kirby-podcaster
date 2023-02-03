@@ -12,8 +12,8 @@ class TestCaseMocked extends TestCase
     function getPageMock($draft = false, $content = [])
     {
         $defaultContent = [
-            'Podcasteraudio' => '- file://E0kamkOlNZehbYkm',
-            'Podcastermp3' => '- file://E0kamkOlNZehbYkm',
+            'Podcasteraudio' => '- file://sFzaPs7cI1STHfWS',
+            'Podcastermp3' => '- file://sFzaPs7cI1STHfWS',
             'Podcastercover' => '- file://NxwPC4OF9isofI1h',
             'Podcasterchapters' => '- 
   podcasterchaptertimestamp: 00:10:00

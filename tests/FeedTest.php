@@ -61,7 +61,7 @@ final class FeedTest extends TestCaseMocked
         $pageMock = $this->getPageMock();
         $feed = new Feed();
         $result = $feed->getGuid($pageMock, false);
-        $this->assertEquals('/en/episode', $result);
+        $this->assertEquals('58d1bc31042b9e873661db17ff2c1822', $result);
     }
 
     public function testGetGuidWithUuid()
@@ -77,7 +77,7 @@ final class FeedTest extends TestCaseMocked
         $pageMock = $this->getPageMock();
         $feed = new Feed();
         $result = $feed->getGuid($pageMock, null);
-        $this->assertEquals('/en/episode', $result);
+        $this->assertEquals('58d1bc31042b9e873661db17ff2c1822', $result);
     }
 
     public function testGetChapters()
@@ -92,7 +92,7 @@ final class FeedTest extends TestCaseMocked
     public function testGetAudioFile()
     {
         $pageMock = $this->getPageMock();
-        $expected = '/intro-mit-text-kurz.mp3';
+        $expected = '/kirby-podcaster-test.mp3';
 
         $feed = new Feed();
         $result = $feed->getAudioFile($pageMock);
@@ -122,8 +122,8 @@ final class FeedTest extends TestCaseMocked
         $pageMock = $this->getPageMock();
         $fileMock = $feed->getAudioFile($pageMock);
         $expected = [
-            'url' => '/en/episode/download/intro-mit-text-kurz.mp3',
-            'length' => 396560,
+            'url' => '/en/episode/download/kirby-podcaster-test.mp3',
+            'length' => 481406,
         ];
 
         $result = $feed->getAudioEnclosures($pageMock, $fileMock);
@@ -139,7 +139,7 @@ final class FeedTest extends TestCaseMocked
         $fileMock = $feed->getAudioFile($pageMock);
 
         $result = $feed->getAudioDuration($fileMock);
-        $expected = '00:00:16';
+        $expected = '00:00:15';
 
         $this->assertEquals($expected, $result);
     }

@@ -10,23 +10,23 @@ columns:
             type: files
             label: Episode mp3
             multiple: false
-            template: podcaster-episode
             required: true
             layout: cardlets
             info: "Duration: {{ file.duration}}"
             query: page.audio
             accept: audio/mpeg
+            uploads: podcaster-episode
           podcasterCover:
             type: files
             label: Cover Image
             layout: cards
             multiple: false
-            template: podcaster-cover
             query: page.images
             help: You can set a cover for this single episode here, but Apple recommends to do this in your mp3-metadata (Id3).
             image:
               cover: true
               ratio: 1/1
+            uploads: podcaster-cover
           podcasterFieldNote:
             type: info
             theme: negative

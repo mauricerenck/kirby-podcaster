@@ -11,4 +11,5 @@ fields:
   duration:
     label: Duration
     type: text
+    disabled: true
     width: 1/2

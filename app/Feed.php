@@ -42,7 +42,13 @@ class Feed
 
     public function getGuid($episode, $useUuid)
     {
-        return ($useUuid) ? $episode->permalink() : $episode->url();
+        if ($useUuid) {
+            return $episode->permalink();
+        }
+
+        $audio = $this->getAudioFile($episode);
+
+        return $audio->guid()->value();
     }
 
     public function getAudioDuration($audio)

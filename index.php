@@ -19,13 +19,14 @@ Kirby::plugin('mauricerenck/podcaster', [
         'tabs/podcaster/feed-tracking' => __DIR__ . '/blueprints/tabs/feed-tracking.yml',
 
         //'pages/podcasterwizard' => __DIR__ . '/blueprints/pages/podcasterwizard.yml',
-        //'files/podcaster-episode' => __DIR__ . '/blueprints/files/podcaster-episode.yml',
-        //'files/podcaster-cover' => __DIR__ . '/blueprints/files/podcaster-cover.yml',
+        'files/podcaster-episode' => __DIR__ . '/blueprints/files/podcaster-episode.yml',
+        'files/podcaster-cover' => __DIR__ . '/blueprints/files/podcaster-cover.yml',
     ],
     'templates' => [
         'podcasterfeed' => __DIR__ . '/templates/podcasterfeed.php',
     ],
     'pageMethods' => require_once __DIR__ . '/app/FeedMethods.php',
+    'hooks' => require_once(__DIR__ . '/internal/hooks.php'),
     'snippets' => [
         'podcaster-feed-header' => __DIR__ . '/snippets/xml/xml-header.php',
         'podcaster-feed-cover' => __DIR__ . '/snippets/xml/channel-cover.php',
