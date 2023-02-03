@@ -38,7 +38,24 @@ Kirby::plugin('mauricerenck/podcaster', [
         'podcaster-feed-item-cover' => __DIR__ . '/snippets/xml/item-cover.php',
         'podcaster-feed-item-chapter' => __DIR__ . '/snippets/xml/item-chapter.php',
         'podcaster-feed-item-enclosure' => __DIR__ . '/snippets/xml/item-enclosure.php',
-    ]
-    //'routes' => [
-    //],
+    ],
+    'routes' => [
+        [
+            'pattern' => '(:all)/' . option('mauricerenck.podcaster.downloadTriggerPath', 'download') . '/(:any)',
+            'action' => function ($slug, $filename) {
+                $podcast = new Podcast();
+
+                $dbType = option('mauricerenck.podcaster.statsType', 'sqlite');
+
+                $userAgent = $_SERVER['HTTP_USER_AGENT'];
+                $stats = ($dbType === 'sqlite') ? new PodcasterStatsSqlite() : null;
+
+                $episode = $podcast->getPageFromSlug($slug);
+                $feed = $podcast->getFeedOfEpisode($episode);
+
+                $stats->trackEpisode($feed, $episode, $userAgent);
+                return $podcast->getAudioFile($episode);
+            },
+        ],
+    ],
 ]);
