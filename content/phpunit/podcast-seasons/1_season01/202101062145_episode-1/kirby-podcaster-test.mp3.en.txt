@@ -1,0 +1,17 @@
+Episodetitle: Kirby Podcaster Test mp3
+
+----
+
+Duration: 00:00:15
+
+----
+
+Uuid: PIrCmXQs1k0gJV41
+
+----
+
+Template: podcaster-episode
+
+----
+
+Guid: 58d1bc31042b9e873661db17ff2c1822

@@ -29,21 +29,15 @@ Podcastercategories:
 
 ----
 
-Podcasterauthor:
-
-- 9u0svKwr
+Podcasterauthor: - 9u0svKwr
 
 ----
 
-Podcasterowner:
-
-- 9u0svKwr
+Podcasterowner: - 9u0svKwr
 
 ----
 
-Podcastersource:
-
-- a-sample-page
+Podcastersource: - a-sample-page
 
 ----
 
@@ -184,3 +178,7 @@ Podcastercomplete: false
 ----
 
 Podcasternewfeedurl: 
+
+----
+
+Uuid: ba9oTddNmh4Ro4Qg
