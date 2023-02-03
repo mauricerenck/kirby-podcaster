@@ -5,12 +5,6 @@ use mauricerenck\Podcaster\TestCaseMocked;
 
 final class AudioToolsTest extends TestCaseMocked
 {
-    //public function testPodcasterTitle()
-    //{
-    //    $pageMock = $this->getPageMock();
-    //    $fileMock = $feed->getAudioFile($pageMock);
-    //}
-
     public function testConvertAudioDurations() {
         $audioTools = new AudioTools();
         $durationSeconds = $audioTools->convertAudioDuration(10);

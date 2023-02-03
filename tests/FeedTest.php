@@ -100,21 +100,6 @@ final class FeedTest extends TestCaseMocked
         $this->assertStringContainsString($expected, $result->url());
     }
 
-    // FIXME check how to mock that fallback file
-    //public function testGetAudioFileFallback()
-    //{
-    //    $pageMock = $this->getPageMock(false, [
-    //        'Podcasteraudio' => ''
-    //    ]);
-    //
-    //    $expected = '/audio.mp3';
-    //
-    //    $feed = new Feed();
-    //    $result = $feed->getAudioFile($pageMock);
-    //
-    //    $this->assertStringContainsString($expected, $result->url());
-    //}
-
     public function testGetAudioEnclosure()
     {
         $feed = new Feed();

@@ -5,8 +5,6 @@ use \mauricerenck\Podcaster\Podcast;
 
 final class PodcastTest extends TestCase
 {
-
-
     public function testGetPageFromSlug()
     {
         $receiverUtils = new Podcast();
