@@ -89,17 +89,6 @@ final class FeedTest extends TestCaseMocked
         $this->assertCount(3, $result);
     }
 
-    public function testGetAudioFile()
-    {
-        $pageMock = $this->getPageMock();
-        $expected = '/kirby-podcaster-test.mp3';
-
-        $feed = new Feed();
-        $result = $feed->getAudioFile($pageMock);
-
-        $this->assertStringContainsString($expected, $result->url());
-    }
-
     public function testGetAudioEnclosure()
     {
         $feed = new Feed();

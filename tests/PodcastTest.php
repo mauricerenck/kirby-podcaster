@@ -1,9 +1,9 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
+use mauricerenck\Podcaster\TestCaseMocked;
 use \mauricerenck\Podcaster\Podcast;
 
-final class PodcastTest extends TestCase
+final class PodcastTest extends TestCaseMocked
 {
     public function testGetPageFromSlug()
     {
@@ -29,5 +29,15 @@ final class PodcastTest extends TestCase
         $this->assertFalse($result);
     }
 
+    public function testGetAudioFile()
+    {
+        $pageMock = $this->getPageMock();
+        $expected = '/kirby-podcaster-test.mp3';
+
+        $feed = new Podcast();
+        $result = $feed->getAudioFile($pageMock);
+
+        $this->assertStringContainsString($expected, $result->url());
+    }
     // TODO test getEpisodes()
 }
