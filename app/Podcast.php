@@ -26,6 +26,17 @@ class Podcast
         return $page;
     }
 
+    public function getFeedOfEpisode($episode)
+    {
+        $feed = $episode->siblings()->filterBy('intendedTemplate', 'podcasterfeed')->first();
+
+        if (is_null($feed) || $feed->count() === 0) {
+            $feed = $episode->parent()->parent()->children()->filterBy('intendedTemplate', 'podcasterfeed')->first();
+        }
+
+        return $feed;
+    }
+
     public function getEpisodes($rssFeed)
     {
         return $rssFeed->podcasterSource()
@@ -37,6 +48,15 @@ class Podcast
             ->filter(function ($child) {
                 return $child->hasAudio();
             })->sortBy('date', 'desc');
+    }
+
+    public function getAudioFile($episode)
+    {
+        if ($episode->podcasterAudio()->isNotEmpty()) {
+            return $episode->podcasterAudio()->toFile();
+        }
+
+        return $episode->audio($episode->podcasterMp3()->first())->first()->toFile();
     }
 
     public function getPluginVersion()

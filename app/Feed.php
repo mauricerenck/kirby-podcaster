@@ -4,7 +4,7 @@ namespace mauricerenck\Podcaster;
 
 use Kirby\Toolkit\Xml;
 
-class Feed
+class Feed extends Podcast
 {
     public function xmlTag(string $xmlTag, string|null $fieldValue, bool $useCData = false, $attributes = []): string
     {
@@ -58,15 +58,6 @@ class Feed
         }
 
         return $audio->duration()->value();
-    }
-
-    public function getAudioFile($episode)
-    {
-        if ($episode->podcasterAudio()->isNotEmpty()) {
-            return $episode->podcasterAudio()->toFile();
-        }
-
-        return $episode->audio($episode->podcasterMp3()->first())->first()->toFile();
     }
 
     public function getAudioEnclosures($episode, $audio): array
