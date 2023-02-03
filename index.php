@@ -3,6 +3,7 @@
 namespace mauricerenck\Podcaster;
 
 use Kirby;
+use Kirby\Http\Response;
 
 @include_once __DIR__ . '/vendor/autoload.php';
 
@@ -41,8 +42,21 @@ Kirby::plugin('mauricerenck/podcaster', [
     ],
     'routes' => [
         [
+            'pattern' => '(:all)/' . option('mauricerenck.podcaster.defaultFeed', 'feed'),
+            'action' => function ($slug) {
+                $podcast = new Podcast();
+                $feedParent = $podcast->getPageFromSlug($slug);
+                $feed = $feedParent->children()->filterBy('intendedTemplate', 'podcasterfeed')->first();
+                $dbType = option('mauricerenck.podcaster.statsType', 'sqlite');
+                $stats = ($dbType === 'sqlite') ? new PodcasterStatsSqlite() : null;
+
+                $stats->trackFeed($feed);
+                return new Response($feed->render(), 'text/xml');
+            },
+        ],
+        [
             'pattern' => '(:all)/' . option('mauricerenck.podcaster.downloadTriggerPath', 'download') . '/(:any)',
-            'action' => function ($slug, $filename) {
+            'action' => function ($slug) {
                 $podcast = new Podcast();
 
                 $dbType = option('mauricerenck.podcaster.statsType', 'sqlite');
@@ -54,6 +68,7 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $feed = $podcast->getFeedOfEpisode($episode);
 
                 $stats->trackEpisode($feed, $episode, $userAgent);
+
                 return $podcast->getAudioFile($episode);
             },
         ],
