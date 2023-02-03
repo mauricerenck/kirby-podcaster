@@ -21,4 +21,8 @@ return [
             throw new Exception(['details' => 'the audio id3 data could not be read']);
         }
     },
+    'system.loadPlugins:after' => function () {
+        $migrations = new Migrations();
+        $migrations->migrate();
+    },
 ];
