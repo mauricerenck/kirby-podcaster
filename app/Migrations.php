@@ -2,8 +2,6 @@
 
 namespace mauricerenck\Podcaster;
 
-use Exception;
-use Kirby\Database\Database;
 use Kirby\Filesystem\Dir;
 use Kirby\Filesystem\F;
 
@@ -32,7 +30,11 @@ class Migrations
             $migrations = Dir::files($migrationPath, ['.', '..'], true);
 
             foreach ($migrations as $migration) {
-                $version = str_replace([$dbType . '_', '.sql'], ['', ''], F::filename($migration));
+                if (!str_starts_with(F::filename($migration), $dbType)) {
+                    continue;
+                }
+
+                $version = (int)str_replace([$dbType . '_', '.sql'], ['', ''], F::filename($migration));
                 $migrationStructures = explode(';', F::read($migration));
                 $lastMigration = 0;
 
@@ -46,9 +48,9 @@ class Migrations
                             $db->execute(trim($query));
                         }
                     }
-                }
 
-                $db->execute('INSERT INTO migrations (version) VALUES (' . $version . ')');
+                    $db->execute('INSERT INTO migrations (version) VALUES (' . $version . ')');
+                }
             }
         }
     }
