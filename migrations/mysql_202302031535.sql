@@ -4,6 +4,7 @@ RENAME TABLE podcaster_devices TO devices,
     podcaster_os TO os,
     podcaster_useragents TO useragents;
 
+ALTER TABLE episodes CHANGE COLUMN id id varchar(255);
 ALTER TABLE devices CHANGE COLUMN podcaster_id id varchar(255);
 ALTER TABLE feeds CHANGE COLUMN podcaster_id id varchar(255);
 ALTER TABLE os CHANGE COLUMN podcaster_id id varchar(255);
@@ -33,5 +34,6 @@ UPDATE devices SET created = CONCAT(devices.log_date, "-01");
 ALTER TABLE os DROP COLUMN log_date;
 ALTER TABLE useragents DROP COLUMN log_date;
 ALTER TABLE devices DROP COLUMN log_date;
+ALTER TABLE episodes DROP COLUMN podcaster_id;
 
 DROP TABLE `podcaster_settings`
