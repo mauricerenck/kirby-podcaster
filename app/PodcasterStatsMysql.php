@@ -4,14 +4,14 @@ namespace mauricerenck\Podcaster;
 
 use Kirby\Database\Database;
 
-class PodcasterStatsSqlite extends PodcasterStats
+class PodcasterStatsMysql extends PodcasterStats
 {
     private ?Database $database;
 
     public function __construct()
     {
         $podcasterDb = new PodcasterDatabase();
-        $this->database = $podcasterDb->connect('sqlite');
+        $this->database = $podcasterDb->connect('mysql');
     }
 
     public function trackFeed($feed)
@@ -21,9 +21,9 @@ class PodcasterStatsSqlite extends PodcasterStats
         $query = 'INSERT INTO feeds(' . implode(',', $fields) . ') VALUES("' . implode(
                 '","',
                 $values
-            ) . '") ON CONFLICT(id) DO UPDATE SET downloads=downloads+1;';
+            ) . '") ON DUPLICATE KEY UPDATE downloads = downloads+1;';
 
-        $this->database->query($query);
+        $this->database->execute($query);
     }
 
     public function upsertEpisode($feed, $episode, $trackingDate)
@@ -33,8 +33,9 @@ class PodcasterStatsSqlite extends PodcasterStats
         $query = 'INSERT INTO episodes(' . implode(',', $fields) . ') VALUES("' . implode(
                 '","',
                 $values
-            ) . '") ON CONFLICT(id) DO UPDATE SET downloads=downloads+1;';
-        $this->database->query($query);
+            ) . '") ON DUPLICATE KEY UPDATE downloads=downloads+1;';
+
+        $this->database->execute($query);
     }
 
     public function upsertUserAgents($feed, array $userAgentData, int $trackingDate)
@@ -48,8 +49,9 @@ class PodcasterStatsSqlite extends PodcasterStats
         $query = 'INSERT INTO os(' . implode(',', $fields) . ') VALUES("' . implode(
                 '","',
                 $values
-            ) . '")  ON CONFLICT(id) DO UPDATE SET downloads=downloads+1;';
-        $this->database->query($query);
+            ) . '") ON DUPLICATE KEY UPDATE downloads=downloads+1;';
+
+        $this->database->execute($query);
 
         $uniqueHash = md5($userAgentData['app'] . $podcastSlug . $downloadDate);
         $fields = ['id', 'useragent', 'podcast_slug', 'uuid', 'created', 'downloads'];
@@ -58,8 +60,8 @@ class PodcasterStatsSqlite extends PodcasterStats
         $query = 'INSERT INTO useragents(' . implode(',', $fields) . ') VALUES("' . implode(
                 '","',
                 $values
-            ) . '")  ON CONFLICT(id) DO UPDATE SET downloads=downloads+1;';
-        $this->database->query($query);
+            ) . '") ON DUPLICATE KEY UPDATE downloads=downloads+1;';
+        $this->database->execute($query);
 
         $uniqueHash = md5($userAgentData['device'] . $podcastSlug . $downloadDate);
         $fields = ['id', 'device', 'podcast_slug', 'uuid', 'created', 'downloads'];
@@ -68,7 +70,7 @@ class PodcasterStatsSqlite extends PodcasterStats
         $query = 'INSERT INTO devices(' . implode(',', $fields) . ') VALUES("' . implode(
                 '","',
                 $values
-            ) . '")  ON CONFLICT(id) DO UPDATE SET downloads=downloads+1;';
-        $this->database->query($query);
+            ) . '") ON DUPLICATE KEY UPDATE downloads=downloads+1;';
+        $this->database->execute($query);
     }
 }

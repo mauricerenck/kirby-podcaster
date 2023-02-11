@@ -48,7 +48,7 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $feedParent = $podcast->getPageFromSlug($slug);
                 $feed = $feedParent->children()->filterBy('intendedTemplate', 'podcasterfeed')->first();
                 $dbType = option('mauricerenck.podcaster.statsType', 'sqlite');
-                $stats = ($dbType === 'sqlite') ? new PodcasterStatsSqlite() : null;
+                $stats = ($dbType === 'sqlite') ? new PodcasterStatsSqlite() : new PodcasterStatsMysql();
 
                 $stats->trackFeed($feed);
                 return new Response($feed->render(), 'text/xml');
@@ -62,7 +62,7 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $dbType = option('mauricerenck.podcaster.statsType', 'sqlite');
 
                 $userAgent = $_SERVER['HTTP_USER_AGENT'];
-                $stats = ($dbType === 'sqlite') ? new PodcasterStatsSqlite() : null;
+                $stats = ($dbType === 'sqlite') ? new PodcasterStatsSqlite() : new PodcasterStatsMysql();
 
                 $episode = $podcast->getPageFromSlug($slug);
                 $feed = $podcast->getFeedOfEpisode($episode);
