@@ -1,25 +1,27 @@
 {
-    "name": "podcaster",
-    "version": "2.1.0",
-    "description": "A Kirby Podcast Plugin",
-    "main": "index.js",
-    "author": "Maurice Renck",
-    "scripts": {
-        "dev": "npx -y kirbyup src/index.js --watch",
-        "build": "npx -y kirbyup src/index.js"
-    },
-    "devDependencies": {
-        "@ambimax/semantic-release-composer": "github:ambimax/semantic-release-composer",
-        "@semantic-release/changelog": "^6.0.1",
-        "@semantic-release/git": "^10.0.1",
-        "@vue/component-compiler-utils": "^3.1.2",
-        "vue-template-compiler": "^2.6.10"
-    },
-    "dependencies": {
-        "chart.js": "^2.9.4",
-        "date-fns": "2.11.0",
-        "vue": "^2.2.4",
-        "vue-chartjs": "^3.5.1",
-        "vue-hot-reload-api": "^2.3.3"
-    }
+  "name": "podcaster",
+  "version": "3.0.0",
+  "description": "A Kirby Podcast Plugin",
+  "main": "index.js",
+  "author": "Maurice Renck",
+  "scripts": {
+    "dev": "npx -y kirbyup panel-src/index.js --watch",
+    "build": "npx -y kirbyup panel-src/index.js"
+  },
+  "devDependencies": {
+    "@ambimax/semantic-release-composer": "github:ambimax/semantic-release-composer",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@vue/component-compiler-utils": "^3.1.2",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {
+    "apexcharts": "^3.37.0",
+    "chart.js": "^2.9.4",
+    "date-fns": "2.29.3",
+    "vue-apexcharts": "^1.6.2",
+    "vue-chartjs": "^3.5.1",
+    "vue-chartkick": "^0.6.1",
+    "vue-hot-reload-api": "^2.3.4"
+  }
 }

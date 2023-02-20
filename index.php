@@ -27,7 +27,9 @@ Kirby::plugin('mauricerenck/podcaster', [
         'podcasterfeed' => __DIR__ . '/templates/podcasterfeed.php',
     ],
     'pageMethods' => require_once __DIR__ . '/app/FeedMethods.php',
+    'api' => require_once(__DIR__ . '/internal/api.php'),
     'hooks' => require_once(__DIR__ . '/internal/hooks.php'),
+    'areas' => require_once(__DIR__ . '/internal/areas.php'),
     'snippets' => [
         'podcaster-feed-header' => __DIR__ . '/snippets/xml/xml-header.php',
         'podcaster-feed-cover' => __DIR__ . '/snippets/xml/channel-cover.php',
@@ -51,6 +53,7 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $stats = ($dbType === 'sqlite') ? new PodcasterStatsSqlite() : new PodcasterStatsMysql();
 
                 $stats->trackFeed($feed);
+
                 return new Response($feed->render(), 'text/xml');
             },
         ],
@@ -70,6 +73,27 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $stats->trackEpisode($feed, $episode, $userAgent);
 
                 return $podcast->getAudioFile($episode);
+            },
+        ],
+
+        [
+            'pattern' => 'test',
+            'action' => function () {
+                $podcasterStats = new PodcasterStatsMysql();
+                $results = $podcasterStats->getDownloadsGraphData('phpunit', 2023, 2);
+
+                if ($results === false) {
+                    return ['days' => []];
+                }
+
+                $trackedDays = $results->toArray();
+                $days = array_fill(0,32,0);
+
+                foreach ($trackedDays as $day) {
+                    $days[$day->day] = $day->downloads;
+                }
+
+                return ['days' => $days];
             },
         ],
     ],

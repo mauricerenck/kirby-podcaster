@@ -26,6 +26,20 @@ class Podcast
         return $page;
     }
 
+    public function getPodcastFromId(string $id)
+    {
+        $pages = site()->index()->filterBy('template', 'podcasterfeed')->filter(function ($child) use ($id) {
+            return $child->podcastId()->value() === $id;
+        })->first();
+
+
+        if (is_null($pages)) {
+            return false;
+        }
+
+        return $pages;
+    }
+
     public function getFeedOfEpisode($episode)
     {
         $feed = $episode->siblings()->filterBy('intendedTemplate', 'podcasterfeed')->first();
@@ -40,7 +54,8 @@ class Podcast
     public function getEpisodes($rssFeed)
     {
         return $rssFeed->podcasterSource()
-            ->toPages()->children()
+            ->toPages()
+            ->children()
             ->listed()
             ->filter(function ($child) {
                 return $child->date()->toDate() <= time();
@@ -57,6 +72,18 @@ class Podcast
         }
 
         return $episode->audio($episode->podcasterMp3()->first())->first()->toFile();
+    }
+
+    public function getAllPodcasts(): array
+    {
+        $pagesWithPodcastFeed = site()->index()->filterBy('template', 'podcasterfeed');
+
+        $podcasts = [];
+        foreach ($pagesWithPodcastFeed as $podcast) {
+            $podcasts[] = ['id' => $podcast->podcastId()->value(), 'name' => $podcast->podcasterTitle()->value()];
+        }
+
+        return $podcasts;
     }
 
     public function getPluginVersion()

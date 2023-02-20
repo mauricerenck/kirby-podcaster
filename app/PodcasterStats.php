@@ -41,18 +41,19 @@ class PodcasterStats
         return;
     }
 
+    // FIXME
+
     public function trackEpisodeMatomo()
     {
-        // FIXME
         //if ($podcast->podcasterMatomoEnabled()->isTrue()) {
         //    $matomoUtils = new PodcasterStatsMatomo($podcast->podcasterMatomoSiteId());
         //    $matomoUtils->trackEpisodeDownload($podcast, $episode);
         //}
     }
 
+    // FIXME
     public function trackPodTrac()
     {
-        // FIXME
         //if ($podcast->podTracEnabled()->isTrue()) {
         //    $podTrack = new PodcasterStatsPodTrac();
         //    $podTrack->increaseDownloads($podcast, $episode);
@@ -146,5 +147,9 @@ class PodcasterStats
     public function formatTrackingDate(int $timestamp): string
     {
         return date('Y-m-d', $timestamp);
+    }
+
+    public function getDownloadsGraphData($podcast, $year, $month): object | bool {
+        return false;
     }
 }
