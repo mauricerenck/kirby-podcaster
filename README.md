@@ -2,7 +2,11 @@
 
 ![GitHub release](https://img.shields.io/github/release/mauricerenck/kirby-podcaster.svg?maxAge=1800) ![License](https://img.shields.io/github/license/mashape/apistatus.svg) ![Kirby Version](https://img.shields.io/badge/Kirby-3%2B-black.svg)
 
-### A new big release for Kirby 3.8 is in the making. 
+---
+
+### A new big release for Kirby 3.9+ is in the making. 
+
+---
 
 **A Kirby 3 Podcast Plugin**
 
