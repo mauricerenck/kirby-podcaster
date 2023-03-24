@@ -9,6 +9,8 @@ import PodEpisodesAutocomplete from "./components/EpisodesAutocomplete.vue";
 import PodGraphDevices from "./components/GraphDevicesMonth.vue";
 import PodGraphUserAgents from "./components/GraphUserAgentsMonth.vue";
 import PodGraphSystems from "./components/GraphSystemMonth.vue";
+import PodGraphEpisodes from "./components/GraphEpisodes.vue";
+import PodGraphFeeds from "./components/GraphFeeds.vue";
 
 panel.plugin("mauricerenck/podcaster", {
   components: {
@@ -23,6 +25,8 @@ panel.plugin("mauricerenck/podcaster", {
     'PodGraphUserAgents': PodGraphUserAgents,
     'PodGraphSystems': PodGraphSystems,
     'PodSubscribers': PodSubscribers,
+    'PodGraphEpisodes': PodGraphEpisodes,
+    'PodGraphFeeds': PodGraphFeeds,
   }
 });
 

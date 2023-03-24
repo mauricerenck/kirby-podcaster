@@ -96,12 +96,22 @@
                         :onSelectEpisode="this.addSelectedEpisode"
                     />
                 </k-column>
-            </k-grid>
 
-            <DetailsByMonth :summary="summary" />
-            <Targets :targets="targets" />
-            <Sources :sources="sources" />
-            <Sent :outbox="sent" />
+                <k-column width="1/1">
+                    <k-line-field />
+                    <k-headline size="huge">Episode Downloads</k-headline>
+                    <PodGraphEpisodes
+                        :selectedPodcast="this.selectedPodcast"
+                    />
+                </k-column>
+                <k-column width="1/1">
+                    <k-line-field />
+                    <k-headline size="huge">Feed Downloads</k-headline>
+                    <PodGraphFeeds
+                        :selectedPodcast="this.selectedPodcast"
+                    />
+                </k-column>
+            </k-grid>
         </k-view>
     </k-inside>
 </template>

@@ -55,7 +55,7 @@
       options
     };
   }
-  const _sfc_main$a = {
+  const _sfc_main$c = {
     props: {
       year: Number,
       month: Number,
@@ -108,7 +108,7 @@
       }
     }
   };
-  var _sfc_render$a = function render() {
+  var _sfc_render$c = function render() {
     var _vm = this, _c = _vm._self._c;
     return _c("k-inside", [_c("k-view", { staticClass: "k-podcaster-view" }, [_c("k-header", [_vm._v("Podcaster Analytics")]), _c("k-grid", { attrs: { "gutter": "small" } }, [_c("k-column", { attrs: { "width": "1/4" } }, [_c("k-select-field", { attrs: { "options": _vm.podcastOptions, "label": "Podcast", "name": "select" }, on: { "input": _vm.setPodcast }, model: { value: _vm.selectedPodcast, callback: function($$v) {
       _vm.selectedPodcast = $$v;
@@ -116,22 +116,22 @@
       _vm.selectedYear = $$v;
     }, expression: "selectedYear" } })], 1), _c("k-column", { attrs: { "width": "1/6" } }, [_c("k-number-field", { attrs: { "max": 12, "min": 1, "step": 1, "label": "Month" }, on: { "input": _vm.setMonth }, model: { value: _vm.selectedMonth, callback: function($$v) {
       _vm.selectedMonth = $$v;
-    }, expression: "selectedMonth" } })], 1), _c("k-column", [_c("PodGraphEpisodesMonth", { attrs: { "selectedMonth": this.selectedMonth, "selectedYear": this.selectedYear, "selectedPodcast": this.selectedPodcast } })], 1), _c("k-column", { attrs: { "width": "1/3" } }, [_c("PodGraphDevices", { attrs: { "selectedMonth": this.selectedMonth, "selectedYear": this.selectedYear, "selectedPodcast": this.selectedPodcast } })], 1), _c("k-column", { attrs: { "width": "1/3" } }, [_c("PodGraphUserAgents", { attrs: { "selectedMonth": this.selectedMonth, "selectedYear": this.selectedYear, "selectedPodcast": this.selectedPodcast } })], 1), _c("k-column", { attrs: { "width": "1/3" } }, [_c("PodGraphSystems", { attrs: { "selectedMonth": this.selectedMonth, "selectedYear": this.selectedYear, "selectedPodcast": this.selectedPodcast } })], 1), _c("k-column", [_c("k-line-field"), _c("k-headline", { attrs: { "size": "huge" } }, [_vm._v("Episode Details")])], 1), _c("k-column", { attrs: { "width": "2/3" } }, [_c("PodGraphSingleEpisode", { attrs: { "selectedPodcast": this.selectedPodcast, "selectedEpisodes": this.selectedEpisodes } })], 1), _c("k-column", { attrs: { "width": "1/3" } }, [_c("PodEpisodesAutocomplete", { attrs: { "selectedPodcast": this.selectedPodcast, "selectedEpisodes": this.selectedEpisodes, "onSelectEpisode": this.addSelectedEpisode, "onRemoveEpisode": this.removeSelectedEpisode } }), _c("k-headline", [_vm._v("Top10 Episodes")]), _c("PodTopEpisodes", { attrs: { "selectedPodcast": this.selectedPodcast, "onSelectEpisode": this.addSelectedEpisode } })], 1)], 1), _c("DetailsByMonth", { attrs: { "summary": _vm.summary } }), _c("Targets", { attrs: { "targets": _vm.targets } }), _c("Sources", { attrs: { "sources": _vm.sources } }), _c("Sent", { attrs: { "outbox": _vm.sent } })], 1)], 1);
+    }, expression: "selectedMonth" } })], 1), _c("k-column", [_c("PodGraphEpisodesMonth", { attrs: { "selectedMonth": this.selectedMonth, "selectedYear": this.selectedYear, "selectedPodcast": this.selectedPodcast } })], 1), _c("k-column", { attrs: { "width": "1/3" } }, [_c("PodGraphDevices", { attrs: { "selectedMonth": this.selectedMonth, "selectedYear": this.selectedYear, "selectedPodcast": this.selectedPodcast } })], 1), _c("k-column", { attrs: { "width": "1/3" } }, [_c("PodGraphUserAgents", { attrs: { "selectedMonth": this.selectedMonth, "selectedYear": this.selectedYear, "selectedPodcast": this.selectedPodcast } })], 1), _c("k-column", { attrs: { "width": "1/3" } }, [_c("PodGraphSystems", { attrs: { "selectedMonth": this.selectedMonth, "selectedYear": this.selectedYear, "selectedPodcast": this.selectedPodcast } })], 1), _c("k-column", [_c("k-line-field"), _c("k-headline", { attrs: { "size": "huge" } }, [_vm._v("Episode Details")])], 1), _c("k-column", { attrs: { "width": "2/3" } }, [_c("PodGraphSingleEpisode", { attrs: { "selectedPodcast": this.selectedPodcast, "selectedEpisodes": this.selectedEpisodes } })], 1), _c("k-column", { attrs: { "width": "1/3" } }, [_c("PodEpisodesAutocomplete", { attrs: { "selectedPodcast": this.selectedPodcast, "selectedEpisodes": this.selectedEpisodes, "onSelectEpisode": this.addSelectedEpisode, "onRemoveEpisode": this.removeSelectedEpisode } }), _c("k-headline", [_vm._v("Top10 Episodes")]), _c("PodTopEpisodes", { attrs: { "selectedPodcast": this.selectedPodcast, "onSelectEpisode": this.addSelectedEpisode } })], 1), _c("k-column", { attrs: { "width": "1/1" } }, [_c("k-line-field"), _c("k-headline", { attrs: { "size": "huge" } }, [_vm._v("Episode Downloads")]), _c("PodGraphEpisodes", { attrs: { "selectedPodcast": this.selectedPodcast } })], 1), _c("k-column", { attrs: { "width": "1/1" } }, [_c("k-line-field"), _c("k-headline", { attrs: { "size": "huge" } }, [_vm._v("Feed Downloads")]), _c("PodGraphFeeds", { attrs: { "selectedPodcast": this.selectedPodcast } })], 1)], 1)], 1)], 1);
   };
-  var _sfc_staticRenderFns$a = [];
-  _sfc_render$a._withStripped = true;
-  var __component__$a = /* @__PURE__ */ normalizeComponent(
-    _sfc_main$a,
-    _sfc_render$a,
-    _sfc_staticRenderFns$a,
+  var _sfc_staticRenderFns$c = [];
+  _sfc_render$c._withStripped = true;
+  var __component__$c = /* @__PURE__ */ normalizeComponent(
+    _sfc_main$c,
+    _sfc_render$c,
+    _sfc_staticRenderFns$c,
     false,
     null,
     null,
     null,
     null
   );
-  __component__$a.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/Analytics.vue";
-  const Analytics = __component__$a.exports;
+  __component__$c.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/Analytics.vue";
+  const Analytics = __component__$c.exports;
   var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
   var vueApexcharts = { exports: {} };
   var apexcharts_min = { exports: {} };
@@ -8377,7 +8377,7 @@
     });
   })(vueApexcharts);
   const VueApexCharts = vueApexcharts.exports;
-  const _sfc_main$9 = {
+  const _sfc_main$b = {
     components: { "apexchart": VueApexCharts },
     props: {
       selectedMonth: Number,
@@ -8429,25 +8429,25 @@
       this.getEpisodeGraphData();
     }
   };
-  var _sfc_render$9 = function render() {
+  var _sfc_render$b = function render() {
     var _vm = this, _c = _vm._self._c;
     return _c("section", { staticClass: "k-modified-section podcaster" }, [_c("apexchart", { attrs: { "height": "300", "type": "bar", "options": _vm.options, "series": _vm.series } })], 1);
   };
-  var _sfc_staticRenderFns$9 = [];
-  _sfc_render$9._withStripped = true;
-  var __component__$9 = /* @__PURE__ */ normalizeComponent(
-    _sfc_main$9,
-    _sfc_render$9,
-    _sfc_staticRenderFns$9,
+  var _sfc_staticRenderFns$b = [];
+  _sfc_render$b._withStripped = true;
+  var __component__$b = /* @__PURE__ */ normalizeComponent(
+    _sfc_main$b,
+    _sfc_render$b,
+    _sfc_staticRenderFns$b,
     false,
     null,
     null,
     null,
     null
   );
-  __component__$9.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/GraphDownloadsMonth.vue";
-  const PodGraphEpisodesMonth = __component__$9.exports;
-  const _sfc_main$8 = {
+  __component__$b.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/GraphDownloadsMonth.vue";
+  const PodGraphEpisodesMonth = __component__$b.exports;
+  const _sfc_main$a = {
     components: { apexchart: VueApexCharts },
     props: {
       selectedPodcast: String,
@@ -8507,25 +8507,25 @@
       this.getEpisodeGraphData();
     }
   };
-  var _sfc_render$8 = function render() {
+  var _sfc_render$a = function render() {
     var _vm = this, _c = _vm._self._c;
     return _c("section", { staticClass: "k-modified-section podcaster" }, [_c("apexchart", { attrs: { "height": "400", "type": "area", "options": _vm.options, "series": _vm.series } })], 1);
   };
-  var _sfc_staticRenderFns$8 = [];
-  _sfc_render$8._withStripped = true;
-  var __component__$8 = /* @__PURE__ */ normalizeComponent(
-    _sfc_main$8,
-    _sfc_render$8,
-    _sfc_staticRenderFns$8,
+  var _sfc_staticRenderFns$a = [];
+  _sfc_render$a._withStripped = true;
+  var __component__$a = /* @__PURE__ */ normalizeComponent(
+    _sfc_main$a,
+    _sfc_render$a,
+    _sfc_staticRenderFns$a,
     false,
     null,
     null,
     null,
     null
   );
-  __component__$8.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/GraphSingleEpisode.vue";
-  const PodGraphSingleEpisode = __component__$8.exports;
-  const _sfc_main$7 = {
+  __component__$a.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/GraphSingleEpisode.vue";
+  const PodGraphSingleEpisode = __component__$a.exports;
+  const _sfc_main$9 = {
     props: {
       selectedMonth: Number,
       selectedYear: Number,
@@ -8536,7 +8536,7 @@
       setMonth: Function
     }
   };
-  var _sfc_render$7 = function render() {
+  var _sfc_render$9 = function render() {
     var _vm = this, _c = _vm._self._c;
     return _c("div", [_c("k-select-field", { attrs: { "options": _vm.podcastOptions, "label": "Podcast", "name": "select" }, on: { "input": _vm.setPodcast }, model: { value: _vm.selectedPodcast, callback: function($$v) {
       _vm.selectedPodcast = $$v;
@@ -8546,21 +8546,21 @@
       _vm.selectedMonth = $$v;
     }, expression: "selectedMonth" } })], 1);
   };
-  var _sfc_staticRenderFns$7 = [];
-  _sfc_render$7._withStripped = true;
-  var __component__$7 = /* @__PURE__ */ normalizeComponent(
-    _sfc_main$7,
-    _sfc_render$7,
-    _sfc_staticRenderFns$7,
+  var _sfc_staticRenderFns$9 = [];
+  _sfc_render$9._withStripped = true;
+  var __component__$9 = /* @__PURE__ */ normalizeComponent(
+    _sfc_main$9,
+    _sfc_render$9,
+    _sfc_staticRenderFns$9,
     false,
     null,
     null,
     null,
     null
   );
-  __component__$7.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/Navigation.vue";
-  const PodNavigation = __component__$7.exports;
-  const _sfc_main$6 = {
+  __component__$9.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/Navigation.vue";
+  const PodNavigation = __component__$9.exports;
+  const _sfc_main$8 = {
     props: {
       selectedPodcast: String
     },
@@ -8611,27 +8611,27 @@
       }
     }
   };
-  var _sfc_render$6 = function render() {
+  var _sfc_render$8 = function render() {
     var _vm = this, _c = _vm._self._c;
     return _c("k-grid", { attrs: { "gutter": "small" } }, _vm._l(_vm.reports, function(report, index) {
       return _c("k-column", { key: index, attrs: { "width": "1/6" } }, [_c("k-stats", { attrs: { "reports": [report] } })], 1);
     }), 1);
   };
-  var _sfc_staticRenderFns$6 = [];
-  _sfc_render$6._withStripped = true;
-  var __component__$6 = /* @__PURE__ */ normalizeComponent(
-    _sfc_main$6,
-    _sfc_render$6,
-    _sfc_staticRenderFns$6,
+  var _sfc_staticRenderFns$8 = [];
+  _sfc_render$8._withStripped = true;
+  var __component__$8 = /* @__PURE__ */ normalizeComponent(
+    _sfc_main$8,
+    _sfc_render$8,
+    _sfc_staticRenderFns$8,
     false,
     null,
     null,
     null,
     null
   );
-  __component__$6.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/StatWidget.vue";
-  const PodStatWidget = __component__$6.exports;
-  const _sfc_main$5 = {
+  __component__$8.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/StatWidget.vue";
+  const PodStatWidget = __component__$8.exports;
+  const _sfc_main$7 = {
     props: {
       selectedPodcast: String
     },
@@ -8664,25 +8664,25 @@
       }
     }
   };
-  var _sfc_render$5 = function render() {
+  var _sfc_render$7 = function render() {
     var _vm = this, _c = _vm._self._c;
     return _c("k-stats", { attrs: { "reports": [_vm.reports] } });
   };
-  var _sfc_staticRenderFns$5 = [];
-  _sfc_render$5._withStripped = true;
-  var __component__$5 = /* @__PURE__ */ normalizeComponent(
-    _sfc_main$5,
-    _sfc_render$5,
-    _sfc_staticRenderFns$5,
+  var _sfc_staticRenderFns$7 = [];
+  _sfc_render$7._withStripped = true;
+  var __component__$7 = /* @__PURE__ */ normalizeComponent(
+    _sfc_main$7,
+    _sfc_render$7,
+    _sfc_staticRenderFns$7,
     false,
     null,
     null,
     null,
     null
   );
-  __component__$5.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/Subscribers.vue";
-  const PodSubscribers = __component__$5.exports;
-  const _sfc_main$4 = {
+  __component__$7.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/Subscribers.vue";
+  const PodSubscribers = __component__$7.exports;
+  const _sfc_main$6 = {
     props: {
       selectedPodcast: String,
       onSelectEpisode: Function
@@ -8726,26 +8726,26 @@
       }
     }
   };
-  var _sfc_render$4 = function render() {
+  var _sfc_render$6 = function render() {
     var _vm = this, _c = _vm._self._c;
     return _c("div", [_c("k-collection", { attrs: { "layout": "list", "items": _vm.episodes }, on: { "item": _vm.setEpisode } })], 1);
   };
-  var _sfc_staticRenderFns$4 = [];
-  _sfc_render$4._withStripped = true;
-  var __component__$4 = /* @__PURE__ */ normalizeComponent(
-    _sfc_main$4,
-    _sfc_render$4,
-    _sfc_staticRenderFns$4,
+  var _sfc_staticRenderFns$6 = [];
+  _sfc_render$6._withStripped = true;
+  var __component__$6 = /* @__PURE__ */ normalizeComponent(
+    _sfc_main$6,
+    _sfc_render$6,
+    _sfc_staticRenderFns$6,
     false,
     null,
     null,
     null,
     null
   );
-  __component__$4.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/EpisodesTop.vue";
-  const PodTopEpisodes = __component__$4.exports;
+  __component__$6.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/EpisodesTop.vue";
+  const PodTopEpisodes = __component__$6.exports;
   const EpisodesAutocomplete_vue_vue_type_style_index_0_lang = "";
-  const _sfc_main$3 = {
+  const _sfc_main$5 = {
     props: {
       selectedPodcast: String,
       selectedEpisodes: [String],
@@ -8803,27 +8803,27 @@
       }
     }
   };
-  var _sfc_render$3 = function render() {
+  var _sfc_render$5 = function render() {
     var _vm = this, _c = _vm._self._c;
     return _c("div", [_c("k-autocomplete", { ref: "autocomplete", attrs: { "options": this.episodes }, on: { "select": _vm.setEpisode } }, [_c("input", { staticClass: "podcaster-auto-complete", attrs: { "type": "text", "placeholder": "Search for an episode..." }, on: { "input": function($event) {
       return _vm.$refs.autocomplete.search($event.target.value);
     } } })]), _c("div", { staticClass: "episode-selection" }, [_c("k-headline", [_vm._v("Selected Episodes")]), _c("k-collection", { attrs: { "layout": "list", "items": _vm.episodeItems }, on: { "item": _vm.removeEpisode } })], 1)], 1);
   };
-  var _sfc_staticRenderFns$3 = [];
-  _sfc_render$3._withStripped = true;
-  var __component__$3 = /* @__PURE__ */ normalizeComponent(
-    _sfc_main$3,
-    _sfc_render$3,
-    _sfc_staticRenderFns$3,
+  var _sfc_staticRenderFns$5 = [];
+  _sfc_render$5._withStripped = true;
+  var __component__$5 = /* @__PURE__ */ normalizeComponent(
+    _sfc_main$5,
+    _sfc_render$5,
+    _sfc_staticRenderFns$5,
     false,
     null,
     null,
     null,
     null
   );
-  __component__$3.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/EpisodesAutocomplete.vue";
-  const PodEpisodesAutocomplete = __component__$3.exports;
-  const _sfc_main$2 = {
+  __component__$5.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/EpisodesAutocomplete.vue";
+  const PodEpisodesAutocomplete = __component__$5.exports;
+  const _sfc_main$4 = {
     components: { "apexchart": VueApexCharts },
     props: {
       selectedMonth: Number,
@@ -8876,25 +8876,25 @@
       this.getDeviceGraphData();
     }
   };
-  var _sfc_render$2 = function render() {
+  var _sfc_render$4 = function render() {
     var _vm = this, _c = _vm._self._c;
     return _c("section", { staticClass: "k-modified-section podcaster" }, [_c("apexchart", { attrs: { "height": "300", "options": _vm.options, "series": _vm.series } })], 1);
   };
-  var _sfc_staticRenderFns$2 = [];
-  _sfc_render$2._withStripped = true;
-  var __component__$2 = /* @__PURE__ */ normalizeComponent(
-    _sfc_main$2,
-    _sfc_render$2,
-    _sfc_staticRenderFns$2,
+  var _sfc_staticRenderFns$4 = [];
+  _sfc_render$4._withStripped = true;
+  var __component__$4 = /* @__PURE__ */ normalizeComponent(
+    _sfc_main$4,
+    _sfc_render$4,
+    _sfc_staticRenderFns$4,
     false,
     null,
     null,
     null,
     null
   );
-  __component__$2.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/GraphDevicesMonth.vue";
-  const PodGraphDevices = __component__$2.exports;
-  const _sfc_main$1 = {
+  __component__$4.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/GraphDevicesMonth.vue";
+  const PodGraphDevices = __component__$4.exports;
+  const _sfc_main$3 = {
     components: { "apexchart": VueApexCharts },
     props: {
       selectedMonth: Number,
@@ -8947,25 +8947,25 @@
       this.getUserAgentGraphData();
     }
   };
-  var _sfc_render$1 = function render() {
+  var _sfc_render$3 = function render() {
     var _vm = this, _c = _vm._self._c;
     return _c("section", { staticClass: "k-modified-section podcaster" }, [_c("apexchart", { attrs: { "height": "300", "options": _vm.options, "series": _vm.series } })], 1);
   };
-  var _sfc_staticRenderFns$1 = [];
-  _sfc_render$1._withStripped = true;
-  var __component__$1 = /* @__PURE__ */ normalizeComponent(
-    _sfc_main$1,
-    _sfc_render$1,
-    _sfc_staticRenderFns$1,
+  var _sfc_staticRenderFns$3 = [];
+  _sfc_render$3._withStripped = true;
+  var __component__$3 = /* @__PURE__ */ normalizeComponent(
+    _sfc_main$3,
+    _sfc_render$3,
+    _sfc_staticRenderFns$3,
     false,
     null,
     null,
     null,
     null
   );
-  __component__$1.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/GraphUserAgentsMonth.vue";
-  const PodGraphUserAgents = __component__$1.exports;
-  const _sfc_main = {
+  __component__$3.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/GraphUserAgentsMonth.vue";
+  const PodGraphUserAgents = __component__$3.exports;
+  const _sfc_main$2 = {
     components: { "apexchart": VueApexCharts },
     props: {
       selectedMonth: Number,
@@ -9018,9 +9018,155 @@
       this.getSystemsGraphData();
     }
   };
-  var _sfc_render = function render() {
+  var _sfc_render$2 = function render() {
     var _vm = this, _c = _vm._self._c;
     return _c("section", { staticClass: "k-modified-section podcaster" }, [_c("apexchart", { attrs: { "height": "300", "options": _vm.options, "series": _vm.series } })], 1);
+  };
+  var _sfc_staticRenderFns$2 = [];
+  _sfc_render$2._withStripped = true;
+  var __component__$2 = /* @__PURE__ */ normalizeComponent(
+    _sfc_main$2,
+    _sfc_render$2,
+    _sfc_staticRenderFns$2,
+    false,
+    null,
+    null,
+    null,
+    null
+  );
+  __component__$2.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/GraphSystemMonth.vue";
+  const PodGraphSystems = __component__$2.exports;
+  const _sfc_main$1 = {
+    components: { apexchart: VueApexCharts },
+    props: {
+      selectedPodcast: String
+    },
+    data() {
+      return {
+        options: {
+          chart: {
+            id: "episodes-all"
+          },
+          stroke: {
+            curve: "smooth",
+            width: 2
+          },
+          markers: {
+            size: 0
+          },
+          dataLabels: {
+            enabled: false
+          },
+          theme: {
+            palette: "palette3"
+          },
+          xaxis: {
+            type: "datetime"
+          }
+        },
+        series: []
+      };
+    },
+    watch: {
+      selectedPodcast() {
+        this.getEpisodeGraphData();
+      }
+    },
+    methods: {
+      async getEpisodeGraphData() {
+        const data = [];
+        this.$api.get(`podcaster/stats/graph/episodes/${this.selectedPodcast}`).then((response) => {
+          if (!response || !response.downloads)
+            return;
+          response.downloads.forEach((entry) => {
+            data.push({ x: new Date(`${entry.year}-${entry.month}-1`).getTime(), y: entry.downloads });
+          });
+          this.series = [{ name: "downloads", data }];
+        }).catch((error) => {
+          console.log(error);
+        });
+      }
+    },
+    created() {
+      this.getEpisodeGraphData();
+    }
+  };
+  var _sfc_render$1 = function render() {
+    var _vm = this, _c = _vm._self._c;
+    return _c("section", { staticClass: "k-modified-section podcaster" }, [_c("apexchart", { attrs: { "height": "400", "type": "area", "options": _vm.options, "series": _vm.series } })], 1);
+  };
+  var _sfc_staticRenderFns$1 = [];
+  _sfc_render$1._withStripped = true;
+  var __component__$1 = /* @__PURE__ */ normalizeComponent(
+    _sfc_main$1,
+    _sfc_render$1,
+    _sfc_staticRenderFns$1,
+    false,
+    null,
+    null,
+    null,
+    null
+  );
+  __component__$1.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/GraphEpisodes.vue";
+  const PodGraphEpisodes = __component__$1.exports;
+  const _sfc_main = {
+    components: { apexchart: VueApexCharts },
+    props: {
+      selectedPodcast: String
+    },
+    data() {
+      return {
+        options: {
+          chart: {
+            id: "episodes-all"
+          },
+          stroke: {
+            curve: "smooth",
+            width: 2
+          },
+          markers: {
+            size: 0
+          },
+          dataLabels: {
+            enabled: false
+          },
+          theme: {
+            palette: "palette3"
+          },
+          xaxis: {
+            type: "datetime"
+          }
+        },
+        series: []
+      };
+    },
+    watch: {
+      selectedPodcast() {
+        this.getEpisodeGraphData();
+      }
+    },
+    methods: {
+      async getEpisodeGraphData() {
+        const data = [];
+        this.$api.get(`podcaster/stats/graph/feeds/${this.selectedPodcast}`).then((response) => {
+          if (!response || !response.downloads)
+            return;
+          response.downloads.forEach((entry) => {
+            data.push({ x: new Date(`${entry.year}-${entry.month}-1`).getTime(), y: entry.downloads });
+          });
+          this.series = [{ name: "downloads", data }];
+        }).catch((error) => {
+          console.log(error);
+        });
+      }
+    },
+    created() {
+      this.getEpisodeGraphData();
+    }
+  };
+  var _sfc_render = function render() {
+    var _vm = this, _c = _vm._self._c;
+    return _c("section", { staticClass: "k-modified-section podcaster" }, [_c("apexchart", { attrs: { "height": "400", "type": "area", "options": _vm.options, "series": _vm.series } })], 1);
   };
   var _sfc_staticRenderFns = [];
   _sfc_render._withStripped = true;
@@ -9034,8 +9180,8 @@
     null,
     null
   );
-  __component__.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/GraphSystemMonth.vue";
-  const PodGraphSystems = __component__.exports;
+  __component__.options.__file = "/Users/mauricerenck/Sites/kirby-plugins/kirby-podcaster-3/panel-src/components/GraphFeeds.vue";
+  const PodGraphFeeds = __component__.exports;
   panel.plugin("mauricerenck/podcaster", {
     components: {
       "k-podcaster-view": Analytics,
@@ -9048,7 +9194,9 @@
       "PodGraphDevices": PodGraphDevices,
       "PodGraphUserAgents": PodGraphUserAgents,
       "PodGraphSystems": PodGraphSystems,
-      "PodSubscribers": PodSubscribers
+      "PodSubscribers": PodSubscribers,
+      "PodGraphEpisodes": PodGraphEpisodes,
+      "PodGraphFeeds": PodGraphFeeds
     }
   });
 })();

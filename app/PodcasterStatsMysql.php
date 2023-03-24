@@ -84,11 +84,9 @@ class PodcasterStatsMysql extends PodcasterStats
     public function getQuickReports($podcast, $year, $month): array|bool
     {
         $query = 'SELECT DAY(created) AS day, SUM(downloads) AS downloads FROM episodes WHERE podcast_slug = "' . $podcast . '" AND YEAR(created) = ' . $year . ' AND MONTH(created) = ' . $month . '  GROUP BY created';
-
         $byMonthAndYear = $this->database->query($query);
 
         $queryAll = 'SELECT SUM(downloads) AS downloads FROM episodes WHERE podcast_slug = "' . $podcast . '"';
-
         $overall = $this->database->query($queryAll);
 
         return [
@@ -100,6 +98,20 @@ class PodcasterStatsMysql extends PodcasterStats
     public function getEpisodeGraphData($podcast, $episode): object|bool
     {
         $query = 'SELECT created AS date, downloads FROM episodes WHERE podcast_slug = "' . $podcast . '" AND episode_slug = "' . $episode . '";';
+
+        return $this->database->query($query);
+    }
+
+    public function getEpisodesGraphData($podcast): object|bool
+    {
+        $query = 'SELECT YEAR(created) as year, MONTH(created) as month, SUM(downloads) AS downloads FROM episodes WHERE podcast_slug = "' . $podcast . '" GROUP BY YEAR(created), MONTH(created) ORDER BY YEAR(created), MONTH(created)';
+
+        return $this->database->query($query);
+    }
+
+    public function getFeedsGraphData($podcast): object|bool
+    {
+        $query = 'SELECT YEAR(created) as year, MONTH(created) as month, SUM(downloads) AS downloads FROM feeds WHERE podcast_slug = "' . $podcast . '" GROUP BY YEAR(created), MONTH(created) ORDER BY YEAR(created), MONTH(created)';
 
         return $this->database->query($query);
     }
@@ -141,15 +153,12 @@ class PodcasterStatsMysql extends PodcasterStats
 
     public function getEstimatedSubscribers($podcast, $episodes): object|bool
     {
-        $query = 'SELECT SUM(downloads) as total_downloads, episode_slug FROM episodes WHERE podcast_slug="' . $podcast . '"';
-
+        $episodesQuery = [];
         foreach ($episodes as $episode => $date) {
-            $query .= 'AND ( episode_slug = "' . $episode . '" AND created <= "' . $date . '")';
+            $episodesQuery[] =  '( episode_slug = "' . $episode . '" AND created <= "' . $date . '")';
         }
 
-        $query .= 'GROUP BY episode_slug;';
-
-        // echo $query;
+        $query = 'SELECT SUM(downloads) as total_downloads, episode_slug FROM episodes WHERE podcast_slug="' . $podcast . '" AND (' . implode(' OR ', $episodesQuery) . ') GROUP BY episode_slug;';
 
         return $this->database->query($query);
     }

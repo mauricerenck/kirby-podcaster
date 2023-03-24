@@ -28,10 +28,74 @@ return [
                 $days = array_fill(0, 31, 0);
 
                 foreach ($trackedDays as $day) {
-                    $days[$day->day] = (integer)$day->downloads;
+                    $days[$day->day] = (int)$day->downloads;
                 }
 
                 return ['days' => $days];
+            },
+        ],
+        [
+            'pattern' => 'podcaster/stats/graph/episodes/(:any)',
+            'action' => function ($podcastId) {
+                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                    $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
+
+                    return new Response(json_encode($errorMessage), 'application/json', 412);
+                }
+
+                $dbType = option('mauricerenck.podcaster.statsType', 'sqlite');
+                $stats = ($dbType === 'sqlite') ? new PodcasterStatsSqlite() : new PodcasterStatsMysql();
+
+                $results = $stats->getEpisodesGraphData($podcastId);
+
+                if ($results === false) {
+                    return [];
+                }
+
+                $trackedMonths = $results->toArray();
+                $downloads = [];
+
+                foreach ($trackedMonths as $month) {
+                    $downloads[] = [
+                        'downloads' => (int)$month->downloads,
+                        'year' => (int)$month->year,
+                        'month' => (int)$month->month,
+                    ];
+                }
+
+                return ['downloads' => $downloads];
+            },
+        ],
+        [
+            'pattern' => 'podcaster/stats/graph/feeds/(:any)',
+            'action' => function ($podcastId) {
+                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                    $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
+
+                    return new Response(json_encode($errorMessage), 'application/json', 412);
+                }
+
+                $dbType = option('mauricerenck.podcaster.statsType', 'sqlite');
+                $stats = ($dbType === 'sqlite') ? new PodcasterStatsSqlite() : new PodcasterStatsMysql();
+
+                $results = $stats->getFeedsGraphData($podcastId);
+
+                if ($results === false) {
+                    return [];
+                }
+
+                $trackedMonths = $results->toArray();
+                $downloads = [];
+
+                foreach ($trackedMonths as $month) {
+                    $downloads[] = [
+                        'downloads' => (int)$month->downloads,
+                        'year' => (int)$month->year,
+                        'month' => (int)$month->month,
+                    ];
+                }
+
+                return ['downloads' => $downloads];
             },
         ],
         [
@@ -64,13 +128,13 @@ return [
                 $thisMonth = 0;
 
                 foreach ($trackedDays as $trackedDay) {
-                    $downloads = (integer)$trackedDay->downloads;
+                    $downloads = (int)$trackedDay->downloads;
 
-                    if ($trackedDay === $day) {
+                    if ($trackedDay->day == $day) {
                         $today = $downloads;
                     }
 
-                    if ($trackedDay >= $weekStart && $trackedDay <= $weekEnd) {
+                    if ($trackedDay->day >= $weekStart && $trackedDay->day <= $weekEnd) {
                         $thisWeek += $downloads;
                     }
 
@@ -276,7 +340,7 @@ return [
 
                 $latestEpisodes = $episodes
                     ->filter(function ($child) {
-                        return (integer)$child->date()->toDate('U') <= time() - 48 * 60 * 60;
+                        return (int)$child->date()->toDate('U') <= time() - 48 * 60 * 60;
                     });
 
                 if (!isset($latestEpisodes)) {
@@ -287,10 +351,12 @@ return [
 
                 $episodeList = [];
                 foreach ($latestEpisodes as $episode) {
-                    $episodeList[$episode->uid()] = date('Y-m-d', $episode->date()->toDate('U') + 24 * 60 * 60);
+                    $episodeList[$episode->uid()] = date('Y-m-d', $episode->date()->toDate('U') + 420 * 60 * 60);
+                    // FIXME
+                    // $episodeList[$episode->uid()] = date('Y-m-d', $episode->date()->toDate('U') + 24 * 60 * 60);
                 }
 
-                if(count($episodeList) === 0) {
+                if (count($episodeList) === 0) {
                     return ['estSubscribers' => 0];
                 }
 
