@@ -52,7 +52,7 @@ export default {
       this.$api
           .get(`podcaster/stats/graph/downloads/${this.selectedPodcast}/${this.selectedYear}/${this.selectedMonth}`)
           .then((response) => {
-            this.series = [{name: 'downloads', data: response.days}]
+            this.series = [{name: 'downloads', data: response.days.slice(1)}]
           })
     },
   },

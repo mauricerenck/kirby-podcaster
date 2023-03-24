@@ -1,46 +1,12 @@
-.k-podcaster-view .spacer {
-  margin-top: var(--spacing-6);
-}
-.k-podcaster-view .wrapper {
-  background: #fff;
-  box-shadow: var(--box-shadow-item);
-  padding: 10px 20px;
-  margin-top: var(--spacing-6);
-}
-.k-podcaster-view .k-icon {
-  margin-right: 0.5em;
-}
-.k-podcaster-view .k-link-centered {
-  display: flex;
-  align-content: center;
-  line-height: 30px;
-}
-.k-podcaster-view .avatar {
-  width: 30px;
-  margin-right: 0.5em;
-}
-.k-podcaster-view .dimmed {
-  opacity: 0.5;
-}
-.k-podcaster-view table {
+.podcaster-auto-complete {
   width: 100%;
   border: 0;
+  border: 1px solid var(--border-color);
+  padding: var(--field-input-padding);
+  line-height: var(--field-input-line-height);
+  border-radius: var(--rounded);
 }
-.k-podcaster-view tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-.k-podcaster-view th {
-  text-align: left;
-}
-.k-podcaster-view td {
-  width: 10%;
-  padding: 7px 5px;
-}
-.k-podcaster-view td:first-child {
-  width: 50%;
-}
-.k-podcaster-view td div {
-  display: flex;
-  vertical-align: middle;
-  align-items: center;
+.episode-selection {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }

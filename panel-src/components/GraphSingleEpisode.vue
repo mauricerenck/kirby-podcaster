@@ -1,70 +1,72 @@
 <template>
-  <section class="k-modified-section podcaster">
-    <apexchart height="300" type="line" :options="options" :series="series"></apexchart>
-  </section>
+    <section class="k-modified-section podcaster">
+        <apexchart height="400" type="area" :options="options" :series="series"></apexchart>
+    </section>
 </template>
 <script>
 import VueApexCharts from 'vue-apexcharts'
 
 export default {
-  components: {'apexchart': VueApexCharts},
-  props: {
-    selectedPodcast: String,
-    selectedEpisode: String,
-  },
-  data() {
-    return {
-      options: {
-        chart: {
-          id: 'episode-details'
-        },
-        stroke: {
-          curve: 'smooth',
-          width: 2,
-        },
-        yaxis: {
-          labels: {
-            formatter: function (val) {
-              return val.toFixed(0);
-            }
-          }
-        },
-        theme: {
-          palette: 'palette3'
-        },
-        xaxis: {
-          categories: ['a', 'b']
-        }
-      },
-      series: []
-    }
-  },
-  watch: {
-    selectedEpisode() {
-      this.getEpisodeGraphData();
+    components: { apexchart: VueApexCharts },
+    props: {
+        selectedPodcast: String,
+        selectedEpisodes: [String],
     },
-    selectedPodcast() {
-      this.getEpisodeGraphData();
-    }
-  },
-  methods: {
-    getEpisodeGraphData() {
-      this.$api
-          .get(`podcaster/stats/graph/episode/${this.selectedPodcast}/${this.selectedEpisode}`)
-          .then((response) => {
-            const data = [];
+    data() {
+        return {
+            options: {
+                chart: {
+                    id: 'episode-details',
+                },
+                stroke: {
+                    curve: 'smooth',
+                    width: 2,
+                },
+                markers: {
+                    size: 0,
+                },
+                dataLabels: {
+                    enabled: false,
+                },
+                theme: {
+                    palette: 'palette3',
+                },
+                xaxis: {
+                    type: 'datetime',
+                },
+            },
+            series: [],
+        }
+    },
+    watch: {
+        selectedEpisodes() {
+            this.getEpisodeGraphData()
+        },
+        selectedPodcast() {
+            this.getEpisodeGraphData()
+        },
+    },
+    methods: {
+        async getEpisodeGraphData() {
+            const graphData = []
+            this.selectedEpisodes.forEach(async (episode) => {
+                const response = await this.$api.get(
+                    `podcaster/stats/graph/episode/${this.selectedPodcast}/${episode}`
+                )
 
-            response.forEach(day => {
-              data.push({x: day.date, y: day.downloads})
+                const data = []
+                response.forEach((day) => {
+                    data.push({ x: new Date(day.date).getTime(), y: day.downloads })
+                })
+
+                graphData.push({ name: episode, data: data })
             })
 
-            this.series = [{name: 'downloads', data: data}]
-          })
-          },
+            this.series = graphData
+        },
     },
     created() {
-      this.getEpisodeGraphData();
+        this.getEpisodeGraphData()
     },
-
-  }
+}
 </script>
