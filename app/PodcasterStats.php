@@ -2,9 +2,9 @@
 
 namespace mauricerenck\Podcaster;
 
-class PodcasterStats
+class PodcasterStats implements PodcasterStatsInterfaceBase
 {
-    public function stopIfIsBot($userAgentData)
+    public function stopIfIsBot($userAgentData): bool
     {
         return (option('mauricerenck.podcaster.doNotTrackBots', false) === true && $userAgentData['bot'] === true);
     }
@@ -43,7 +43,7 @@ class PodcasterStats
 
     // FIXME
 
-    public function trackEpisodeMatomo()
+    public function trackEpisodeMatomo(): void
     {
         //if ($podcast->podcasterMatomoEnabled()->isTrue()) {
         //    $matomoUtils = new PodcasterStatsMatomo($podcast->podcasterMatomoSiteId());
@@ -52,7 +52,7 @@ class PodcasterStats
     }
 
     // FIXME
-    public function trackPodTrac()
+    public function trackPodTrac(): void
     {
         //if ($podcast->podTracEnabled()->isTrue()) {
         //    $podTrack = new PodcasterStatsPodTrac();
@@ -60,7 +60,7 @@ class PodcasterStats
         //}
     }
 
-    public function getUserAgent(string $userAgent)
+    public function getUserAgent(string $userAgent): array
     {
         $userApp = json_decode(file_get_contents(__DIR__ . '/../res/user-agents.json'), true);
 
@@ -88,7 +88,7 @@ class PodcasterStats
         return [];
     }
 
-    public function getFeedQueryData($feed)
+    public function getFeedQueryData($feed): array
     {
         $feedSlug = $feed->podcastId();
         $feedTitle = $feed->podcasterTitle()->escape();
@@ -109,7 +109,7 @@ class PodcasterStats
         return [$fields, $values];
     }
 
-    public function getEpisodeQueryData($feed, $episode, $trackingDate)
+    public function getEpisodeQueryData($feed, $episode, $trackingDate): array
     {
         $uid = $episode->uid();
         $uuid = $episode->uuid();
@@ -135,7 +135,7 @@ class PodcasterStats
         return [$fields, $values];
     }
 
-    public function getUserAgentsQueryData($feed, int $trackingDate)
+    public function getUserAgentsQueryData($feed, int $trackingDate): array
     {
         $podcastSlug = $feed->podcastId();
         $downloadDate = $this->formatTrackingDate($trackingDate);
@@ -149,7 +149,4 @@ class PodcasterStats
         return date('Y-m-d', $timestamp);
     }
 
-    public function getDownloadsGraphData($podcast, $year, $month): object | bool {
-        return false;
-    }
 }
