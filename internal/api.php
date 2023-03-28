@@ -28,7 +28,8 @@ return [
                 $days = array_fill(0, 31, 0);
 
                 foreach ($trackedDays as $day) {
-                    $days[$day->day] = (int)$day->downloads;
+                    $dayAsInt = (int)$day->day; // fix for sqlite queries returning day as string "01" instead of int 1
+                    $days[$dayAsInt] = (int)$day->downloads;
                 }
 
                 return ['days' => $days];
@@ -172,7 +173,14 @@ return [
                     return [];
                 }
 
-                return $results->toArray();
+                $cleandUpResult = [];
+                foreach($results->toArray() as $result) {
+                    $cleandUpResult[] = [
+                        'date' => $result->date,
+                        'downloads' => (int)$result->downloads
+                    ];
+                }
+                return $cleandUpResult;
             },
         ],
         [
@@ -195,7 +203,7 @@ return [
 
                 $total = 0;
                 foreach ($results->toArray() as $result) {
-                    $total += $result->downloads;
+                    $total += (int)$result->downloads;
                 }
 
                 return [
@@ -224,7 +232,7 @@ return [
 
                 $total = 0;
                 foreach ($results->toArray() as $result) {
-                    $total += $result->downloads;
+                    $total += (int)$result->downloads;
                 }
 
                 return [
@@ -253,7 +261,7 @@ return [
 
                 $total = 0;
                 foreach ($results->toArray() as $result) {
-                    $total += $result->downloads;
+                    $total += (int)$result->downloads;
                 }
 
                 return [
@@ -371,7 +379,7 @@ return [
 
                 $estSubscribers = 0;
                 foreach ($results as $result) {
-                    $estSubscribers += $result->total_downloads;
+                    $estSubscribers += (int)$result->total_downloads;
                 }
 
                 $subs = $estSubscribers / count($results);
