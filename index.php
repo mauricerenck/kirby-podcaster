@@ -75,26 +75,5 @@ Kirby::plugin('mauricerenck/podcaster', [
                 return $podcast->getAudioFile($episode);
             },
         ],
-
-        [
-            'pattern' => 'test',
-            'action' => function () {
-                $podcasterStats = new PodcasterStatsMysql();
-                $results = $podcasterStats->getDownloadsGraphData('phpunit', 2023, 2);
-
-                if ($results === false) {
-                    return ['days' => []];
-                }
-
-                $trackedDays = $results->toArray();
-                $days = array_fill(0,32,0);
-
-                foreach ($trackedDays as $day) {
-                    $days[$day->day] = $day->downloads;
-                }
-
-                return ['days' => $days];
-            },
-        ],
     ],
 ]);
