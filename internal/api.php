@@ -359,9 +359,7 @@ return [
 
                 $episodeList = [];
                 foreach ($latestEpisodes as $episode) {
-                    $episodeList[$episode->uid()] = date('Y-m-d', $episode->date()->toDate('U') + 420 * 60 * 60);
-                    // FIXME
-                    // $episodeList[$episode->uid()] = date('Y-m-d', $episode->date()->toDate('U') + 24 * 60 * 60);
+                    $episodeList[$episode->uid()] = date('Y-m-d', $episode->date()->toDate('U') + 24 * 60 * 60);
                 }
 
                 if (count($episodeList) === 0) {
