@@ -12,13 +12,8 @@ $episode = (isset($episode)) ? $episode : $page;
 <script>
   const config = <?= json_encode($podcast->getPodloveConfigJson($episode));?>;
   const episode = <?= json_encode($podcast->getPodloveEpisodeJson($episode));?>;
-
+  console.log(episode);
 window
   .podlovePlayer("#podlovePlayerContainer", episode, config)
-  .then(store => {
-    store.subscribe(() => {
-      console.log(store.getState());
-    });
-  });
 
   </script>
