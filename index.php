@@ -12,7 +12,8 @@ Kirby::plugin('mauricerenck/podcaster', [
     'blueprints' => [
         'pages/podcasterfeed' => __DIR__ . '/blueprints/pages/feed.yml',
 
-        'tabs/podcasterepisode' => __DIR__ . '/blueprints/pages/episode.yml',
+        'tabs/podcasterepisode' => __DIR__ . '/blueprints/tabs/episode.yml', // backwards compatibility
+        'tabs/podcaster/episode' => __DIR__ . '/blueprints/tabs/episode.yml',
         'tabs/podcaster/feed-base' => __DIR__ . '/blueprints/tabs/feed-base.yml',
         'tabs/podcaster/feed-details' => __DIR__ . '/blueprints/tabs/feed-details.yml',
         'tabs/podcaster/feed-stats' => __DIR__ . '/blueprints/tabs/feed-stats.yml',
@@ -41,6 +42,9 @@ Kirby::plugin('mauricerenck/podcaster', [
         'podcaster-feed-item-cover' => __DIR__ . '/snippets/xml/item-cover.php',
         'podcaster-feed-item-chapter' => __DIR__ . '/snippets/xml/item-chapter.php',
         'podcaster-feed-item-enclosure' => __DIR__ . '/snippets/xml/item-enclosure.php',
+        'podcaster-player' => __DIR__ . '/snippets/frontend/player.php',
+        'podcaster-podlove-player' => __DIR__ . '/snippets/frontend/podlove-player.php',
+
     ],
     'routes' => [
         [
@@ -74,6 +78,45 @@ Kirby::plugin('mauricerenck/podcaster', [
 
                 return $podcast->getAudioFile($episode);
             },
+        ],
+        [
+            'pattern' => 'podcaster/podlove/roles/(:all)',
+            'language' => '*',
+            'action' => function ($lang, $episodeSlug) {
+                $podcast = new Podcast();
+    
+                return json_encode($podcast->getPodloveRoles($episodeSlug));
+            }
+        ],
+        [
+            'pattern' => 'podcaster/podlove/groups/(:all)',
+            'language' => '*',
+            'action' => function ($lang, $episodeSlug) {
+                $podcast = new Podcast();
+    
+                return json_encode($podcast->getPodloveRoles($episodeSlug));
+            }
+        ],
+        [
+            'pattern' => 'podcaster/podlove/config/(:all)',
+            'language' => '*',
+            'action' => function ($lang, $episodeSlug) {
+
+                $podcast = new Podcast();
+                $episode = $podcast->getPageFromSlug($episodeSlug);
+    
+                return json_encode($podcast->getPodloveConfigJson($episode));
+            }
+        ],
+        [
+            'pattern' => 'podcaster/podlove/episode/(:all)',
+            'language' => '*',
+            'action' => function ($lang, $episodeSlug) {
+
+                $podcast = new Podcast();
+                $episode = $podcast->getPageFromSlug($episodeSlug);
+                return json_encode($podcast->getPodloveEpisodeJson($episode));
+            }
         ],
     ],
 ]);

@@ -6,3 +6,8 @@
 
 Episode:
 Das Feld `podcasterExplizit` heißt jetzt `podcasterExplicit`
+
+Das Tab-Blueprint sollte jetzt mit 'tabs/podcaster/episode' benutzt werden. die alte Variante ist wegen Kompatibiliät aber noch drin: 'tabs/podcasterepisode'
+
+Der Podlove player hat jetzt roles und groups, die können im feed konfiguriert werden. sind keine gesetzt, gibt es den standard "Team".
+

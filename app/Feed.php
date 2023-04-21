@@ -64,9 +64,9 @@ class Feed extends Podcast
     {
         return [
             'url' => $episode->url() . '/' . option(
-                    'mauricerenck.podcaster.downloadTriggerPath',
-                    'download'
-                ) . '/' . $audio->filename(),
+                'mauricerenck.podcaster.downloadTriggerPath',
+                'download'
+            ) . '/' . $audio->filename(),
             'length' => $audio->size(),
         ];
     }
@@ -80,7 +80,7 @@ class Feed extends Podcast
         return null;
     }
 
-    public function getChapters($episode)
+    public function getChapters($episode, $returnEmptyFields = false, $milliseconds = false)
     {
         if ($episode->podcasterChapters()->isEmpty()) {
             return [];
@@ -89,11 +89,13 @@ class Feed extends Podcast
         $chapterList = [];
 
         foreach ($episode->podcasterChapters()->toStructure() as $chapter) {
+            $chapterStart = ($milliseconds) ? $chapter->podcasterChapterTimestamp()->value() . '.000' : $chapter->podcasterChapterTimestamp()->value();
+
             $newChapter = [
-                'start' => $chapter->podcasterChapterTimestamp()->value(),
+                'start' => $chapterStart,
                 'title' => Xml::encode($chapter->podcasterChapterTitle()),
-                'href' => null,
-                'image' => null,
+                'href' => ($returnEmptyFields) ? '' : null,
+                'image' => ($returnEmptyFields) ? '' : null,
             ];
 
             if ($chapter->podcasterChapterUrl()->isNotEmpty()) {
