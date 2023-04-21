@@ -151,5 +151,36 @@ columns:
             width: 1/2
           podcasterContributors:
             label: Contributors
-            type: users
+            type: structure
             width: 1/2
+            fields:
+              contributorId:
+                type: text
+                label: ContributerId
+                help: Same ID as in your transcripts
+              contributorName:
+                type: text
+                label: Name
+              contributorAvatar:
+                type: url
+                label: Avatar URL
+              contributorRole:
+                type: select
+                label: Role
+                options:
+                  type: api
+                  url: "{{ site.url }}/podcaster/podlove/roles/{{ page.uri }}"
+                  text: "{{ item.title }}"
+                  value: "{{ item.id }}"
+              contributorGroup:
+                type: select
+                label: Group
+                options:
+                  type: api
+                  url: "{{ site.url }}/podcaster/podlove/groups/{{ page.uri }}"
+                  text: "{{ item.title }}"
+                  value: "{{ item.id }}"
+            columns:
+              contributorName: true
+
+              
