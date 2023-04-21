@@ -11,7 +11,6 @@
     </head>
     <body>
         <div class="container">
-            <div class="col"><?php snippet('podcaster-player', ['page' => $page]); ?></div>
             <div class="col"><?php snippet('podcaster-podlove-player', ['page' => $page]); ?></div>
             <div class="col"><?php snippet('podcaster-html5-player', ['page' => $page]) ?></div>
             <div>
