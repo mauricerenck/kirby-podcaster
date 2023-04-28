@@ -218,7 +218,7 @@ final class PodcastTest extends TestCaseMocked
                     'url' => '/de/phpunit/podcast-seasons/season01/episode-1/download/kirby-podcaster-test.mp3',
                     'size' => '481406',
                     'title' => 'MP3 Audio',
-                    'mimeType' => 'audio\/mpeg'
+                    'mimeType' => 'audio/mpeg'
                 ]
             ],
 
@@ -227,7 +227,7 @@ final class PodcastTest extends TestCaseMocked
                     'url' => '/de/phpunit/podcast-seasons/season01/episode-1/download/kirby-podcaster-test.mp3',
                     'size' => "481406",
                     'title' => "MP3 Audio",
-                    'mimeType' => "audio\/mpeg"
+                    'mimeType' => "audio/mpeg"
                 ]
             ],
 
