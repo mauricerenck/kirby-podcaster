@@ -317,7 +317,7 @@ class Podcast
         return $podloveClients;
     }
 
-    public function getSharing($feed, $episode)
+    public function getPodloveSharing($feed, $episode)
     {
         if ($feed->podcasterPodloveShareChannels()->isEmpty()) {
             return null;
@@ -398,7 +398,7 @@ class Podcast
         $tokens = $this->getPodloveColors($feed);
         $fonts = $this->getPodloveFonts($feed);
         $clients = $this->getPodloveClients($feed);
-        $sharing = $this->getSharing($feed, $episode);
+        $sharing = $this->getPodloveSharing($feed, $episode);
 
         $config = [
             'version' => 5,
