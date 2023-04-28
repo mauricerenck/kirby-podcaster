@@ -361,7 +361,7 @@ class Podcast
                     'url' => $enclosure['url'],
                     'size' => $enclosure['length'],
                     'title' => "MP3 Audio",
-                    'mimeType' => "audio\/mpeg"
+                    'mimeType' => "audio/mpeg"
                 ]
             ],
             'files' => [
@@ -369,7 +369,7 @@ class Podcast
                     'url' => $enclosure['url'],
                     'size' => $enclosure['length'],
                     'title' => "MP3 Audio",
-                    'mimeType' => "audio\/mpeg"
+                    'mimeType' => "audio/mpeg"
                 ]
             ],
             'chapters' => $chapters,
