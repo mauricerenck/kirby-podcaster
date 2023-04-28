@@ -4,7 +4,8 @@ namespace mauricerenck\Podcaster;
 $podcast = new Feed();
 
 $episode = (isset($episode)) ? $episode : $page;
-$feed = $podcast->getFeedOfEpisode($episode);
+$feed = (isset($feed)) ? $feed : $podcast->getFeedOfEpisode($episode);
+
 $audio = $podcast->getAudioFile($episode);
 $enclosure = $podcast->getAudioEnclosures($episode, $audio);
 ?>
