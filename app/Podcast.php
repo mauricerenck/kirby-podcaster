@@ -376,10 +376,6 @@ class Podcast
             'contributors' => $contributors,
         ];
         /*
-        return [
-            // TODO
-
-
             // TODO
             "transcripts" => [
                 [
