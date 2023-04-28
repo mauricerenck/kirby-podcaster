@@ -21,3 +21,6 @@ Podlove player config hat sich komplett geändert, folgende felder fallen weg
 -   podcasterPodloveTabsChapters
 -   podcasterPodloveTabsAudio
 -   podcasterPodloveTabsDownload
+
+
+das player snippet bekommt jetzt $feed statt $podcast reingereicht
