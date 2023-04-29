@@ -159,6 +159,7 @@ export default {
 
         setPodcast(value) {
             this.selectedPodcast = value
+            this.selectedEpisodes = []
         },
 
         setEpisode(value) {
