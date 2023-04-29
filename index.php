@@ -52,10 +52,16 @@ Kirby::plugin('mauricerenck/podcaster', [
     'routes' => [
         [
             'pattern' => '(:all)/' . option('mauricerenck.podcaster.defaultFeed', 'feed'),
-            'action' => function ($slug) {
+            'language' => '*',
+            'action' => function ($lang, $slug) {
                 $podcast = new Podcast();
                 $feedParent = $podcast->getPageFromSlug($slug);
                 $feed = $feedParent->children()->filterBy('intendedTemplate', 'podcasterfeed')->first();
+
+                if(!isset($feed)) {
+                    $this->next();
+                }
+
                 $dbType = option('mauricerenck.podcaster.statsType', 'sqlite');
                 $stats = ($dbType === 'sqlite') ? new PodcasterStatsSqlite() : new PodcasterStatsMysql();
 
@@ -66,7 +72,8 @@ Kirby::plugin('mauricerenck/podcaster', [
         ],
         [
             'pattern' => '(:all)/' . option('mauricerenck.podcaster.downloadTriggerPath', 'download') . '/(:any)',
-            'action' => function ($slug) {
+            'language' => '*',
+            'action' => function ($lang, $slug) {
                 $podcast = new Podcast();
 
                 $dbType = option('mauricerenck.podcaster.statsType', 'sqlite');
@@ -75,7 +82,16 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $stats = ($dbType === 'sqlite') ? new PodcasterStatsSqlite() : new PodcasterStatsMysql();
 
                 $episode = $podcast->getPageFromSlug($slug);
+
+                if(!isset($episode)) {
+                    $this->next();
+                }
+
                 $feed = $podcast->getFeedOfEpisode($episode);
+
+                if(!isset($feed)) {
+                    $this->next();
+                }
 
                 $stats->trackEpisode($feed, $episode, $userAgent);
 
@@ -118,6 +134,7 @@ Kirby::plugin('mauricerenck/podcaster', [
 
                 $podcast = new Podcast();
                 $episode = $podcast->getPageFromSlug($episodeSlug);
+
                 return json_encode($podcast->getPodloveEpisodeJson($episode));
             }
         ],
