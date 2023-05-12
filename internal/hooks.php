@@ -24,5 +24,9 @@ return [
     'system.loadPlugins:after' => function () {
         $migrations = new Migrations();
         $migrations->migrate();
+
+        if (option('mauricerenck.podcaster.sanitize', false)) {
+            $migrations->sanitize();
+        }
     },
 ];
