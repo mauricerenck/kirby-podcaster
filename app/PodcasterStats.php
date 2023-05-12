@@ -111,11 +111,14 @@ class PodcasterStats implements PodcasterStatsInterfaceBase
 
     public function getEpisodeQueryData($feed, $episode, $trackingDate): array
     {
+        $podcast = new Podcast();
         $uid = $episode->uid();
         $uuid = $episode->uuid();
         $downloadDate = $this->formatTrackingDate($trackingDate);
         $podcastSlug = $feed->podcastId();
         $uniqueHash = md5($episode->uid() . $podcastSlug . $downloadDate);
+        $audio = $podcast->getAudioFile($episode);
+        $fileSize = $audio->size();
 
         $feedTitle = $feed->podcasterTitle()->escape();
         $episodeTitle = $episode->title()->text();
@@ -128,9 +131,10 @@ class PodcasterStats implements PodcasterStatsInterfaceBase
             'episode_slug',
             'episode_name',
             'downloads',
+            'file_size',
             'created',
         ];
-        $values = [$uniqueHash, $podcastSlug, $uuid, $feedTitle, $uid, $episodeTitle, 1, $downloadDate];
+        $values = [$uniqueHash, $podcastSlug, $uuid, $feedTitle, $uid, $episodeTitle, 1, $fileSize, $downloadDate];
 
         return [$fields, $values];
     }
@@ -148,5 +152,13 @@ class PodcasterStats implements PodcasterStatsInterfaceBase
     {
         return date('Y-m-d', $timestamp);
     }
+
+    // TODO
+    // public function calculateCarbonEmissions($$fileSize, $episode) {
+    //     $file_size = 5 * 1024 * 1024; // convert MB to bytes
+    //     $electricity_used = $file_size / 1024 / 1024 / 10; // assume 10 MB per kWh
+    //     $co2_emissions = $electricity_used * 0.6; // assume 0.6 kg CO2 per kWh
+    //     echo "CO2 emissions for the download: " . $co2_emissions . " kg";
+    // }
 
 }

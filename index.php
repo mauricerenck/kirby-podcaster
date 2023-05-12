@@ -94,6 +94,7 @@ Kirby::plugin('mauricerenck/podcaster', [
                 }
 
                 $stats->trackEpisode($feed, $episode, $userAgent);
+                // $stats->calculateCarbonEmissions($feed, $episode);
 
                 return $podcast->getAudioFile($episode);
             },
