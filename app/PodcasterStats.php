@@ -27,8 +27,22 @@ class PodcasterStats implements PodcasterStatsInterfaceBase
             $this->upsertUserAgents($feed, $userAgentData, $trackingDate);
         }
 
-        $this->trackEpisodeMatomo();
-        $this->trackPodTrac();
+        $this->trackEpisodeMatomo($feed, $episode);
+        $this->trackPodTrac($feed, $episode);
+    }
+
+    public function trackFeed($feed): void
+    {
+        if (!isset($feed)) {
+            return;
+        }
+
+        if (option('mauricerenck.podcaster.statsInternal') === true) {
+            $trackingDate = time();
+            $this->upsertFeed($feed);
+        }
+
+        $this->trackFeedMatomo($feed);
     }
 
     public function upsertEpisode($feed, $episode, $trackingDate)
@@ -36,28 +50,49 @@ class PodcasterStats implements PodcasterStatsInterfaceBase
         return;
     }
 
+
+    public function upsertFeed($feed)
+    {
+        return;
+    }
+
+
     public function upsertUserAgents($feed, array $userAgentData, int $trackingDate)
     {
         return;
     }
 
-    // FIXME
-
-    public function trackEpisodeMatomo(): void
+    public function trackEpisodeMatomo($feed, $episode): void
     {
-        //if ($podcast->podcasterMatomoEnabled()->isTrue()) {
-        //    $matomoUtils = new PodcasterStatsMatomo($podcast->podcasterMatomoSiteId());
-        //    $matomoUtils->trackEpisodeDownload($podcast, $episode);
-        //}
+        if ($feed->podcasterMatomoEnabled()->isTrue()) {
+           $matomoUtils = new PodcasterStatsMatomo($feed);
+           $matomoUtils->trackEpisodeDownload($feed, $episode);
+        }
     }
 
-    // FIXME
-    public function trackPodTrac(): void
+    public function trackFeedMatomo($feed): void
     {
-        //if ($podcast->podTracEnabled()->isTrue()) {
-        //    $podTrack = new PodcasterStatsPodTrac();
-        //    $podTrack->increaseDownloads($podcast, $episode);
-        //}
+        if ($feed->podcasterMatomoEnabled()->isTrue()) {
+           $matomoUtils = new PodcasterStatsMatomo($feed);
+           $matomoUtils->trackFeedDownload($feed);
+        }
+    }
+
+    public function trackPodTrac($feed, $episode): void
+    {
+        if ($feed->podTracEnabled()->isTrue()) {
+            $podcast = new Podcast();
+            $audioFile = $podcast->getAudioFile($episode);
+            $episodeBaseUrl = str_replace(['https://', 'http://'], ['', ''], $episode->url());
+            $podTracBaseUrl = rtrim($feed->podTracUrl(), '/');
+            $podTracUrl = $podTracBaseUrl . '/' . $episodeBaseUrl . '/' . option('mauricerenck.podcaster.downloadTriggerPath', 'download') . '/' . $audioFile->filename();
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $podTracUrl);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, false);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_close($ch);
+        }
     }
 
     public function getUserAgent(string $userAgent): array

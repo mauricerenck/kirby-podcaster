@@ -1,0 +1,1 @@
+ALTER TABLE episodes ADD COLUMN file_size bigint NULL;

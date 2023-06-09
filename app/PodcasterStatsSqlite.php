@@ -14,7 +14,7 @@ class PodcasterStatsSqlite extends PodcasterStats implements PodcasterStatsInter
         $this->database = $podcasterDb->connect('sqlite');
     }
 
-    public function trackFeed($feed): void
+    public function upsertFeed($feed): void
     {
         [$fields, $values] = $this->getFeedQueryData($feed);
 

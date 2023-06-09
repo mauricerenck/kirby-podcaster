@@ -5,9 +5,11 @@ namespace mauricerenck\Podcaster;
 interface PodcasterStatsInterfaceBase
 {
     public function stopIfIsBot(string $userAgentData): bool;
+    public function trackFeed($feed): void;
     public function trackEpisode($feed, $episode, $userAgent): void;
-    public function trackEpisodeMatomo(): void;
-    public function trackPodTrac(): void;
+    public function trackEpisodeMatomo($feed, $episode): void;
+    public function trackFeedMatomo($feed): void;
+    public function trackPodTrac($feed, $episode): void;
     public function getUserAgent(string $userAgentData): array;
     public function getFeedQueryData($feed): array;
     public function getEpisodeQueryData($feed, $episode, $trackingDate): array;
@@ -17,7 +19,7 @@ interface PodcasterStatsInterfaceBase
 
 interface PodcasterStatsInterface extends PodcasterStatsInterfaceBase
 {
-    public function trackFeed($feed): void;
+    public function upsertFeed($feed): void;
     public function upsertEpisode($feed, $episode, $trackingDate): void;
     public function upsertUserAgents($feed, array $userAgentData, int $trackingDate): void;
     public function getDownloadsGraphData($podcast, $year, $month): object | bool;

@@ -14,7 +14,7 @@ class PodcasterStatsMysql extends PodcasterStats implements PodcasterStatsInterf
         $this->database = $podcasterDb->connect('mysql');
     }
 
-    public function trackFeed($feed): void
+    public function upsertFeed($feed): void
     {
         [$fields, $values] = $this->getFeedQueryData($feed);
 
