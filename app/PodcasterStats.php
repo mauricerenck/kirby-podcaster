@@ -38,7 +38,6 @@ class PodcasterStats implements PodcasterStatsInterfaceBase
         }
 
         if (option('mauricerenck.podcaster.statsInternal') === true) {
-            $trackingDate = time();
             $this->upsertFeed($feed);
         }
 

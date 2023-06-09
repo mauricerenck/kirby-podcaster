@@ -46,7 +46,7 @@ Kirby::plugin('mauricerenck/podcaster', [
         'podcaster-player' => __DIR__ . '/snippets/frontend/player.php',
         'podcaster-podlove-player' => __DIR__ . '/snippets/frontend/podlove-player.php',
         'podcaster-html5-player' => __DIR__ . '/snippets/frontend/html5-player.php',
-        
+
         'podcaster-ogaudio' => __DIR__ . '/snippets/frontend/og-audio.php',
     ],
     'routes' => [
@@ -58,12 +58,23 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $feedParent = $podcast->getPageFromSlug($slug);
                 $feed = $feedParent->children()->filterBy('intendedTemplate', 'podcasterfeed')->first();
 
-                if(!isset($feed)) {
+                if (!isset($feed)) {
                     $this->next();
                 }
 
                 $dbType = option('mauricerenck.podcaster.statsType', 'sqlite');
-                $stats = ($dbType === 'sqlite') ? new PodcasterStatsSqlite() : new PodcasterStatsMysql();
+
+                switch ($dbType) {
+                    case 'sqlite':
+                        $stats = new PodcasterStatsSqlite();
+                        break;
+                    case 'mysql':
+                        $stats = new PodcasterStatsMysql();
+                        break;
+                    default:
+                        $stats = new PodcasterStats();
+                        break;
+                }
 
                 $stats->trackFeed($feed);
 
@@ -77,19 +88,30 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $podcast = new Podcast();
 
                 $dbType = option('mauricerenck.podcaster.statsType', 'sqlite');
+                switch ($dbType) {
+                    case 'sqlite':
+                        $stats = new PodcasterStatsSqlite();
+                        break;
+                    case 'mysql':
+                        $stats = new PodcasterStatsMysql();
+                        break;
+                    default:
+                        $stats = new PodcasterStats();
+                        break;
+                }
+                
 
                 $userAgent = $_SERVER['HTTP_USER_AGENT'];
-                $stats = ($dbType === 'sqlite') ? new PodcasterStatsSqlite() : new PodcasterStatsMysql();
 
                 $episode = $podcast->getPageFromSlug($slug);
 
-                if(!isset($episode)) {
+                if (!isset($episode)) {
                     $this->next();
                 }
 
                 $feed = $podcast->getFeedOfEpisode($episode);
 
-                if(!isset($feed)) {
+                if (!isset($feed)) {
                     $this->next();
                 }
 
@@ -104,7 +126,7 @@ Kirby::plugin('mauricerenck/podcaster', [
             'language' => '*',
             'action' => function ($lang, $episodeSlug) {
                 $podcast = new Podcast();
-    
+
                 return json_encode($podcast->getPodloveRoles($episodeSlug));
             }
         ],
@@ -113,7 +135,7 @@ Kirby::plugin('mauricerenck/podcaster', [
             'language' => '*',
             'action' => function ($lang, $episodeSlug) {
                 $podcast = new Podcast();
-    
+
                 return json_encode($podcast->getPodloveRoles($episodeSlug));
             }
         ],
@@ -124,7 +146,7 @@ Kirby::plugin('mauricerenck/podcaster', [
 
                 $podcast = new Podcast();
                 $episode = $podcast->getPageFromSlug($episodeSlug);
-    
+
                 return json_encode($podcast->getPodloveConfigJson($episode));
             }
         ],

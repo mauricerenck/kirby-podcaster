@@ -103,6 +103,7 @@ columns:
                 label: Service
 
           podcasterPodloveShareChannels:
+            label: Share Channels
             type: multiselect
             options:
               facebook: Facebook
@@ -114,6 +115,7 @@ columns:
               mail: Mail
               link: Link
           podcasterPodloveSharePlaytime:
+            label: Share Playtime
             type: toggle
             default: yes
             text:
