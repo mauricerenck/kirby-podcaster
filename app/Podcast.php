@@ -83,7 +83,23 @@ class Podcast
             return $episode->podcasterAudio()->toFile();
         }
 
-        return $episode->audio($episode->podcasterMp3()->first())->first()->toFile();
+        if(!is_null($episode->podcasterMp3())) {
+            $audioFile = $episode->audio($episode->podcasterMp3()->first())->first();
+
+            if (is_null($audioFile)) {
+                return null;
+            }
+    
+            return $audioFile;
+        }
+    
+        $audioFile = $episode->audio()->first();
+
+         if (is_null($audioFile)) {
+            return null;
+        }
+
+        return $audioFile;
     }
 
     public function getAllPodcasts(): array
@@ -201,6 +217,10 @@ class Podcast
 
     public function getPodloveContributors($contributorsField, $contributorRoles, $contributorGroups)
     {
+        if($contributorRoles->toStructure()->isEmpty() || $contributorGroups->toStructure()->isEmpty()) {
+            return [];
+        }
+        
         $contributors = [];
         $roles = $contributorRoles->toStructure();
         $groups = $contributorGroups->toStructure();

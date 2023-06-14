@@ -48,6 +48,10 @@ class Feed extends Podcast
 
         $audio = $this->getAudioFile($episode);
 
+        if(is_null($audio)) {
+            return '';
+        }
+        
         return $audio->guid()->value();
     }
 

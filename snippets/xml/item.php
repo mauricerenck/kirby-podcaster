@@ -5,6 +5,10 @@ namespace mauricerenck\Podcaster;
 $feed = new Feed();
 $useUuid = option('mauricerenck.podcaster.feed.uuid', false);
 $audioFile = $feed->getAudioFile($episode);
+
+if(is_null($audioFile)) {
+    return;
+}
 ?>
 <item>
     <?=$feed->xmlTag('pubDate', $episode->date()->toDate(DATE_RSS));?>
