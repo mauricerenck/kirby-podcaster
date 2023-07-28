@@ -97,7 +97,7 @@ columns:
                 required: true
                 options:
                   type: api
-                  url: https://api.podcaster-plugin.com/podlove-clients
+                  url: "{{ site.url }}/podcaster/api//podlove-clients"
               service:
                 type: text
                 label: Service

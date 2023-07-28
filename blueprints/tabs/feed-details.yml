@@ -63,7 +63,7 @@ columns:
                 type: select
                 options:
                   type: api
-                  url: https://api.podcaster-plugin.com/categories
+                  url: "{{ site.url }}/podcaster/api/categories"
           podcasterType:
             label: Podcast type
             type: radio
@@ -76,7 +76,7 @@ columns:
             type: select
             options:
               type: api
-              url: https://api.podcaster-plugin.com/languages
+              url: "{{ site.url }}/podcaster/api/languages"
             required: true
           podcasterAuthor:
             label: Author

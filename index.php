@@ -4,6 +4,7 @@ namespace mauricerenck\Podcaster;
 
 use Kirby;
 use Kirby\Http\Response;
+use Kirby\Http\Remote;
 
 @include_once __DIR__ . '/vendor/autoload.php';
 
@@ -99,7 +100,7 @@ Kirby::plugin('mauricerenck/podcaster', [
                         $stats = new PodcasterStats();
                         break;
                 }
-                
+
 
                 $userAgent = $_SERVER['HTTP_USER_AGENT'];
 
@@ -159,6 +160,21 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $episode = $podcast->getPageFromSlug($episodeSlug);
 
                 return json_encode($podcast->getPodloveEpisodeJson($episode));
+            }
+        ],
+        [
+            'pattern' => 'podcaster/api/(categories|languages|podlove-clients)',
+            'language' => '*',
+            'action' => function ($lang, $endpoint) {
+                if (option('mauricerenck.podcaster.useApi', true)) {
+                    $response = new Remote('https://api.podcaster-plugin.com/' . $endpoint);
+                    $json = $response->content();
+
+                    return $json;
+                }
+
+                $json = file_get_contents(__DIR__ . '/res/' . $endpoint . '.json');
+                return $json;
             }
         ],
     ],
