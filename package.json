@@ -10,18 +10,14 @@
   },
   "devDependencies": {
     "@ambimax/semantic-release-composer": "github:ambimax/semantic-release-composer",
-    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@vue/component-compiler-utils": "^3.1.2",
-    "vue-template-compiler": "^2.6.10"
+    "@vue/component-compiler-utils": "^3.3.0",
+    "vue-template-compiler": "^2.7.14"
   },
   "dependencies": {
-    "apexcharts": "^3.37.0",
-    "chart.js": "^2.9.4",
-    "date-fns": "2.29.3",
+    "apexcharts": "^3.41.1",
     "vue-apexcharts": "^1.6.2",
-    "vue-chartjs": "^3.5.1",
-    "vue-chartkick": "^0.6.1",
     "vue-hot-reload-api": "^2.3.4"
   }
 }
