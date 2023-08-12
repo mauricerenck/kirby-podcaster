@@ -45,19 +45,19 @@ export default {
     methods: {
         async getEpisodeGraphData() {
             const data = []
-            this.$api.get(`podcaster/stats/graph/feeds/${this.selectedPodcast}`)
+            this.$api
+                .get(`podcaster/stats/graph/feeds/${this.selectedPodcast}`)
                 .then((response) => {
-
-                    if(!response || !response.downloads) return
+                    if (!response || !response.downloads) return
                     response.downloads.forEach((entry) => {
-                    data.push({ x: new Date(`${entry.year}-${entry.month}-1`).getTime(), y: entry.downloads })
-                })
+                        data.push({ x: new Date(`${entry.year}-${entry.month}-02`).getTime(), y: entry.downloads })
+                    })
 
-                this.series = [{ name: 'downloads', data: data }]
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+                    this.series = [{ name: 'downloads', data: data }]
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         },
     },
     created() {

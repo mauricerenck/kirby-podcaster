@@ -50,7 +50,7 @@ export default {
 
                     if(!response || !response.downloads) return
                     response.downloads.forEach((entry) => {
-                    data.push({ x: new Date(`${entry.year}-${entry.month}-1`).getTime(), y: entry.downloads })
+                    data.push({ x: new Date(`${entry.year}-${entry.month}-02`).getTime(), y: entry.downloads })
                 })
 
                 this.series = [{ name: 'downloads', data: data }]
