@@ -54,17 +54,32 @@ return [
                 }
 
                 $trackedMonths = $results->toArray();
-                $downloads = [];
+                $downloadArray = [];
+                $downloadJson = [];
 
-                foreach ($trackedMonths as $month) {
-                    $downloads[] = [
-                        'downloads' => (int)$month->downloads,
-                        'year' => (int)$month->year,
-                        'month' => (int)$month->month,
-                    ];
+                foreach ($trackedMonths as $entry) {
+                    $year = (int)$entry->year;
+                    $month = (int)$entry->month;
+                    $downloads = (int)$entry->downloads;
+
+                    if(!isset($downloadArray[$year])) {
+                        $downloadArray[$year] = [];
+                    }
+
+                    $downloadArray[$year][$month] = $downloads;
                 }
 
-                return ['downloads' => $downloads];
+                foreach($downloadArray as $year => $months) {
+                    for($i = 1; $i <= 12; $i++) {
+                        $downloadJson[] = [
+                            'downloads' => $months[$i] ?? 0,
+                            'year' => $year,
+                            'month' => $i,
+                        ];
+                    }
+                }
+
+                return ['downloads' => $downloadJson];
             },
         ],
         [
@@ -86,17 +101,32 @@ return [
                 }
 
                 $trackedMonths = $results->toArray();
-                $downloads = [];
+                $downloadArray = [];
+                $downloadJson = [];
 
-                foreach ($trackedMonths as $month) {
-                    $downloads[] = [
-                        'downloads' => (int)$month->downloads,
-                        'year' => (int)$month->year,
-                        'month' => (int)$month->month,
-                    ];
+                foreach ($trackedMonths as $entry) {
+                    $year = (int)$entry->year;
+                    $month = (int)$entry->month;
+                    $downloads = (int)$entry->downloads;
+
+                    if(!isset($downloadArray[$year])) {
+                        $downloadArray[$year] = [];
+                    }
+
+                    $downloadArray[$year][$month] = $downloads;
                 }
 
-                return ['downloads' => $downloads];
+                foreach($downloadArray as $year => $months) {
+                    for($i = 1; $i <= 12; $i++) {
+                        $downloadJson[] = [
+                            'downloads' => $months[$i] ?? 0,
+                            'year' => $year,
+                            'month' => $i,
+                        ];
+                    }
+                }
+
+                return ['downloads' => $downloadJson];
             },
         ],
         [
