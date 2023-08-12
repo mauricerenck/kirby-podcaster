@@ -53,8 +53,8 @@ Kirby::plugin('mauricerenck/podcaster', [
     'routes' => [
         [
             'pattern' => '(:all)/' . option('mauricerenck.podcaster.defaultFeed', 'feed'),
-            'language' => '*',
-            'action' => function ($lang, $slug) {
+            'action' => function ($slug) {
+
                 $podcast = new Podcast();
                 $feedParent = $podcast->getPageFromSlug($slug);
                 $feed = $feedParent->children()->filterBy('intendedTemplate', 'podcasterfeed')->first();
@@ -84,8 +84,7 @@ Kirby::plugin('mauricerenck/podcaster', [
         ],
         [
             'pattern' => '(:all)/' . option('mauricerenck.podcaster.downloadTriggerPath', 'download') . '/(:any)',
-            'language' => '*',
-            'action' => function ($lang, $slug) {
+            'action' => function ($slug) {
                 $podcast = new Podcast();
 
                 $dbType = option('mauricerenck.podcaster.statsType', 'sqlite');
@@ -124,8 +123,7 @@ Kirby::plugin('mauricerenck/podcaster', [
         ],
         [
             'pattern' => 'podcaster/podlove/roles/(:all)',
-            'language' => '*',
-            'action' => function ($lang, $episodeSlug) {
+            'action' => function ($episodeSlug) {
                 $podcast = new Podcast();
 
                 return json_encode($podcast->getPodloveRoles($episodeSlug));
@@ -133,8 +131,7 @@ Kirby::plugin('mauricerenck/podcaster', [
         ],
         [
             'pattern' => 'podcaster/podlove/groups/(:all)',
-            'language' => '*',
-            'action' => function ($lang, $episodeSlug) {
+            'action' => function ($episodeSlug) {
                 $podcast = new Podcast();
 
                 return json_encode($podcast->getPodloveRoles($episodeSlug));
@@ -142,8 +139,7 @@ Kirby::plugin('mauricerenck/podcaster', [
         ],
         [
             'pattern' => 'podcaster/podlove/config/(:all)',
-            'language' => '*',
-            'action' => function ($lang, $episodeSlug) {
+            'action' => function ($episodeSlug) {
 
                 $podcast = new Podcast();
                 $episode = $podcast->getPageFromSlug($episodeSlug);
@@ -153,9 +149,7 @@ Kirby::plugin('mauricerenck/podcaster', [
         ],
         [
             'pattern' => 'podcaster/podlove/episode/(:all)',
-            'language' => '*',
-            'action' => function ($lang, $episodeSlug) {
-
+            'action' => function ($episodeSlug) {
                 $podcast = new Podcast();
                 $episode = $podcast->getPageFromSlug($episodeSlug);
 
@@ -164,13 +158,17 @@ Kirby::plugin('mauricerenck/podcaster', [
         ],
         [
             'pattern' => 'podcaster/api/(categories|languages|podlove-clients)',
-            'language' => '*',
-            'action' => function ($lang, $endpoint) {
+            'action' => function ($endpoint) {
                 if (option('mauricerenck.podcaster.useApi', true)) {
-                    $response = new Remote('https://api.podcaster-plugin.com/' . $endpoint);
-                    $json = $response->content();
+                    $apiCache = kirby()->cache('mauricerenck.podcaster');
+                    $$endpoint  = $apiCache->get($endpoint);
 
-                    return $json;
+                    if ($$endpoint === null) {
+                        $response = new Remote('https://api.podcaster-plugin.com/' . $endpoint);
+                        $apiCache->set($endpoint, $response->content(), 7* 24 * 60 );
+                    }
+
+                    return $$endpoint;
                 }
 
                 $json = file_get_contents(__DIR__ . '/res/' . $endpoint . '.json');

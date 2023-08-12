@@ -169,7 +169,7 @@ columns:
                 label: Role
                 options:
                   type: api
-                  url: "{{ site.url }}/podcaster/podlove/roles/{{ page.uri }}"
+                  url: "{{ site.url('') }}/podcaster/podlove/roles/{{ page.uri }}"
                   text: "{{ item.title }}"
                   value: "{{ item.id }}"
               contributorGroup:
@@ -177,7 +177,7 @@ columns:
                 label: Group
                 options:
                   type: api
-                  url: "{{ site.url }}/podcaster/podlove/groups/{{ page.uri }}"
+                  url: "{{ site.url('') }}/podcaster/podlove/groups/{{ page.uri }}"
                   text: "{{ item.title }}"
                   value: "{{ item.id }}"
             columns:
