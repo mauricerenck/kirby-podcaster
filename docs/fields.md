@@ -122,14 +122,17 @@
 | podcasterAuthor       | users      |                      | See table podcasterChapters     |
 | podcasterContributors | structure  |                      | See table podcasterContributors |
 
+#### podcasterChapters
+
 | Field name                | Field type | Field values | Description |
 | ------------------------- | ---------- | ------------ | ----------- |
 | podcasterChapterTimestamp | text       |              | hh:mm:ss    |
 | podcasterChapterTitle     | text       |              |             |
 | podcasterChapterUrl       | url        |              |             |
 | podcasterChapterImage     | files      |              |             |
-[podcasterChapters]
 
+
+#### podcasterContributors
 | Field name        | Field type | values | Description |
 | ----------------- | ---------- | ------ | ----------- |
 | contributorId     | text       |        |             |
@@ -137,7 +140,6 @@
 | contributorAvatar | url        |        |             |
 | contributorRole   | options    |        | Via Query   |
 | contributorGroup  | options    |        | Via Query   |
-[podcasterContributors]
 
 
   
