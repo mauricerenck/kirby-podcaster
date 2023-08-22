@@ -26,7 +26,7 @@ This version of the plugin requires Kirby 3.9.0 or higher. The recommended way o
 composer require mauricerenck/podcaster
 ```
 
-Or  download the [latest release](https://github.com/mauricerenck/podcaster/releases) unzip it, copy it to `site/plugins/podcaster`
+Or  download the [latest release](https://github.com/mauricerenck/kirby-podcaster/releases) unzip it, copy it to `site/plugins/podcaster`
 
 ---
 
