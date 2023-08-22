@@ -2,7 +2,7 @@
 
 To embed a player into your site you can use a simple snippet coming with the Podcaster plugin:
 
-```
+```php
 <?php snippet('podcaster-player', ['page' => $page]); ?>
 ```
 

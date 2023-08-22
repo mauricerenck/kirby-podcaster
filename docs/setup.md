@@ -1,110 +1,173 @@
 # Setup
+This plugin comes with a blueprint and template for the RSS feed. In addition you may need a template for the episode listing on your website.
 
-If you haven't already, use one of these three methods to install the plugin:
+## How to structure your Podcast
+In order to configure the feed correctly, you first have to think how you would like to structure the pages of your Podcast.
 
-- composer (recommended): `composer require mauricerenck/podcaster`
-- zip file: download the [latest release](https://github.com/mauricerenck/podcaster/releases) unzip it, copy it to `site/plugins/podcaster`
+There are three recommended ways to structure your Podcast (but you can do it however you like): 
+1. Flat
+2. By Season
+3. By Year
 
----
+### 1. Flat
+This structure is the simplest but may become a bit cluttered over time. In this case you have a flat structure with the feed and the episode on one level:
 
-## Prerequisites
-You’ll need a blueprint and an according template which allows you to list subpages.  Have a look [here](templates.md), to see how you can get a list of all episodes for your listing.
-You’ll also need a blueprint for episodes. If you have a blog, you could use the blueprint for blogposts. We will extend it later on.
+- My Podcast
+	- feed
+	- episode01
+	- episode02
+	- (…)
 
-## Structure
+### 2. By season
+This structure might be the best one for most Podcasts. In this case you have a deeper structure splitter into seasons with the feed and the season pages on one level and the episode as children of the season pages:
 
-The first step is to decide what structure your podcast should have. There are three recommended options on how to structure your content:
+- My Podcast
+	- feed
+	- season 01
+		- episode 01
+		- episode 02
+		- (…)
+	- season 02
+		- episode 01
+		- (…)
 
-1. Seasonal structure: Every season of your podcast has its own folder. All episodes of the season are living inside of the season-folder
-2. Yearly structure: Every year has its own folder. All episodes of the year are living inside of the year-folder
-3. Flat structure: All episodes are living in a single folder
+### 3. By year
+This structure works the same as the seasonal one, but it is splitter by year with the feed and the yearly pages on one level and the episodes as children of the yearly pages:
 
-Version 1 or 2 are recommended to keep things clear.
+- My Podcast
+	- feed
+	- 2023
+		- episode 01
+		- episode 02
+		- (…)
+	- 2024
+		- episode 01
+		- (…)
 
-## Panel Setup
 
-Login to the panel, create a new page for your podcast, let's name it "*The Podcaster*". Create a new page, name it "The Podcaster". Choose a template/blueprint allowing you to list child pages.
+## Create the feed
+It is recommended to create a parent page for all the pages of your Podcast. I will call it „My Podcast“ in this example. This page should have a blueprint/template which can later on list all episodes.
 
-### Create the feed
+Create the feed page within your Podcast page:
 
-- Within the page create a subpage "Feed"
-- Choose the Template `Podcaster Feed` 
-- Fill in at least all the required fields in the `Show Details` Tab
-- Switch to `RSS Settings` and enter at least all required fields
-  - `Podcast Id` should be a unique id for your podcast, without spaces or fancy characters, our sample podcast will have the id `the-podcaster`
-  - `Link` is the full URL of your podcast
-  - Leave `Source pages` empty for now, as we don't have any episodes yet
-  - Save the changes
-- We leave the feed settings for now
+1. Open the Podcast page (My Podcast)
+2. Create a new draft
+3. Select `Podcaster Feed` as a template
+4. Create the page
+
+
+> [!NOTE]()
+> If you cannot see the template `Podcaster Feed` make sure
+> - The plugin is correctly installed
+> - The blueprint of the parent page allows to create pages with the `podcasterfeed` template.
+
+If everything worked, you should the feed page, it should look like this:
+
+++ BILD ++
+
+Fill in at least the:
+- Podcast Title
+- Copyright
+- Apple Categories
+- Language
+
+Switch to the `RSS Settings` tab and fill out:
+- Podcast Id
+- Link
+
+The `Podcast ID` should be a simple string, representing our Podcasts name. For example `my-podcast`
+
+The Podcast Link should be a link to the landing page of your Podcast.
+
+Next
+- save the changes and ignore that the required `Source Pages` are empty for now.
+- fill all the other fields as you like (link zu allen Feldern und was sie machen)
+- set the page status to unlisted
+- open the page - you should see the rss feed with all the information you entered
+
+
+## Creating Episodes
+This plugin does not provide a blueprint for episodes but it does provide a tab blueprint to extend your existing blueprints.
+
+### Prepare a blueprint
+If you have a blog your could extend your post blueprint. If you don’t have any fitting blueprint, you can use this very simple example:
+
+```yaml
+title: Episode
+num: '{{ page.date.toDate("YmdHi") }}'
+tabs:
+  podcast:
+    extends: tabs/podcasterepisode
+  content:
+    sections:
+      basic_stuff:
+        type: fields
+        fields:
+          date:
+            label: Date
+            type: date
+            default: today
+            required: true
+          text:
+            label: Text
+            type: textarea
+            size: large
+```
+
+If you do have a fitting template, you can extend it with:
+
+```yaml
+tabs:
+  podcast:
+    extends: tabs/podcasterepisode
+```
 
 ### Create an episode
+Create an episode within your chose structure. I’ll use the seasonal structure in the example. So I will
 
-In order to create an episode, you need a blueprint/template for that. The podcaster plugin does not provide such a blueprint as it highly depends on your site setup and structure, but there is a *tab* you can use to extend an existing blueprint or to create a new one. **It's recommended to have a date field named `date` in your episode blueprint.**
+1. Open the panel
+2. Go to the `My Podcast` page
+3. Create a child page named `Season 01` with the same listing template used by `My Podcast`
+4. Go into `Season 01`
+5. Create a new page with my episode template
 
-To add this tab to your blueprint do the following:
+The newly created page should look like this:
 
-	tabs:
-	  podcast:
-	    extends: tabs/podcasterepisode
-	  yourtabs:
-	    ...
+++ BILD ++
 
-If you already use tabs, simply add the podcaster episode tab. If you don't use tabs yet, please have a look at [the Kirby docs section](https://getkirby.com/docs/guide/blueprints/layout#tabs).
+Now fill in at least the required fields:
+- Upload the mp3 file
+- Chose an episode type
+- Fill out all the fields to your liking 
 
-Depending of the structure you've chosen, you need to create the episode directly or create a subfolder first. I'll use the *seasonal* structure, so I'll have to create a new page for the season first. This new page will have the episodes as subpages. The structure will look like so:
+Publish the episode page **and** the season page.
 
-- The Podcaster
-	- feed
-	- season-01
-		  - episode-01
-		  - episode-02
-		  - ...
-	- season-02
-		  - episode-01
-		  - ...
+### Add episodes to the feed
+Now we can add episodes to the feed:
+1. Open the panel
+2. Go to your podcast
+3. Open the feed
+4. Go to RSS Settings
+5. Edit `Source Pages`
+6. Add the page containing your episodes, in my case this is `Season 01`
+7. Save the changes
+8. Open the page
 
-The season pages need a template listing all its children, so does the "The Podcaster" page ([here are some tips for your templates](templates.md)). You can use a simple page blueprint for that, which is capable to list an add new subpages.
+You should now see the new episode in the RSS feed.
 
-Within your first season create your first episode. Select your episode template to do so. You should now have a new page and see a tab `Episode`.
+### Publishing the Podcast
+You are set up now and can publish the RSS feed. If your feed is still a draft:
 
-There are some required field:
+1. Open the panel
+2. Go to your podcast
+3. Set the feed page to unlisted
+4. Open the feed
+5. Copy the URL
+6. Submit the URL to the directories of your choice
 
-- The audio file
-- Episode type
+**Congratulations! Your Podcast is live!**
 
-Everything else can be filled but must not. Of course you should enter as much information as possible.
+> [!NOTE]()
+> Go ahead and start configuring [Podcaster Analytics][3] to see how many people are listing to your Podcasts.
 
-**You can but should not upload a cover image here. Apple recommends to embed that cover into your mp3 ID3 data instead.**
-
-#### ID3 data
-
-When uploading an mp3 file, the plugin tries to read needed data like the duration of the episode. This data will be written to the audio’s metadata file and later used in the feed or for the player.
-
-In addition you can enable the option `mauricerenck.podcaster.setId3Data` which will then try to read 
-- the id3 title
-- the id3 subtitle
-- the id3 description 
-- the id3 chapters
-
-This data will then be written to the page. If you enable this feature a reload of the panel page may be required to display this information after the upload.
-
-If ready, publish the episode page.
-
-### Adding sources to the feed
-
-You feed will still be empty as we did not specify any sources. Head over to the feed page. Go to the `RSS Settings` and add the `season-01`  page as a source. *Always add the parent folder of your episodes, not your episodes directly.*  If you have multiple season, add all of them.
-
-When you open your the rss feed you should see the published episode. Publish your feed. You could now submit your feed to the podcast directories of your choice.
-
-### Kirby UUID Feature
-With the latest releases came the UUID feature, which gives every file and page a unique Id. If you want to use this feature in the feed (which might be a good idea) you can enable it by setting this in your `site/config/config.php`
-
-```
-'mauricerenck.podcaster.feed.uuid' => true,
-```
-
-You should **not** set it on existing podcasts, as it changes the GUID of your episodes and this can result in duplicates on platforms like Apple Podcasts.
-
-## That's it
-
-The base setup is done. You could now start, enabling [analytics](tracking.md) or setting up the [web player](player.md). 
+[3]:	analytics.md

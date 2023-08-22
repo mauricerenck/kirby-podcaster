@@ -7,26 +7,26 @@
 
 ## Installation
 
-Use one of these three methods to install the plugin:
+This version of the plugin requires Kirby 3.9.0 or higher. The recommended way of installing is by using Composer:
 
-- composer (recommended): `composer require mauricerenck/podcaster`
-- zip file: download the [latest release](https://github.com/mauricerenck/podcaster/releases) unzip it, copy it to `site/plugins/podcaster`
+```bash
+composer require mauricerenck/podcaster
+```
 
----
-
-## Upgrade from version 2
-
-There are major changes from version 2 to version 3. Although I tried to make the plugin backwards compatible as good as possible, there are some breaking changes. **So please read the migration guide before installing this version!**
+Or  download the [latest release](https://github.com/mauricerenck/podcaster/releases) unzip it, copy it to `site/plugins/podcaster`
 
 ---
 
 ## Setup
 
-There is a full video guide on setting up your podcast step by step on the Podcaster Website
+There is a full video guide on setting up your podcast step by step on the [Podcaster Website](https://podcaster-plugin.com)
 
-TODO Screenshot of one video with link to site
-
-* [Migrate from version 2](docs/migration-v2-v3.md)
 * [Setup your podcast](docs/setup.md)
-* [All options and settings](docs/options.md)
-* [FAQ](docs/faq.md)
+* [Setup analytics](docs/analytics.md)
+* [Setup Podlove Player](docs/podlove.md)
+* [Podcaster in your templates](docs/temlpates.md)
+* [Podcaster Snippets](docs/snippets.md)
+* [Advanced Settings](docs/advanced-settings.md)
+* [Migrate from version 2](docs/migration-v2-v3.md)
+* [List of all fields](docs/podlove.md)
+* [List of all options](docs/options.md)
