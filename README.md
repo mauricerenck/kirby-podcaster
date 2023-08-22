@@ -1,7 +1,7 @@
 # Podcaster 
 ## A Kirby Podcast Plugin
 
-![GitHub release](https://img.shields.io/github/release/mauricerenck/podcaster.svg?maxAge=1800) ![License](https://img.shields.io/github/license/mashape/apistatus.svg) ![Kirby Version](https://img.shields.io/badge/Kirby-3.9%2B-black.svg)
+![GitHub release](https://img.shields.io/github/release/mauricerenck/kirby-podcaster.svg?maxAge=1800) ![License](https://img.shields.io/github/license/mashape/apistatus.svg) ![Kirby Version](https://img.shields.io/badge/Kirby-3.9%2B-black.svg)
 
 ---
 
