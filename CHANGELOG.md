@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/mauricerenck/kirby-podcaster/compare/v3.0.0...v3.0.1) (2023-08-22)
+
+
+### Bug Fixes
+
+* readme video note ([ee1f7a3](https://github.com/mauricerenck/kirby-podcaster/commit/ee1f7a300620ec41c98d28bb5f3f41891223eee2))
+
 # [2.2.0](https://github.com/mauricerenck/kirby-podcaster/compare/v2.1.0...v2.2.0) (2023-08-22)
 
 
