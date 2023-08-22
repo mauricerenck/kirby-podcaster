@@ -1,9 +1,22 @@
 # Podcaster 
-## A Kirby podcast plugin
+## A Kirby Podcast Plugin
 
 ![GitHub release](https://img.shields.io/github/release/mauricerenck/podcaster.svg?maxAge=1800) ![License](https://img.shields.io/github/license/mashape/apistatus.svg) ![Kirby Version](https://img.shields.io/badge/Kirby-3.9%2B-black.svg)
 
 ---
+
+## Features
+
+- ✅ Panel blueprint for a full featured RSS feed
+- ✅ Run multiple podcasts with just one Kirby installation
+- ✅ Panel blueprint for episodes details
+- ✅ Podcaster Analytics with detailed metrics
+- ✅ Tracking of episodes/feeds using Matomo
+- ✅ Tracking of episodes using PodTrac
+- ✅ Podcast Chapters
+- ✅ Snippet for a simple HTML5-Player
+- ✅ Snippet for the advanced Podlove Player
+- ✅ Configure and style your website player within the panel
 
 ## Installation
 
