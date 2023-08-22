@@ -17,7 +17,7 @@ columns:
           podcastId:
             label: Podcast Id
             help: Use something like my-podcast-id (must be unique)
-            type: text
+            type: slug
             converter: slug
             translate: false
             required: true
