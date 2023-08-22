@@ -63,7 +63,7 @@ Create the feed page within your Podcast page:
 
 If everything worked, you should the feed page, it should look like this:
 
-++ BILD ++
+![Episode Tab](assets/podcaster-podcast-details.png)
 
 Fill in at least the:
 - Podcast Title
@@ -133,7 +133,7 @@ Create an episode within your chose structure. I’ll use the seasonal structure
 
 The newly created page should look like this:
 
-++ BILD ++
+![Episode Tab](assets/podcaster-episode.png)
 
 Now fill in at least the required fields:
 - Upload the mp3 file
