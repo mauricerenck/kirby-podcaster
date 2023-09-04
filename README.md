@@ -32,7 +32,8 @@ Or  download the [latest release](https://github.com/mauricerenck/kirby-podcaste
 
 ## Setup
 
-There is a full video guide on setting up your podcast step by step on the [Podcaster Website](https://podcaster-plugin.com) (soon)
+There is a full video guide on setting up your podcast step by step on the [Podcaster Website](https://podcaster-plugin.com/docs/setup-tutorial/)
+
 
 * [Setup your podcast](docs/setup.md)
 * [Setup analytics](docs/analytics.md)
