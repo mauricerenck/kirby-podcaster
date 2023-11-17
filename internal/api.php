@@ -21,7 +21,7 @@ return [
                 $results = $stats->getDownloadsGraphData($podcastId, $year, $month);
 
                 if ($results === false) {
-                    return ['days' => []];
+                    return new Response(json_encode(['days' => []]), 'application/json');
                 }
 
                 $trackedDays = $results->toArray();
@@ -32,7 +32,7 @@ return [
                     $days[$dayAsInt] = (int)$day->downloads;
                 }
 
-                return ['days' => $days];
+                return new Response(json_encode(['days' => $days]), 'application/json');
             },
         ],
         [
@@ -50,7 +50,7 @@ return [
                 $results = $stats->getEpisodesGraphData($podcastId);
 
                 if ($results === false) {
-                    return [];
+                    return new Response(json_encode([]), 'application/json');
                 }
 
                 $trackedMonths = $results->toArray();
@@ -62,15 +62,15 @@ return [
                     $month = (int)$entry->month;
                     $downloads = (int)$entry->downloads;
 
-                    if(!isset($downloadArray[$year])) {
+                    if (!isset($downloadArray[$year])) {
                         $downloadArray[$year] = [];
                     }
 
                     $downloadArray[$year][$month] = $downloads;
                 }
 
-                foreach($downloadArray as $year => $months) {
-                    for($i = 1; $i <= 12; $i++) {
+                foreach ($downloadArray as $year => $months) {
+                    for ($i = 1; $i <= 12; $i++) {
                         $downloadJson[] = [
                             'downloads' => $months[$i] ?? 0,
                             'year' => $year,
@@ -79,7 +79,7 @@ return [
                     }
                 }
 
-                return ['downloads' => $downloadJson];
+                return new Response(json_encode(['downloads' => $downloadJson]), 'application/json');
             },
         ],
         [
@@ -97,7 +97,7 @@ return [
                 $results = $stats->getFeedsGraphData($podcastId);
 
                 if ($results === false) {
-                    return [];
+                    return new Response(json_encode([]), 'application/json');
                 }
 
                 $trackedMonths = $results->toArray();
@@ -109,15 +109,15 @@ return [
                     $month = (int)$entry->month;
                     $downloads = (int)$entry->downloads;
 
-                    if(!isset($downloadArray[$year])) {
+                    if (!isset($downloadArray[$year])) {
                         $downloadArray[$year] = [];
                     }
 
                     $downloadArray[$year][$month] = $downloads;
                 }
 
-                foreach($downloadArray as $year => $months) {
-                    for($i = 1; $i <= 12; $i++) {
+                foreach ($downloadArray as $year => $months) {
+                    for ($i = 1; $i <= 12; $i++) {
                         $downloadJson[] = [
                             'downloads' => $months[$i] ?? 0,
                             'year' => $year,
@@ -126,7 +126,7 @@ return [
                     }
                 }
 
-                return ['downloads' => $downloadJson];
+                return new Response(json_encode(['downloads' => $downloadJson]), 'application/json');
             },
         ],
         [
@@ -150,7 +150,7 @@ return [
                 $results = $stats->getQuickReports($podcastId, $year, $month);
 
                 if ($results === false) {
-                    return ['reports' => []];
+                    return new Response(json_encode(['reports' => []]), 'application/json');
                 }
 
                 $trackedDays = $results['detailed']->toArray();
@@ -182,7 +182,7 @@ return [
                     'overall' => $allTime,
                 ];
 
-                return ['reports' => $reports];
+                return new Response(json_encode(['reports' => $reports]), 'application/json');
             },
         ],
         [
@@ -200,17 +200,18 @@ return [
                 $results = $stats->getEpisodeGraphData($podcastId, $episode);
 
                 if ($results === false) {
-                    return [];
+                    return new Response(json_encode([]), 'application/json');
                 }
 
                 $cleandUpResult = [];
-                foreach($results->toArray() as $result) {
+                foreach ($results->toArray() as $result) {
                     $cleandUpResult[] = [
                         'date' => $result->date,
                         'downloads' => (int)$result->downloads
                     ];
                 }
-                return $cleandUpResult;
+
+                return new Response(json_encode($cleandUpResult), 'application/json');
             },
         ],
         [
@@ -228,7 +229,7 @@ return [
                 $results = $stats->getDevicesGraphData($podcastId, $year, $month);
 
                 if ($results === false) {
-                    return [];
+                    return new Response(json_encode([]), 'application/json');
                 }
 
                 $total = 0;
@@ -236,10 +237,10 @@ return [
                     $total += (int)$result->downloads;
                 }
 
-                return [
+                return new Response(json_encode([
                     'total' => $total,
                     'data' => $results->toArray(),
-                ];
+                ]), 'application/json');
             },
         ],
         [
@@ -257,7 +258,7 @@ return [
                 $results = $stats->getUserAgentGraphData($podcastId, $year, $month);
 
                 if ($results === false) {
-                    return [];
+                    return new Response(json_encode([]), 'application/json');
                 }
 
                 $total = 0;
@@ -265,10 +266,10 @@ return [
                     $total += (int)$result->downloads;
                 }
 
-                return [
+                return new Response(json_encode([
                     'total' => $total,
                     'data' => $results->toArray(),
-                ];
+                ]), 'application/json');
             },
         ],
         [
@@ -286,7 +287,7 @@ return [
                 $results = $stats->getSystemGraphData($podcastId, $year, $month);
 
                 if ($results === false) {
-                    return [];
+                    return new Response(json_encode([]), 'application/json');
                 }
 
                 $total = 0;
@@ -294,10 +295,10 @@ return [
                     $total += (int)$result->downloads;
                 }
 
-                return [
+                return new Response(json_encode([
                     'total' => $total,
                     'data' => $results->toArray(),
-                ];
+                ]), 'application/json');
             },
         ],
         [
@@ -315,10 +316,10 @@ return [
                 $results = $stats->getTopEpisodes($podcastId);
 
                 if ($results === false) {
-                    return [];
+                    return new Response(json_encode([]), 'application/json');
                 }
 
-                return $results->toArray();
+                return new Response(json_encode($results->toArray()), 'application/json');
             },
         ],
         [
@@ -334,13 +335,13 @@ return [
                 $rssFeed = $podcastTools->getPodcastFromId($podcastId);
 
                 if (!isset($rssFeed)) {
-                    return [];
+                    return new Response(json_encode([]), 'application/json');
                 }
 
                 $episodes = $podcastTools->getEpisodes($rssFeed);
 
                 if ($episodes === false) {
-                    return [];
+                    return new Response(json_encode([]), 'application/json');
                 }
 
                 $episodeList = [];
@@ -351,7 +352,7 @@ return [
                     ];
                 }
 
-                return $episodeList;
+                return new Response(json_encode($episodeList), 'application/json');
             },
         ],
         [
@@ -367,13 +368,13 @@ return [
                 $rssFeed = $podcastTools->getPodcastFromId($podcastId);
 
                 if (!isset($rssFeed)) {
-                    return ['estSubscribers' => 0];
+                    return new Response(json_encode(['estSubscribers' => 0]), 'application/json');
                 }
 
                 $episodes = $podcastTools->getEpisodes($rssFeed);
 
                 if ($episodes === false || !isset($episodes)) {
-                    return ['estSubscribers' => 0];
+                    return new Response(json_encode(['estSubscribers' => 0]), 'application/json');
                 }
 
                 $latestEpisodes = $episodes
@@ -382,7 +383,7 @@ return [
                     });
 
                 if (!isset($latestEpisodes)) {
-                    return ['estSubscribers' => 0];
+                    return new Response(json_encode(['estSubscribers' => 0]), 'application/json');
                 }
 
                 $latestEpisodes = $latestEpisodes->limit(3);
@@ -393,7 +394,7 @@ return [
                 }
 
                 if (count($episodeList) === 0) {
-                    return ['estSubscribers' => 0];
+                    return new Response(json_encode(['estSubscribers' => 0]), 'application/json');
                 }
 
                 $dbType = option('mauricerenck.podcaster.statsType', 'sqlite');
@@ -402,7 +403,7 @@ return [
                 $results = $stats->getEstimatedSubscribers($podcastId, $episodeList);
 
                 if ($results === false || count($results) === 0) {
-                    return ['estSubscribers' => 0];
+                    return new Response(json_encode(['estSubscribers' => 0]), 'application/json');
                 }
 
                 $estSubscribers = 0;
@@ -412,7 +413,7 @@ return [
 
                 $subs = $estSubscribers / count($results);
 
-                return ['estSubscribers' => $subs];
+                return new Response(json_encode(['estSubscribers' => $subs]), 'application/json');
             },
         ],
     ],

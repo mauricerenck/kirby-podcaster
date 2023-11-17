@@ -126,7 +126,7 @@ Kirby::plugin('mauricerenck/podcaster', [
             'action' => function ($episodeSlug) {
                 $podcast = new Podcast();
 
-                return json_encode($podcast->getPodloveRoles($episodeSlug));
+                return new Response(json_encode($podcast->getPodloveRoles($episodeSlug)), 'application/json');
             }
         ],
         [
@@ -134,7 +134,7 @@ Kirby::plugin('mauricerenck/podcaster', [
             'action' => function ($episodeSlug) {
                 $podcast = new Podcast();
 
-                return json_encode($podcast->getPodloveRoles($episodeSlug));
+                return new Response(json_encode($podcast->getPodloveRoles($episodeSlug)), 'application/json');
             }
         ],
         [
@@ -144,7 +144,7 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $podcast = new Podcast();
                 $episode = $podcast->getPageFromSlug($episodeSlug);
 
-                return json_encode($podcast->getPodloveConfigJson($episode));
+                return new Response(json_encode($podcast->getPodloveConfigJson($episode)), 'application/json');
             }
         ],
         [
@@ -153,7 +153,7 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $podcast = new Podcast();
                 $episode = $podcast->getPageFromSlug($episodeSlug);
 
-                return json_encode($podcast->getPodloveEpisodeJson($episode));
+                return new Response(json_encode($podcast->getPodloveEpisodeJson($episode)), 'application/json');
             }
         ],
         [
@@ -172,7 +172,8 @@ Kirby::plugin('mauricerenck/podcaster', [
                 }
 
                 $json = file_get_contents(__DIR__ . '/res/' . $endpoint . '.json');
-                return $json;
+
+                return new Response(json_encode($json), 'application/json');
             }
         ],
     ],
