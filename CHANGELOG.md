@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/mauricerenck/kirby-podcaster/compare/v3.0.1...v3.0.2) (2023-11-17)
+
+
+### Bug Fixes
+
+* K4 panel redirect on api calls [#62](https://github.com/mauricerenck/kirby-podcaster/issues/62) ([cc36a89](https://github.com/mauricerenck/kirby-podcaster/commit/cc36a89f45003fc8661622a5041028196df27d73))
+
 ## [3.0.1](https://github.com/mauricerenck/kirby-podcaster/compare/v3.0.0...v3.0.1) (2023-08-22)
 
 
