@@ -7,6 +7,7 @@
 
 ## Features
 
+- ✅ Ready for Kirby 4
 - ✅ Panel blueprint for a full featured RSS feed
 - ✅ Run multiple podcasts with just one Kirby installation
 - ✅ Panel blueprint for episodes details
