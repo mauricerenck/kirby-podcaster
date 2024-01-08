@@ -7,7 +7,7 @@ return [
         return $this->podcasterAtomLink()->or($this->url());
     },
 
-    'cover' => function () {
+    'feedCover' => function () {
         if ($this->podcasterCover()->isEmpty()) {
             return null;
         }

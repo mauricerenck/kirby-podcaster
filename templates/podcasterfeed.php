@@ -53,7 +53,7 @@ kirby()->response()->type('application/rss+xml');
         <?php snippet(
             'podcaster-feed-cover',
             [
-                'imageUrl' => $page->cover(),
+                'imageUrl' => $page->feedCover(),
                 'title' => $page->podcasterTitle(),
                 'link' => $page->podcasterLink(),
             ]
