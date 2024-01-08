@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/mauricerenck/kirby-podcaster/compare/v3.0.2...v3.0.3) (2024-01-08)
+
+
+### Bug Fixes
+
+* rename cover function ([#64](https://github.com/mauricerenck/kirby-podcaster/issues/64)) ([a8e5b81](https://github.com/mauricerenck/kirby-podcaster/commit/a8e5b810aea562f11d453129cc5971c53c6e1190))
+
 ## [3.0.2](https://github.com/mauricerenck/kirby-podcaster/compare/v3.0.1...v3.0.2) (2023-11-17)
 
 
