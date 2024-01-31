@@ -29,6 +29,7 @@ Kirby::plugin('mauricerenck/podcaster', [
         'podcasterfeed' => __DIR__ . '/templates/podcasterfeed.php',
     ],
     'pageMethods' => require_once __DIR__ . '/app/FeedMethods.php',
+    'fileTypes' => require_once __DIR__ . '/app/FileTypes.php',
     'api' => require_once(__DIR__ . '/internal/api.php'),
     'hooks' => require_once(__DIR__ . '/internal/hooks.php'),
     'areas' => require_once(__DIR__ . '/internal/areas.php'),
@@ -43,6 +44,7 @@ Kirby::plugin('mauricerenck/podcaster', [
         'podcaster-feed-item-cover' => __DIR__ . '/snippets/xml/item-cover.php',
         'podcaster-feed-item-chapter' => __DIR__ . '/snippets/xml/item-chapter.php',
         'podcaster-feed-item-enclosure' => __DIR__ . '/snippets/xml/item-enclosure.php',
+        'podcaster-feed-item-transcript' => __DIR__ . '/snippets/xml/item-transcript.php',
 
         'podcaster-player' => __DIR__ . '/snippets/frontend/player.php',
         'podcaster-podlove-player' => __DIR__ . '/snippets/frontend/podlove-player.php',

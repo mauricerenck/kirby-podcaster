@@ -16,6 +16,27 @@ columns:
             query: page.audio
             accept: audio/mpeg
             uploads: podcaster-episode
+          podcasterTranscript:
+            type: structure
+            label: Transcripts
+            fields:
+              podcasterTranscriptLanguage:
+                label: Language
+                type: select
+                options:
+                  type: api
+                  url: "{{ site.url('') }}/podcaster/api/languages"
+                required: true
+              podcasterTranscriptFile:
+                type: files
+                label: Transcript file
+                layout: list
+                multiple: false
+                required: true
+                # query: page.images
+                help: Upload a transcript file in VTT or SRT format.
+                uploads: podcaster-transcript
+                accept: text/vtt, text/srt
           podcasterCover:
             type: files
             label: Cover Image
@@ -32,6 +53,7 @@ columns:
             theme: negative
             label: Be aware!
             text: The following two fields are here for backwards compatibility. Please do not use them for new episodes. If you edit an existing episode, fill the fields above and empty the ones below this message.
+
       podcasterMp3:
         type: files
         label: Episode mp3 (DEPRECATED)
@@ -48,8 +70,8 @@ columns:
       podcasterInfo:
         type: fields
         fields:
-          headlineSettings:
-            label: Settings
+          headlineSeasonEpisode:
+            label: Season & Episode
             type: headline
           podcasterSeason:
             label: Season
@@ -87,27 +109,12 @@ columns:
               - Episode number and optionally a season number: a bonus episode related to a specific episode
             when:
               podcasterEpisodeType: bonus
-          line:
-            type: line
-          podcasterExplicit:
-            label: Explicit
-            type: toggle
-            width: 1/4
-            default: no
-            text:
-              - Disabled
-              - Explicit
-          podcasterBlock:
-            label: Block
-            type: toggle
-            default: no
-            text:
-              - Episode is visible
-              - Episode is BLOCKED
-            help: Enabling this will prevent your Episode from appearing on the Apple and other podcast directories.
-            width: 2/4
+
           line2:
             type: line
+          headlineEpisodeDetails:
+            label: Episode Details
+            type: headline
           podcasterTitle:
             label: Episode Title
             type: text
@@ -143,6 +150,9 @@ columns:
                 multiple: false
                 max: 1
                 query: page.images
+          headlineContributors:
+            label: Contributors
+            type: headline
           podcasterAuthor:
             label: Author
             type: users
@@ -182,5 +192,25 @@ columns:
                   value: "{{ item.id }}"
             columns:
               contributorName: true
-
-              
+          line:
+            type: line
+          headlineBreakingchanges:
+            label: Dangerzone
+            type: headline
+          podcasterExplicit:
+            label: Explicit
+            type: toggle
+            width: 1/4
+            default: no
+            text:
+              - Disabled
+              - Explicit
+          podcasterBlock:
+            label: Block
+            type: toggle
+            default: no
+            text:
+              - Episode is visible
+              - Episode is BLOCKED
+            help: Enabling this will prevent your Episode from appearing on the Apple and other podcast directories.
+            width: 2/4

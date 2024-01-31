@@ -26,7 +26,7 @@
         "php": ">=8.0.0"
     },
     "require-dev": {
-        "getkirby/cms": "^3.9",
+        "getkirby/cms": "^4",
         "phpunit/phpunit": "^9.5"
     },
     "config": {
@@ -45,5 +45,5 @@
             "npm run build"
         ]
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }

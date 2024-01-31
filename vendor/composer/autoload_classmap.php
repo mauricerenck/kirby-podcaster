@@ -22,6 +22,7 @@ return array(
     'getID3_cached_mysql' => $vendorDir . '/james-heinrich/getid3/getid3/extension.cache.mysql.php',
     'getID3_cached_mysqli' => $vendorDir . '/james-heinrich/getid3/getid3/extension.cache.mysqli.php',
     'getID3_cached_sqlite3' => $vendorDir . '/james-heinrich/getid3/getid3/extension.cache.sqlite3.php',
+    'getid3_7zip' => $vendorDir . '/james-heinrich/getid3/getid3/module.archive.7zip.php',
     'getid3_aa' => $vendorDir . '/james-heinrich/getid3/getid3/module.audio.aa.php',
     'getid3_aac' => $vendorDir . '/james-heinrich/getid3/getid3/module.audio.aac.php',
     'getid3_ac3' => $vendorDir . '/james-heinrich/getid3/getid3/module.audio.ac3.php',

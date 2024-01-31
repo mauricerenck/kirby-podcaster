@@ -40,4 +40,5 @@ if(is_null($audioFile)) {
     <?php snippet('podcaster-feed-item-cover', ['image' => $feed->getCoverFile($episode)]); ?>
     <?php snippet('podcaster-feed-item-chapter', ['chapters' => $feed->getChapters($episode)]); ?>
     <?php snippet('podcaster-feed-item-enclosure', ['episode' => $episode]); ?>
+    <?php snippet('podcaster-feed-item-transcript', ['transcripts' => $feed->getTranscript($episode)]); ?>
 </item>

@@ -52,7 +52,7 @@ columns:
             type: headline
             label: Dangerzone
           infoDanger:
-            label: Be aware!️️
+            label: Be aware
             type: info
             theme: negative
             text: The following settings will influence how and if your podcast appears in directories like Apple. Please be aware that setting the wrong option can harm your podcasts appearance.

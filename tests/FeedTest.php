@@ -137,4 +137,14 @@ final class FeedTest extends TestCaseMocked
         }
     }
 
+    public function testGetTranscript()
+    {
+        $pageMock = $this->getPageMock();
+
+        $feed = new Feed();
+        $result = $feed->getTranscript($pageMock);
+        $this->assertCount(2, $result);
+    }
+
+
 }

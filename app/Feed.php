@@ -115,4 +115,27 @@ class Feed extends Podcast
 
         return $chapterList;
     }
+
+    public function getTranscript($episode) {
+        if ($episode->podcasterTranscript()->isEmpty()) {
+            return [];
+        }
+
+        $transcriptList = [];
+
+        foreach ($episode->podcasterTranscript()->toStructure() as $transcript) {
+            $file = $transcript->podcasterTranscriptFile()->toFile();
+            $mimeType = $file->extension() === 'vtt' ? 'text/vtt' : 'application/srt';
+
+            $newTranscript = [
+                'url' => $file->permalink(),
+                'type' => $mimeType,
+                'language' => $transcript->podcasterTranscriptLanguage()->value(),
+            ];
+
+            $transcriptList[] = $newTranscript;
+        }
+
+        return $transcriptList;
+    }
 }

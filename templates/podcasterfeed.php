@@ -23,6 +23,7 @@ kirby()->response()->type('application/rss+xml');
      xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
      xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0"
      xmlns:media="http://search.yahoo.com/mrss/"
+     xmlns:podcast="https://podcastindex.org/namespace/1.0"
 >
     <channel>
         <atom:link href="<?=Xml::encode($page->atomLink());?>" rel="self" type="application/rss+xml"

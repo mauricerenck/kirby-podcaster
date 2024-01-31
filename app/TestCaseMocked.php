@@ -32,6 +32,15 @@ class TestCaseMocked extends TestCase
   podcasterchapterurl: ""
   podcasterchapterimage: [ ]
   ',
+  'Podcastertranscript' => '- 
+    podcastertranscriptlanguage: ar-KW
+    podcastertranscriptfile:
+      - file://Y1eW2AZeVUOh11pl
+- 
+  podcastertranscriptlanguage: de
+  podcastertranscriptfile:
+    - file://L10JTYu3jhtHgO3e
+    '
     ];
 
     $pageContent = array_merge($defaultContent, $content);
