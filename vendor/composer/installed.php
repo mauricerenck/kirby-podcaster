@@ -22,7 +22,7 @@
         'james-heinrich/getid3' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '58b883d0bf279bad8e7c0bd432e10ad4711b23a0',
+            'reference' => '19c9d00abbf126491fe1fe8986d8aeea11a65915',
             'type' => 'library',
             'install_path' => __DIR__ . '/../james-heinrich/getid3',
             'aliases' => array(
