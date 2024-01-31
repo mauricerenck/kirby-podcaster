@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/mauricerenck/kirby-podcaster/compare/v3.0.3...v3.1.0) (2024-01-31)
+
+
+### Features
+
+* transcripts in vtt or srt format ([bf444cc](https://github.com/mauricerenck/kirby-podcaster/commit/bf444cca3842af41768901b918d79e49b226e7a6))
+
 ## [3.0.3](https://github.com/mauricerenck/kirby-podcaster/compare/v3.0.2...v3.0.3) (2024-01-08)
 
 
