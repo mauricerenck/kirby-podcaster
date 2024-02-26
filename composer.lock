@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9e718df85aa84a6ab6ebd14e9bf7d148",
+    "content-hash": "217fb301c666590ec2b7cab79e801daa",
     "packages": [
         {
             "name": "getkirby/composer-installer",
@@ -516,16 +516,16 @@
         },
         {
             "name": "getkirby/cms",
-            "version": "4.1.0",
+            "version": "4.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getkirby/kirby.git",
-                "reference": "2965c3124e3b141072a2d46c798a327dda710060"
+                "reference": "1353c9fbe3ede6bee946f527d146841719eef7d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getkirby/kirby/zipball/2965c3124e3b141072a2d46c798a327dda710060",
-                "reference": "2965c3124e3b141072a2d46c798a327dda710060",
+                "url": "https://api.github.com/repos/getkirby/kirby/zipball/1353c9fbe3ede6bee946f527d146841719eef7d5",
+                "reference": "1353c9fbe3ede6bee946f527d146841719eef7d5",
                 "shasum": ""
             },
             "require": {
@@ -615,7 +615,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2024-01-30T15:39:12+00:00"
+            "time": "2024-02-26T10:06:07+00:00"
         },
         {
             "name": "laminas/laminas-escaper",
@@ -2681,7 +2681,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/1.x"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.29.0"
             },
             "funding": [
                 {
@@ -2850,7 +2850,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/1.x"
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.29.0"
             },
             "funding": [
                 {
@@ -3083,5 +3083,5 @@
         "php": ">=8.0.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
