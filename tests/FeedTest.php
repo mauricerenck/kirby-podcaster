@@ -98,6 +98,7 @@ final class FeedTest extends TestCaseMocked
         $expected = [
             'url' => '/en/episode/download/kirby-podcaster-test.mp3',
             'length' => 481406,
+            'type' => 'audio/mpeg',
         ];
 
         $result = $feed->getAudioEnclosures($pageMock, $fileMock);
@@ -145,6 +146,4 @@ final class FeedTest extends TestCaseMocked
         $result = $feed->getTranscript($pageMock);
         $this->assertCount(2, $result);
     }
-
-
 }

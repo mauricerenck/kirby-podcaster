@@ -48,10 +48,10 @@ class Feed extends Podcast
 
         $audio = $this->getAudioFile($episode);
 
-        if(is_null($audio)) {
+        if (is_null($audio)) {
             return '';
         }
-        
+
         return $audio->guid()->value();
     }
 
@@ -72,6 +72,7 @@ class Feed extends Podcast
                 'download'
             ) . '/' . $audio->filename(),
             'length' => $audio->size(),
+            'type' => $audio->mime(),
         ];
     }
 
@@ -116,7 +117,8 @@ class Feed extends Podcast
         return $chapterList;
     }
 
-    public function getTranscript($episode) {
+    public function getTranscript($episode)
+    {
         if ($episode->podcasterTranscript()->isEmpty()) {
             return [];
         }

@@ -9,8 +9,7 @@ $enclosure = $feed->getAudioEnclosures($episode, $audio);
 $attr = [
     'url' => $enclosure['url'],
     'length' => $enclosure['length'],
-    'type' => "audio/mpeg",
+    'type' => $enclosure['type'] ?? "audio/mpeg",
 ];
 ?>
-<?=$feed->xmlTag('enclosure', null, false, $attr);?>
-
+<?= $feed->xmlTag('enclosure', null, false, $attr); ?>

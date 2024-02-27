@@ -2,23 +2,18 @@
 
 namespace mauricerenck\Podcaster;
 
-use Couchbase\ViewMetaData;
 use getID3;
 use Kirby\Data\Yaml;
-use Kirby\Exception\Exception;
-use Kirby\Filesystem\File;
 
 class AudioTools
 {
     public function parseAndWriteId3($audioFile, bool $updateEpisodePage): void
     {
-
-        if ($audioFile->mime() !== 'audio/mpeg') {
+        if (strpos($audioFile->mime(), 'audio/') !== 0) {
             return;
         }
 
         $id3Data = $this->getId3Data($audioFile);
-
         $this->writeAudioFileMeta($id3Data, $audioFile);
 
         if ($updateEpisodePage) {
@@ -43,10 +38,10 @@ class AudioTools
         $title = $this->getId3Tag('title', $id3Data);
 
         $audioFile->update([
-                               'episodeTitle' => $title,
-                               'duration' => $duration,
-                               'guid' => md5(time()),
-                           ]);
+            'episodeTitle' => $title,
+            'duration' => $duration,
+            'guid' => md5(time()),
+        ]);
     }
 
     public function writeAudioMetaToPage($id3, $audioFile): void

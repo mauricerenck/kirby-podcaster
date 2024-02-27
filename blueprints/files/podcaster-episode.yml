@@ -1,15 +1,21 @@
 title: Podcaster Audiofile
 
 accept:
-  extension: mp3
+    extension:
+        - mp3
+        - m4a
+        - ogg
+        - wav
+        - flac
+        - aac
 
 fields:
-  episodeTitle:
-    label: Audio Id3 Title
-    type: text
-    width: 1/2
-  duration:
-    label: Duration
-    type: text
-    disabled: true
-    width: 1/2
+    episodeTitle:
+        label: Audio Id3 Title
+        type: text
+        width: 1/2
+    duration:
+        label: Duration
+        type: text
+        disabled: true
+        width: 1/2
