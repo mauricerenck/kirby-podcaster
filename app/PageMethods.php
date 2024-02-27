@@ -18,4 +18,14 @@ return [
 
         return $this->podcasterCover()->toFile()->url();
     },
+
+    'podloveRoles' => function () {
+        $podcast = new Podcast();
+        return $podcast->getPodloveRoles($this->slug());
+    },
+
+    'podloveGroups' => function () {
+        $podcast = new Podcast();
+        return $podcast->getPodloveGroups($this->slug());
+    },
 ];

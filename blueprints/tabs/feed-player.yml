@@ -1,150 +1,152 @@
 label: Website Player
 icon: file-audio
 columns:
-  - width: 1/4
-    sections:
-      player:
-        type: fields
-        fields:
-          headlinePlayer:
-            type: headline
-            label: Website Player
-          playerType:
-            label: Player Type
-            type: select
-            default: podlove
-            options:
-              html5: Standard HTML5 Player
-              podlove: Advanced Podlove Player
-          infoPlayer:
-            label: Add to Template
-            type: info
-            theme: info
-            text: You need to put the player snippet in your template file. Just add <?php snippet('podcaster-player'); ?> where you want the player to appear.
-  - width: 2/4
-    sections:
-      podloveConfig:
-        type: fields
-        fields:
-          headlinePodlove:
-            type: headline
-            label: Podlove Player Configuration
-          podcasterPodloveActiveTab:
-            label: Active Tab
-            type: select
-            default: chapters
-            options:
-              chapters: Chapters
-              files: Files
-              share: 'Share'
-              # playlist: 'Playlist' 
-          podcasterPodloveColors:
-            label: Colors
-            type: structure
-            fields:
-              colorType:
-                type: select
-                required: true
-                options:
-                  brand: Brand
-                  brandDark: Brand Dark
-                  brandDarkest: Brand Darkest
-                  brandLightest: Brand Lightest
-                  shadeBase: Shade Base
-                  shadeDark: Shade Dark
-                  contrast: Contrast
-                  alt: Alt
-              hex:
-                type: text
-                required: true
-                help: hex code
-                pattern: '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'
+    - width: 1/4
+      sections:
+          player:
+              type: fields
+              fields:
+                  headlinePlayer:
+                      type: headline
+                      label: Website Player
+                  playerType:
+                      label: Player Type
+                      type: select
+                      default: podlove
+                      options:
+                          html5: Standard HTML5 Player
+                          podlove: Advanced Podlove Player
+                  infoPlayer:
+                      label: Add to Template
+                      type: info
+                      theme: info
+                      text: You need to put the player snippet in your template file. Just add <?php snippet('podcaster-player'); ?> where you want the player to appear.
+    - width: 2/4
+      sections:
+          podloveConfig:
+              type: fields
+              fields:
+                  headlinePodlove:
+                      type: headline
+                      label: Podlove Player Configuration
+                  podcasterPodloveActiveTab:
+                      label: Active Tab
+                      type: select
+                      default: chapters
+                      options:
+                          chapters: Chapters
+                          files: Files
+                          share: 'Share'
+                          # playlist: 'Playlist'
+                  podcasterPodloveColors:
+                      label: Colors
+                      type: structure
+                      fields:
+                          colorType:
+                              type: select
+                              required: true
+                              options:
+                                  brand: Brand
+                                  brandDark: Brand Dark
+                                  brandDarkest: Brand Darkest
+                                  brandLightest: Brand Lightest
+                                  shadeBase: Shade Base
+                                  shadeDark: Shade Dark
+                                  contrast: Contrast
+                                  alt: Alt
+                          hex:
+                              type: text
+                              required: true
+                              help: hex code
+                              pattern: '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'
 
-          podcasterPodloveFonts:
-            label: Fonts
-            type: structure
-            fields:
-              fontType:
-                type: select
-                required: true
-                options:
-                  ci: CI
-                  regular: Regular
-                  bold: Bold
-              name:
-                type: text
-                required: true
-                label: Font Name
-              family:
-                type: tags
-                required: true
-                label: Font Family
-              weight:
-                type: number
-                required: true
-                label: Font Weight
-              src:
-                type: tags
-                required: true
-                label: Source Path
+                  podcasterPodloveFonts:
+                      label: Fonts
+                      type: structure
+                      fields:
+                          fontType:
+                              type: select
+                              required: true
+                              options:
+                                  ci: CI
+                                  regular: Regular
+                                  bold: Bold
+                          name:
+                              type: text
+                              required: true
+                              label: Font Name
+                          family:
+                              type: tags
+                              required: true
+                              label: Font Family
+                          weight:
+                              type: number
+                              required: true
+                              label: Font Weight
+                          src:
+                              type: tags
+                              required: true
+                              label: Source Path
 
-          podcasterPodloveClients:
-            label: Clients
-            type: structure
-            fields:
-              client:
-                type: select
-                required: true
-                options:
-                  type: api
-                  url: "{{ site.url('') }}/podcaster/api//podlove-clients"
-              service:
-                type: text
-                label: Service
+                  podcasterPodloveClients:
+                      label: Clients
+                      type: structure
+                      fields:
+                          client:
+                              type: select
+                              required: true
+                              options:
+                                  type: query
+                                  query: site.getAppleMetadata('podlove-clients')
+                                  value: '{{ item.value }}'
+                                  text: '{{ item.text }}'
+                          service:
+                              type: text
+                              label: Service
 
-          podcasterPodloveShareChannels:
-            label: Share Channels
-            type: multiselect
-            options:
-              facebook: Facebook
-              twitter: Twitter
-              "whats-app": WhatsApp
-              linkedin: LinkedIn
-              pinterest: Pinterest
-              xing: Xing
-              mail: Mail
-              link: Link
-          podcasterPodloveSharePlaytime:
-            label: Share Playtime
-            type: toggle
-            default: yes
-            text:
-              - Do not share Playtime
-              - Share Playtime
-              
-          podcasterPodloveRoles:
-            label: Contributer Roles
-            type: structure
-            width: 1/1
-            fields:
-              roleId:
-                type: number
-                label: ID
-              roleTitle:
-                type: text
-                label: Role Title
-            when:
-              playerType: podlove
-          podcasterPodloveGroups:
-            label: Contributer Groups
-            type: structure
-            width: 1/1
-            fields:
-              groupId:
-                type: number
-                label: ID
-              groupTitle:
-                type: text
-                label: Group Title
-            when:
-              playerType: podlove
+                  podcasterPodloveShareChannels:
+                      label: Share Channels
+                      type: multiselect
+                      options:
+                          facebook: Facebook
+                          twitter: Twitter
+                          'whats-app': WhatsApp
+                          linkedin: LinkedIn
+                          pinterest: Pinterest
+                          xing: Xing
+                          mail: Mail
+                          link: Link
+                  podcasterPodloveSharePlaytime:
+                      label: Share Playtime
+                      type: toggle
+                      default: yes
+                      text:
+                          - Do not share Playtime
+                          - Share Playtime
+
+                  podcasterPodloveRoles:
+                      label: Contributer Roles
+                      type: structure
+                      width: 1/1
+                      fields:
+                          roleId:
+                              type: number
+                              label: ID
+                          roleTitle:
+                              type: text
+                              label: Role Title
+                      when:
+                          playerType: podlove
+                  podcasterPodloveGroups:
+                      label: Contributer Groups
+                      type: structure
+                      width: 1/1
+                      fields:
+                          groupId:
+                              type: number
+                              label: ID
+                          groupTitle:
+                              type: text
+                              label: Group Title
+                      when:
+                          playerType: podlove

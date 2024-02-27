@@ -1,89 +1,92 @@
 label: Show details
 icon: star
 columns:
-  - width: 1/1
-    sections:
-      spacer:
-        type: fields
-        fields:
-          headlineInfos:
-            type: headline
-            label: Podcast details
-  - width: 1/4
-    sections:
-      graphics:
-        type: fields
-        fields:
-          podcasterCover:
-            type: files
-            label: Cover Image
-            layout: cards
-            multiple: false
-            template: podcaster-cover
-            query: page.images
-            image:
-              cover: true
-              ratio: 1/1
-  - width: 2/4
-    sections:
-      infos:
-        type: fields
-        fields:
-          podcasterTitle:
-            label: Podcast Title
-            type: text
-            required: true
-          podcasterSubtitle:
-            label: Podcast Subtitle
-            type: text
-          podcasterDescription:
-            label: Description
-            type: textarea
-            size: medium
-          podcasterCopyright:
-            label: Copyright
-            type: text
-            required: true
+    - width: 1/1
+      sections:
+          spacer:
+              type: fields
+              fields:
+                  headlineInfos:
+                      type: headline
+                      label: Podcast details
+    - width: 1/4
+      sections:
+          graphics:
+              type: fields
+              fields:
+                  podcasterCover:
+                      type: files
+                      label: Cover Image
+                      layout: cards
+                      multiple: false
+                      template: podcaster-cover
+                      query: page.images
+                      image:
+                          cover: true
+                          ratio: 1/1
+    - width: 2/4
+      sections:
+          infos:
+              type: fields
+              fields:
+                  podcasterTitle:
+                      label: Podcast Title
+                      type: text
+                      required: true
+                  podcasterSubtitle:
+                      label: Podcast Subtitle
+                      type: text
+                  podcasterDescription:
+                      label: Description
+                      type: textarea
+                      size: medium
+                  podcasterCopyright:
+                      label: Copyright
+                      type: text
+                      required: true
 
-  - width: 1/4
-    sections:
-      taxonomy:
-        type: fields
-        fields:
-          podcasterKeywords:
-            label: Apple Keywords
-            type: tags
-          podcasterCategories:
-            label: Apple Categories
-            type: structure
-            required: true
-            fields:
-              podcasterMainCategory:
-                label: Main
-                type: select
-                options:
-                  type: api
-                  url: "{{ site.url('') }}/podcaster/api/categories"
-          podcasterType:
-            label: Podcast type
-            type: radio
-            default: episodic
-            options:
-              episodic: Episodic
-              serial: Serial
-          podcasterLanguage:
-            label: Language
-            type: select
-            options:
-              type: api
-              url: "{{ site.url('') }}/podcaster/api/languages"
-            required: true
-          podcasterAuthor:
-            label: Author
-            type: users
-            max: 1
-          podcasterOwner:
-            label: Owner
-            type: users
-            max: 1
-
+    - width: 1/4
+      sections:
+          taxonomy:
+              type: fields
+              fields:
+                  podcasterKeywords:
+                      label: Apple Keywords
+                      type: tags
+                  podcasterCategories:
+                      label: Apple Categories
+                      type: structure
+                      required: true
+                      fields:
+                          podcasterMainCategory:
+                              label: Main
+                              type: select
+                              options:
+                                  type: query
+                                  query: site.getAppleMetadata('categories')
+                                  value: '{{ item.value }}'
+                                  text: '{{ item.text }}'
+                  podcasterType:
+                      label: Podcast type
+                      type: radio
+                      default: episodic
+                      options:
+                          episodic: Episodic
+                          serial: Serial
+                  podcasterLanguage:
+                      label: Language
+                      type: select
+                      options:
+                          type: query
+                          query: site.getAppleMetadata('languages')
+                          value: '{{ item.value }}'
+                          text: '{{ item.text }}'
+                      required: true
+                  podcasterAuthor:
+                      label: Author
+                      type: users
+                      max: 1
+                  podcasterOwner:
+                      label: Owner
+                      type: users
+                      max: 1

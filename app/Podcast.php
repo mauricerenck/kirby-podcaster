@@ -3,8 +3,11 @@
 namespace mauricerenck\Podcaster;
 
 use Exception;
+use Kirby\Cms\Collection;
+use Kirby\Cms\Structure;
 use Kirby\Filesystem\F;
 use Kirby\Toolkit\Str;
+use Kirby\Http\Remote;
 
 class Podcast
 {
@@ -83,19 +86,19 @@ class Podcast
             return $episode->podcasterAudio()->toFile();
         }
 
-        if(!is_null($episode->podcasterMp3())) {
+        if (!is_null($episode->podcasterMp3())) {
             $audioFile = $episode->audio($episode->podcasterMp3()->first())->first();
 
             if (is_null($audioFile)) {
                 return null;
             }
-    
+
             return $audioFile;
         }
-    
+
         $audioFile = $episode->audio()->first();
 
-         if (is_null($audioFile)) {
+        if (is_null($audioFile)) {
             return null;
         }
 
@@ -217,10 +220,10 @@ class Podcast
 
     public function getPodloveContributors($contributorsField, $contributorRoles, $contributorGroups)
     {
-        if($contributorRoles->toStructure()->isEmpty() || $contributorGroups->toStructure()->isEmpty()) {
+        if ($contributorRoles->toStructure()->isEmpty() || $contributorGroups->toStructure()->isEmpty()) {
             return [];
         }
-        
+
         $contributors = [];
         $roles = $contributorRoles->toStructure();
         $groups = $contributorGroups->toStructure();
@@ -450,5 +453,34 @@ class Podcast
         // TODO Playlists
 
         return $config;
+    }
+
+    public function getAppleMetadata($endpoint)
+    {
+        $keyValueList = [];
+
+        if (option('mauricerenck.podcaster.useApi', true)) {
+            $apiCache = kirby()->cache('mauricerenck.podcaster');
+            $jsonString  = $apiCache->get($endpoint);
+
+            if ($jsonString === null) {
+                $response = new Remote('https://api.podcaster-plugin.com/' . $endpoint);
+                $apiCache->set($endpoint, $response->content(), 7 * 24 * 60);
+            }
+        } else {
+            $jsonString = file_get_contents(__DIR__ . '/../res/' . $endpoint . '.json');
+        }
+
+        $json = json_decode($jsonString, JSON_OBJECT_AS_ARRAY);
+
+        foreach ($json as $key => $label) {
+            $keyValueList[] = ['text' => $label, 'value' => $key];
+        }
+
+        if (is_null($keyValueList)) {
+            return [];
+        }
+
+        return $keyValueList;
     }
 }

@@ -23,8 +23,10 @@ columns:
                               label: Language
                               type: select
                               options:
-                                  type: api
-                                  url: "{{ site.url('') }}/podcaster/api/languages"
+                                  type: query
+                                  query: site.getAppleMetadata('languages')
+                                  value: '{{ item.value }}'
+                                  text: '{{ item.text }}'
                               required: true
                           podcasterTranscriptFile:
                               type: files
@@ -177,16 +179,16 @@ columns:
                               type: select
                               label: Role
                               options:
-                                  type: api
-                                  url: "{{ site.url('') }}/podcaster/podlove/roles/{{ page.uri }}"
+                                  type: query
+                                  query: page.podloveRoles
                                   text: '{{ item.title }}'
                                   value: '{{ item.id }}'
                           contributorGroup:
                               type: select
                               label: Group
                               options:
-                                  type: api
-                                  url: "{{ site.url('') }}/podcaster/podlove/groups/{{ page.uri }}"
+                                  type: query
+                                  query: page.podloveGroups
                                   text: '{{ item.title }}'
                                   value: '{{ item.id }}'
                       columns:

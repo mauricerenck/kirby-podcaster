@@ -4,7 +4,6 @@ namespace mauricerenck\Podcaster;
 
 use Kirby;
 use Kirby\Http\Response;
-use Kirby\Http\Remote;
 
 @include_once __DIR__ . '/vendor/autoload.php';
 
@@ -21,14 +20,14 @@ Kirby::plugin('mauricerenck/podcaster', [
         'tabs/podcaster/feed-player' => __DIR__ . '/blueprints/tabs/feed-player.yml',
         'tabs/podcaster/feed-tracking' => __DIR__ . '/blueprints/tabs/feed-tracking.yml',
 
-        //'pages/podcasterwizard' => __DIR__ . '/blueprints/pages/podcasterwizard.yml',
         'files/podcaster-episode' => __DIR__ . '/blueprints/files/podcaster-episode.yml',
         'files/podcaster-cover' => __DIR__ . '/blueprints/files/podcaster-cover.yml',
     ],
     'templates' => [
         'podcasterfeed' => __DIR__ . '/templates/podcasterfeed.php',
     ],
-    'pageMethods' => require_once __DIR__ . '/app/FeedMethods.php',
+    'pageMethods' => require_once __DIR__ . '/app/PageMethods.php',
+    'siteMethods' => require_once __DIR__ . '/app/SiteMethods.php',
     'fileTypes' => require_once __DIR__ . '/app/FileTypes.php',
     'api' => require_once(__DIR__ . '/internal/api.php'),
     'hooks' => require_once(__DIR__ . '/internal/hooks.php'),
@@ -124,22 +123,6 @@ Kirby::plugin('mauricerenck/podcaster', [
             },
         ],
         [
-            'pattern' => 'podcaster/podlove/roles/(:all)',
-            'action' => function ($episodeSlug) {
-                $podcast = new Podcast();
-
-                return new Response(json_encode($podcast->getPodloveRoles($episodeSlug)), 'application/json');
-            }
-        ],
-        [
-            'pattern' => 'podcaster/podlove/groups/(:all)',
-            'action' => function ($episodeSlug) {
-                $podcast = new Podcast();
-
-                return new Response(json_encode($podcast->getPodloveRoles($episodeSlug)), 'application/json');
-            }
-        ],
-        [
             'pattern' => 'podcaster/podlove/config/(:all)',
             'action' => function ($episodeSlug) {
 
@@ -156,26 +139,6 @@ Kirby::plugin('mauricerenck/podcaster', [
                 $episode = $podcast->getPageFromSlug($episodeSlug);
 
                 return new Response(json_encode($podcast->getPodloveEpisodeJson($episode)), 'application/json');
-            }
-        ],
-        [
-            'pattern' => 'podcaster/api/(categories|languages|podlove-clients)',
-            'action' => function ($endpoint) {
-                if (option('mauricerenck.podcaster.useApi', true)) {
-                    $apiCache = kirby()->cache('mauricerenck.podcaster');
-                    $$endpoint  = $apiCache->get($endpoint);
-
-                    if ($$endpoint === null) {
-                        $response = new Remote('https://api.podcaster-plugin.com/' . $endpoint);
-                        $apiCache->set($endpoint, $response->content(), 7* 24 * 60 );
-                    }
-
-                    return $$endpoint;
-                }
-
-                $json = file_get_contents(__DIR__ . '/res/' . $endpoint . '.json');
-
-                return new Response(json_encode($json), 'application/json');
             }
         ],
     ],

@@ -2,38 +2,6 @@ Title: feed
 
 ----
 
-Podcastid: phpunit
-
-----
-
-Podcasterlink: https://erzaehl.es
-
-----
-
-Podcasteratomlink: https://erzaehl.es
-
-----
-
-Podcasterlanguage: de
-
-----
-
-Podcasterauthor: - user://9u0svKwr
-
-----
-
-Podcasterowner: - user://9u0svKwr
-
-----
-
-Podcastersource: - page://lZUGnLSojsId8GLj
-
-----
-
-Podcastertype: episodic
-
-----
-
 Podcastercover: - file://vRSfYjGx9PD0ZMqg
 
 ----
@@ -63,7 +31,55 @@ Podcastercategories:
 - 
   podcastermaincategory: Arts
 - 
-  podcastermaincategory: Education/Courses
+  podcastermaincategory: Arts/Design
+
+----
+
+Podcastertype: episodic
+
+----
+
+Podcasterlanguage: de
+
+----
+
+Podcasterauthor: - user://9u0svKwr
+
+----
+
+Podcasterowner: - user://9u0svKwr
+
+----
+
+Podcastid: phpunit
+
+----
+
+Podcasterlink: https://erzaehl.es
+
+----
+
+Podcasteratomlink: https://erzaehl.es
+
+----
+
+Podcastersource: - page://lZUGnLSojsId8GLj
+
+----
+
+Podcasterblock: false
+
+----
+
+Podcasterexplicit: false
+
+----
+
+Podcastercomplete: false
+
+----
+
+Podcasternewfeedurl: 
 
 ----
 
@@ -71,31 +87,108 @@ Playertype: podlove
 
 ----
 
-Podcasterpodlovemaincolor: 
+Podcasterpodloveactivetab: chapters
 
 ----
 
-Podcasterpodlovehighlighcolor: 
+Podcasterpodlovecolors:
+
+- 
+  colortype: brand
+  hex: '#166255'
+- 
+  colortype: brandDark
+  hex: '#166255'
+- 
+  colortype: brandDarkest
+  hex: '#1A3A4A'
+- 
+  colortype: brandLightest
+  hex: '#E5EAEC'
+- 
+  colortype: shadeDark
+  hex: '#807E7C'
+- 
+  colortype: shadeBase
+  hex: '#807E7C'
+- 
+  colortype: contrast
+  hex: '#000'
+- 
+  colortype: alt
+  hex: '#fff'
 
 ----
 
-Podcasterpodlovetabsinfo: false
+Podcasterpodlovefonts:
+
+- 
+  fonttype: ci
+  name: RobotoBlack
+  family: >
+    RobotoBlack, Calibri, Candara, Arial,
+    Helvetica, sans-serif
+  weight: 900
+  src: ./assets/Roboto-Black.ttf
+- 
+  fonttype: regular
+  name: FiraSansLight
+  family: >
+    FiraSansLight, Calibri, Candara, Arial,
+    Helvetica, sans-serif
+  weight: 300
+  src: ./assets/FiraSans-Light.ttf
+- 
+  fonttype: bold
+  name: FiraSansBold
+  family: >
+    FiraSansBold, Calibri, Candara, Arial,
+    Helvetica, sans-serif
+  weight: 700
+  src: ./assets/FiraSans-Bold.ttf
 
 ----
 
-Podcasterpodlovetabsshare: false
+Podcasterpodloveclients:
+
+- 
+  client: apple-podcasts
+  service: "12345678"
+- 
+  client: pocket-casts
+  service: "12345678"
+- 
+  client: overcast
+  service: ""
+- 
+  client: rss
+  service: ""
 
 ----
 
-Podcasterpodlovetabschapters: false
+Podcasterpodlovesharechannels: facebook, twitter, whats-app, linkedin, pinterest, xing, mail, link
 
 ----
 
-Podcasterpodlovetabsaudio: false
+Podcasterpodloveshareplaytime: true
 
 ----
 
-Podcasterpodlovetabsdownload: false
+Podcasterpodloveroles:
+
+- 
+  roleid: 1
+  roletitle: Team Role
+
+----
+
+Podcasterpodlovegroups:
+
+- 
+  groupid: 1
+  grouptitle: On Air
+  roleid: 1
+  roletitle: On Air
 
 ----
 
@@ -167,19 +260,63 @@ Podtracurl: https://dts.podtrac.com/redirect.mp3/
 
 ----
 
-Podcasterblock: false
+Podcasterpodlovemaincolor: 
 
 ----
 
-Podcasterexplicit: false
+Podcasterpodlovehighlighcolor: 
 
 ----
 
-Podcastercomplete: false
+Podcasterpodlovetabsinfo: false
 
 ----
 
-Podcasternewfeedurl: 
+Podcasterpodlovetabsshare: false
+
+----
+
+Podcasterpodlovetabschapters: false
+
+----
+
+Podcasterpodlovetabsaudio: false
+
+----
+
+Podcasterpodlovetabsdownload: false
+
+----
+
+Podcasterpodlovecolorbrand: #166255
+
+----
+
+Podcasterpodlovecolorbranddark: #166255
+
+----
+
+Podcasterpodlovecolorbranddarkest: #1A3A4A
+
+----
+
+Podcasterpodlovecolorbrandlightest: #E5EAEC
+
+----
+
+Podcasterpodlovecolorshadedark: #807E7C
+
+----
+
+Podcasterpodlovecolorshadebase: #807E7C
+
+----
+
+Podcasterpodlovecolorcontrast: #000
+
+----
+
+Podcasterpodlovecoloralt: #fff
 
 ----
 
