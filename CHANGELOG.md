@@ -1,3 +1,15 @@
+# [3.2.0](https://github.com/mauricerenck/kirby-podcaster/compare/v3.1.0...v3.2.0) (2024-02-27)
+
+
+### Bug Fixes
+
+* localhost api requests run into timeout ([844c73b](https://github.com/mauricerenck/kirby-podcaster/commit/844c73ba3f429791dd801149632837ee7fce8fb7)), closes [#65](https://github.com/mauricerenck/kirby-podcaster/issues/65)
+
+
+### Features
+
+* allow various audio formats ([72b5f16](https://github.com/mauricerenck/kirby-podcaster/commit/72b5f1694b57d18435111b07b06a69edefbae010)), closes [#67](https://github.com/mauricerenck/kirby-podcaster/issues/67)
+
 # [3.1.0](https://github.com/mauricerenck/kirby-podcaster/compare/v3.0.3...v3.1.0) (2024-01-31)
 
 
