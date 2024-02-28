@@ -1,3 +1,10 @@
+## [3.2.2](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.1...v3.2.2) (2024-02-28)
+
+
+### Bug Fixes
+
+* option for automigration added ([a918c86](https://github.com/mauricerenck/kirby-podcaster/commit/a918c867c402c6c59db40f89b26909b6af33782e))
+
 ## [3.2.1](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.0...v3.2.1) (2024-02-28)
 
 
