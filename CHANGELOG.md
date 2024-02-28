@@ -1,3 +1,10 @@
+## [3.2.1](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.0...v3.2.1) (2024-02-28)
+
+
+### Bug Fixes
+
+* hide podcast area when stats disabled ([45b0050](https://github.com/mauricerenck/kirby-podcaster/commit/45b0050644ec1a5e6510d685ce6f8ee862056c77))
+
 # [3.2.0](https://github.com/mauricerenck/kirby-podcaster/compare/v3.1.0...v3.2.0) (2024-02-27)
 
 
