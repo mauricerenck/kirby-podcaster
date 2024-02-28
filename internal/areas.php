@@ -2,6 +2,11 @@
 
 namespace mauricerenck\Podcaster;
 
+
+if (option('mauricerenck.podcaster.statsInternal', false) === false) {
+    return null;
+}
+
 return [
     'podcasts' => function ($kirby) {
         return [
