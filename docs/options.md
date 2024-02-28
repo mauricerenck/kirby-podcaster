@@ -33,5 +33,5 @@ or
 | matomoToken         |              | Your Matomo auth token                                                        |
 | setId3Data          | `false`      | Write ID3 data like title or description to the episode page after mp3 upload |
 | sanitize            | `false`      | Enable to sanitize data after migration from version 2                        |
+| autoMigration       | `true`       | Disable this to not automatically migrate data (may help with low page speed) |
 | useApi              | `true`       | Use the Podcaster API for Apple categories and other meta data                |
-
