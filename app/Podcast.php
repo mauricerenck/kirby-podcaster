@@ -427,9 +427,10 @@ class Podcast
             'version' => 5,
             'base' => 'player/',
             'activeTab' => $feed->podcasterPodloveActiveTab()->value(),
-            'subscribe-button' => [
-                'feed' => $feed->url()
-            ],
+            'subscribe-button' =>
+                !is_null($clients)
+                    ? [ 'feed' => $feed->url()]
+                    : null,
         ];
 
         if (!is_null($tokens) || !is_null($fonts)) {
