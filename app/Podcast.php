@@ -429,7 +429,7 @@ class Podcast
             'activeTab' => $feed->podcasterPodloveActiveTab()->value(),
             'subscribe-button' =>
                 !is_null($clients)
-                    ? [ 'feed' => $feed->url()]
+                    ? [ 'feed' => $feed->url() ]
                     : null,
         ];
 
