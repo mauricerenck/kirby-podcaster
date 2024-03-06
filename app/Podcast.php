@@ -15,7 +15,7 @@ class Podcast
     {
         if ($slug == '') {
             $page = page(site()->homePageId());
-        } elseif (!$page = page($slug)) {
+        } elseif (!($page = page($slug))) {
             $page = page(kirby()->router()->call($slug));
 
             if ($page->isHomeOrErrorPage()) {
@@ -32,10 +32,13 @@ class Podcast
 
     public function getPodcastFromId(string $id)
     {
-        $pages = site()->index()->filterBy('template', 'podcasterfeed')->filter(function ($child) use ($id) {
-            return $child->podcastId()->value() === $id;
-        })->first();
-
+        $pages = site()
+            ->index()
+            ->filterBy('template', 'podcasterfeed')
+            ->filter(function ($child) use ($id) {
+                return $child->podcastId()->value() === $id;
+            })
+            ->first();
 
         if (is_null($pages)) {
             return false;
@@ -68,7 +71,8 @@ class Podcast
 
     public function getEpisodes($rssFeed)
     {
-        return $rssFeed->podcasterSource()
+        return $rssFeed
+            ->podcasterSource()
             ->toPages()
             ->children()
             ->listed()
@@ -77,7 +81,8 @@ class Podcast
             })
             ->filter(function ($child) {
                 return $child->hasAudio();
-            })->sortBy('date', 'desc');
+            })
+            ->sortBy('date', 'desc');
     }
 
     public function getAudioFile($episode)
@@ -137,7 +142,7 @@ class Podcast
                 [
                     'id' => '1',
                     'title' => 'Team',
-                ]
+                ],
             ];
         }
 
@@ -147,7 +152,7 @@ class Podcast
                 [
                     'id' => '1',
                     'title' => 'Team',
-                ]
+                ],
             ];
         }
 
@@ -156,7 +161,7 @@ class Podcast
                 [
                     'id' => '1',
                     'title' => 'Team',
-                ]
+                ],
             ];
         }
 
@@ -165,7 +170,7 @@ class Podcast
 
         foreach ($podloveRoles as $role) {
             $roles[] = [
-                'id' => (string)$role->roleId()->value(),
+                'id' => (string) $role->roleId()->value(),
                 'title' => $role->roleTitle()->value(),
             ];
         }
@@ -181,7 +186,7 @@ class Podcast
                 [
                     'id' => '1',
                     'title' => 'Team',
-                ]
+                ],
             ];
         }
 
@@ -192,7 +197,7 @@ class Podcast
                 [
                     'id' => '1',
                     'title' => 'Team',
-                ]
+                ],
             ];
         }
 
@@ -201,7 +206,7 @@ class Podcast
                 [
                     'id' => '1',
                     'title' => 'Team',
-                ]
+                ],
             ];
         }
 
@@ -210,7 +215,7 @@ class Podcast
 
         foreach ($podloveRoles as $role) {
             $roles[] = [
-                'id' => (string)$role->roleId()->value(),
+                'id' => (string) $role->roleId()->value(),
                 'title' => $role->roleTitle()->value(),
             ];
         }
@@ -261,6 +266,30 @@ class Podcast
         }
 
         return $contributors;
+    }
+
+    public function getPodloveTranscripts($episode)
+    {
+        if ($episode->podcasterTranscript()->isEmpty()) {
+            return null;
+        }
+
+        $transcripts = $episode->podcasterTranscript()->toStructure();
+        $podloveTranscripts = [];
+        foreach ($transcripts as $transcript) {
+            $podloveTranscript = [
+                'language' => $transcript->podcasterTranscriptLanguage()->value(),
+                'url' => $transcript->podcasterTranscriptFile()->toFile()->url(),
+            ];
+
+            $podloveTranscripts[] = $podloveTranscript;
+        }
+
+        if (is_null($podloveTranscripts[0])) {
+            return null;
+        }
+
+        return $podloveTranscripts[0]['url'];
     }
 
     public function getPodloveFonts($feed)
@@ -361,8 +390,12 @@ class Podcast
         $enclosure = $feedUtils->getAudioEnclosures($episode, $audio);
         $audioDuration = $feedUtils->getAudioDuration($audio);
         $chapters = $feedUtils->getChapters($episode, true, true);
-        $contributors = $this->getPodloveContributors($episode->podcasterContributors(), $feed->podcasterPodloveRoles(), $feed->podcasterPodloveGroups());
-
+        $contributors = $this->getPodloveContributors(
+            $episode->podcasterContributors(),
+            $feed->podcasterPodloveRoles(),
+            $feed->podcasterPodloveGroups()
+        );
+        $transcript = $this->getPodloveTranscripts($episode);
         return [
             'version' => 5,
             'show' => [
@@ -370,7 +403,7 @@ class Podcast
                 'subtitle' => $feed->podcasterSubtitle()->value(),
                 'summary' => $feed->podcasterDescription()->value(),
                 'poster' => $feed->podcasterCover()->toFile()->url(),
-                'link' => $feed->podcasterLink()->value()
+                'link' => $feed->podcasterLink()->value(),
             ],
             'title' => $episode->podcasterTitle()->value(),
             'subtitle' => $episode->podcasterSubtitle()->value(),
@@ -383,36 +416,22 @@ class Podcast
                 [
                     'url' => $enclosure['url'],
                     'size' => $enclosure['length'],
-                    'title' => "MP3 Audio",
-                    'mimeType' => "audio/mpeg"
-                ]
+                    'title' => 'MP3 Audio',
+                    'mimeType' => 'audio/mpeg',
+                ],
             ],
             'files' => [
                 [
                     'url' => $enclosure['url'],
                     'size' => $enclosure['length'],
-                    'title' => "MP3 Audio",
-                    'mimeType' => "audio/mpeg"
-                ]
+                    'title' => 'MP3 Audio',
+                    'mimeType' => 'audio/mpeg',
+                ],
             ],
             'chapters' => $chapters,
             'contributors' => $contributors,
+            'transcripts' => $transcript,
         ];
-        /*
-            // TODO
-            "transcripts" => [
-                [
-                    "start" => "00:00:00.005",
-                    "start_ms" => 5,
-                    "end" => "00:00:09.458",
-                    "end_ms" => 9458,
-                    "speaker" => "3",
-                    "voice" => "Eric",
-                    "text" => "Dann sage ich einfach mal: Hallo und willkommen zu Episode drei des Podlovers Podcasts. Heute das erste Mal mit Gast. Hallo Simon."
-                ],
-            ]
-        ];
-        */
     }
 
     public function getPodloveConfigJson($episode)
@@ -428,7 +447,7 @@ class Podcast
             'base' => 'player/',
             'activeTab' => $feed->podcasterPodloveActiveTab()->value(),
             'subscribe-button' => [
-                'feed' => $feed->url()
+                'feed' => $feed->url(),
             ],
         ];
 
@@ -461,7 +480,7 @@ class Podcast
 
         if (option('mauricerenck.podcaster.useApi', true)) {
             $apiCache = kirby()->cache('mauricerenck.podcaster');
-            $jsonString  = $apiCache->get($endpoint);
+            $jsonString = $apiCache->get($endpoint);
 
             if ($jsonString === null) {
                 $response = new Remote('https://api.podcaster-plugin.com/' . $endpoint);

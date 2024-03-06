@@ -1,7 +1,7 @@
 <?php
 
 use mauricerenck\Podcaster\TestCaseMocked;
-use \mauricerenck\Podcaster\Podcast;
+use mauricerenck\Podcaster\Podcast;
 
 final class PodcastTest extends TestCaseMocked
 {
@@ -47,7 +47,7 @@ final class PodcastTest extends TestCaseMocked
             [
                 'id' => '1',
                 'title' => 'Team',
-            ]
+            ],
         ];
 
         $podcast = new Podcast();
@@ -62,7 +62,7 @@ final class PodcastTest extends TestCaseMocked
             [
                 'id' => '1',
                 'title' => 'Team',
-            ]
+            ],
         ];
 
         $podcast = new Podcast();
@@ -77,7 +77,7 @@ final class PodcastTest extends TestCaseMocked
             [
                 'id' => '1',
                 'title' => 'Team',
-            ]
+            ],
         ];
 
         $podcast = new Podcast();
@@ -92,7 +92,7 @@ final class PodcastTest extends TestCaseMocked
             [
                 'id' => '1',
                 'title' => 'Team Role',
-            ]
+            ],
         ];
 
         $podcast = new Podcast();
@@ -107,7 +107,7 @@ final class PodcastTest extends TestCaseMocked
             [
                 'id' => '1',
                 'title' => 'Team',
-            ]
+            ],
         ];
 
         $podcast = new Podcast();
@@ -122,7 +122,7 @@ final class PodcastTest extends TestCaseMocked
             [
                 'id' => '1',
                 'title' => 'Team',
-            ]
+            ],
         ];
 
         $podcast = new Podcast();
@@ -137,7 +137,7 @@ final class PodcastTest extends TestCaseMocked
             [
                 'id' => '1',
                 'title' => 'Team',
-            ]
+            ],
         ];
 
         $podcast = new Podcast();
@@ -152,7 +152,7 @@ final class PodcastTest extends TestCaseMocked
             [
                 'id' => '1',
                 'title' => 'On Air',
-            ]
+            ],
         ];
 
         $podcast = new Podcast();
@@ -163,7 +163,6 @@ final class PodcastTest extends TestCaseMocked
 
     public function testGetContributors()
     {
-
         $pageMock = page('phpunit/podcast-seasons/season01/episode-1');
         $feedMock = page('phpunit/podcast-seasons/feed');
 
@@ -175,18 +174,22 @@ final class PodcastTest extends TestCaseMocked
                 'role' => [
                     'id' => 1,
                     'slug' => 'team-role',
-                    'title' => 'Team Role'
+                    'title' => 'Team Role',
                 ],
                 'group' => [
                     'id' => 1,
                     'slug' => 'on-air',
-                    'title' => 'On Air'
-                ]
+                    'title' => 'On Air',
+                ],
             ],
         ];
 
         $podcast = new Podcast();
-        $result = $podcast->getPodloveContributors($pageMock->podcasterContributors(), $feedMock->podcasterPodloveRoles(), $feedMock->podcasterPodloveGroups());
+        $result = $podcast->getPodloveContributors(
+            $pageMock->podcasterContributors(),
+            $feedMock->podcasterPodloveRoles(),
+            $feedMock->podcasterPodloveGroups()
+        );
 
         $this->assertEquals($expected, $result);
     }
@@ -200,16 +203,18 @@ final class PodcastTest extends TestCaseMocked
             'show' => [
                 'title' => 'Test Podcast',
                 'subtitle' => 'Podcast Subtitle',
-                'summary' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+                'summary' =>
+                    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
                 'poster' => '/media/pages/phpunit/podcast-seasons/feed/d32a8154c7-1674840090/cover.png',
-                'link' => 'https://erzaehl.es'
+                'link' => 'https://erzaehl.es',
             ],
 
             'title' => 'Episode Title',
             'subtitle' => 'Episode subtitle',
-            'summary' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-            'publicationDate' => "2021-01-06T21:45:00+00:00",
-            'duration' => "00:00:15",
+            'summary' =>
+                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+            'publicationDate' => '2021-01-06T21:45:00+00:00',
+            'duration' => '00:00:15',
             'poster' => '/media/pages/phpunit/podcast-seasons/feed/d32a8154c7-1674840090/cover.png',
             'link' => $pageMock->url(),
 
@@ -218,17 +223,17 @@ final class PodcastTest extends TestCaseMocked
                     'url' => '/de/phpunit/podcast-seasons/season01/episode-1/download/kirby-podcaster-test.mp3',
                     'size' => '481406',
                     'title' => 'MP3 Audio',
-                    'mimeType' => 'audio/mpeg'
-                ]
+                    'mimeType' => 'audio/mpeg',
+                ],
             ],
 
             'files' => [
                 [
                     'url' => '/de/phpunit/podcast-seasons/season01/episode-1/download/kirby-podcaster-test.mp3',
-                    'size' => "481406",
-                    'title' => "MP3 Audio",
-                    'mimeType' => "audio/mpeg"
-                ]
+                    'size' => '481406',
+                    'title' => 'MP3 Audio',
+                    'mimeType' => 'audio/mpeg',
+                ],
             ],
 
             'chapters' => [
@@ -236,19 +241,20 @@ final class PodcastTest extends TestCaseMocked
                     'start' => '00:10:00.000',
                     'title' => 'Chapter Title',
                     'href' => 'https://chapter.tld',
-                    'image' => '/media/pages/phpunit/podcast-seasons/season01/episode-1/87a0931e55-1674840090/cover.png'
+                    'image' =>
+                        '/media/pages/phpunit/podcast-seasons/season01/episode-1/87a0931e55-1674840090/cover.png',
                 ],
                 [
                     'start' => '00:20:00.000',
                     'title' => 'Second Chapter',
                     'href' => 'https://chapter.tld',
-                    'image' => ''
+                    'image' => '',
                 ],
                 [
                     'start' => '00:00:30.000',
                     'title' => 'chapter3',
                     'href' => '',
-                    'image' => ''
+                    'image' => '',
                 ],
             ],
 
@@ -260,15 +266,16 @@ final class PodcastTest extends TestCaseMocked
                     'role' => [
                         'id' => 1,
                         'slug' => 'team-role',
-                        'title' => 'Team Role'
+                        'title' => 'Team Role',
                     ],
                     'group' => [
                         'id' => 1,
                         'slug' => 'on-air',
-                        'title' => 'On Air'
-                    ]
+                        'title' => 'On Air',
+                    ],
                 ],
             ],
+            'transcripts' => '/media/pages/phpunit/podcast-seasons/season01/episode-1/eeb0786efc-1706716589/test.vtt',
         ];
 
         $podcast = new Podcast();
@@ -276,7 +283,6 @@ final class PodcastTest extends TestCaseMocked
 
         $this->assertEquals($expected, $result);
     }
-
 
     public function testPodloveConfigJson()
     {
@@ -296,47 +302,26 @@ final class PodcastTest extends TestCaseMocked
                     'shadeDark' => '#807E7C',
                     'shadeBase' => '#807E7C',
                     'contrast' => '#000',
-                    'alt' => '#fff'
+                    'alt' => '#fff',
                 ],
                 'fonts' => [
                     'ci' => [
                         'name' => 'RobotoBlack',
-                        'family' => [
-                            'RobotoBlack',
-                            'Calibri',
-                            'Candara',
-                            'Arial',
-                            'Helvetica',
-                            'sans-serif'
-                        ],
+                        'family' => ['RobotoBlack', 'Calibri', 'Candara', 'Arial', 'Helvetica', 'sans-serif'],
                         'weight' => 900,
-                        'src' => ['./assets/Roboto-Black.ttf']
+                        'src' => ['./assets/Roboto-Black.ttf'],
                     ],
                     'regular' => [
                         'name' => 'FiraSansLight',
-                        'family' => [
-                            'FiraSansLight',
-                            'Calibri',
-                            'Candara',
-                            'Arial',
-                            'Helvetica',
-                            'sans-serif'
-                        ],
+                        'family' => ['FiraSansLight', 'Calibri', 'Candara', 'Arial', 'Helvetica', 'sans-serif'],
                         'weight' => 300,
-                        'src' => ['./assets/FiraSans-Light.ttf']
+                        'src' => ['./assets/FiraSans-Light.ttf'],
                     ],
                     'bold' => [
                         'name' => 'FiraSansBold',
-                        'family' => [
-                            'FiraSansBold',
-                            'Calibri',
-                            'Candara',
-                            'Arial',
-                            'Helvetica',
-                            'sans-serif'
-                        ],
+                        'family' => ['FiraSansBold', 'Calibri', 'Candara', 'Arial', 'Helvetica', 'sans-serif'],
                         'weight' => 700,
-                        'src' => ['./assets/FiraSans-Bold.ttf']
+                        'src' => ['./assets/FiraSans-Bold.ttf'],
                     ],
                 ],
             ],
@@ -344,35 +329,26 @@ final class PodcastTest extends TestCaseMocked
                 'feed' => '/de/phpunit/podcast-seasons/feed',
                 'clients' => [
                     [
-                        'id' => "apple-podcasts",
-                        'service' => "12345678"
+                        'id' => 'apple-podcasts',
+                        'service' => '12345678',
                     ],
                     [
-                        'id' => "pocket-casts",
-                        'service' => "/de/phpunit/podcast-seasons/feed"
+                        'id' => 'pocket-casts',
+                        'service' => '/de/phpunit/podcast-seasons/feed',
                     ],
                     [
-                        'id' => "overcast"
+                        'id' => 'overcast',
                     ],
                     [
-                        'id' => "rss"
+                        'id' => 'rss',
                     ],
                 ],
             ],
             'share' => [
-                'channels' => [
-                  "facebook",
-                  "twitter",
-                  "whats-app",
-                  "linkedin",
-                  "pinterest",
-                  "xing",
-                  "mail",
-                  "link"
-                ],
+                'channels' => ['facebook', 'twitter', 'whats-app', 'linkedin', 'pinterest', 'xing', 'mail', 'link'],
                 'sharePlaytime' => true,
-                'outlet' => "/de/phpunit/podcast-seasons/season01/episode-1",
-            ]
+                'outlet' => '/de/phpunit/podcast-seasons/season01/episode-1',
+            ],
         ];
 
         $podcast = new Podcast();
