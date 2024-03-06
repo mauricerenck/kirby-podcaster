@@ -1,3 +1,10 @@
+## [3.2.3](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.2...v3.2.3) (2024-03-06)
+
+
+### Bug Fixes
+
+* transscripts ([b5b3402](https://github.com/mauricerenck/kirby-podcaster/commit/b5b34022db61b765406a767a9cb361e868c57582))
+
 ## [3.2.2](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.1...v3.2.2) (2024-02-28)
 
 
