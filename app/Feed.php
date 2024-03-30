@@ -3,6 +3,7 @@
 namespace mauricerenck\Podcaster;
 
 use Kirby\Toolkit\Xml;
+use Kirby\Toolkit\Str;
 
 class Feed extends Podcast
 {
@@ -67,10 +68,12 @@ class Feed extends Podcast
     public function getAudioEnclosures($episode, $audio): array
     {
         return [
-            'url' => $episode->url() . '/' . option(
-                'mauricerenck.podcaster.downloadTriggerPath',
-                'download'
-            ) . '/' . $audio->filename(),
+            'url' =>
+                $episode->url() .
+                '/' .
+                option('mauricerenck.podcaster.downloadTriggerPath', 'download') .
+                '/' .
+                $audio->filename(),
             'length' => $audio->size(),
             'type' => $audio->mime(),
         ];
@@ -94,13 +97,15 @@ class Feed extends Podcast
         $chapterList = [];
 
         foreach ($episode->podcasterChapters()->toStructure() as $chapter) {
-            $chapterStart = ($milliseconds) ? $chapter->podcasterChapterTimestamp()->value() . '.000' : $chapter->podcasterChapterTimestamp()->value();
+            $chapterStart = $milliseconds
+                ? $chapter->podcasterChapterTimestamp()->value() . '.000'
+                : $chapter->podcasterChapterTimestamp()->value();
 
             $newChapter = [
                 'start' => $chapterStart,
-                'title' => Xml::encode($chapter->podcasterChapterTitle()),
-                'href' => ($returnEmptyFields) ? '' : null,
-                'image' => ($returnEmptyFields) ? '' : null,
+                'title' => Str::esc($chapter->podcasterChapterTitle()),
+                'href' => $returnEmptyFields ? '' : null,
+                'image' => $returnEmptyFields ? '' : null,
             ];
 
             if ($chapter->podcasterChapterUrl()->isNotEmpty()) {

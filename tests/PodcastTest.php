@@ -246,7 +246,7 @@ final class PodcastTest extends TestCaseMocked
                 ],
                 [
                     'start' => '00:20:00.000',
-                    'title' => 'Second Chapter',
+                    'title' => 'Second Chapter with ä ö ü ß',
                     'href' => 'https://chapter.tld',
                     'image' => '',
                 ],
