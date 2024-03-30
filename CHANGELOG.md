@@ -1,3 +1,10 @@
+## [3.2.4](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.3...v3.2.4) (2024-03-30)
+
+
+### Bug Fixes
+
+* umlauts in chapters ([c4ac1f3](https://github.com/mauricerenck/kirby-podcaster/commit/c4ac1f3727e19de4de48071a906ae8ec6788ed07)), closes [#71](https://github.com/mauricerenck/kirby-podcaster/issues/71)
+
 ## [3.2.3](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.2...v3.2.3) (2024-03-06)
 
 
