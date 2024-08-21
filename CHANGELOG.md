@@ -1,3 +1,10 @@
+## [3.2.5](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.4...v3.2.5) (2024-08-21)
+
+
+### Bug Fixes
+
+* do not connect to db when internal stats are inactive ([c37fec9](https://github.com/mauricerenck/kirby-podcaster/commit/c37fec9e3888dffb90eb626006c0821b721c594e))
+
 ## [3.2.4](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.3...v3.2.4) (2024-03-30)
 
 
