@@ -9,7 +9,7 @@ return [
         [
             'pattern' => 'podcaster/stats/graph/downloads/(:any)/(:num)/(:num)',
             'action' => function ($podcastId, $year, $month) {
-                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                if (option('mauricerenck.podcaster.statsInternal', false) === false) {
                     $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
 
                     return new Response(json_encode($errorMessage), 'application/json', 412);
@@ -38,7 +38,7 @@ return [
         [
             'pattern' => 'podcaster/stats/graph/episodes/(:any)',
             'action' => function ($podcastId) {
-                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                if (option('mauricerenck.podcaster.statsInternal', false) === false) {
                     $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
 
                     return new Response(json_encode($errorMessage), 'application/json', 412);
@@ -85,7 +85,7 @@ return [
         [
             'pattern' => 'podcaster/stats/graph/feeds/(:any)',
             'action' => function ($podcastId) {
-                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                if (option('mauricerenck.podcaster.statsInternal', false) === false) {
                     $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
 
                     return new Response(json_encode($errorMessage), 'application/json', 412);
@@ -132,7 +132,7 @@ return [
         [
             'pattern' => 'podcaster/stats/quickreports/(:any)',
             'action' => function ($podcastId) {
-                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                if (option('mauricerenck.podcaster.statsInternal', false) === false) {
                     $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
 
                     return new Response(json_encode($errorMessage), 'application/json', 412);
@@ -188,7 +188,7 @@ return [
         [
             'pattern' => 'podcaster/stats/graph/episode/(:any)/(:any)',
             'action' => function ($podcastId, $episode) {
-                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                if (option('mauricerenck.podcaster.statsInternal', false) === false) {
                     $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
 
                     return new Response(json_encode($errorMessage), 'application/json', 412);
@@ -217,7 +217,7 @@ return [
         [
             'pattern' => 'podcaster/stats/graph/devices/(:any)/(:num)/(:num)',
             'action' => function ($podcastId, $year, $month) {
-                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                if (option('mauricerenck.podcaster.statsInternal', false) === false) {
                     $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
 
                     return new Response(json_encode($errorMessage), 'application/json', 412);
@@ -246,7 +246,7 @@ return [
         [
             'pattern' => 'podcaster/stats/graph/useragents/(:any)/(:num)/(:num)',
             'action' => function ($podcastId, $year, $month) {
-                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                if (option('mauricerenck.podcaster.statsInternal', false) === false) {
                     $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
 
                     return new Response(json_encode($errorMessage), 'application/json', 412);
@@ -275,7 +275,7 @@ return [
         [
             'pattern' => 'podcaster/stats/graph/os/(:any)/(:num)/(:num)',
             'action' => function ($podcastId, $year, $month) {
-                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                if (option('mauricerenck.podcaster.statsInternal', false) === false) {
                     $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
 
                     return new Response(json_encode($errorMessage), 'application/json', 412);
@@ -304,7 +304,7 @@ return [
         [
             'pattern' => 'podcaster/stats/top-episodes/(:any)',
             'action' => function ($podcastId) {
-                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                if (option('mauricerenck.podcaster.statsInternal', false) === false) {
                     $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
 
                     return new Response(json_encode($errorMessage), 'application/json', 412);
@@ -325,7 +325,7 @@ return [
         [
             'pattern' => 'podcaster/stats/episodes/(:any)',
             'action' => function ($podcastId) {
-                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                if (option('mauricerenck.podcaster.statsInternal', false) === false) {
                     $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
 
                     return new Response(json_encode($errorMessage), 'application/json', 412);
@@ -358,7 +358,7 @@ return [
         [
             'pattern' => 'podcaster/stats/subscribers/(:any)',
             'action' => function ($podcastId) {
-                if (option('mauricerenck.podcaster.statsInternal') === false) {
+                if (option('mauricerenck.podcaster.statsInternal', false) === false) {
                     $errorMessage = ['error' => 'Internal stats are disabled, see documentation for more information'];
 
                     return new Response(json_encode($errorMessage), 'application/json', 412);

@@ -21,7 +21,7 @@ class PodcasterStats implements PodcasterStatsInterfaceBase
             return;
         }
 
-        if (option('mauricerenck.podcaster.statsInternal') === true) {
+        if (option('mauricerenck.podcaster.statsInternal', false) === true) {
             $trackingDate = time();
             $this->upsertEpisode($feed, $episode, $trackingDate);
             $this->upsertUserAgents($feed, $userAgentData, $trackingDate);
@@ -37,7 +37,7 @@ class PodcasterStats implements PodcasterStatsInterfaceBase
             return;
         }
 
-        if (option('mauricerenck.podcaster.statsInternal') === true) {
+        if (option('mauricerenck.podcaster.statsInternal', false) === true) {
             $this->upsertFeed($feed);
         }
 

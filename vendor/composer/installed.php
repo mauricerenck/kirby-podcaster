@@ -1,8 +1,8 @@
 <?php return array(
     'root' => array(
         'name' => 'mauricerenck/podcaster',
-        'pretty_version' => '3.2.3',
-        'version' => '3.2.3.0',
+        'pretty_version' => '3.2.4',
+        'version' => '3.2.4.0',
         'reference' => NULL,
         'type' => 'kirby-plugin',
         'install_path' => __DIR__ . '/../../',
@@ -29,17 +29,17 @@
             'dev_requirement' => false,
         ),
         'matomo/matomo-php-tracker' => array(
-            'pretty_version' => '3.2.0',
-            'version' => '3.2.0.0',
-            'reference' => 'c9e7816d63ddf99bffb1414cfbe45f4c4edf1d4b',
+            'pretty_version' => '3.3.1',
+            'version' => '3.3.1.0',
+            'reference' => '92c2ce658111c7d86a552521c619083e41ebd834',
             'type' => 'library',
             'install_path' => __DIR__ . '/../matomo/matomo-php-tracker',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
         'mauricerenck/podcaster' => array(
-            'pretty_version' => '3.2.3',
-            'version' => '3.2.3.0',
+            'pretty_version' => '3.2.4',
+            'version' => '3.2.4.0',
             'reference' => NULL,
             'type' => 'kirby-plugin',
             'install_path' => __DIR__ . '/../../',
