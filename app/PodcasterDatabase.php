@@ -8,7 +8,7 @@ class PodcasterDatabase
 {
     public function connect(string $dbType)
     {
-        if (option('mauricerenck.podcaster.statsInternal') === false) {
+        if (option('mauricerenck.podcaster.statsInternal', false) === false) {
             return null;
         }
 
