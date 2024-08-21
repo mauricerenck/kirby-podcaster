@@ -1,3 +1,10 @@
+## [3.2.6](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.5...v3.2.6) (2024-08-21)
+
+
+### Bug Fixes
+
+* stats may return null value ([ad85cc3](https://github.com/mauricerenck/kirby-podcaster/commit/ad85cc366a860eccad9f6d0cb8a0a5f33e88ea53))
+
 ## [3.2.5](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.4...v3.2.5) (2024-08-21)
 
 
