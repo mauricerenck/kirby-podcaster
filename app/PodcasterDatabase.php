@@ -8,6 +8,10 @@ class PodcasterDatabase
 {
     public function connect(string $dbType)
     {
+        if (option('mauricerenck.podcaster.statsInternal') === false) {
+            return null;
+        }
+
         try {
             if ($dbType === 'mysql') {
                 $database = new Database([

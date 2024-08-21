@@ -6,6 +6,19 @@ Podcasteraudio: - file://PIrCmXQs1k0gJV41
 
 ----
 
+Podcastertranscript:
+
+-
+  podcastertranscriptlanguage: ar-KW
+  podcastertranscriptfile:
+    - file://Y1eW2AZeVUOh11pl
+-
+  podcastertranscriptlanguage: de
+  podcastertranscriptfile:
+    - file://L10JTYu3jhtHgO3e
+
+----
+
 Podcastercover: - file://NxwPC4OF9isofI1h
 
 ----
@@ -19,14 +32,6 @@ Podcasterepisode: 1
 ----
 
 Podcasterepisodetype: full
-
-----
-
-Podcasterexplicit: true
-
-----
-
-Podcasterblock: false
 
 ----
 
@@ -44,18 +49,18 @@ Podcasterdescription: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, s
 
 Podcasterchapters:
 
-- 
+-
   podcasterchaptertimestamp: 00:10:00
   podcasterchaptertitle: Chapter Title
   podcasterchapterurl: https://chapter.tld
   podcasterchapterimage:
     - file://NxwPC4OF9isofI1h
-- 
+-
   podcasterchaptertimestamp: 00:20:00
-  podcasterchaptertitle: Second Chapter
+  podcasterchaptertitle: Second Chapter with ä ö ü ß
   podcasterchapterurl: https://chapter.tld
   podcasterchapterimage: [ ]
-- 
+-
   podcasterchaptertimestamp: 00:00:30
   podcasterchaptertitle: chapter3
   podcasterchapterurl: ""
@@ -67,7 +72,27 @@ Podcasterauthor: - user://9u0svKwr
 
 ----
 
-Podcastercontributors: - user://9u0svKwr
+Podcastercontributors:
+
+-
+  contributorid: "1"
+  contributorname: Maurice Renck
+  contributoravatar: https://test.tld/avatar.png
+  contributorrole: "1"
+  contributorgroup: "1"
+  contributerid: "1"
+  contributername: Maurice Renck
+  contributeravatar: https://avatar.tld
+  contributerrole: "1"
+  contributergroup: "1"
+
+----
+
+Podcasterexplicit: true
+
+----
+
+Podcasterblock: false
 
 ----
 
