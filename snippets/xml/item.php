@@ -5,7 +5,7 @@ namespace mauricerenck\Podcaster;
 $feed = new Feed();
 $useUuid = option('mauricerenck.podcaster.feed.uuid', false);
 $audioFile = $feed->getAudioFile($episode);
-$pubDate = $feed->getRssDate($episode->date()->modified()->toDate());
+$pubDate = $feed->getRssDate($episode->date()->toDate());
 
 if(is_null($audioFile)) {
     return;

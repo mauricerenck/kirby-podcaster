@@ -8,6 +8,7 @@ $podcast = new Podcast();
 $feed = new Feed();
 kirby()->response()->type('application/rss+xml');
 //kirby()->response()->type('text/xml'); // TODO for debugging
+$buildDate = $feed->getRssDate($page->modified());
 
 ?>
 <?php snippet('podcaster-feed-header'); ?>
@@ -30,7 +31,7 @@ kirby()->response()->type('application/rss+xml');
         <atom:link href="<?=Xml::encode($page->atomLink());?>" rel="self" type="application/rss+xml"
                    title="<?php echo Xml::encode($page->podcasterTitle()); ?>"/>
 
-        <lastBuildDate><?=$page->modified(DATE_RSS);?></lastBuildDate>
+        <lastBuildDate><?=$buildDate;?></lastBuildDate>
         <generator>Kirby Podcaster Plugin <?= $podcast->getPluginVersion(); ?></generator>
 
         <?=$feed->xmlTag('title', $page->podcasterTitle());?>
