@@ -1,3 +1,10 @@
+## [3.2.9](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.8...v3.2.9) (2024-09-26)
+
+
+### Bug Fixes
+
+* use new date method for build date ([f1b0037](https://github.com/mauricerenck/kirby-podcaster/commit/f1b0037d33b10bfc30ff43d1ff552a23290a3edc))
+
 ## [3.2.8](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.7...v3.2.8) (2024-09-26)
 
 
