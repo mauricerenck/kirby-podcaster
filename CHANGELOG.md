@@ -1,3 +1,10 @@
+## [3.2.8](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.7...v3.2.8) (2024-09-26)
+
+
+### Bug Fixes
+
+* more resilient date format ([740cd75](https://github.com/mauricerenck/kirby-podcaster/commit/740cd75c9ea882ca08d6d2ab4339705bc89cf683)), closes [#72](https://github.com/mauricerenck/kirby-podcaster/issues/72)
+
 ## [3.2.7](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.6...v3.2.7) (2024-08-21)
 
 
