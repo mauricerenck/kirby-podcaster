@@ -1,3 +1,10 @@
+## [3.2.10](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.9...v3.2.10) (2024-09-26)
+
+
+### Bug Fixes
+
+* always require a cover image ([d46f054](https://github.com/mauricerenck/kirby-podcaster/commit/d46f054c70431dc4eaa64a28bffcf095a975556e)), closes [#69](https://github.com/mauricerenck/kirby-podcaster/issues/69)
+
 ## [3.2.9](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.8...v3.2.9) (2024-09-26)
 
 
