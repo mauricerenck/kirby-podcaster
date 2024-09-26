@@ -4,6 +4,8 @@ namespace mauricerenck\Podcaster;
 
 use Kirby\Toolkit\Xml;
 use Kirby\Toolkit\Str;
+use IntlDateFormatter;
+
 
 class Feed extends Podcast
 {
@@ -144,5 +146,11 @@ class Feed extends Podcast
         }
 
         return $transcriptList;
+    }
+
+    public function getRssDate($timestamp)
+    {
+        $formatter = new IntlDateFormatter('en_US', IntlDateFormatter::FULL, IntlDateFormatter::FULL, 'UTC', IntlDateFormatter::GREGORIAN, "EEE, dd MMM yyyy HH:mm:ss +0000");
+        return datefmt_format($formatter,$timestamp);
     }
 }

@@ -5,13 +5,14 @@ namespace mauricerenck\Podcaster;
 $feed = new Feed();
 $useUuid = option('mauricerenck.podcaster.feed.uuid', false);
 $audioFile = $feed->getAudioFile($episode);
+$pubDate = $feed->getRssDate($episode->date()->modified()->toDate());
 
 if(is_null($audioFile)) {
     return;
 }
 ?>
 <item>
-    <?=$feed->xmlTag('pubDate', $episode->date()->toDate(DATE_RSS));?>
+    <?=$feed->xmlTag('pubDate', $pubDate);?>
 
     <?=$feed->xmlTag('title', $episode->podcasterTitle()->or($episode->title()));?>
     <?=$feed->xmlTag('itunes:title', $episode->podcasterTitle()->or($episode->title()));?>

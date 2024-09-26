@@ -8,6 +8,7 @@ $podcast = new Podcast();
 $feed = new Feed();
 kirby()->response()->type('application/rss+xml');
 //kirby()->response()->type('text/xml'); // TODO for debugging
+
 ?>
 <?php snippet('podcaster-feed-header'); ?>
 
