@@ -19,6 +19,7 @@ columns:
                       label: Cover Image
                       layout: cards
                       multiple: false
+                      required: true
                       template: podcaster-cover
                       query: page.images
                       image:
