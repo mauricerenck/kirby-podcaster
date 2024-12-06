@@ -49,23 +49,10 @@ columns:
                           cover: true
                           ratio: 1/1
                       uploads: podcaster-cover
-                  podcasterFieldNote:
-                      type: info
-                      theme: negative
-                      label: Be aware!
-                      text: The following two fields are here for backwards compatibility. Please do not use them for new episodes. If you edit an existing episode, fill the fields above and empty the ones below this message.
 
-          podcasterMp3:
-              type: files
-              label: Episode mp3 (DEPRECATED)
-              max: 1
-              template: podcaster-episode
-          podcasterCover:
-              type: files
-              label: Cover Image (DEPRECATED)
-              multiple: false
-              max: 1
-              template: podcaster-cover
+          podcasterMp3: sections/podcastermp3
+          podcasterCover: sections/podcasterimage
+
     - width: 2/3
       sections:
           podcasterInfo:

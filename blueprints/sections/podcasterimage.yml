@@ -1,0 +1,5 @@
+type: files
+label: Cover Image  DEPRECATED - COMPATIBILITY MODE ACTIVE
+multiple: false
+max: 1
+template: podcaster-cover

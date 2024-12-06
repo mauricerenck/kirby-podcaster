@@ -1,0 +1,5 @@
+type: fields
+label: " "
+fields:
+  podcasterEmpty2:
+    type: hidden

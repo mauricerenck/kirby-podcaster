@@ -22,6 +22,13 @@ Kirby::plugin('mauricerenck/podcaster', [
 
         'files/podcaster-episode' => __DIR__ . '/blueprints/files/podcaster-episode.yml',
         'files/podcaster-cover' => __DIR__ . '/blueprints/files/podcaster-cover.yml',
+
+        'sections/podcastermp3' => function () {
+            return (option('mauricerenck.podcaster.compatibilityMode', false)) ? __DIR__ . '/blueprints/sections/podcastermp3.yml' : __DIR__ . '/blueprints/sections/empty.yml';
+        },
+        'sections/podcasterimage' => function () {
+            return (option('mauricerenck.podcaster.compatibilityMode', false)) ? __DIR__ . '/blueprints/sections/podcasterimage.yml' : __DIR__ . '/blueprints/sections/empty2.yml';
+        },
     ],
     'templates' => [
         'podcasterfeed' => __DIR__ . '/templates/podcasterfeed.php',
