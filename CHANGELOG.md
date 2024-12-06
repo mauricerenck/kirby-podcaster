@@ -1,3 +1,10 @@
+## [3.2.11](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.10...v3.2.11) (2024-12-06)
+
+
+### Bug Fixes
+
+* deprecated fields now only visible when activated ([fc1e3e8](https://github.com/mauricerenck/kirby-podcaster/commit/fc1e3e84d0d8174442e2519462b8cda7c32d8ce3))
+
 ## [3.2.10](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.9...v3.2.10) (2024-09-26)
 
 
