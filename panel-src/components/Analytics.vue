@@ -1,5 +1,5 @@
 <template>
-    <k-inside>
+    <k-panel-inside>
         <k-view class="k-podcaster-view">
             <k-header>Podcaster Analytics</k-header>
 
@@ -100,20 +100,16 @@
                 <k-column width="1/1">
                     <k-line-field />
                     <k-headline size="huge">Episode Downloads</k-headline>
-                    <PodGraphEpisodes
-                        :selectedPodcast="this.selectedPodcast"
-                    />
+                    <PodGraphEpisodes :selectedPodcast="this.selectedPodcast" />
                 </k-column>
                 <k-column width="1/1">
                     <k-line-field />
                     <k-headline size="huge">Feed Downloads</k-headline>
-                    <PodGraphFeeds
-                        :selectedPodcast="this.selectedPodcast"
-                    />
+                    <PodGraphFeeds :selectedPodcast="this.selectedPodcast" />
                 </k-column>
             </k-grid>
         </k-view>
-    </k-inside>
+    </k-panel-inside>
 </template>
 
 <script>
