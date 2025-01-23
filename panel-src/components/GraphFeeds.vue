@@ -1,5 +1,5 @@
 <template>
-    <section class="k-modified-section podcaster">
+    <section class="k-modified-section podcaster podcaster-graph">
         <apexchart height="400" type="area" :options="options" :series="series"></apexchart>
     </section>
 </template>
@@ -10,6 +10,7 @@ export default {
     components: { apexchart: VueApexCharts },
     props: {
         selectedPodcast: String,
+        themeMode: String,
     },
     data() {
         return {
@@ -28,6 +29,7 @@ export default {
                     enabled: false,
                 },
                 theme: {
+                    mode: this.themeMode,
                     palette: 'palette3',
                 },
                 xaxis: {

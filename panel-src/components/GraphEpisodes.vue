@@ -1,5 +1,5 @@
 <template>
-    <section class="k-modified-section podcaster">
+    <section class="k-modified-section podcaster podcaster-graph">
         <apexchart height="400" type="area" :options="options" :series="series"></apexchart>
     </section>
 </template>
@@ -10,6 +10,7 @@ export default {
     components: { apexchart: VueApexCharts },
     props: {
         selectedPodcast: String,
+        themeMode: String,
     },
     data() {
         return {
@@ -28,6 +29,7 @@ export default {
                     enabled: false,
                 },
                 theme: {
+                    mode: this.themeMode,
                     palette: 'palette3',
                 },
                 xaxis: {
@@ -45,19 +47,19 @@ export default {
     methods: {
         async getEpisodeGraphData() {
             const data = []
-            this.$api.get(`podcaster/stats/graph/episodes/${this.selectedPodcast}`)
+            this.$api
+                .get(`podcaster/stats/graph/episodes/${this.selectedPodcast}`)
                 .then((response) => {
-
-                    if(!response || !response.downloads) return
+                    if (!response || !response.downloads) return
                     response.downloads.forEach((entry) => {
-                    data.push({ x: new Date(`${entry.year}-${entry.month}-02`).getTime(), y: entry.downloads })
-                })
+                        data.push({ x: new Date(`${entry.year}-${entry.month}-02`).getTime(), y: entry.downloads })
+                    })
 
-                this.series = [{ name: 'downloads', data: data }]
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+                    this.series = [{ name: 'downloads', data: data }]
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
         },
     },
     created() {

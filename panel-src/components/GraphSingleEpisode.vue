@@ -1,5 +1,5 @@
 <template>
-    <section class="k-modified-section podcaster">
+    <section class="k-modified-section podcaster podcaster-graph">
         <apexchart height="400" type="area" :options="options" :series="series"></apexchart>
     </section>
 </template>
@@ -11,6 +11,7 @@ export default {
     props: {
         selectedPodcast: String,
         selectedEpisodes: [String],
+        themeMode: String,
     },
     data() {
         return {
@@ -29,6 +30,7 @@ export default {
                     enabled: false,
                 },
                 theme: {
+                    mode: this.themeMode,
                     palette: 'palette3',
                 },
                 xaxis: {
@@ -50,9 +52,7 @@ export default {
         async getEpisodeGraphData() {
             const graphData = []
             this.selectedEpisodes.forEach(async (episode) => {
-                const response = await this.$api.get(
-                    `podcaster/stats/graph/episode/${this.selectedPodcast}/${episode}`
-                )
+                const response = await this.$api.get(`podcaster/stats/graph/episode/${this.selectedPodcast}/${episode}`)
 
                 const data = []
                 response.forEach((day) => {
@@ -63,6 +63,10 @@ export default {
             })
 
             this.series = graphData
+        },
+
+        apexMode() {
+            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
         },
     },
     created() {

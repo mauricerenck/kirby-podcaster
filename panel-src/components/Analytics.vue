@@ -3,7 +3,7 @@
         <k-view class="k-podcaster-view">
             <k-header>Podcaster Analytics</k-header>
 
-            <k-grid gutter="small">
+            <k-grid style="gap: var(--spacing-6)">
                 <k-column width="1/4">
                     <k-select-field
                         v-model="selectedPodcast"
@@ -43,14 +43,17 @@
                         :selectedMonth="this.selectedMonth"
                         :selectedYear="this.selectedYear"
                         :selectedPodcast="this.selectedPodcast"
+                        :themeMode="this.apexMode()"
                     />
                 </k-column>
-
+            </k-grid>
+            <k-grid class="podcaster podcaster-graph" style="gap: var(--spacing-6)">
                 <k-column width="1/3">
                     <PodGraphDevices
                         :selectedMonth="this.selectedMonth"
                         :selectedYear="this.selectedYear"
                         :selectedPodcast="this.selectedPodcast"
+                        :themeMode="this.apexMode()"
                     />
                 </k-column>
 
@@ -59,6 +62,7 @@
                         :selectedMonth="this.selectedMonth"
                         :selectedYear="this.selectedYear"
                         :selectedPodcast="this.selectedPodcast"
+                        :themeMode="this.apexMode()"
                     />
                 </k-column>
 
@@ -67,11 +71,12 @@
                         :selectedMonth="this.selectedMonth"
                         :selectedYear="this.selectedYear"
                         :selectedPodcast="this.selectedPodcast"
+                        :themeMode="this.apexMode()"
                     />
                 </k-column>
-
+            </k-grid>
+            <k-grid style="gap: var(--spacing-6)">
                 <k-column>
-                    <k-line-field />
                     <k-headline size="huge">Episode Details</k-headline>
                 </k-column>
 
@@ -79,6 +84,7 @@
                     <PodGraphSingleEpisode
                         :selectedPodcast="this.selectedPodcast"
                         :selectedEpisodes="this.selectedEpisodes"
+                        :themeMode="this.apexMode()"
                     />
                 </k-column>
 
@@ -88,24 +94,24 @@
                         :selectedEpisodes="this.selectedEpisodes"
                         :onSelectEpisode="this.addSelectedEpisode"
                         :onRemoveEpisode="this.removeSelectedEpisode"
+                        :themeMode="this.apexMode()"
                     />
 
                     <k-headline>Top10 Episodes</k-headline>
                     <PodTopEpisodes
                         :selectedPodcast="this.selectedPodcast"
                         :onSelectEpisode="this.addSelectedEpisode"
+                        :themeMode="this.apexMode()"
                     />
                 </k-column>
 
                 <k-column width="1/1">
-                    <k-line-field />
                     <k-headline size="huge">Episode Downloads</k-headline>
-                    <PodGraphEpisodes :selectedPodcast="this.selectedPodcast" />
+                    <PodGraphEpisodes :selectedPodcast="this.selectedPodcast" :themeMode="this.apexMode()" />
                 </k-column>
                 <k-column width="1/1">
-                    <k-line-field />
                     <k-headline size="huge">Feed Downloads</k-headline>
-                    <PodGraphFeeds :selectedPodcast="this.selectedPodcast" />
+                    <PodGraphFeeds :selectedPodcast="this.selectedPodcast" :themeMode="this.apexMode()" />
                 </k-column>
             </k-grid>
         </k-view>
@@ -171,8 +177,23 @@ export default {
                 return episode !== value
             })
         },
+        apexMode() {
+            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        },
     },
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="css">
+.podcaster-graph {
+    background: var(--color-white);
+    border-radius: var(--rounded-md);
+    padding: var(--spacing-6);
+    margin: var(--spacing-6) 0;
+}
+@media (prefers-color-scheme: dark) {
+    .podcaster-graph {
+        background-color: rgb(66, 66, 66); /* apexchart dark theme */
+    }
+}
+</style>

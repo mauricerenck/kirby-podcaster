@@ -85,10 +85,10 @@ export default {
 .podcaster-auto-complete {
     width: 100%;
     border: 0;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--color-gray-500);
     padding: var(--field-input-padding);
     line-height: var(--field-input-line-height);
-    border-radius: var(--rounded);
+    border-radius: var(--rounded-md);
 }
 
 .episode-selection {
