@@ -1,189 +1,189 @@
 label: Tracking
 icon: search
 columns:
-  - width: 1/1
-    sections:
-      matomoHeadline:
-        type: fields
-        fields:
-          headlineMatomo:
-            type: headline
-            label: Matomo settings
-  - width: 1/3
-    sections:
-      matomo:
-        type: fields
-        fields:
-          infoMatomo:
-            type: info
-            theme: info
-            label: Attention
-            text: Make sure to set the token and base-url in your config.php
-  - width: 1/3
-    sections:
-      matomoEpisode:
-        type: fields
-        fields:
-          podcasterMatomoEnabled:
-            label: Enable Matomo episode tracking
-            help: Tracking will only be enabled for this podcast if you run another one, enable it there, too
-            type: toggle
-            default: no
-            text:
-              - disabled
-              - enabled
-            width: 1/4
-          podcasterMatomoSiteId:
-            label: Site Id
-            help: Your Matomo Site Id.
-            type: text
-            width: 1/4
-            when:
-              podcasterMatomoEnabled: yes
-          podcasterMatomoTrackGoal:
-            label: Track goal
-            help: Enable if you want to track a certain goal for each download. Please be aware that you have to create this goal in Matomo
-            type: toggle
-            default: no
-            text:
-              - disabled
-              - enabled
-            width: 1/4
-            when:
-              podcasterMatomoEnabled: yes
-          podcasterMatomoGoalId:
-            label: Goal Id
-            type: text
-            width: 1/4
-            when:
-              podcasterMatomoTrackGoal: yes
-          podcasterMatomoTrackEvent:
-            label: Track event
-            help: Enable if you want to track a certain event for each download.
-            type: toggle
-            default: no
-            text:
-              - disabled
-              - enabled
-            width: 1/4
-            when:
-              podcasterMatomoEnabled: yes
-          podcasterMatomoEventName:
-            label: Event name
-            type: text
-            width: 1/4
-            when:
-              podcasterMatomoTrackEvent: yes
-          podcasterMatomoAction:
-            label: Action
-            help: If you want to track the download action, enable this.
-            type: toggle
-            default: no
-            text:
-              - disabled
-              - enabled
-            width: 1/4
-            when:
-              podcasterMatomoEnabled: yes
-  - width: 1/3
-    sections:
-      matomoFeed:
-        type: fields
-        fields:
-          podcasterMatomoFeedEnabled:
-            label: Enable Matomo rss-feed tracking
-            help: Tracking will only be enabled for this podcast if you run another one, enable it there, too
-            type: toggle
-            default: no
-            text:
-              - disabled
-              - enabled
-            width: 1/4
-          podcasterMatomoFeedSiteId:
-            label: Site Id
-            help: Your Matomo Site Id.
-            type: text
-            width: 1/4
-            when:
-              podcasterMatomoFeedEnabled: yes
-          podcasterMatomoFeedTrackGoal:
-            label: Track goal
-            help: Enable if you want to track a certain goal for each download. Please be aware that you have to create this goal in Matomo
-            type: toggle
-            default: no
-            text:
-              - disabled
-              - enabled
-            width: 1/4
-            when:
-              podcasterMatomoFeedEnabled: yes
-          podcasterMatomoFeedPage:
-            label: Track Page
-            help: Will create a page view when feed is viewed
-            type: toggle
-            default: no
-            text:
-              - disabled
-              - enabled
-            width: 1/4
-            when:
-              podcasterMatomoFeedEnabled: yes
-          podcasterMatomoFeedGoalId:
-            label: Goal Id
-            type: text
-            width: 1/4
-            when:
-              podcasterMatomoFeedTrackGoal: yes
-          podcasterMatomoFeedTrackEvent:
-            label: Track event
-            help: Enable if you want to track a certain event for each download.
-            type: toggle
-            default: no
-            text:
-              - disabled
-              - enabled
-            width: 1/4
-            when:
-              podcasterMatomoFeedEnabled: yes
-          podcasterMatomoFeedEventName:
-            label: Event name
-            type: text
-            width: 1/4
-            when:
-              podcasterMatomoFeedTrackEvent: yes
-          podcasterMatomoFeedAction:
-            label: Action
-            help: If you want to track the download action, enable this.
-            type: toggle
-            default: no
-            text:
-              - disabled
-              - enabled
-            width: 1/4
-            when:
-              podcasterMatomoFeedEnabled: yes
-  - width: 1/1
-    sections:
-      podTracHeadline:
-        type: fields
-        fields:
-          headlinePodTrac:
-            type: headline
-            label: PodTrac
-            width: 1/1
-          podTracEnabled:
-            label: Enable PodTrac tracking
-            type: toggle
-            default: no
-            text:
-              - disabled
-              - enabled
-            width: 1/4
-          podTracUrl:
-            type: url
-            label: PodTrac Base Url
-            default: https://dts.podtrac.com/redirect.mp3/
-            placeholder: https://dts.podtrac.com/redirect.mp3/
-            width: 2/4
-            when:
-              podTracEnabled: yes
+    - width: 1/1
+      sections:
+          matomoHeadline:
+              type: fields
+              fields:
+                  headlineMatomo:
+                      type: headline
+                      label: Matomo settings
+    - width: 1/3
+      sections:
+          matomo:
+              type: fields
+              fields:
+                  infoMatomo:
+                      type: info
+                      theme: info
+                      label: Attention
+                      text: Make sure to set the token and base-url in your config.php
+    - width: 1/3
+      sections:
+          matomoEpisode:
+              type: fields
+              fields:
+                  podcasterMatomoEnabled:
+                      label: Enable Matomo episode tracking
+                      help: Tracking will only be enabled for this podcast if you run another one, enable it there, too
+                      type: toggle
+                      default: no
+                      text:
+                          - disabled
+                          - enabled
+
+                  podcasterMatomoSiteId:
+                      label: Site Id
+                      help: Your Matomo Site Id.
+                      type: text
+
+                      when:
+                          podcasterMatomoEnabled: yes
+                  podcasterMatomoTrackGoal:
+                      label: Track goal
+                      help: Enable if you want to track a certain goal for each download. Please be aware that you have to create this goal in Matomo
+                      type: toggle
+                      default: no
+                      text:
+                          - disabled
+                          - enabled
+
+                      when:
+                          podcasterMatomoEnabled: yes
+                  podcasterMatomoGoalId:
+                      label: Goal Id
+                      type: text
+
+                      when:
+                          podcasterMatomoTrackGoal: yes
+                  podcasterMatomoTrackEvent:
+                      label: Track event
+                      help: Enable if you want to track a certain event for each download.
+                      type: toggle
+                      default: no
+                      text:
+                          - disabled
+                          - enabled
+
+                      when:
+                          podcasterMatomoEnabled: yes
+                  podcasterMatomoEventName:
+                      label: Event name
+                      type: text
+
+                      when:
+                          podcasterMatomoTrackEvent: yes
+                  podcasterMatomoAction:
+                      label: Action
+                      help: If you want to track the download action, enable this.
+                      type: toggle
+                      default: no
+                      text:
+                          - disabled
+                          - enabled
+
+                      when:
+                          podcasterMatomoEnabled: yes
+    - width: 1/3
+      sections:
+          matomoFeed:
+              type: fields
+              fields:
+                  podcasterMatomoFeedEnabled:
+                      label: Enable Matomo rss-feed tracking
+                      help: Tracking will only be enabled for this podcast if you run another one, enable it there, too
+                      type: toggle
+                      default: no
+                      text:
+                          - disabled
+                          - enabled
+
+                  podcasterMatomoFeedSiteId:
+                      label: Site Id
+                      help: Your Matomo Site Id.
+                      type: text
+
+                      when:
+                          podcasterMatomoFeedEnabled: yes
+                  podcasterMatomoFeedTrackGoal:
+                      label: Track goal
+                      help: Enable if you want to track a certain goal for each download. Please be aware that you have to create this goal in Matomo
+                      type: toggle
+                      default: no
+                      text:
+                          - disabled
+                          - enabled
+
+                      when:
+                          podcasterMatomoFeedEnabled: yes
+                  podcasterMatomoFeedPage:
+                      label: Track Page
+                      help: Will create a page view when feed is viewed
+                      type: toggle
+                      default: no
+                      text:
+                          - disabled
+                          - enabled
+
+                      when:
+                          podcasterMatomoFeedEnabled: yes
+                  podcasterMatomoFeedGoalId:
+                      label: Goal Id
+                      type: text
+
+                      when:
+                          podcasterMatomoFeedTrackGoal: yes
+                  podcasterMatomoFeedTrackEvent:
+                      label: Track event
+                      help: Enable if you want to track a certain event for each download.
+                      type: toggle
+                      default: no
+                      text:
+                          - disabled
+                          - enabled
+
+                      when:
+                          podcasterMatomoFeedEnabled: yes
+                  podcasterMatomoFeedEventName:
+                      label: Event name
+                      type: text
+
+                      when:
+                          podcasterMatomoFeedTrackEvent: yes
+                  podcasterMatomoFeedAction:
+                      label: Action
+                      help: If you want to track the download action, enable this.
+                      type: toggle
+                      default: no
+                      text:
+                          - disabled
+                          - enabled
+
+                      when:
+                          podcasterMatomoFeedEnabled: yes
+    - width: 1/1
+      sections:
+          podTracHeadline:
+              type: fields
+              fields:
+                  headlinePodTrac:
+                      type: headline
+                      label: PodTrac
+                      width: 1/1
+                  podTracEnabled:
+                      label: Enable PodTrac tracking
+                      type: toggle
+                      default: no
+                      text:
+                          - disabled
+                          - enabled
+                      width: 1/4
+                  podTracUrl:
+                      type: url
+                      label: PodTrac Base Url
+                      default: https://dts.podtrac.com/redirect.mp3/
+                      placeholder: https://dts.podtrac.com/redirect.mp3/
+                      width: 2/4
+                      when:
+                          podTracEnabled: yes
