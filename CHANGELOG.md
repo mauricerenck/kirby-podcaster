@@ -1,3 +1,15 @@
+# [3.3.0](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.11...v3.3.0) (2025-01-24)
+
+
+### Bug Fixes
+
+* swap k-inside with k-panel-inside for K5 ([2987761](https://github.com/mauricerenck/kirby-podcaster/commit/298776179429b506051e73e4bdd034112682da63))
+
+
+### Features
+
+* darkmode ([f5cde1f](https://github.com/mauricerenck/kirby-podcaster/commit/f5cde1fbcf7b6793340773d63e90093be311a9cd))
+
 ## [3.2.11](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.10...v3.2.11) (2024-12-06)
 
 
