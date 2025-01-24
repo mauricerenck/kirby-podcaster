@@ -1,17 +1,7 @@
 <template>
     <div>
-        <k-autocomplete ref="autocomplete" :options="this.episodes" @select="setEpisode">
-            <input
-                type="text"
-                @input="$refs.autocomplete.search($event.target.value)"
-                class="podcaster-auto-complete"
-                placeholder="Search for an episode..."
-            />
-        </k-autocomplete>
-        <div class="episode-selection">
-            <k-headline>Selected Episodes</k-headline>
-            <k-collection layout="list" :items="episodeItems" @item="removeEpisode" />
-        </div>
+        <k-button icon="checklist" variant="filled" @click="$refs.episodeList.toggle()"> Select Episodes </k-button>
+        <k-picklist-dropdown ref="episodeList" :options="this.episodes" @input="this.setEpisode" />
     </div>
 </template>
 <script>
@@ -19,8 +9,7 @@ export default {
     props: {
         selectedPodcast: String,
         selectedEpisodes: [String],
-        onSelectEpisode: Function,
-        onRemoveEpisode: Function,
+        onSelectedEpisodes: Function,
     },
     data() {
         return {
@@ -43,6 +32,19 @@ export default {
         },
     },
     methods: {
+        test(value) {
+            console.log('test', value)
+        },
+        search(search) {
+            this.query = search.query
+
+            this.searchResults = this.episodes.filter((episode) => {
+                const title = episode.text ? episode.text.toLowerCase() : ''
+                const slug = episode.slug ? episode.slug.toLowerCase() : ''
+
+                return title.includes(search.query.toLowerCase()) || slug.includes(search.query.toLowerCase())
+            })
+        },
         getEpisodes() {
             if (!this.selectedPodcast) {
                 return
@@ -50,23 +52,20 @@ export default {
 
             this.$api.get(`podcaster/stats/episodes/${this.selectedPodcast}`).then((response) => {
                 this.episodes = response.map((episode) => {
-                    return { value: episode.slug, text: episode.title }
+                    return {
+                        value: episode.slug,
+                        text: episode.title,
+                        '@onCLick': this.test,
+                    }
                 })
             })
         },
         setEpisode(selection) {
-            if (!selection.value) {
+            if (!selection) {
                 return
             }
 
-            this.onSelectEpisode(selection.value)
-        },
-        removeEpisode(selection) {
-            if (!selection.value) {
-                return
-            }
-
-            this.onRemoveEpisode(selection.value)
+            this.onSelectedEpisodes(selection)
         },
     },
     created() {

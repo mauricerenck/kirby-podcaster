@@ -6,6 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'mauricerenck\\Podcaster\\' => array($baseDir . '/app'),
+    'mauricerenck\\Podcaster\\' => array($baseDir . '/lib'),
     'Kirby\\' => array($vendorDir . '/getkirby/composer-installer/src'),
 );

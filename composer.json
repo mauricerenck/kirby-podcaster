@@ -13,10 +13,10 @@
     ],
     "autoload": {
         "psr-4": {
-            "mauricerenck\\Podcaster\\": "app"
+            "mauricerenck\\Podcaster\\": "lib"
         },
         "classmap": [
-            "app"
+            "lib"
         ]
     },
     "require": {

@@ -21,7 +21,7 @@
                 </k-column>
 
                 <k-column width="4/6">
-                    <k-headline size="huge">Monthly stats</k-headline>
+                    <k-headline tag="h2">Monthly stats</k-headline>
                 </k-column>
 
                 <k-column width="1/6">
@@ -77,10 +77,24 @@
             </k-grid>
             <k-grid style="gap: var(--spacing-6)">
                 <k-column>
-                    <k-headline size="huge">Episode Details</k-headline>
+                    <k-headline tag="h2">Top 10 Episodes</k-headline>
+                </k-column>
+                <k-column>
+                    <PodGraphTopEpisodes :selectedPodcast="this.selectedPodcast" :themeMode="this.apexMode()" />
+                </k-column>
+            </k-grid>
+            <k-grid style="gap: var(--spacing-6)">
+                <k-column>
+                    <k-headline tag="h2">Episode Details</k-headline>
                 </k-column>
 
-                <k-column width="2/3">
+                <k-column width="1/1">
+                    <PodEpisodesAutocomplete
+                        :selectedPodcast="this.selectedPodcast"
+                        :selectedEpisodes="this.selectedEpisodes"
+                        :onSelectedEpisodes="this.setSelectedEpisodes"
+                    />
+
                     <PodGraphSingleEpisode
                         :selectedPodcast="this.selectedPodcast"
                         :selectedEpisodes="this.selectedEpisodes"
@@ -88,29 +102,12 @@
                     />
                 </k-column>
 
-                <k-column width="1/3">
-                    <PodEpisodesAutocomplete
-                        :selectedPodcast="this.selectedPodcast"
-                        :selectedEpisodes="this.selectedEpisodes"
-                        :onSelectEpisode="this.addSelectedEpisode"
-                        :onRemoveEpisode="this.removeSelectedEpisode"
-                        :themeMode="this.apexMode()"
-                    />
-
-                    <k-headline>Top10 Episodes</k-headline>
-                    <PodTopEpisodes
-                        :selectedPodcast="this.selectedPodcast"
-                        :onSelectEpisode="this.addSelectedEpisode"
-                        :themeMode="this.apexMode()"
-                    />
-                </k-column>
-
                 <k-column width="1/1">
-                    <k-headline size="huge">Episode Downloads</k-headline>
+                    <k-headline tag="h2">Episode Downloads</k-headline>
                     <PodGraphEpisodes :selectedPodcast="this.selectedPodcast" :themeMode="this.apexMode()" />
                 </k-column>
                 <k-column width="1/1">
-                    <k-headline size="huge">Feed Downloads</k-headline>
+                    <k-headline tag="h2">Feed Downloads</k-headline>
                     <PodGraphFeeds :selectedPodcast="this.selectedPodcast" :themeMode="this.apexMode()" />
                 </k-column>
             </k-grid>
@@ -168,8 +165,8 @@ export default {
             this.selectedEpisode = value
         },
 
-        addSelectedEpisode(value) {
-            this.selectedEpisodes.push(value)
+        setSelectedEpisodes(value) {
+            this.selectedEpisodes = value
         },
 
         removeSelectedEpisode(value) {
@@ -191,6 +188,12 @@ export default {
     padding: var(--spacing-6);
     margin: var(--spacing-6) 0;
 }
+
+.k-podcaster-view h2 {
+    margin-top: var(--spacing-10);
+    font-size: var(--text-2xl);
+}
+
 @media (prefers-color-scheme: dark) {
     .podcaster-graph {
         background-color: rgb(66, 66, 66); /* apexchart dark theme */

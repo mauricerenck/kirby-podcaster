@@ -20,7 +20,7 @@ class ComposerStaticInit9574998a8d6f27428f2fc454b8cd7e84
     public static $prefixDirsPsr4 = array (
         'mauricerenck\\Podcaster\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/app',
+            0 => __DIR__ . '/../..' . '/lib',
         ),
         'Kirby\\' => 
         array (
@@ -125,18 +125,18 @@ class ComposerStaticInit9574998a8d6f27428f2fc454b8cd7e84
         'getid3_wtv' => __DIR__ . '/..' . '/james-heinrich/getid3/getid3/module.audio-video.wtv.php',
         'getid3_xz' => __DIR__ . '/..' . '/james-heinrich/getid3/getid3/module.archive.xz.php',
         'getid3_zip' => __DIR__ . '/..' . '/james-heinrich/getid3/getid3/module.archive.zip.php',
-        'mauricerenck\\Podcaster\\AudioTools' => __DIR__ . '/../..' . '/app/AudioTools.php',
-        'mauricerenck\\Podcaster\\Feed' => __DIR__ . '/../..' . '/app/Feed.php',
-        'mauricerenck\\Podcaster\\Migrations' => __DIR__ . '/../..' . '/app/Migrations.php',
-        'mauricerenck\\Podcaster\\Podcast' => __DIR__ . '/../..' . '/app/Podcast.php',
-        'mauricerenck\\Podcaster\\PodcasterDatabase' => __DIR__ . '/../..' . '/app/PodcasterDatabase.php',
-        'mauricerenck\\Podcaster\\PodcasterStats' => __DIR__ . '/../..' . '/app/PodcasterStats.php',
-        'mauricerenck\\Podcaster\\PodcasterStatsInterface' => __DIR__ . '/../..' . '/app/PodcasterStats.interface.php',
-        'mauricerenck\\Podcaster\\PodcasterStatsInterfaceBase' => __DIR__ . '/../..' . '/app/PodcasterStats.interface.php',
-        'mauricerenck\\Podcaster\\PodcasterStatsMatomo' => __DIR__ . '/../..' . '/app/PodcasterStatsMatomo.php',
-        'mauricerenck\\Podcaster\\PodcasterStatsMysql' => __DIR__ . '/../..' . '/app/PodcasterStatsMysql.php',
-        'mauricerenck\\Podcaster\\PodcasterStatsSqlite' => __DIR__ . '/../..' . '/app/PodcasterStatsSqlite.php',
-        'mauricerenck\\Podcaster\\TestCaseMocked' => __DIR__ . '/../..' . '/app/TestCaseMocked.php',
+        'mauricerenck\\Podcaster\\AudioTools' => __DIR__ . '/../..' . '/lib/AudioTools.php',
+        'mauricerenck\\Podcaster\\Feed' => __DIR__ . '/../..' . '/lib/Feed.php',
+        'mauricerenck\\Podcaster\\Migrations' => __DIR__ . '/../..' . '/lib/Migrations.php',
+        'mauricerenck\\Podcaster\\Podcast' => __DIR__ . '/../..' . '/lib/Podcast.php',
+        'mauricerenck\\Podcaster\\PodcasterDatabase' => __DIR__ . '/../..' . '/lib/PodcasterDatabase.php',
+        'mauricerenck\\Podcaster\\PodcasterStats' => __DIR__ . '/../..' . '/lib/PodcasterStats.php',
+        'mauricerenck\\Podcaster\\PodcasterStatsInterface' => __DIR__ . '/../..' . '/lib/PodcasterStats.interface.php',
+        'mauricerenck\\Podcaster\\PodcasterStatsInterfaceBase' => __DIR__ . '/../..' . '/lib/PodcasterStats.interface.php',
+        'mauricerenck\\Podcaster\\PodcasterStatsMatomo' => __DIR__ . '/../..' . '/lib/PodcasterStatsMatomo.php',
+        'mauricerenck\\Podcaster\\PodcasterStatsMysql' => __DIR__ . '/../..' . '/lib/PodcasterStatsMysql.php',
+        'mauricerenck\\Podcaster\\PodcasterStatsSqlite' => __DIR__ . '/../..' . '/lib/PodcasterStatsSqlite.php',
+        'mauricerenck\\Podcaster\\TestCaseMocked' => __DIR__ . '/../..' . '/lib/TestCaseMocked.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
