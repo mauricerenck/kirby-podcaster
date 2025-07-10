@@ -204,18 +204,18 @@ final class PodcastTest extends TestCaseMocked
                 'title' => 'Test Podcast',
                 'subtitle' => 'Podcast Subtitle',
                 'summary' =>
-                    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-                'poster' => '/media/pages/phpunit/podcast-seasons/feed/d32a8154c7-1674840090/cover.png',
+                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+                'poster' => '/media/pages/phpunit/podcast-seasons/feed/2b6f862a69-1752141852/cover.png',
                 'link' => 'https://erzaehl.es',
             ],
 
             'title' => 'Episode Title',
             'subtitle' => 'Episode subtitle',
             'summary' =>
-                'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-            'publicationDate' => '2021-01-06T21:45:00+00:00',
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+            'publicationDate' => '2021-01-06T21:45:00+01:00',
             'duration' => '00:00:15',
-            'poster' => '/media/pages/phpunit/podcast-seasons/feed/d32a8154c7-1674840090/cover.png',
+            'poster' => '/media/pages/phpunit/podcast-seasons/feed/2b6f862a69-1752141852/cover.png',
             'link' => $pageMock->url(),
 
             'audio' => [
@@ -242,7 +242,7 @@ final class PodcastTest extends TestCaseMocked
                     'title' => 'Chapter Title',
                     'href' => 'https://chapter.tld',
                     'image' =>
-                        '/media/pages/phpunit/podcast-seasons/season01/episode-1/87a0931e55-1674840090/cover.png',
+                    '/media/pages/phpunit/podcast-seasons/season01/episode-1/b6bd54d3b2-1752141852/cover.png',
                 ],
                 [
                     'start' => '00:20:00.000',
@@ -275,7 +275,7 @@ final class PodcastTest extends TestCaseMocked
                     ],
                 ],
             ],
-            'transcripts' => '/media/pages/phpunit/podcast-seasons/season01/episode-1/eeb0786efc-1706716589/test.vtt',
+            'transcripts' => '/media/pages/phpunit/podcast-seasons/season01/episode-1/df30ca4d51-1752141852/test.vtt',
         ];
 
         $podcast = new Podcast();

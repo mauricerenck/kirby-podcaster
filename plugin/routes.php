@@ -38,6 +38,7 @@ return [
     ],
     [
         'pattern' => '(:all)/' . option('mauricerenck.podcaster.downloadTriggerPath', 'download') . '/(:any)',
+        'method' => 'GET|HEAD',
         'action' => function ($slug) {
             $podcast = new Podcast();
 
@@ -69,10 +70,17 @@ return [
                 $this->next();
             }
 
-            $stats->trackEpisode($feed, $episode, $userAgent);
-            // $stats->calculateCarbonEmissions($feed, $episode);
+            $audio = $podcast->getAudioFile($episode);
 
-            return $podcast->getAudioFile($episode);
+            // Check if the request method is HEAD
+            if (kirby()->request()->method() === 'HEAD') {
+                // Send headers only, no body
+                return $audio->header(false);
+            }
+
+            $stats->trackEpisode($feed, $episode, $userAgent);
+
+            return $audio;
         },
     ],
     [
