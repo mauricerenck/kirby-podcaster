@@ -64,16 +64,16 @@ class PodcasterStats implements PodcasterStatsInterfaceBase
     public function trackEpisodeMatomo($feed, $episode): void
     {
         if ($feed->podcasterMatomoEnabled()->isTrue()) {
-           $matomoUtils = new PodcasterStatsMatomo($feed);
-           $matomoUtils->trackEpisodeDownload($feed, $episode);
+            $matomoUtils = new PodcasterStatsMatomo($feed);
+            $matomoUtils->trackEpisodeDownload($feed, $episode);
         }
     }
 
     public function trackFeedMatomo($feed): void
     {
         if ($feed->podcasterMatomoEnabled()->isTrue()) {
-           $matomoUtils = new PodcasterStatsMatomo($feed);
-           $matomoUtils->trackFeedDownload($feed);
+            $matomoUtils = new PodcasterStatsMatomo($feed);
+            $matomoUtils->trackFeedDownload($feed);
         }
     }
 
@@ -109,17 +109,22 @@ class PodcasterStats implements PodcasterStatsInterfaceBase
                     // info using # as delimiter, because patterns contain slashes
                     if (preg_match('#' . $agent . '#', $userAgent, $tmp)) {
                         return [
-                            'app' => $app,
-                            'os' => $os,
-                            'device' => $device,
-                            'bot' => $bot,
+                            'app' => $app ?? 'unknown',
+                            'os' => $os ?? 'unknown',
+                            'device' => $device ?? 'unknown',
+                            'bot' => $bot ?? false,
                         ];
                     }
                 }
             }
         }
 
-        return [];
+        return [
+            'app' => 'unknown',
+            'os' => 'unknown',
+            'device' => 'unknown',
+            'bot' => false,
+        ];
     }
 
     public function getFeedQueryData($feed): array
@@ -186,13 +191,4 @@ class PodcasterStats implements PodcasterStatsInterfaceBase
     {
         return date('Y-m-d', $timestamp);
     }
-
-    // TODO
-    // public function calculateCarbonEmissions($$fileSize, $episode) {
-    //     $file_size = 5 * 1024 * 1024; // convert MB to bytes
-    //     $electricity_used = $file_size / 1024 / 1024 / 10; // assume 10 MB per kWh
-    //     $co2_emissions = $electricity_used * 0.6; // assume 0.6 kg CO2 per kWh
-    //     echo "CO2 emissions for the download: " . $co2_emissions . " kg";
-    // }
-
 }
