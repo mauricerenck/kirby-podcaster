@@ -1,3 +1,15 @@
+# [3.4.0](https://github.com/mauricerenck/kirby-podcaster/compare/v3.3.0...v3.4.0) (2025-07-11)
+
+
+### Bug Fixes
+
+* handle empty user agents ([2c27010](https://github.com/mauricerenck/kirby-podcaster/commit/2c27010c24ca361ecdb561f63ff2dfa692a939ef))
+
+
+### Features
+
+* support head requests for episodes ([3c4f163](https://github.com/mauricerenck/kirby-podcaster/commit/3c4f1638b22e12169843a8156526609901383e8d))
+
 # [3.3.0](https://github.com/mauricerenck/kirby-podcaster/compare/v3.2.11...v3.3.0) (2025-01-24)
 
 
